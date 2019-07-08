@@ -1,4 +1,4 @@
-import NodeInput from './NodeInput.js';
+import NodeInput from '../NodeInput.js';
 
 
 export default class OutputNodeInput extends NodeInput {

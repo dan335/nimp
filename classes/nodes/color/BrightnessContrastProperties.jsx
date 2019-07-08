@@ -27,7 +27,7 @@ export default class BlurProperties extends React.Component {
     return (
       <div>
         <div className="propertiesTitle">Brightness/Contrast</div>
-        <div style={{padding:'5px'}}>
+        <div style={{padding:'10px'}}>
           Brightness<br/>
           <input id="brightnessSlider" step="0.05" style={{width:'100%'}} type="range" min="-1" max="1" defaultValue={this.props.node.brightness} onChange={(event) => {this.brightnessChange(event);}} />
           <br/>

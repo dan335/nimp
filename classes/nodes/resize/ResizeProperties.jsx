@@ -64,7 +64,7 @@ export default class ResizeProperties extends React.Component {
     return (
       <div>
         <div className="propertiesTitle">Resize</div>
-        <div style={{padding:'5px'}}>
+        <div style={{padding:'10px'}}>
           X<br/>
           <input id="xAutoInput" type="checkbox" defaultChecked={this.props.node.resizeX == Jimp.AUTO} onChange={(event) => {this.xAutoChange(event)}}/> Auto<br/>
 

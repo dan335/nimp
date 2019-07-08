@@ -23,11 +23,17 @@ export default class BrightnessContrast extends Node {
     if (this.inputs[0].image) {
       this.runTimer = Date.now();
       Jimp.read(this.inputs[0].image).then(image => {
-        image.brightness(this.brightness);
-        image.contrast(this.contrast);
-        this.image = image;
-        super.run();
+        image.brightness(this.brightness, (error, image) => {
+          image.contrast(this.contrast, (error, image) => {
+            this.image = image;
+            super.run();
+          });
+        });
       })
+    } else {
+      this.runTimer = Date.now();
+      this.image = null;
+      super.run();
     }
   }
 }

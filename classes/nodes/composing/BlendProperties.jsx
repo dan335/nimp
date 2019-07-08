@@ -47,7 +47,7 @@ export default class BlendProperties extends React.Component {
     return (
       <div>
         <div className="propertiesTitle">Blend</div>
-        <div style={{padding:'5px'}}>
+        <div style={{padding:'10px'}}>
           Position of image.<br/>
           X &nbsp;
           <input id="xInput" type="number" defaultValue={this.props.node.BlendX} onChange={(event) => {this.xChange(event);}} />
@@ -73,11 +73,11 @@ export default class BlendProperties extends React.Component {
           <br/>
           <br/>
 
-          Source Opacity<br/>
+          Top Image Opacity<br/>
           <input id="sourceOpacityInput"  defaultValue={this.props.node.opacitySource} step="0.05" style={{width:'100%'}} type="range" min="0" max="1" onChange={(event) => {this.sourceOpacityChange(event);}} />
           <br/><br/>
 
-          Destination Opacity<br/>
+          Bottom Image Opacity<br/>
           <input id="destinationOpacityInput"  defaultValue={this.props.node.opacityDest} step="0.05" style={{width:'100%'}} type="range" min="0" max="1" onChange={(event) => {this.destinationOpacitychange(event);}} />
         </div>
       </div>

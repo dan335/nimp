@@ -4,6 +4,8 @@ import settings from '../../lib/settings.js';
 export default class Node {
   constructor(graph, x, y, id, name, propertiesComponent) {
     this.graph = graph;
+    this.inputs = [];
+    this.outputs = [];
     this.x = x - settings.nodeWidth / 2;
     this.y = y - settings.nodeHeight / 2;
     this.id = id;
@@ -46,6 +48,7 @@ export default class Node {
     this.preview.setAttributeNS(null, 'width', settings.nodeWidth);
     this.preview.setAttributeNS(null, 'height', settings.nodeWidth);
     this.preview.setAttributeNS(null, 'preserveAspectRatio', 'xMidYMin meet');
+    this.preview.setAttribute('style', 'pointer-events:none;');
     this.g.appendChild(this.preview);
 
     this.timer = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -78,10 +81,14 @@ export default class Node {
 
   view() {
     const elm = document.getElementById('nodeViewImage');
-    if (elm && this.image) {
-      this.image.getBufferAsync(Jimp.MIME_JPEG).then(i => {
-        elm.src = 'data:'+Jimp.MIME_JPEG+';base64,'+i.toString('base64');
-      })
+    if (elm) {
+      if (this.image) {
+        this.image.getBufferAsync(Jimp.MIME_JPEG).then(i => {
+          elm.src = 'data:'+Jimp.MIME_JPEG+';base64,'+i.toString('base64');
+        })
+      } else {
+        elm.src = '';
+      }
     }
   }
 
@@ -93,14 +100,17 @@ export default class Node {
 
 
   passImageToChildren() {
-    if (this.image) {
-      this.outputs.forEach(output => {
-        if (output.connection) {
-          output.connection.image = this.image.clone();
-          output.connection.node.run();
+    this.outputs.forEach(output => {
+      output.connections.forEach(conn => {
+        if (this.image) {
+          conn.image = this.image.clone();
+          conn.node.run();
+        } else {
+          conn.image = null;
+          conn.node.run();
         }
       })
-    }
+    })
   }
 
 
@@ -109,14 +119,21 @@ export default class Node {
 
     if (this.image) {
       this.bmpSize.textContent = this.image.bitmap.width+'x'+this.image.bitmap.height;
+    } else {
+      this.bmpSize.textContent = '';
     }
 
     if (this.graph.selectedNode == this) {
       this.view();
     }
-    this.image.getBufferAsync(Jimp.MIME_JPEG).then(i => {
-      this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_JPEG+';base64,'+i.toString('base64'));
-    })
+
+    if (this.image) {
+      this.image.getBufferAsync(Jimp.MIME_JPEG).then(i => {
+        this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_JPEG+';base64,'+i.toString('base64'));
+      })
+    } else {
+      this.preview.setAttributeNS(null, 'href', '');
+    }
 
     this.passImageToChildren();
   }

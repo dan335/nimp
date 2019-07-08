@@ -20,7 +20,7 @@ export default class UrlImageProperties extends React.Component {
     return (
       <div>
         <div className="propertiesTitle">Image from URL</div>
-        <div style={{padding:'5px'}}>
+        <div style={{padding:'10px'}}>
           URL<br/>
           <input id="urlInput" type="text" style={{width:'100%'}} defaultValue={this.props.node.url} onChange={(event) => {this.urlChange(event);}} />
         </div>

@@ -20,7 +20,7 @@ export default class BlurProperties extends React.Component {
     return (
       <div>
         <div className="propertiesTitle">Blur</div>
-        <div style={{padding:'5px'}}>
+        <div style={{padding:'10px'}}>
           Radius<br/>
           <input id="radiusSlider" style={{width:'100%'}} type="range" min="1" max="100" defaultValue={this.props.node.radius} onChange={(event) => {this.blurRadiusChange(event);}} />
         </div>

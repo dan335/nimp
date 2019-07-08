@@ -2,8 +2,6 @@ import Node from '../Node.js';
 import UniformColorProperties from './UniformColorProperties.jsx';
 import UniformColorNodeOutput from './UniformColorNodeOutput.js';
 import Jimp from 'jimp';
-const Buffer = require('buffer').Buffer;
-const Jpeg = require('jpeg-js');
 
 
 export default class UniformColor extends Node {
@@ -17,10 +15,10 @@ export default class UniformColor extends Node {
 
     this.width = 256;
     this.height = 256;
-    this.red = 0xFF;
-    this.blue = 0xFF;
-    this.green = 0xFF;
-    this.alpha = 0xFF;
+    this.red = 255;
+    this.blue = 255;
+    this.green = 255;
+    this.alpha = 255;
 
     this.run();
   }
@@ -28,23 +26,16 @@ export default class UniformColor extends Node {
 
   run() {
     this.runTimer = Date.now();
-    let buffer = new Buffer(this.width * this.height * 4);
 
-    let i = 0;
-    while (i < buffer.length) {
-      buffer[i++] = this.red;
-      buffer[i++] = this.green;
-      buffer[i++] = this.blue;
-      buffer[i++] = this.alpha;
-    }
+    const hexNum = Jimp.rgbaToInt(this.red, this.green, this.blue, this.alpha);
 
-    var jpegImageData = Jpeg.encode({data:buffer, width:this.width, height:this.height}, 90);
-
-    Jimp.read(jpegImageData.data).then(image => {
-      this.image = image;
-      super.run();
-    }).catch(error => {
-      console.log(error);
+    new Jimp(this.width, this.height, hexNum, (error, image) => {
+      if (error) {
+        console.log(error);
+      } else {
+        this.image = image;
+        super.run();
+      }
     })
   }
 }

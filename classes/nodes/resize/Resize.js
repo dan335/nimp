@@ -24,10 +24,15 @@ export default class Resize extends Node {
     if (this.inputs[0].image) {
       this.runTimer = Date.now();
       Jimp.read(this.inputs[0].image).then(image => {
-        image.resize(this.resizeX, this.resizeY, this.mode);
-        this.image = image;
-        super.run();
+        image.resize(this.resizeX, this.resizeY, this.mode, (error, image) => {
+          this.image = image;
+          super.run();
+        });
       })
+    } else {
+      this.runTimer = Date.now();
+      this.image = null;
+      super.run();
     }
   }
 }

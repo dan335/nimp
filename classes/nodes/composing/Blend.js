@@ -31,10 +31,15 @@ export default class Blend extends Node {
           mode: this.mode,
           opacitySource: this.opacitySource,
           opacityDest: this.opacityDest
+        }, (error, image) => {
+          this.image = image;
+          super.run();
         })
-        this.image = image;
-        super.run();
       })
+    } else {
+      this.runTimer = Date.now();
+      this.image = null;
+      super.run();
     }
   }
 }

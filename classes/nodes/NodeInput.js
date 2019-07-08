@@ -5,7 +5,7 @@ import settings from '../../lib/settings.js';
 export default class NodeInput extends NodeConnection {
   constructor(node, index) {
     super(node, index);
-
+    this.parentNode = null;
     this.image = null;
   }
 
@@ -21,7 +21,7 @@ export default class NodeInput extends NodeConnection {
       event.stopPropagation();
       event.preventDefault();
       if (this.node.graph.component.state.mouseState && this.node.graph.component.state.mouseState.type == 'draggingNewConnection') {
-        this.node.graph.component.state.mouseState.data.connectTo(this);
+        this.node.graph.component.state.mouseState.data.makeConnection(this);
       }
 
       this.node.graph.component.setState({

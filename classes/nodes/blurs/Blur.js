@@ -22,10 +22,15 @@ export default class Blur extends Node {
     if (this.inputs[0].image) {
       this.runTimer = Date.now();
       Jimp.read(this.inputs[0].image).then(image => {
-        image.blur(this.radius);
-        this.image = image;
-        super.run();
+        image.blur(this.radius, (error, image) => {
+          this.image = image;
+          super.run();
+        });
       })
+    } else {
+      this.runTimer = Date.now();
+      this.image = null;
+      super.run();
     }
   }
 }

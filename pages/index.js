@@ -220,7 +220,7 @@ export default class Index extends React.Component {
           <div id="mainContainer">
             <div id="topContainer">Nimp <span style={{color:'hsl(0, 0%, 60%)'}}> (Node Based Image Manipulation Program)</span></div>
             <div id="midContainer">
-              <div>
+              <div id="midLeftContainer">
                 <div className="nodeButtonHeader">Nodes</div>
                 {this.renderNodeButtons()}
               </div>
@@ -233,7 +233,7 @@ export default class Index extends React.Component {
                 </div>
               </div>
 
-              <div>
+              <div id="midRightContainer">
                 {this.renderProperties()}
               </div>
             </div>
@@ -249,6 +249,14 @@ export default class Index extends React.Component {
           #mainContainer {
             display: grid;
             grid-template-rows: 30px auto;
+          }
+
+          #midLeftContainer {
+            border-right: 2px solid #000;
+          }
+
+          #midRightContainer {
+            border-left: 2px solid #000;
           }
 
           #midContainer {
@@ -292,7 +300,7 @@ export default class Index extends React.Component {
           }
 
           .propertiesTitle {
-            padding: 5px;
+            padding: 10px;
             background-color: hsl(209, 50%, 5%);
           }
 
@@ -304,6 +312,7 @@ export default class Index extends React.Component {
             stroke: #fff;
             fill: none;
             stroke-width: 2px;
+            pointer-events: visible;
           }
         `}</style>
       </div>
