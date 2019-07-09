@@ -5,7 +5,7 @@ import BlendNodeInput from './BlendNodeInput.js';
 
 export default class Blend extends Node {
   constructor(graph, x, y) {
-    super(graph, x, y, 'Blend', 'Blend', BlendProperties);
+    super(graph, x, y, 'blend', 'Blend', BlendProperties);
 
     this.inputs = [
       new BlendNodeInput(this, 0),
