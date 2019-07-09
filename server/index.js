@@ -18,6 +18,6 @@ nextApp.prepare().then(() => {
 
   expressApp.listen(PORT, err => {
     if (err) throw err;
-    console.log(`ready at http://localhost:${PORT}`)
+    console.log(`Nimp running on port ${PORT}`);
   })
 })

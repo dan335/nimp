@@ -1,7 +1,14 @@
 import Head from 'next/head';
 import '../node_modules/normalize.css/normalize.css';
+import ReactGA from 'react-ga';
+
 
 export default class MainLayout extends React.Component {
+
+  componentDidMount() {
+    ReactGA.initialize('UA-82312326-13');
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }
 
   render() {
     const {headerData, children} = this.props;
@@ -10,7 +17,9 @@ export default class MainLayout extends React.Component {
       <div>
         <Head>
           <title>Nimp</title>
+          <meta name="description" content="Node-base image manipulation program." />
           <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet" />
+          <meta charSet='UTF-8'/>
         </Head>
 
         <div>
