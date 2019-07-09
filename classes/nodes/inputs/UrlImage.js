@@ -14,7 +14,8 @@ export default class UniformColor extends Node {
       new UrlImageNodeOutput(this, 0)
     ];
 
-    this.url = 'https://i.imgur.com/e2Kmd.jpg';
+    //this.url = 'https://i.imgur.com/e2Kmd.jpg';
+    this.url = 'https://i.imgur.com/mdlwVuL.jpg';
 
     this.run();
   }

@@ -244,7 +244,7 @@ export default class Index extends React.Component {
           #topContainer {
             line-height: 30px;
             padding-left: 5px;
-            background-color: hsl(209, 60%, 25%);
+            background-color: hsl(200, 60%, 25%);
           }
           #mainContainer {
             display: grid;
@@ -265,7 +265,7 @@ export default class Index extends React.Component {
           }
 
           #viewContainer {
-            background-color: hsl(209, 50%, 5%);
+            background-color: hsl(200, 10%, 8%);
           }
 
           #innerMidContainer {
@@ -274,7 +274,7 @@ export default class Index extends React.Component {
           }
 
           #svgContainer {
-            background-color: hsl(209, 10%, 10%);
+            background-color: hsl(200, 10%, 10%);
           }
 
           #svg {
@@ -285,27 +285,27 @@ export default class Index extends React.Component {
           .nodeButtonHeader {
             padding: 5px;
             margin-bottom: 2px;
-            background-color: hsl(209, 50%, 5%);
+            background-color: hsl(200, 50%, 5%);
           }
 
           .nodeButton {
             padding: 5px;
-            background-color: hsl(209, 60%, 40%);
+            background-color: hsl(200, 60%, 40%);
             margin-bottom: 2px;
           }
 
           .nodeBg.selected {
-            stroke: hsl(209, 60%, 90%);
+            stroke: hsl(200, 60%, 90%);
             stroke-width: 3px;
           }
 
           .propertiesTitle {
             padding: 10px;
-            background-color: hsl(209, 50%, 5%);
+            background-color: hsl(200, 50%, 5%);
           }
 
           .nodeConnection {
-            fill: hsl(209, 10%, 50%);
+            fill: hsl(200, 10%, 50%);
           }
 
           .nodeConnectionSpline {

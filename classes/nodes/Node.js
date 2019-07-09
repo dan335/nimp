@@ -83,8 +83,8 @@ export default class Node {
     const elm = document.getElementById('nodeViewImage');
     if (elm) {
       if (this.image) {
-        this.image.getBufferAsync(Jimp.MIME_JPEG).then(i => {
-          elm.src = 'data:'+Jimp.MIME_JPEG+';base64,'+i.toString('base64');
+        this.image.getBufferAsync(Jimp.MIME_PNG).then(i => {
+          elm.src = 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64');
         })
       } else {
         elm.src = '';
@@ -128,8 +128,8 @@ export default class Node {
     }
 
     if (this.image) {
-      this.image.getBufferAsync(Jimp.MIME_JPEG).then(i => {
-        this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_JPEG+';base64,'+i.toString('base64'));
+      this.image.getBufferAsync(Jimp.MIME_PNG).then(i => {
+        this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64'));
       })
     } else {
       this.preview.setAttributeNS(null, 'href', '');
