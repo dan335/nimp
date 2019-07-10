@@ -23,6 +23,9 @@ export default class UrlImageProperties extends React.Component {
         <div style={{padding:'10px'}}>
           URL<br/>
           <input id="urlInput" type="text" style={{width:'100%'}} defaultValue={this.props.node.url} onChange={(event) => {this.urlChange(event);}} />
+
+          <br/><br/>
+          If this fails it's probably because the remote site doesn't allow cross-origin resource sharing.  Some sites like <a href="https://imgur.com/">Imgur</a> work.
         </div>
       </div>
     )

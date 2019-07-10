@@ -46,6 +46,11 @@ export default class MainLayout extends React.Component {
             padding: 5px;
             border-radius: 2px;
           }
+
+          a {
+            color: hsl(100, 80%, 60%);
+            text-decoration: none;
+          }
         `}</style>
       </div>
     )

@@ -209,7 +209,7 @@ export default class Index extends React.Component {
               <div id="innerMidContainer">
                 <div id="svgContainer">
                   <svg id="svg" version="1.1" onMouseUp={(event) => {this.onMouseUpSvg(event)}} xmlns="http://www.w3.org/2000/svg" />
-                  <div id="svgHelpText">Click: Select &nbsp;&nbsp; Double Click: View</div>
+                  <div id="svgHelpText">Click: Select &nbsp;&nbsp; Double Click: Select and View</div>
                 </div>
                 <div id="viewContainer">
                   <img id="nodeViewImage" style={{maxHeight:'100%',maxWidth:'100%',display:'block'}} />
