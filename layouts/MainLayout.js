@@ -35,8 +35,8 @@ export default class MainLayout extends React.Component {
           }
 
           body {
-            background-color: hsl(200, 20%, 13%);
-            color: hsl(200, 50%, 95%);
+            background-color: hsl(209, 10%, 13%);
+            color: hsl(209, 50%, 95%);
             font-family: 'Roboto Condensed', sans-serif;
             user-select: none;
           }

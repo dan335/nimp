@@ -1,4 +1,5 @@
 import settings from '../../lib/settings.js';
+import functions from '../../lib/functions.js';
 
 
 export default class Node {
@@ -15,6 +16,10 @@ export default class Node {
     this.createSvgElm();
     this.graph.selectNode(this);
     this.run = this.run.bind(this);
+    this.lastClick = 0;
+    this.graph.viewNode(this);
+    this.isMouseDown = false;
+    this.lastMousePos = {x:0,y:0};
   }
 
 
@@ -31,15 +36,61 @@ export default class Node {
     this.bg.setAttributeNS(null, 'height', settings.nodeHeight);
     this.bg.setAttributeNS(null, 'fill', settings.nodeBackgroundColor);
     this.bg.classList.add('nodeBg');
-    this.bg.onclick = () => {this.graph.selectNode(this);}
+    this.bg.onclick = () => {
+      const now = new Date().getTime();
+      if (now - this.lastClick < 400) {
+        this.graph.viewNode(this);
+      }
+      this.graph.selectNode(this);
+      this.lastClick = now;
+    }
+    this.bg.onmousedown = (event) => {
+      this.isMouseDown = true;
+      this.lastMousePos = functions.getPointFromEvent(event);
+    }
+    this.bg.onmouseup = (event) => {
+      this.isMouseDown = false;
+    }
+    this.bg.onmousemove =(event) => {
+      if (this.isMouseDown) {
+        const mousePos = functions.getPointFromEvent(event);
+
+        const delta = {
+          x: (mousePos.x - this.lastMousePos.x) * this.graph.component.svgZoom,
+          y: (mousePos.y - this.lastMousePos.y) * this.graph.component.svgZoom
+        }
+
+        this.g.setAttributeNS(null, 'transform', 'translate('+(this.x+delta.x)+' '+(this.y+delta.y)+')');
+        this.x += delta.x;
+        this.y += delta.y;
+
+        this.lastMousePos = mousePos;
+
+        this.outputs.forEach(conn => {
+          conn.removeConnectionSplines();
+          conn.createConnectionSplines();
+        })
+
+        this.inputs.forEach(conn => {
+          if (conn.parent) {
+            conn.parent.removeConnectionSplines();
+            conn.parent.createConnectionSplines();
+          }
+        })
+      }
+    }
+    this.bg.onmouseleave = (event) => {
+      this.isMouseDown = false;
+    }
     this.g.appendChild(this.bg);
 
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    text.setAttributeNS(null, 'x', 5);
+    text.setAttributeNS(null, 'x', settings.nodeWidth / 2);
     text.setAttributeNS(null, 'y', settings.nodeHeight / 2 + 5);
     text.setAttributeNS(null, 'fill', '#fff');
     text.textContent = this.name;
     text.setAttribute('style', 'pointer-events:none;');
+    text.setAttributeNS(null, 'text-anchor', 'middle');
     this.g.appendChild(text);
 
     this.preview = document.createElementNS('http://www.w3.org/2000/svg', 'image');
@@ -75,11 +126,11 @@ export default class Node {
   select() {
     this.bg.classList.add('selected');
     this.graph.component.setState({properties:{component:this.propertiesComponent, node:this}});
-    this.view();
   }
 
 
   view() {
+    this.bg.classList.add('viewed');
     const elm = document.getElementById('nodeViewImage');
     if (elm) {
       if (this.image) {
@@ -96,6 +147,15 @@ export default class Node {
   deselect() {
     this.bg.classList.remove('selected');
     this.graph.component.setState({properties:null});
+  }
+
+
+  deView() {
+    this.bg.classList.remove('viewed');
+    const elm = document.getElementById('nodeViewImage');
+    if (elm) {
+      elm.src = '';
+    }
   }
 
 
@@ -123,7 +183,7 @@ export default class Node {
       this.bmpSize.textContent = '';
     }
 
-    if (this.graph.selectedNode == this) {
+    if (this.graph.viewedNode == this) {
       this.view();
     }
 

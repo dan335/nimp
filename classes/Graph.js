@@ -4,6 +4,7 @@ export default class Graph {
     this.component = component;
     this.nodes = [];
     this.selectedNode = null;
+    this.viewedNode = null;
   }
 
 
@@ -18,5 +19,14 @@ export default class Graph {
     }
     this.selectedNode = node;
     node.select();
+  }
+
+
+  viewNode(node) {
+    if (this.viewedNode) {
+      this.viewedNode.deView();
+    }
+    this.viewedNode = node;
+    node.view();
   }
 }

@@ -1,6 +1,7 @@
 import MainLayout from '../layouts/MainLayout.js';
 import Graph from '../classes/Graph.js';
 import settings from '../lib/settings.js';
+import functions from '../lib/functions.js';
 
 // dragging svg
 // https://css-tricks.com/creating-a-panning-effect-for-svg/
@@ -68,22 +69,6 @@ export default class Index extends React.Component {
   }
 
 
-  // get point from event.  either touch or mouse
-  getPointFromEvent(event) {
-    let point = {x:0, y:0};
-
-    if (event.targetTouches) {
-      point.x = event.targetTouches[0].clientX;
-      point.y = event.targetTouches[0].clientY;
-    } else {
-      point.x = event.clientX;
-      point.y = event.clientY;
-    }
-
-    return point;
-  }
-
-
   componentWillUnmount() {
     window.removeEventListener("resize", this.resize.bind(this));
   }
@@ -116,7 +101,7 @@ export default class Index extends React.Component {
   svgOnMouseDown(event) {
     if (event.target.tagName != 'svg') return;
 
-    const pointerPosition = this.getPointFromEvent(event);
+    const pointerPosition = functions.getPointFromEvent(event);
     this.svgPointerOrigin.x = pointerPosition.x;
     this.svgPointerOrigin.y = pointerPosition.y;
     this.svgIsPointerDown = true;
@@ -143,7 +128,7 @@ export default class Index extends React.Component {
 
     event.preventDefault();
 
-    const pointerPosition = this.getPointFromEvent(event);
+    const pointerPosition = functions.getPointFromEvent(event);
 
     this.svgNewViewBox.x = this.svgViewBox.x - ((pointerPosition.x - this.svgPointerOrigin.x) * this.svgRatio * this.svgZoom);
 
@@ -162,7 +147,12 @@ export default class Index extends React.Component {
 
   renderNodeButton(node) {
     return (
-      <div key={node.name} className="nodeButton" onMouseDown={() => {this.startDraggingNewNode(node)}}>{node.name}</div>
+      <div key={node.name} className="nodeButtonContainer">
+        <div className="nodeButton" onMouseEnter={(event) => {event.target.nextSibling.classList.add('show')}} onMouseLeave={() => {event.target.nextSibling.classList.remove('show')}} onMouseDown={() => {this.startDraggingNewNode(node)}}>
+          {node.name}
+        </div>
+        <div className="nodeButtonDrag">drag >></div>
+      </div>
     )
   }
 
@@ -179,15 +169,7 @@ export default class Index extends React.Component {
     event.stopPropagation();
     if (this.state.mouseState) {
       if (this.state.mouseState.type == 'draggingNewNode') {
-
-        // const screenX = event.pageX - svg.getBoundingClientRect().left;
-        // const screenY = event.pageY - svg.getBoundingClientRect().top;
-
-        const point = this.svg.createSVGPoint();
-        point.x = event.pageX;
-        point.y = event.pageY;
-
-        const svgPos = point.matrixTransform(this.svg.getScreenCTM().inverse());
+        const svgPos = functions.getPointOnSvg(event, this.svg);
 
         this.createNewNode(this.state.mouseState.data.classObject, svgPos.x, svgPos.y);
         this.setState({mouseState:null});
@@ -218,7 +200,7 @@ export default class Index extends React.Component {
       <div>
         <MainLayout>
           <div id="mainContainer">
-            <div id="topContainer">Nimp <span style={{color:'hsl(0, 0%, 60%)'}}> (Node Based Image Manipulation Program)</span></div>
+            <div id="topContainer">NIMP <span style={{color:'hsl(0, 0%, 60%)'}}> &nbsp; (Node Based Image Manipulation Program)</span></div>
             <div id="midContainer">
               <div id="midLeftContainer">
                 <div className="nodeButtonHeader">Nodes</div>
@@ -227,6 +209,7 @@ export default class Index extends React.Component {
               <div id="innerMidContainer">
                 <div id="svgContainer">
                   <svg id="svg" version="1.1" onMouseUp={(event) => {this.onMouseUpSvg(event)}} xmlns="http://www.w3.org/2000/svg" />
+                  <div id="svgHelpText">Click: Select &nbsp;&nbsp; Double Click: View</div>
                 </div>
                 <div id="viewContainer">
                   <img id="nodeViewImage" style={{maxHeight:'100%',maxWidth:'100%',display:'block'}} />
@@ -244,7 +227,7 @@ export default class Index extends React.Component {
           #topContainer {
             line-height: 30px;
             padding-left: 5px;
-            background-color: hsl(200, 60%, 25%);
+            background-color: hsl(209, 10%, 25%);
           }
           #mainContainer {
             display: grid;
@@ -265,7 +248,7 @@ export default class Index extends React.Component {
           }
 
           #viewContainer {
-            background-color: hsl(200, 10%, 8%);
+            background-color: hsl(209, 10%, 8%);
           }
 
           #innerMidContainer {
@@ -274,7 +257,16 @@ export default class Index extends React.Component {
           }
 
           #svgContainer {
-            background-color: hsl(200, 10%, 10%);
+            background-color: hsl(209, 10%, 10%);
+            position: relative;
+          }
+
+          #svgHelpText {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            color: hsl(209, 10%, 60%);
+            font-size: 90%;
           }
 
           #svg {
@@ -285,27 +277,61 @@ export default class Index extends React.Component {
           .nodeButtonHeader {
             padding: 5px;
             margin-bottom: 2px;
-            background-color: hsl(200, 50%, 5%);
+            background-color: hsl(209, 10%, 5%);
+          }
+
+          .nodeButtonContainer {
+            position: relative;
           }
 
           .nodeButton {
             padding: 5px;
-            background-color: hsl(200, 60%, 40%);
+            background-color: hsl(209, 10%, 40%);
             margin-bottom: 2px;
+            cursor: pointer;
+          }
+
+          .nodeButtonDrag {
+            position: absolute;
+            right: -55px;
+            top: 5px;
+            display:none;
+            color: hsl(209, 10%, 60%);
+            z-index: 1;
+          }
+
+          .nodeButtonDrag.show {
+            display:block;
+          }
+
+          .nodeBg {
+            stroke-linejoin: round;
+          }
+
+          .nodeBg.viewed {
+            stroke: hsl(209, 10%, 90%);
+            stroke-width: 3px;
+            stroke-dasharray: 5;
           }
 
           .nodeBg.selected {
-            stroke: hsl(200, 60%, 90%);
+            stroke: hsl(209, 10%, 90%);
             stroke-width: 3px;
+          }
+
+          .nodeBg.selected.viewed {
+            stroke-dasharray: none;
           }
 
           .propertiesTitle {
             padding: 10px;
-            background-color: hsl(200, 50%, 5%);
+            background-color: hsl(209, 10%, 5%);
           }
 
           .nodeConnection {
-            fill: hsl(200, 10%, 50%);
+            fill: hsl(209, 10%, 60%);
+            stroke: hsl(209, 10%, 90%);
+            stroke-width: 2px;
           }
 
           .nodeConnectionSpline {

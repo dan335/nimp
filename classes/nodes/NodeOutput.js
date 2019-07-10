@@ -1,5 +1,7 @@
 import NodeConnection from './NodeConnection.js';
 import settings from '../../lib/settings.js';
+import NodeInput from './NodeInput.js';
+import functions from '../../lib/functions.js';
 
 
 export default class NodeOutput extends NodeConnection {
@@ -42,6 +44,10 @@ export default class NodeOutput extends NodeConnection {
     if (inputConnection.parent) {
       inputConnection.parent.removeConnection(inputConnection, false);
     }
+
+    if (!(inputConnection instanceof NodeInput)) return;
+    if (inputConnection.node == this.node) return;
+    if (functions.isNodeInParents(this.node, inputConnection.node)) return;
 
     this.connections.push(inputConnection);
     inputConnection.parent = this;

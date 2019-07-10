@@ -1,11 +1,12 @@
 import NodeConnection from './NodeConnection.js';
 import settings from '../../lib/settings.js';
+import functions from '../../lib/functions.js';
 
 
 export default class NodeInput extends NodeConnection {
   constructor(node, index) {
     super(node, index);
-    this.parentNode = null;
+    this.parent = null;
     this.image = null;
   }
 
