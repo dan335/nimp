@@ -163,7 +163,7 @@ export default class Node {
     this.outputs.forEach(output => {
       output.connections.forEach(conn => {
         if (this.image) {
-          conn.image = this.image.clone();
+          conn.image = this.image;
           conn.node.run();
         } else {
           conn.image = null;
