@@ -1,6 +1,6 @@
-import React from 'react';
+import Properties from '../Properties.js';
 
-export default class GreyscaleProperties extends React.Component {
+export default class GreyscaleProperties extends Properties {
 
   constructor(props) {
     super(props);

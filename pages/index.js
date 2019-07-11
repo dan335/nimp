@@ -15,7 +15,7 @@ export default class Index extends React.Component {
     this.state = {
       mouseState: null,
       properties: null,
-      category: 'Input/Output'
+      category: 'Images'
     }
 
     this.svgIsPointerDown = false;
@@ -220,7 +220,7 @@ export default class Index extends React.Component {
           <div id="mainContainer">
             <div id="topContainer">
               <div>
-                NIMP <span style={{color:'hsl(0, 0%, 60%)'}}> &nbsp; (Node Based Image Manipulation Program)</span>
+                Nimp <span style={{color:'hsl(0, 0%, 60%)'}}> &nbsp; (Node Based Image Manipulation Program)</span>
               </div>
               <div style={{textAlign:'right'}}>
                 <a href="https://github.com/dan335/nimp"><img src="/static/githubLogo.png" /></a>
@@ -230,11 +230,11 @@ export default class Index extends React.Component {
             <div id="midContainer">
               <div id="midLeftContainer">
                 <div id="midLeftCategories">
-                  <div className="nodeButtonHeader">Categories</div>
+                  <div className="nodeButtonHeader">CATEGORIES</div>
                   {this.renderCategoryButtons()}
                 </div>
                 <div id="midLeftNodes">
-                  <div className="nodeButtonHeader">Nodes</div>
+                  <div className="nodeButtonHeader">NODES</div>
                   {this.renderNodeButtons()}
                 </div>
               </div>
@@ -318,8 +318,8 @@ export default class Index extends React.Component {
 
           .nodeButtonHeader {
             padding: 5px;
-            margin-bottom: 2px;
             background-color: hsl(209, 10%, 5%);
+            color: hsl(209, 10%, 60%);
           }
 
           .nodeButtonContainer {

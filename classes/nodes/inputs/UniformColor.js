@@ -1,16 +1,19 @@
-import Node from '../Node.js';
+import NodeImage from '../NodeImage.js';
 import UniformColorProperties from './UniformColorProperties.jsx';
-import NodeOutput from '../NodeOutput.js';
+import OutputImage from '../OutputImage.js';
+import OutputNumber from '../OutputNumber.js';
 import Jimp from 'jimp';
 
 
-export default class UniformColor extends Node {
+export default class UniformColor extends NodeImage {
   constructor(graph, x, y) {
     super(graph, x, y, 'Uniform Color', UniformColorProperties);
 
     this.inputs = [];
     this.outputs = [
-      new NodeOutput(this, 0, 'Output')
+      new OutputImage(this, 0, 'Output'),
+      new OutputNumber(this, 1, 'Width'),
+      new OutputNumber(this, 2, 'Height')
     ];
 
     this.width = 256;
@@ -38,5 +41,21 @@ export default class UniformColor extends Node {
         super.run();
       }
     })
+  }
+
+
+  passToChildren() {
+    if (this.image) {
+      this.outputs[1].connections.forEach(conn => {
+        conn.number = this.image.bitmap.width;
+        conn.node.run();
+      })
+      this.outputs[2].connections.forEach(conn => {
+        conn.number = this.image.bitmap.height;
+        conn.node.run();
+      })
+    }
+
+    super.passToChildren();
   }
 }

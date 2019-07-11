@@ -1,6 +1,6 @@
-import React from 'react';
+import Properties from '../Properties.js';
 
-export default class MaskProperties extends React.Component {
+export default class MaskProperties extends Properties {
 
   constructor(props) {
     super(props);

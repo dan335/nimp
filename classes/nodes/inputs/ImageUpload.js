@@ -1,14 +1,17 @@
-import Node from '../Node.js';
+import NodeImage from '../NodeImage.js';
 import ImageUploadProperties from './ImageUploadProperties.jsx';
-import NodeOutput from '../NodeOutput.js';
+import OutputImage from '../OutputImage.js';
+import OutputNumber from '../OutputNumber.js';
 
-export default class ImageUpload extends Node {
+export default class ImageUpload extends NodeImage {
   constructor(graph, x, y) {
     super(graph, x, y, 'ImageUpload', ImageUploadProperties);
 
     this.inputs = [];
     this.outputs = [
-      new NodeOutput(this, 0, 'Output')
+      new OutputImage(this, 0, 'Output'),
+      new OutputNumber(this, 1, 'Width'),
+      new OutputNumber(this, 2, 'Height')
     ];
 
     this.base64 = null;
@@ -28,5 +31,21 @@ export default class ImageUpload extends Node {
       this.image = null;
       super.run();
     }
+  }
+
+
+  passToChildren() {
+    if (this.image) {
+      this.outputs[1].connections.forEach(conn => {
+        conn.number = this.image.bitmap.width;
+        conn.node.run();
+      })
+      this.outputs[2].connections.forEach(conn => {
+        conn.number = this.image.bitmap.height;
+        conn.node.run();
+      })
+    }
+
+    super.passToChildren();
   }
 }

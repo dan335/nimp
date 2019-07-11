@@ -11,7 +11,6 @@ export default class Node {
     this.y = y - settings.nodeHeight / 2;
     this.name = name;
     this.propertiesComponent = propertiesComponent;
-    this.image = null;
     this.createSvgElm();
     this.graph.selectNode(this);
     this.run = this.run.bind(this);
@@ -129,17 +128,7 @@ export default class Node {
 
 
   view() {
-    this.bg.classList.add('viewed');
-    const elm = document.getElementById('nodeViewImage');
-    if (elm) {
-      if (this.image) {
-        this.image.getBufferAsync(Jimp.MIME_PNG).then(i => {
-          elm.src = 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64');
-        })
-      } else {
-        elm.src = '';
-      }
-    }
+
   }
 
 
@@ -148,53 +137,4 @@ export default class Node {
     this.graph.component.setState({properties:null});
   }
 
-
-  deView() {
-    this.bg.classList.remove('viewed');
-    const elm = document.getElementById('nodeViewImage');
-    if (elm) {
-      elm.src = '';
-    }
-  }
-
-
-  passImageToChildren() {
-    this.outputs.forEach(output => {
-      output.connections.forEach(conn => {
-        if (this.image) {
-          conn.image = this.image;
-          conn.node.run();
-        } else {
-          conn.image = null;
-          conn.node.run();
-        }
-      })
-    })
-  }
-
-
-  run() {
-    this.timer.textContent = (Date.now() - this.runTimer) + 'ms';
-    this.bg.classList.remove('running');
-
-    if (this.image) {
-      this.bmpSize.textContent = this.image.bitmap.width+'x'+this.image.bitmap.height;
-    } else {
-      this.bmpSize.textContent = '';
-    }
-
-    if (this.graph.viewedNode == this) {
-      this.view();
-    }
-
-    if (this.image) {
-      this.image.getBufferAsync(Jimp.MIME_PNG).then(i => {
-        this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64'));
-      })
-    } else {
-      this.preview.setAttributeNS(null, 'href', '');
-    }
-
-    this.passImageToChildren();
-  }
 }

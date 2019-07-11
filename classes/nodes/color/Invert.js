@@ -1,17 +1,17 @@
-import Node from '../Node.js';
+import NodeImage from '../NodeImage.js';
 import InvertProperties from './InvertProperties.jsx';
-import NodeOutput from '../NodeOutput.js';
-import NodeInput from '../NodeInput.js';
+import OutputImage from '../OutputImage.js';
+import InputImage from '../InputImage.js';
 
-export default class Invert extends Node {
+export default class Invert extends NodeImage {
   constructor(graph, x, y) {
     super(graph, x, y, 'Invert', InvertProperties);
 
     this.inputs = [
-      new NodeInput(this, 0, 'Input')
+      new InputImage(this, 0, 'Input')
     ];
     this.outputs = [
-      new NodeOutput(this, 0, 'Output')
+      new OutputImage(this, 0, 'Output')
     ];
   }
 
