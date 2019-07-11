@@ -1,15 +1,15 @@
 {
   "name": "Nimp",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Node-based image manipulation program.",
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "build": "next build",
     "start": "NODE_ENV=production node server/index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Dan",
+  "license": "MIT",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "body-parser": "^1.19.0",
