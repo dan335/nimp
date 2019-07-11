@@ -1,17 +1,17 @@
 import Node from '../Node.js';
 import ResizeProperties from './ResizeProperties.jsx';
-import ResizeNodeOutput from './ResizeNodeOutput.js';
-import ResizeNodeInput from './ResizeNodeInput.js';
+import NodeOutput from '../NodeOutput.js';
+import NodeInput from '../NodeInput.js';
 
 export default class Resize extends Node {
   constructor(graph, x, y) {
-    super(graph, x, y, 'resize', 'Resize', ResizeProperties);
+    super(graph, x, y, 'Resize', ResizeProperties);
 
     this.inputs = [
-      new ResizeNodeInput(this, 0)
+      new NodeInput(this, 0)
     ];
     this.outputs = [
-      new ResizeNodeOutput(this, 0)
+      new NodeOutput(this, 0)
     ];
 
     this.resizeX = 256;

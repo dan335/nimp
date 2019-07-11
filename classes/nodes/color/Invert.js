@@ -5,7 +5,7 @@ import NodeInput from '../NodeInput.js';
 
 export default class Invert extends Node {
   constructor(graph, x, y) {
-    super(graph, x, y, 'invert', 'Invert', InvertProperties);
+    super(graph, x, y, 'Invert', InvertProperties);
 
     this.inputs = [
       new NodeInput(this, 0)

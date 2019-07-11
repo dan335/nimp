@@ -1,17 +1,17 @@
 import Node from '../Node.js';
 import BlurProperties from './BlurProperties.jsx';
-import BlurNodeOutput from './BlurNodeOutput.js';
-import BlurNodeInput from './BlurNodeInput.js';
+import NodeOutput from '../NodeOutput.js';
+import NodeInput from '../NodeInput.js';
 
 export default class Blur extends Node {
   constructor(graph, x, y) {
-    super(graph, x, y, 'blur', 'Blur', BlurProperties);
+    super(graph, x, y, 'Blur', BlurProperties);
 
     this.inputs = [
-      new BlurNodeInput(this, 0)
+      new NodeInput(this, 0)
     ];
     this.outputs = [
-      new BlurNodeOutput(this, 0)
+      new NodeOutput(this, 0)
     ];
 
     this.radius = 10;

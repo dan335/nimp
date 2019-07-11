@@ -79,11 +79,6 @@ export default class Index extends React.Component {
     if (elm) {
       elm.style.height = window.innerHeight + 'px';
     }
-
-    // this.svgRatio = this.svgViewBox.width / this.svg.getBoundingClientRect().width;
-
-    // this.svgViewBox.width = this.svg.clientWidth;
-    // this.svgViewBox.height = this.svg.clientHeight;
   }
 
 

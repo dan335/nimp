@@ -1,14 +1,14 @@
 import Node from '../Node.js';
 import ImageUploadProperties from './ImageUploadProperties.jsx';
-import ImageUploadNodeOutput from './ImageUploadNodeOutput.js';
+import NodeOutput from '../NodeOutput.js';
 
 export default class ImageUpload extends Node {
   constructor(graph, x, y) {
-    super(graph, x, y, 'imageupload', 'ImageUpload', ImageUploadProperties);
+    super(graph, x, y, 'ImageUpload', ImageUploadProperties);
 
     this.inputs = [];
     this.outputs = [
-      new ImageUploadNodeOutput(this, 0)
+      new NodeOutput(this, 0)
     ];
 
     this.base64 = null;

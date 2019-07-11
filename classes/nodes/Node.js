@@ -3,13 +3,12 @@ import functions from '../../lib/functions.js';
 
 
 export default class Node {
-  constructor(graph, x, y, id, name, propertiesComponent) {
+  constructor(graph, x, y, name, propertiesComponent) {
     this.graph = graph;
     this.inputs = [];
     this.outputs = [];
     this.x = x - settings.nodeWidth / 2;
     this.y = y - settings.nodeHeight / 2;
-    this.id = id;
     this.name = name;
     this.propertiesComponent = propertiesComponent;
     this.image = null;
@@ -95,7 +94,7 @@ export default class Node {
 
     this.preview = document.createElementNS('http://www.w3.org/2000/svg', 'image');
     this.preview.setAttributeNS(null, 'x', 0);
-    this.preview.setAttributeNS(null, 'y', settings.nodeHeight+5);
+    this.preview.setAttributeNS(null, 'y', settings.nodeHeight+2);
     this.preview.setAttributeNS(null, 'width', settings.nodeWidth);
     this.preview.setAttributeNS(null, 'height', settings.nodeWidth);
     this.preview.setAttributeNS(null, 'preserveAspectRatio', 'xMidYMin meet');
@@ -104,7 +103,7 @@ export default class Node {
 
     this.timer = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     this.timer.setAttributeNS(null, 'x', settings.nodeWidth);
-    this.timer.setAttributeNS(null, 'y', settings.nodeHeight * 0.25 * -1);
+    this.timer.setAttributeNS(null, 'y', settings.nodeHeight * 0.24 * -1);
     this.timer.setAttributeNS(null, 'fill', '#fff');
     this.timer.setAttributeNS(null, 'text-anchor', 'end');
     this.timer.setAttributeNS(null, 'font-size', 11);
@@ -114,7 +113,7 @@ export default class Node {
 
     this.bmpSize = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     this.bmpSize.setAttributeNS(null, 'x', 0);
-    this.bmpSize.setAttributeNS(null, 'y', settings.nodeHeight * 0.25 * -1);
+    this.bmpSize.setAttributeNS(null, 'y', settings.nodeHeight * 0.24 * -1);
     this.bmpSize.setAttributeNS(null, 'fill', '#fff');
     this.bmpSize.setAttributeNS(null, 'font-size', 11);
     this.bmpSize.textContent = '';

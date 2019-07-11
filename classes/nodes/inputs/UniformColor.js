@@ -1,16 +1,16 @@
 import Node from '../Node.js';
 import UniformColorProperties from './UniformColorProperties.jsx';
-import UniformColorNodeOutput from './UniformColorNodeOutput.js';
+import NodeOutput from '../NodeOutput.js';
 import Jimp from 'jimp';
 
 
 export default class UniformColor extends Node {
   constructor(graph, x, y) {
-    super(graph, x, y, 'uniformcolor', 'Uniform Color', UniformColorProperties);
+    super(graph, x, y, 'Uniform Color', UniformColorProperties);
 
     this.inputs = [];
     this.outputs = [
-      new UniformColorNodeOutput(this, 0)
+      new NodeOutput(this, 0)
     ];
 
     this.width = 256;

@@ -1,6 +1,6 @@
 FROM node:12-alpine
 
-RUN apk add --no-cache make gcc g++ python imagemagick
+RUN apk add --no-cache make gcc g++ python
 
 ENV PORT=80 TERM=xterm
 

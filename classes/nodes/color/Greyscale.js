@@ -1,17 +1,17 @@
 import Node from '../Node.js';
 import GreyscaleProperties from './GreyscaleProperties.jsx';
-import GreyscaleNodeOutput from './GreyscaleNodeOutput.js';
-import GreyscaleNodeInput from './GreyscaleNodeInput.js';
+import NodeOutput from '../NodeOutput.js';
+import NodeInput from '../NodeInput.js';
 
 export default class Greyscale extends Node {
   constructor(graph, x, y) {
-    super(graph, x, y, 'greyscale', 'Greyscale', GreyscaleProperties);
+    super(graph, x, y, 'Greyscale', GreyscaleProperties);
 
     this.inputs = [
-      new GreyscaleNodeInput(this, 0)
+      new NodeInput(this, 0)
     ];
     this.outputs = [
-      new GreyscaleNodeOutput(this, 0)
+      new NodeOutput(this, 0)
     ];
   }
 

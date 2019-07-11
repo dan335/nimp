@@ -5,7 +5,7 @@ import NodeInput from '../NodeInput.js';
 
 export default class Displace extends Node {
   constructor(graph, x, y) {
-    super(graph, x, y, 'displace', 'Displace', DisplaceProperties);
+    super(graph, x, y, 'Displace', DisplaceProperties);
 
     this.inputs = [
       new NodeInput(this, 0),

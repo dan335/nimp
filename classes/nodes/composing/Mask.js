@@ -5,7 +5,7 @@ import NodeInput from '../NodeInput.js';
 
 export default class Mask extends Node {
   constructor(graph, x, y) {
-    super(graph, x, y, 'mask', 'Mask', MaskProperties);
+    super(graph, x, y, 'Mask', MaskProperties);
 
     this.inputs = [
       new NodeInput(this, 0),

@@ -19,9 +19,6 @@ export default class NodeConnection {
   }
 
 
-
-
-
   getPosition() {
     const bbox = this.dot.getBBox();
     const middleX = bbox.x + (bbox.width / 2);

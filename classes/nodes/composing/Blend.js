@@ -1,18 +1,18 @@
 import Node from '../Node.js';
 import BlendProperties from './BlendProperties.jsx';
-import BlendNodeOutput from './BlendNodeOutput.js';
-import BlendNodeInput from './BlendNodeInput.js';
+import NodeOutput from '../NodeOutput.js';
+import NodeInput from '../NodeInput.js';
 
 export default class Blend extends Node {
   constructor(graph, x, y) {
-    super(graph, x, y, 'blend', 'Blend', BlendProperties);
+    super(graph, x, y, 'Blend', BlendProperties);
 
     this.inputs = [
-      new BlendNodeInput(this, 0),
-      new BlendNodeInput(this, 1)
+      new NodeInput(this, 0),
+      new NodeInput(this, 1)
     ];
     this.outputs = [
-      new BlendNodeOutput(this, 0)
+      new NodeOutput(this, 0)
     ];
 
     this.BlendX = 0;

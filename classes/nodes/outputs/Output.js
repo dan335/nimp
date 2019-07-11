@@ -1,16 +1,16 @@
 import Node from '../Node.js';
 import OutputProperties from './OutputProperties.jsx';
-import OutputNodeInput from './OutputNodeInput.js';
+import NodeInput from '../NodeInput.js';
 import Jimp from 'jimp';
 
 
 
 export default class Output extends Node {
   constructor(graph, x, y) {
-    super(graph, x, y, 'output', 'Output', OutputProperties);
+    super(graph, x, y, 'Output', OutputProperties);
 
     this.inputs = [
-      new OutputNodeInput(this, 0)
+      new NodeInput(this, 0)
     ];
     this.outputs = [];
 
