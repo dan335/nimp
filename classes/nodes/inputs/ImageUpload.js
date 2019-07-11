@@ -8,7 +8,7 @@ export default class ImageUpload extends Node {
 
     this.inputs = [];
     this.outputs = [
-      new NodeOutput(this, 0)
+      new NodeOutput(this, 0, 'Output')
     ];
 
     this.base64 = null;

@@ -8,10 +8,10 @@ export default class Invert extends Node {
     super(graph, x, y, 'Invert', InvertProperties);
 
     this.inputs = [
-      new NodeInput(this, 0)
+      new NodeInput(this, 0, 'Input')
     ];
     this.outputs = [
-      new NodeOutput(this, 0)
+      new NodeOutput(this, 0, 'Output')
     ];
   }
 

@@ -10,7 +10,7 @@ export default class Output extends Node {
     super(graph, x, y, 'Output', OutputProperties);
 
     this.inputs = [
-      new NodeInput(this, 0)
+      new NodeInput(this, 0, 'Input')
     ];
     this.outputs = [];
 

@@ -59,8 +59,8 @@ export default class BlendProperties extends React.Component {
 
           Blend mode.<br/>
           <select id="blendInput" defaultValue={this.props.node.mode} onChange={(event) => {this.modeChange(event)}}>
-            <option value={Jimp.BLEND_SOURCE_OVER}>Source Over</option>
-            <option value={Jimp.BLEND_DESTINATION_OVER}>Destination Over</option>
+            <option value={Jimp.BLEND_SOURCE_OVER}>Background Over</option>
+            <option value={Jimp.BLEND_DESTINATION_OVER}>Foreground Over</option>
             <option value={Jimp.BLEND_MULTIPLY}>Multiply</option>
             <option value={Jimp.BLEND_SCREEN}>Screen</option>
             <option value={Jimp.BLEND_OVERLAY}>Overlay</option>

@@ -8,10 +8,10 @@ export default class Blur extends Node {
     super(graph, x, y, 'Blur', BlurProperties);
 
     this.inputs = [
-      new NodeInput(this, 0)
+      new NodeInput(this, 0, 'Input')
     ];
     this.outputs = [
-      new NodeOutput(this, 0)
+      new NodeOutput(this, 0, 'Output')
     ];
 
     this.radius = 10;

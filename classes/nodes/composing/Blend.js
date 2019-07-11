@@ -8,11 +8,11 @@ export default class Blend extends Node {
     super(graph, x, y, 'Blend', BlendProperties);
 
     this.inputs = [
-      new NodeInput(this, 0),
-      new NodeInput(this, 1)
+      new NodeInput(this, 0, 'Foreground'),
+      new NodeInput(this, 1, 'Background')
     ];
     this.outputs = [
-      new NodeOutput(this, 0)
+      new NodeOutput(this, 0, 'Output')
     ];
 
     this.BlendX = 0;

@@ -10,7 +10,7 @@ export default class UniformColor extends Node {
 
     this.inputs = [];
     this.outputs = [
-      new NodeOutput(this, 0)
+      new NodeOutput(this, 0, 'Output')
     ];
 
     this.width = 256;

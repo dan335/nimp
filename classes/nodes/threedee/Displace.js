@@ -8,11 +8,11 @@ export default class Displace extends Node {
     super(graph, x, y, 'Displace', DisplaceProperties);
 
     this.inputs = [
-      new NodeInput(this, 0),
-      new NodeInput(this, 1)
+      new NodeInput(this, 0, 'Input'),
+      new NodeInput(this, 1, 'Map')
     ];
     this.outputs = [
-      new NodeOutput(this, 0)
+      new NodeOutput(this, 0, 'Output')
     ];
 
     this.offset = 20;
