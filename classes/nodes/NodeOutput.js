@@ -5,8 +5,8 @@ import functions from '../../lib/functions.js';
 
 
 export default class NodeOutput extends NodeConnection {
-  constructor(node, index) {
-    super(node, index);
+  constructor(node, index, name) {
+    super(node, index, name);
     this.connections = [];
     this.connectionsSplines = [];
   }
@@ -14,7 +14,7 @@ export default class NodeOutput extends NodeConnection {
 
   createSvgElm() {
     this.dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    this.dot.setAttributeNS(null, 'cx', settings.nodeWidth + 10);
+    this.dot.setAttributeNS(null, 'cx', settings.nodeWidth + 12);
     this.dot.setAttributeNS(null, 'cy', settings.nodeHeight / 2);
     this.dot.setAttributeNS(null, 'r', settings.nodeConnectionRadius);
     this.dot.classList.add('nodeConnection');
@@ -31,6 +31,15 @@ export default class NodeOutput extends NodeConnection {
         mouseState: null
       })
     }
+
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttributeNS(null, 'x', settings.nodeWidth + 27);
+    text.setAttributeNS(null, 'y', settings.nodeHeight * 0.7 + settings.nodeHeight * this.index);
+    text.setAttributeNS(null, 'fill', 'hsl(209, 10%, 60%)');
+    text.textContent = this.name;
+    text.setAttribute('style', 'pointer-events:none;');
+    text.setAttributeNS(null, 'text-anchor', 'start');
+    this.node.g.appendChild(text);
 
     super.createSvgElm();
   }

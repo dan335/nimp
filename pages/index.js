@@ -15,6 +15,7 @@ export default class Index extends React.Component {
     this.state = {
       mouseState: null,
       properties: null,
+      category: 'Input/Output'
     }
 
     this.svgIsPointerDown = false;
@@ -134,10 +135,32 @@ export default class Index extends React.Component {
   }
 
 
-  renderNodeButtons() {
-    return settings.nodes.map(node => {
-      return this.renderNodeButton(node);
+  renderCategoryButtons() {
+    return settings.nodes.map(category => {
+      return this.renderCategoryButton(category);
     })
+  }
+
+
+  renderCategoryButton(category) {
+    return (
+      <div key={category.name} className={'nodeButton ' + (category.name == this.state.category ? 'active' : '')} onClick={() => {this.setState({category:category.name})}}>
+        {category.name}
+      </div>
+    )
+  }
+
+
+  renderNodeButtons() {
+    const category = settings.nodes.find(c => {
+      return c.name == this.state.category;
+    })
+
+    if (category) {
+      return category.nodes.map(node => {
+        return this.renderNodeButton(node);
+      })
+    }
   }
 
   renderNodeButton(node) {
@@ -195,11 +218,20 @@ export default class Index extends React.Component {
       <div>
         <MainLayout>
           <div id="mainContainer">
-            <div id="topContainer">NIMP <span style={{color:'hsl(0, 0%, 60%)'}}> &nbsp; (Node Based Image Manipulation Program)</span></div>
+            <div id="topContainer">
+              NIMP <span style={{color:'hsl(0, 0%, 60%)'}}> &nbsp; (Node Based Image Manipulation Program)</span>
+            </div>
+
             <div id="midContainer">
               <div id="midLeftContainer">
-                <div className="nodeButtonHeader">Nodes</div>
-                {this.renderNodeButtons()}
+                <div id="midLeftCategories">
+                  <div className="nodeButtonHeader">Categories</div>
+                  {this.renderCategoryButtons()}
+                </div>
+                <div id="midLeftNodes">
+                  <div className="nodeButtonHeader">Nodes</div>
+                  {this.renderNodeButtons()}
+                </div>
               </div>
               <div id="innerMidContainer">
                 <div id="svgContainer">
@@ -230,7 +262,10 @@ export default class Index extends React.Component {
           }
 
           #midLeftContainer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             border-right: 2px solid #000;
+            grid-column-gap: 2px;
           }
 
           #midRightContainer {
@@ -239,7 +274,7 @@ export default class Index extends React.Component {
 
           #midContainer {
             display: grid;
-            grid-template-columns: 160px auto 280px;
+            grid-template-columns: 280px auto 280px;
           }
 
           #viewContainer {
@@ -284,6 +319,14 @@ export default class Index extends React.Component {
             background-color: hsl(209, 10%, 40%);
             margin-bottom: 2px;
             cursor: pointer;
+          }
+
+          .nodeButton:hover {
+            background-color: hsl(209, 10%, 60%);
+          }
+
+          .nodeButton.active {
+            background-color: hsl(209, 60%, 40%);
           }
 
           .nodeButtonDrag {

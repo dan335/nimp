@@ -8,11 +8,11 @@ export default class Mask extends Node {
     super(graph, x, y, 'Mask', MaskProperties);
 
     this.inputs = [
-      new NodeInput(this, 0),
-      new NodeInput(this, 1)
+      new NodeInput(this, 0, 'Input'),
+      new NodeInput(this, 1, 'Mask')
     ];
     this.outputs = [
-      new NodeOutput(this, 0)
+      new NodeOutput(this, 0, 'Output')
     ];
 
     this.maskX = 0;
