@@ -1,12 +1,12 @@
-import NodeConnection from './NodeConnection.js';
+import Connection from './Connection.js';
 import settings from '../../lib/settings.js';
-import NodeInput from './NodeInput.js';
+import Input from './Input.js';
 import functions from '../../lib/functions.js';
 
 
-export default class NodeOutput extends NodeConnection {
-  constructor(node, index, name) {
-    super(node, index, name);
+export default class Output extends Connection {
+  constructor(node, index, name, type) {
+    super(node, index, name, type);
     this.connections = [];
     this.connectionsSplines = [];
   }
@@ -15,7 +15,7 @@ export default class NodeOutput extends NodeConnection {
   createSvgElm() {
     this.dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     this.dot.setAttributeNS(null, 'cx', settings.nodeWidth + 12);
-    this.dot.setAttributeNS(null, 'cy', settings.nodeHeight / 2);
+    this.dot.setAttributeNS(null, 'cy', settings.nodeHeight / 2 + settings.nodeHeight * this.index);
     this.dot.setAttributeNS(null, 'r', settings.nodeConnectionRadius);
     this.dot.classList.add('nodeConnection');
     this.node.g.appendChild(this.dot);
@@ -36,7 +36,7 @@ export default class NodeOutput extends NodeConnection {
     text.setAttributeNS(null, 'x', settings.nodeWidth + 27);
     text.setAttributeNS(null, 'y', settings.nodeHeight * 0.7 + settings.nodeHeight * this.index);
     text.setAttributeNS(null, 'fill', 'hsl(209, 10%, 60%)');
-    text.textContent = this.name;
+    text.textContent = this.type+':'+this.name;
     text.setAttribute('style', 'pointer-events:none;');
     text.setAttributeNS(null, 'text-anchor', 'start');
     this.node.g.appendChild(text);
@@ -54,15 +54,18 @@ export default class NodeOutput extends NodeConnection {
       inputConnection.parent.removeConnection(inputConnection, false);
     }
 
-    if (!(inputConnection instanceof NodeInput)) return;
+    if (!(inputConnection instanceof Input)) return;
     if (inputConnection.node == this.node) return;
     if (functions.isNodeInParents(this.node, inputConnection.node)) return;
+
+    if (this.type != inputConnection.type) return;
 
     this.connections.push(inputConnection);
     inputConnection.parent = this;
     this.removeConnectionSplines();
     this.createConnectionSplines();
-    this.node.passImageToChildren();
+    inputConnection.connectionMade();
+    this.node.passToChildren();
   }
 
 
@@ -72,6 +75,7 @@ export default class NodeOutput extends NodeConnection {
     })
     inputConnection.parent = null;
     inputConnection.image = null;
+    inputConnection.connectionRemoved();
     this.removeConnectionSplines();
     this.createConnectionSplines();
 

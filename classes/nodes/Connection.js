@@ -1,8 +1,9 @@
-export default class NodeConnection {
-  constructor(node, index, name) {
+export default class Connection {
+  constructor(node, index, name, type) {
     this.node = node;
     this.index = index;
     this.name = name;
+    this.type = type;
     this.createSvgElm();
   }
 

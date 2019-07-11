@@ -1,4 +1,4 @@
-import React from 'react';
+import Properties from '../Properties.js';
 
 export default class BlurProperties extends React.Component {
 

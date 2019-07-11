@@ -1,17 +1,20 @@
-import Node from '../Node.js';
+import NodeImage from '../NodeImage.js';
 import UrlImageProperties from './UrlImageProperties.jsx';
-import NodeOutput from '../NodeOutput.js';
+import OutputImage from '../OutputImage.js';
+import OutputNumber from '../OutputNumber.js';
 import Jimp from 'jimp';
 import fetch from 'isomorphic-unfetch';
 
 
-export default class UniformColor extends Node {
+export default class UniformColor extends NodeImage {
   constructor(graph, x, y) {
     super(graph, x, y, 'Image from Url', UrlImageProperties);
 
     this.inputs = [];
     this.outputs = [
-      new NodeOutput(this, 0, 'Output')
+      new OutputImage(this, 0, 'Output'),
+      new OutputNumber(this, 1, 'Width'),
+      new OutputNumber(this, 2, 'Height')
     ];
 
     //this.url = 'https://i.imgur.com/e2Kmd.jpg';
@@ -30,5 +33,21 @@ export default class UniformColor extends Node {
     }).catch(error => {
       console.log(error);
     })
+  }
+
+
+  passToChildren() {
+    if (this.image) {
+      this.outputs[1].connections.forEach(conn => {
+        conn.number = this.image.bitmap.width;
+        conn.node.run();
+      })
+      this.outputs[2].connections.forEach(conn => {
+        conn.number = this.image.bitmap.height;
+        conn.node.run();
+      })
+    }
+
+    super.passToChildren();
   }
 }

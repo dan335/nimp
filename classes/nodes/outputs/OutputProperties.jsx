@@ -1,8 +1,8 @@
-import React from 'react';
+import Properties from '../Properties.js';
 import Jimp from 'jimp';
 
 
-export default class OutputProperties extends React.Component {
+export default class OutputProperties extends Properties {
 
   constructor(props) {
     super(props);

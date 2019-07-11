@@ -1,18 +1,18 @@
-import Node from '../Node.js';
+import NodeImage from '../NodeImage.js';
 import DisplaceProperties from './DisplaceProperties.jsx';
-import NodeOutput from '../NodeOutput.js';
-import NodeInput from '../NodeInput.js';
+import OutputImage from '../OutputImage.js';
+import InputImage from '../InputImage.js';
 
-export default class Displace extends Node {
+export default class Displace extends NodeImage {
   constructor(graph, x, y) {
     super(graph, x, y, 'Displace', DisplaceProperties);
 
     this.inputs = [
-      new NodeInput(this, 0, 'Input'),
-      new NodeInput(this, 1, 'Map')
+      new InputImage(this, 0, 'Input'),
+      new InputImage(this, 1, 'Map')
     ];
     this.outputs = [
-      new NodeOutput(this, 0, 'Output')
+      new OutputImage(this, 0, 'Output')
     ];
 
     this.offset = 20;

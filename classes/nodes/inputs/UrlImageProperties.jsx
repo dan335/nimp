@@ -1,6 +1,6 @@
-import React from 'react';
+import Properties from '../Properties.js';
 
-export default class UrlImageProperties extends React.Component {
+export default class UrlImageProperties extends Properties {
 
   constructor(props) {
     super(props);

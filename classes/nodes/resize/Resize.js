@@ -1,17 +1,21 @@
-import Node from '../Node.js';
+import NodeImage from '../NodeImage.js';
 import ResizeProperties from './ResizeProperties.jsx';
-import NodeOutput from '../NodeOutput.js';
-import NodeInput from '../NodeInput.js';
+import OutputImage from '../OutputImage.js';
+import InputImage from '../InputImage.js';
+import ResizeInputNumberX from './ResizeInputNumberX.js';
+import ResizeInputNumberY from './ResizeInputNumberY.js';
 
-export default class Resize extends Node {
+export default class Resize extends NodeImage {
   constructor(graph, x, y) {
     super(graph, x, y, 'Resize', ResizeProperties);
 
     this.inputs = [
-      new NodeInput(this, 0, 'Input')
+      new InputImage(this, 0, 'Input'),
+      new ResizeInputNumberX(this, 1, 'X'),
+      new ResizeInputNumberY(this, 2, 'Y')
     ];
     this.outputs = [
-      new NodeOutput(this, 0, 'Output')
+      new OutputImage(this, 0, 'Output')
     ];
 
     this.resizeX = 256;
@@ -25,7 +29,19 @@ export default class Resize extends Node {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
       Jimp.read(this.inputs[0].image).then(image => {
-        image.resize(this.resizeX, this.resizeY, this.mode, (error, image) => {
+        let resizeX = this.resizeX;
+        let resizeY = this.resizeY;
+
+        if (this.inputs[1].number != null) {
+          resizeX = this.inputs[1].number;
+        }
+
+        if (this.inputs[2].number != null) {
+          resizeY = this.inputs[2].number;
+        }
+
+
+        image.resize(resizeX, resizeY, this.mode, (error, image) => {
           this.image = image;
           super.run();
         });

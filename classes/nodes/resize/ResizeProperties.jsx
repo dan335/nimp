@@ -1,9 +1,14 @@
-import React from 'react';
+import Properties from '../Properties.js';
 
-export default class ResizeProperties extends React.Component {
+export default class ResizeProperties extends Properties {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      hasXInput: props.node.inputs[1].parent ? true : false,
+      hasYInput: false
+    }
 
     this.xChange = this.xChange.bind(this);
     this.yChange = this.yChange.bind(this);
@@ -60,24 +65,46 @@ export default class ResizeProperties extends React.Component {
   }
 
 
-  render() {
-    return (
-      <div>
-        <div className="propertiesTitle">Resize</div>
-        <div style={{padding:'10px'}}>
+  renderX() {
+    if (!this.state.hasXInput) {
+      return (
+        <div>
           X<br/>
-          <input id="xAutoInput" type="checkbox" defaultChecked={this.props.node.resizeX == Jimp.AUTO} onChange={(event) => {this.xAutoChange(event)}}/> Auto<br/>
+          <input id="xAutoInput" type="checkbox" defaultChecked={this.props.node.resizeX == Jimp.AUTO} onChange={(event) => {this.xAutoChange(event)}}/> Auto
+          <br/>
 
           <input id="xInput" type="number" min="1" defaultValue={this.props.node.resizeX == Jimp.AUTO ? 256 : this.props.node.resizeX} disabled={this.props.node.resizeX == Jimp.AUTO} onChange={(event) => {this.xChange(event);}} />
           <br/>
           <br/>
+        </div>
+      )
+    }
+  }
 
+
+  renderY() {
+    if (!this.state.hasYInput) {
+      return (
+        <div>
           Y<br/>
           <input id="yAutoInput" type="checkbox" defaultChecked={this.props.node.resizeY == Jimp.AUTO} onChange={(event) => {this.yAutoChange(event)}}/> Auto<br/>
 
           <input id="yInput" type="number" min="1" defaultValue={this.props.node.resizeY == Jimp.AUTO ? 256 : this.props.node.resizeY} disabled={this.props.node.resizeY == Jimp.AUTO} onChange={(event) => {this.yChange(event);}} />
           <br/>
           <br/>
+        </div>
+      )
+    }
+  }
+
+
+  render() {
+    return (
+      <div>
+        <div className="propertiesTitle">Resize</div>
+        <div style={{padding:'10px'}}>
+          {this.renderX()}
+          {this.renderY()}         
 
           Mode<br/>
           <select id="modeInput" defaultValue={this.props.node.mode} onChange={(event) => {this.modeChange(event)}}>
