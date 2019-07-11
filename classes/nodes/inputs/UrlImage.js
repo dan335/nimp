@@ -22,6 +22,7 @@ export default class UniformColor extends Node {
 
 
   run() {
+    this.bg.classList.add('running');
     this.runTimer = Date.now();
     Jimp.read(this.url).then(image => {
       this.image = image;

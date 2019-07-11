@@ -22,6 +22,7 @@ export default class Resize extends Node {
 
   run() {
     if (this.inputs[0].image) {
+      this.bg.classList.add('running');
       this.runTimer = Date.now();
       Jimp.read(this.inputs[0].image).then(image => {
         image.resize(this.resizeX, this.resizeY, this.mode, (error, image) => {

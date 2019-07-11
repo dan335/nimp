@@ -17,6 +17,7 @@ export default class ImageUpload extends Node {
 
   run() {
     if (this.base64) {
+      this.bg.classList.add('running');
       this.runTimer = Date.now();
       Jimp.read(this.base64).then(image => {
         this.image = image;

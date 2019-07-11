@@ -21,6 +21,7 @@ export default class Displace extends Node {
 
   run() {
     if (this.inputs[0].image && this.inputs[1].image) {
+      this.bg.classList.add('running');
       this.runTimer = Date.now();
       Jimp.read(this.inputs[0].image).then(image => {
         image.displace(this.inputs[1].image, this.offset, (error, image) => {
