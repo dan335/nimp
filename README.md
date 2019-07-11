@@ -1,12 +1,13 @@
 # NIMP
----
 
 ### Run
 ```
 git clone https://github.com/dan335/nimp
 cd nimp
 npm install
-npm start
+npm run build
+npm run start
+View in browser at http://localhost:3000
 ```
 
 * Support this project through [Patreon](https://www.patreon.com/dan335).
