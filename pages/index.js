@@ -219,7 +219,12 @@ export default class Index extends React.Component {
         <MainLayout>
           <div id="mainContainer">
             <div id="topContainer">
-              NIMP <span style={{color:'hsl(0, 0%, 60%)'}}> &nbsp; (Node Based Image Manipulation Program)</span>
+              <div>
+                NIMP <span style={{color:'hsl(0, 0%, 60%)'}}> &nbsp; (Node Based Image Manipulation Program)</span>
+              </div>
+              <div style={{textAlign:'right'}}>
+                <a href="https://github.com/dan335/nimp"><img src="/static/githubLogo.png" /></a>
+              </div>
             </div>
 
             <div id="midContainer">
@@ -253,9 +258,16 @@ export default class Index extends React.Component {
         <style jsx global>{`
           #topContainer {
             line-height: 30px;
-            padding-left: 5px;
+            padding: 0 5px;
             background-color: hsl(209, 10%, 25%);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
           }
+
+          #topContainer img {
+            vertical-align: text-bottom;
+          }
+
           #mainContainer {
             display: grid;
             grid-template-rows: 30px auto;
