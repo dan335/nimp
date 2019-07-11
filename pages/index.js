@@ -15,7 +15,7 @@ export default class Index extends React.Component {
     this.state = {
       mouseState: null,
       properties: null,
-      category: 'Images'
+      category: 'Image'
     }
 
     this.svgIsPointerDown = false;
@@ -230,11 +230,11 @@ export default class Index extends React.Component {
             <div id="midContainer">
               <div id="midLeftContainer">
                 <div id="midLeftCategories">
-                  <div className="nodeButtonHeader">CATEGORIES</div>
+                  <div className="nodeButtonHeader">Categories</div>
                   {this.renderCategoryButtons()}
                 </div>
                 <div id="midLeftNodes">
-                  <div className="nodeButtonHeader">NODES</div>
+                  <div className="nodeButtonHeader">{this.state.category} Nodes</div>
                   {this.renderNodeButtons()}
                 </div>
               </div>
