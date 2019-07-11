@@ -25,6 +25,7 @@ export default class UniformColor extends Node {
 
 
   run() {
+    this.bg.classList.add('running');
     this.runTimer = Date.now();
 
     const hexNum = Jimp.rgbaToInt(this.red, this.green, this.blue, this.alpha);

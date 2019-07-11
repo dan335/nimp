@@ -175,6 +175,7 @@ export default class Node {
 
   run() {
     this.timer.textContent = (Date.now() - this.runTimer) + 'ms';
+    this.bg.classList.remove('running');
 
     if (this.image) {
       this.bmpSize.textContent = this.image.bitmap.width+'x'+this.image.bitmap.height;

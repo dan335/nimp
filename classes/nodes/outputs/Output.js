@@ -35,6 +35,7 @@ export default class Output extends Node {
 
   run() {
     if (this.inputs[0].image) {
+      this.bg.classList.add('running');
       this.runTimer = Date.now();
       this.image = this.inputs[0].image;
       this.inputs[0].image.clone().getBase64Async(this.type).then(base64 => {

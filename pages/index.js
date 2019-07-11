@@ -361,6 +361,10 @@ export default class Index extends React.Component {
             stroke-dasharray: none;
           }
 
+          .nodeBg.running {
+            fill: hsl(0, 60%, 60%);
+          }
+
           .propertiesTitle {
             padding: 10px;
             background-color: hsl(209, 10%, 5%);

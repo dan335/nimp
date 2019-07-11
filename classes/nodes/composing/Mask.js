@@ -22,6 +22,7 @@ export default class Mask extends Node {
 
   run() {
     if (this.inputs[0].image && this.inputs[1].image) {
+      this.bg.classList.add('running');
       this.runTimer = Date.now();
       Jimp.read(this.inputs[0].image).then(image => {
         image.mask(this.inputs[1].image, this.maskX, this.maskY, (error, image) => {
