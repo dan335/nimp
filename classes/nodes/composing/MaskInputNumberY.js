@@ -1,7 +1,7 @@
 import InputNumber from '../InputNumber.js';
 
 
-export default class ResizeInputNumberX extends InputNumber {
+export default class MaskInputNumberY extends InputNumber {
   constructor(node, index, name) {
     super(node, index, name);
   }
@@ -9,14 +9,14 @@ export default class ResizeInputNumberX extends InputNumber {
 
   connectionMade() {
     if (this.node.bg.classList.contains('selected')) {
-      this.node.propertiesComponentInstance.setState({hasXInput:true});
+      this.node.propertiesComponentInstance.setState({hasYInput:true});
     }
   }
 
 
   connectionRemoved() {
     if (this.node.bg.classList.contains('selected')) {
-      this.node.propertiesComponentInstance.setState({hasXInput:false});
+      this.node.propertiesComponentInstance.setState({hasYInput:false});
     }
   }
 }

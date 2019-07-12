@@ -5,6 +5,10 @@ export default class DisplaceProperties extends Properties {
   constructor(props) {
     super(props);
 
+    this.state = {
+      hasOffsetInput: props.node.inputs[2].parent ? true : false,
+    }
+
     this.offsetChange = this.offsetChange.bind(this);
   }
 
@@ -15,6 +19,18 @@ export default class DisplaceProperties extends Properties {
     this.props.node.run();
   }
 
+
+  renderOffset() {
+    if (!this.state.hasOffsetInput) {
+      return (
+        <div>
+          Offset &nbsp;
+          <input id="offsetInput" type="number" defaultValue={this.props.node.offset} onChange={(event) => {this.offsetChange(event);}} />
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
       <div>
@@ -22,8 +38,7 @@ export default class DisplaceProperties extends Properties {
         <div style={{padding:'10px'}}>
           Displace the image pixels based on the provided displacement map.<br/>
           <br/>
-          Offset &nbsp;
-          <input id="offsetInput" type="number" defaultValue={this.props.node.offset} onChange={(event) => {this.offsetChange(event);}} />
+          {this.renderOffset()}
         </div>
       </div>
     )

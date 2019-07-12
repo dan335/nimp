@@ -9,18 +9,14 @@ export default class ResizeInputNumberY extends InputNumber {
 
   connectionMade() {
     if (this.node.bg.classList.contains('selected')) {
-      if (this.node.propertiesComponentInstance) {
-        this.node.propertiesComponentInstance.setState({hasYInput:true});
-      }
+      this.node.propertiesComponentInstance.setState({hasYInput:true});
     }
   }
 
 
   connectionRemoved() {
     if (this.node.bg.classList.contains('selected')) {
-      if (this.node.propertiesComponentInstance) {
-        this.node.propertiesComponentInstance.setState({hasYInput:false});
-      }
+      this.node.propertiesComponentInstance.setState({hasYInput:false});
     }
   }
 }
