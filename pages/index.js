@@ -15,6 +15,7 @@ export default class Index extends React.Component {
     this.state = {
       mouseState: null,
       properties: null,
+      propertiesKey: null,  // force react to replace properties
       category: 'Image'
     }
 
@@ -202,10 +203,10 @@ export default class Index extends React.Component {
 
 
   renderProperties() {
-    if (this.state.properties) {
+    if (this.state.properties && this.state.propertiesKey) {
       const Properties = this.state.properties.component;
       return (
-        <Properties node={this.state.properties.node} />
+        <Properties node={this.state.properties.node} key={this.state.propertiesKey} />
       );
     } else {
       return null;

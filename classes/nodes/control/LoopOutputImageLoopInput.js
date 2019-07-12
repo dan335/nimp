@@ -23,6 +23,10 @@ export default class LoopOutputImageLoopInput extends OutputImage {
 
 
   makeConnection(inputConnection) {
+    if (!inputConnection) {
+      console.error('No input connection');
+      console.log(inputConnection);
+    }
     if (this.connections.includes(inputConnection)) return;
     if (this == inputConnection) return;
 

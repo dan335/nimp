@@ -123,7 +123,10 @@ export default class Node {
 
   select() {
     this.bg.classList.add('selected');
-    this.graph.component.setState({properties:{component:this.propertiesComponent, node:this}});
+    this.graph.component.setState({
+      properties:{component:this.propertiesComponent, node:this},
+      propertiesKey: Math.random()
+    });
   }
 
 
