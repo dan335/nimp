@@ -16,7 +16,7 @@ export default class BlurProperties extends Properties {
   blurRadiusChange(event) {
     const elm = document.getElementById('radiusSlider');
     this.props.node.radius = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 

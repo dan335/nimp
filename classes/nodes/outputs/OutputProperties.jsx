@@ -27,7 +27,7 @@ export default class OutputProperties extends Properties {
   typeChange() {
     const elm = document.getElementById('typeInput');
     this.props.node.type = elm.value;
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 

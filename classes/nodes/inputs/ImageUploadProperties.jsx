@@ -19,7 +19,7 @@ export default class GreyscaleProperties extends Properties {
 
     // reader.addEventListener('load', (e) => {
     //   this.props.node.base64 = e.target.result;
-    //   this.props.node.run();
+    //   this.props.node.run(null);
     // })
 
     reader.onloadstart = (event) => {
@@ -35,7 +35,7 @@ export default class GreyscaleProperties extends Properties {
     reader.onloadend = (event) => {
       this.setState({progress: null});
       this.props.node.base64 = event.target.result;
-      this.props.node.run();
+      this.props.node.run(null);
     }
 
     reader.readAsDataURL(elm.files[0]);

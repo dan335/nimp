@@ -23,7 +23,7 @@ export default class BrightnessContrast extends NodeImage {
   }
 
 
-  run() {
+  run(inputThatTriggered) {
     if (this.inputs[0].image) {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
@@ -55,7 +55,7 @@ export default class BrightnessContrast extends NodeImage {
                 console.log(error);
               } else {
                 this.image = image;
-                super.run();
+                super.run(inputThatTriggered);
               }
             });
           }
@@ -64,7 +64,7 @@ export default class BrightnessContrast extends NodeImage {
     } else {
       this.runTimer = Date.now();
       this.image = null;
-      super.run();
+      super.run(inputThatTriggered);
     }
   }
 }

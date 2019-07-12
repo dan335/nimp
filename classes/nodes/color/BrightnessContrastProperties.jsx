@@ -18,13 +18,13 @@ export default class BlurProperties extends Properties {
   brightnessChange(event) {
     const elm = document.getElementById('brightnessSlider');
     this.props.node.brightness = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
   contrastChange(event) {
     const elm = document.getElementById('contrastSlider');
     this.props.node.contrast = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 

@@ -7,41 +7,41 @@ export default class UniformColorProperties extends Properties {
   redChange() {
     const elm = document.getElementById('redSlider');
     this.props.node.red = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 
   greenChange() {
     const elm = document.getElementById('greenSlider');
     this.props.node.green = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 
   blueChange() {
     const elm = document.getElementById('blueSlider');
     this.props.node.blue = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 
   alphaChange() {
     const elm = document.getElementById('alphaSlider');
     this.props.node.alpha = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 
   widthChange() {
     const elm = document.getElementById('widthInput');
     this.props.node.width = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
   heightChange() {
     const elm = document.getElementById('heightInput');
     this.props.node.height = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
   render() {

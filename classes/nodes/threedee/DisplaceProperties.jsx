@@ -16,7 +16,7 @@ export default class DisplaceProperties extends Properties {
   offsetChange(event) {
     const elm = document.getElementById('offsetInput');
     this.props.node.offset = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 

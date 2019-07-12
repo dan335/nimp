@@ -26,13 +26,13 @@ export default class NodeNumber extends Node {
         } else {
           conn.number = this.number;
         }
-        conn.node.run();
+        conn.runNode();
       })
     })
   }
 
 
-  run() {
+  run(inputThatTriggered) {
     this.timer.textContent = (Date.now() - this.runTimer) + 'ms';
     this.bg.classList.remove('running');
     this.passToChildren();

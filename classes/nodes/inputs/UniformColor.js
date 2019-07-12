@@ -23,11 +23,11 @@ export default class UniformColor extends NodeImage {
     this.green = 255;
     this.alpha = 255;
 
-    this.run();
+    this.run(null);
   }
 
 
-  run() {
+  run(inputThatTriggered) {
     this.bg.classList.add('running');
     this.runTimer = Date.now();
 
@@ -38,7 +38,7 @@ export default class UniformColor extends NodeImage {
         console.log(error);
       } else {
         this.image = image;
-        super.run();
+        super.run(inputThatTriggered);
       }
     })
   }
@@ -48,11 +48,11 @@ export default class UniformColor extends NodeImage {
     if (this.image) {
       this.outputs[1].connections.forEach(conn => {
         conn.number = this.image.bitmap.width;
-        conn.node.run();
+        conn.runNode();
       })
       this.outputs[2].connections.forEach(conn => {
         conn.number = this.image.bitmap.height;
-        conn.node.run();
+        conn.runNode();
       })
     }
 

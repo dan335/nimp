@@ -18,10 +18,10 @@ export default class RandomNumber extends NodeNumber {
   }
 
 
-  run() {
+  run(inputThatTriggered) {
     this.bg.classList.add('running');
     this.runTimer = Date.now();
     this.number = Math.random();
-    super.run();
+    super.run(inputThatTriggered);
   }
 }

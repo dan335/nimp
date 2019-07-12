@@ -39,10 +39,10 @@ export default class NodeImage extends Node {
         output.connections.forEach(conn => {
           if (this.image) {
             conn.image = this.image;
-            conn.node.run();
+            conn.runNode();
           } else {
             conn.image = null;
-            conn.node.run();
+            conn.runNode();
           }
         })
       }
@@ -50,7 +50,7 @@ export default class NodeImage extends Node {
   }
 
 
-  run() {
+  run(inputThatTriggered) {
     this.timer.textContent = (Date.now() - this.runTimer) + 'ms';
     this.bg.classList.remove('running');
 
