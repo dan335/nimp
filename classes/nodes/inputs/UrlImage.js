@@ -20,16 +20,16 @@ export default class UniformColor extends NodeImage {
     //this.url = 'https://i.imgur.com/e2Kmd.jpg';
     this.url = 'https://i.imgur.com/mdlwVuL.jpg';
 
-    this.run();
+    this.run(null);
   }
 
 
-  run() {
+  run(inputThatTriggered) {
     this.bg.classList.add('running');
     this.runTimer = Date.now();
     Jimp.read(this.url).then(image => {
       this.image = image;
-      super.run();
+      super.run(inputThatTriggered);
     }).catch(error => {
       console.log(error);
     })
@@ -40,11 +40,11 @@ export default class UniformColor extends NodeImage {
     if (this.image) {
       this.outputs[1].connections.forEach(conn => {
         conn.number = this.image.bitmap.width;
-        conn.node.run();
+        conn.runNode();
       })
       this.outputs[2].connections.forEach(conn => {
         conn.number = this.image.bitmap.height;
-        conn.node.run();
+        conn.runNode();
       })
     }
 

@@ -59,7 +59,7 @@ export default class Output extends Connection {
 
     if (!(inputConnection instanceof Input)) return;
     if (inputConnection.node == this.node) return;
-    if (functions.isNodeInParents(this.node, inputConnection.node)) return;
+    //if (functions.isNodeInParents(this.node, inputConnection.node)) return;
 
     if (this.type != inputConnection.type) return;
 
@@ -68,6 +68,7 @@ export default class Output extends Connection {
     this.removeConnectionSplines();
     this.createConnectionSplines();
     inputConnection.connectionMade();
+    this.connectionMade();
     this.node.passToChildren();
   }
 
@@ -79,11 +80,12 @@ export default class Output extends Connection {
     inputConnection.parent = null;
     inputConnection.image = null;
     inputConnection.connectionRemoved();
+    this.connectionRemoved();
     this.removeConnectionSplines();
     this.createConnectionSplines();
 
     if (run) {
-      inputConnection.node.run();
+      inputConnection.node.run(null);
     }
   }
 
@@ -114,4 +116,8 @@ export default class Output extends Connection {
       this.connectionsSplines.push(spline);
     })
   }
+
+
+  connectionMade() {}
+  connectionRemoved() {}
 }

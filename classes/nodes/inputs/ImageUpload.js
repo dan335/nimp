@@ -18,18 +18,18 @@ export default class ImageUpload extends NodeImage {
   }
 
 
-  run() {
+  run(inputThatTriggered) {
     if (this.base64) {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
       Jimp.read(this.base64).then(image => {
         this.image = image;
-        super.run();
+        super.run(inputThatTriggered);
       })
     } else {
       this.runTimer = Date.now();
       this.image = null;
-      super.run();
+      super.run(inputThatTriggered);
     }
   }
 
@@ -38,11 +38,11 @@ export default class ImageUpload extends NodeImage {
     if (this.image) {
       this.outputs[1].connections.forEach(conn => {
         conn.number = this.image.bitmap.width;
-        conn.node.run();
+        conn.runNode();
       })
       this.outputs[2].connections.forEach(conn => {
         conn.number = this.image.bitmap.height;
-        conn.node.run();
+        conn.runNode();
       })
     }
 

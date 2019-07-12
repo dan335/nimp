@@ -23,7 +23,7 @@ export default class ResizeProperties extends Properties {
   xChange(event) {
     const elm = document.getElementById('xInput');
     this.props.node.resizeX = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
   xAutoChange(event) {
@@ -35,14 +35,14 @@ export default class ResizeProperties extends Properties {
       this.setState({xIsAuto: false});
       this.props.node.resizeX = 256;
     }
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 
   yChange(event) {
     const elm = document.getElementById('yInput');
     this.props.node.resizeY = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
   yAutoChange(event) {
@@ -54,14 +54,14 @@ export default class ResizeProperties extends Properties {
       this.props.node.resizeY = 256;
       this.setState({yIsAuto: false});
     }
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 
   modeChange(event) {
     const elm = document.getElementById('modeInput');
     this.props.node.mode = elm.value;
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 

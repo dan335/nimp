@@ -12,7 +12,7 @@ export default class NumberProperties extends Properties {
   numChange(event) {
     const elm = document.getElementById('numberInput');
     this.props.node.number = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 

@@ -33,14 +33,14 @@ export default class Output extends NodeImage {
   }
 
 
-  run() {
+  run(inputThatTriggered) {
     if (this.inputs[0].image) {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
       this.image = this.inputs[0].image;
       this.inputs[0].image.clone().getBase64Async(this.type).then(base64 => {
         this.base64 = base64;
-        super.run();
+        super.run(inputThatTriggered);
         this.updateComponentWithBase64();
       })
     } else {
@@ -48,7 +48,7 @@ export default class Output extends NodeImage {
       this.image = null;
       this.base64 = null;
       this.updateComponentWithBase64();
-      super.run();
+      super.run(inputThatTriggered);
     }
   }
 }

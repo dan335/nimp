@@ -21,7 +21,7 @@ export default class ExponentNumbers extends NodeNumber {
   }
 
 
-  run() {
+  run(inputThatTriggered) {
     if (this.inputs[0].number == null) {
       this.a = null;
     } else {
@@ -38,11 +38,11 @@ export default class ExponentNumbers extends NodeNumber {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
       this.number = Math.pow(this.a, this.b);
-      super.run();
+      super.run(inputThatTriggered);
     } else {
       this.runTimer = Date.now();
       this.number = null;
-      super.run();
+      super.run(inputThatTriggered);
     }
   }
 }

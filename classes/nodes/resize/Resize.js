@@ -24,7 +24,7 @@ export default class Resize extends NodeImage {
   }
 
 
-  run() {
+  run(inputThatTriggered) {
     if (this.inputs[0].image) {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
@@ -43,13 +43,13 @@ export default class Resize extends NodeImage {
 
         image.resize(resizeX, resizeY, this.mode, (error, image) => {
           this.image = image;
-          super.run();
+          super.run(inputThatTriggered);
         });
       })
     } else {
       this.runTimer = Date.now();
       this.image = null;
-      super.run();
+      super.run(inputThatTriggered);
     }
   }
 }

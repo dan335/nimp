@@ -22,32 +22,32 @@ export default class BlendProperties extends Properties {
 
   xChange(event) {
     const elm = document.getElementById('xInput');
-    this.props.node.BlendX = Number(elm.value);
-    this.props.node.run();
+    this.props.node.blendX = Number(elm.value);
+    this.props.node.run(null);
   }
 
   yChange(event) {
     const elm = document.getElementById('yInput');
-    this.props.node.BlendY = Number(elm.value);
-    this.props.node.run();
+    this.props.node.blendY = Number(elm.value);
+    this.props.node.run(null);
   }
 
   modeChange(event) {
     const elm = document.getElementById('blendInput');
     this.props.node.mode = elm.value;
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
   sourceOpacityChange(event) {
     const elm = document.getElementById('sourceOpacityInput');
     this.props.node.opacitySource = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
   destinationOpacitychange(event) {
     const elm = document.getElementById('destinationOpacityInput');
     this.props.node.opacityDest = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 
@@ -56,7 +56,7 @@ export default class BlendProperties extends Properties {
       return (
         <div>
           X &nbsp;
-          <input id="xInput" type="number" defaultValue={this.props.node.BlendX} onChange={(event) => {this.xChange(event);}} />
+          <input id="xInput" type="number" defaultValue={this.props.node.blendX} onChange={(event) => {this.xChange(event);}} />
           <br/>
         </div>
       )
@@ -69,7 +69,7 @@ export default class BlendProperties extends Properties {
       return (
         <div>
           Y &nbsp;
-          <input id="yInput" type="number" defaultValue={this.props.node.BlendY} onChange={(event) => {this.yChange(event);}} />
+          <input id="yInput" type="number" defaultValue={this.props.node.blendY} onChange={(event) => {this.yChange(event);}} />
           <br/>
         </div>
       )
@@ -115,8 +115,8 @@ export default class BlendProperties extends Properties {
 
           Blend mode.<br/>
           <select id="blendInput" defaultValue={this.props.node.mode} onChange={(event) => {this.modeChange(event)}}>
-            <option value={Jimp.BLEND_SOURCE_OVER}>Background Over</option>
-            <option value={Jimp.BLEND_DESTINATION_OVER}>Foreground Over</option>
+            <option value={Jimp.BLEND_DESTINATION_OVER}>Background Over</option>
+            <option value={Jimp.BLEND_SOURCE_OVER}>Foreground Over</option>
             <option value={Jimp.BLEND_MULTIPLY}>Multiply</option>
             <option value={Jimp.BLEND_SCREEN}>Screen</option>
             <option value={Jimp.BLEND_OVERLAY}>Overlay</option>

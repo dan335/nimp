@@ -10,7 +10,7 @@ export default class RandomNumberProperties extends Properties {
 
 
   run(event) {
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 

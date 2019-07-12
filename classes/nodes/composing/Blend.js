@@ -12,12 +12,12 @@ export default class Blend extends NodeImage {
     super(graph, x, y, 'Blend', BlendProperties);
 
     this.inputs = [
-      new InputImage(this, 0, 'Foreground'),
-      new InputImage(this, 1, 'Background'),
+      new InputImage(this, 0, 'Background'),
+      new InputImage(this, 1, 'Foreground'),
       new BlendInputNumberX(this, 2, 'X'),
       new BlendInputNumberY(this, 3, 'Y'),
-      new BlendInputNumberTopOpacity(this, 4, 'Top Opacity'),
-      new BlendInputNumberBottomOpacity(this, 5, 'Bottom Opacity'),
+      new BlendInputNumberTopOpacity(this, 4, 'Foreground Opacity'),
+      new BlendInputNumberBottomOpacity(this, 5, 'Background Opacity'),
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')
@@ -31,7 +31,7 @@ export default class Blend extends NodeImage {
   }
 
 
-  run() {
+  run(inputThatTriggered) {
     if (this.inputs[0].image && this.inputs[1].image) {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
@@ -73,14 +73,14 @@ export default class Blend extends NodeImage {
             console.log(error);
           } else {
             this.image = image;
-            super.run();
+            super.run(inputThatTriggered);
           }
         })
       })
     } else {
       this.runTimer = Date.now();
       this.image = null;
-      super.run();
+      super.run(inputThatTriggered);
     }
   }
 }

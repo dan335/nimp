@@ -12,7 +12,7 @@ export default class UrlImageProperties extends Properties {
   urlChange(event) {
     const elm = document.getElementById('urlInput');
     this.props.node.url = elm.value;
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 
@@ -25,7 +25,7 @@ export default class UrlImageProperties extends Properties {
           <input id="urlInput" type="text" style={{width:'100%'}} defaultValue={this.props.node.url} onChange={(event) => {this.urlChange(event);}} />
 
           <br/><br/>
-          If this fails it's probably because the remote site doesn't allow cross-origin resource sharing.  Some sites like <a href="https://imgur.com/">Imgur</a> work.
+          If this fails it's probably because the remote site doesn't allow cross-origin resource sharing.  Some sites like <a href="https://imgur.com/">Imgur</a> allow it.
         </div>
       </div>
     )

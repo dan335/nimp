@@ -18,13 +18,13 @@ export default class MaskProperties extends Properties {
   xChange(event) {
     const elm = document.getElementById('xInput');
     this.props.node.maskX = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
   yChange(event) {
     const elm = document.getElementById('yInput');
     this.props.node.maskY = Number(elm.value);
-    this.props.node.run();
+    this.props.node.run(null);
   }
 
 

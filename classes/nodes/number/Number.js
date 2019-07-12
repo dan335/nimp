@@ -15,9 +15,9 @@ export default class Number extends NodeNumber {
   }
 
 
-  run() {
+  run(inputThatTriggered) {
     this.bg.classList.add('running');
     this.runTimer = Date.now();
-    super.run();
+    super.run(inputThatTriggered);
   }
 }

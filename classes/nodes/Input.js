@@ -45,6 +45,12 @@ export default class Input extends Connection {
   }
 
 
+  runNode() {
+    // run node.  pass this so node knows which input triggered it
+    this.node.run(this);
+  }
+
+
   connectionMade() {}
   connectionRemoved() {}
 }
