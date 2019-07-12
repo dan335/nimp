@@ -9,6 +9,24 @@ export default class Output extends Connection {
     super(node, index, name, type);
     this.connections = [];
     this.connectionsSplines = [];
+
+    this.onMouseUp = this.onMouseUp.bind(this);
+  }
+
+
+  onMouseUp(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    if (this.node.graph.component.state.mouseState && this.node.graph.component.state.mouseState.type == 'draggingNewConnection') {
+      if (this.node.graph.component.state.mouseState.data) {
+        this.makeConnection(this.node.graph.component.state.mouseState.data);
+      }
+    }
+
+    this.node.graph.component.setState({
+      mouseState: null
+    })
   }
 
 
@@ -20,19 +38,7 @@ export default class Output extends Connection {
     this.dot.classList.add('nodeConnection');
     this.node.g.appendChild(this.dot);
 
-    this.dot.onmouseup = (event) => {
-      event.stopPropagation();
-      event.preventDefault();
-      if (this.node.graph.component.state.mouseState && this.node.graph.component.state.mouseState.type == 'draggingNewConnection') {
-        if (this.node.graph.component.state.mouseState.data) {
-          this.makeConnection(this.node.graph.component.state.mouseState.data);
-        }
-      }
-
-      this.node.graph.component.setState({
-        mouseState: null
-      })
-    }
+    this.dot.onmouseup = (event) => {this.onMouseUp(event)}
 
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     text.setAttributeNS(null, 'x', settings.nodeWidth + 25);
@@ -104,8 +110,8 @@ export default class Output extends Connection {
       const oPos = conn.getPosition();
       let spline = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       let d = 'M'+pos.x+','+pos.y;
-      d += ' C'+(pos.x+60)+','+pos.y;
-      d += ' '+(oPos.x-60)+','+oPos.y;
+      d += ' C'+(pos.x+100)+','+pos.y;
+      d += ' '+(oPos.x-100)+','+oPos.y;
       d += ' '+oPos.x+','+oPos.y;
       spline.setAttributeNS(null, 'd', d);
       spline.classList.add('nodeConnectionSpline');

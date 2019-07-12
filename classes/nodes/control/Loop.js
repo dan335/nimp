@@ -28,7 +28,8 @@ export default class Loop extends NodeImage {
 
 
   run(inputThatTriggered) {
-    if (this.inputs[0].image && !isNaN(this.numLoops) && this.outputs[2].connections.length) {
+
+    if (this.inputs[0].image && !isNaN(this.numLoops) && this.outputs[2].connections.length && this.inputs[2].parent) {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
 

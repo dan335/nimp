@@ -7,7 +7,26 @@ export default class Input extends Connection {
   constructor(node, index, name, type) {
     super(node, index, name, type);
     this.parent = null;
+
+    this.onMouseUp = this.onMouseUp.bind(this);
   }
+
+
+  onMouseUp(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    if (this.node.graph.component.state.mouseState && this.node.graph.component.state.mouseState.type == 'draggingNewConnection') {
+      if (this.node.graph.component.state.mouseState.data) {
+        this.node.graph.component.state.mouseState.data.makeConnection(this);
+      }
+    }
+
+    this.node.graph.component.setState({
+      mouseState: null
+    })
+  }
+
 
   createSvgElm() {
     this.dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -17,19 +36,7 @@ export default class Input extends Connection {
     this.dot.classList.add('nodeConnection');
     this.node.g.appendChild(this.dot);
 
-    this.dot.onmouseup = (event) => {
-      event.stopPropagation();
-      event.preventDefault();
-      if (this.node.graph.component.state.mouseState && this.node.graph.component.state.mouseState.type == 'draggingNewConnection') {
-        if (this.node.graph.component.state.mouseState.data) {
-          this.node.graph.component.state.mouseState.data.makeConnection(this);
-        }
-      }
-
-      this.node.graph.component.setState({
-        mouseState: null
-      })
-    }
+    this.dot.onmouseup = (event) => {this.onMouseUp(event)}
 
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     text.setAttributeNS(null, 'x', 25 * -1);
