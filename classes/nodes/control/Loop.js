@@ -43,7 +43,6 @@ export default class Loop extends NodeImage {
 
       if (this.loopIndex == null) {
         // start loop
-        console.log('start')
         this.loopIndex = 0;
 
         this.outputs[1].connections.forEach(conn => {
@@ -66,7 +65,6 @@ export default class Loop extends NodeImage {
       } else {
         if (this.loopIndex >= numLoops-1) {
           // end loop
-          console.log('end')
           this.loopIndex = null;
           if (this.inputs[2].image) {
             this.image = this.inputs[2].image;
@@ -77,7 +75,6 @@ export default class Loop extends NodeImage {
 
         } else {
           // continue loop
-          console.log('continue')
           this.loopIndex++;
 
           this.outputs[1].connections.forEach(conn => {
