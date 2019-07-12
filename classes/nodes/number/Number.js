@@ -10,21 +10,14 @@ export default class Number extends NodeNumber {
     this.outputs = [
       new OutputNumber(this, 0, 'Output')
     ];
+
+    this.number = 1;
   }
 
 
   run() {
-    if (this.base64) {
-      this.bg.classList.add('running');
-      this.runTimer = Date.now();
-      Jimp.read(this.base64).then(image => {
-        this.image = image;
-        super.run();
-      })
-    } else {
-      this.runTimer = Date.now();
-      this.image = null;
-      super.run();
-    }
+    this.bg.classList.add('running');
+    this.runTimer = Date.now();
+    super.run();
   }
 }
