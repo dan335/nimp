@@ -223,7 +223,11 @@ export default class Index extends React.Component {
                 Nimp <span style={{color:'hsl(0, 0%, 60%)'}}> &nbsp; (Node Based Image Manipulation Program)</span>
               </div>
               <div style={{textAlign:'right'}}>
+                <a href="https://www.patreon.com/dan335"><img src="/static/patreonIcon.png" /></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="https://github.com/dan335/nimp"><img src="/static/githubLogo.png" /></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="mailto:dan@nimp.app"><img src="/static/emailIcon.png" /></a>
               </div>
             </div>
 
@@ -258,7 +262,7 @@ export default class Index extends React.Component {
         <style jsx global>{`
           #topContainer {
             line-height: 30px;
-            padding: 0 5px;
+            padding: 0 10px 0 0;
             background-color: hsl(209, 10%, 25%);
             display: grid;
             grid-template-columns: 1fr 1fr;
