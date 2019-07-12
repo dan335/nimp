@@ -11,8 +11,8 @@ export default class Resize extends NodeImage {
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
-      new ResizeInputNumberX(this, 1, 'X'),
-      new ResizeInputNumberY(this, 2, 'Y')
+      new ResizeInputNumberX(this, 1, 'Width'),
+      new ResizeInputNumberY(this, 2, 'Height')
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')

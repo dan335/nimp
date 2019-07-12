@@ -7,7 +7,9 @@ export default class ResizeProperties extends Properties {
 
     this.state = {
       hasXInput: props.node.inputs[1].parent ? true : false,
-      hasYInput: false
+      hasYInput: props.node.inputs[2].parent ? true : false,
+      xIsAuto: props.node.resizeX == Jimp.AUTO,
+      yIsAuto: props.node.resizeY == Jimp.AUTO
     }
 
     this.xChange = this.xChange.bind(this);
@@ -26,13 +28,12 @@ export default class ResizeProperties extends Properties {
 
   xAutoChange(event) {
     const elm = document.getElementById('xAutoInput');
-    const e = document.getElementById('xInput');
     if (elm.checked) {
       this.props.node.resizeX = Jimp.AUTO;
-      e.disabled = true;
+      this.setState({xIsAuto: true});
     } else {
-      e.disabled = false;
-      this.props.node.resizeX = Number(e.value);
+      this.setState({xIsAuto: false});
+      this.props.node.resizeX = 256;
     }
     this.props.node.run();
   }
@@ -46,13 +47,12 @@ export default class ResizeProperties extends Properties {
 
   yAutoChange(event) {
     const elm = document.getElementById('yAutoInput');
-    const e = document.getElementById('yInput');
     if (elm.checked) {
       this.props.node.resizeY = Jimp.AUTO;
-      e.disabled = true;
+      this.setState({yIsAuto: true});
     } else {
-      e.disabled = false;
-      this.props.node.resizeY = Number(e.value);
+      this.props.node.resizeY = 256;
+      this.setState({yIsAuto: false});
     }
     this.props.node.run();
   }
@@ -69,11 +69,14 @@ export default class ResizeProperties extends Properties {
     if (!this.state.hasXInput) {
       return (
         <div>
-          X<br/>
+          Width<br/>
           <input id="xAutoInput" type="checkbox" defaultChecked={this.props.node.resizeX == Jimp.AUTO} onChange={(event) => {this.xAutoChange(event)}}/> Auto
           <br/>
 
-          <input id="xInput" type="number" min="1" defaultValue={this.props.node.resizeX == Jimp.AUTO ? 256 : this.props.node.resizeX} disabled={this.props.node.resizeX == Jimp.AUTO} onChange={(event) => {this.xChange(event);}} />
+          {!this.state.xIsAuto && (
+            <input id="xInput" type="number" min="1" defaultValue={this.props.node.resizeX == Jimp.AUTO ? 256 : this.props.node.resizeX} onChange={(event) => {this.xChange(event);}} />
+          )}
+
           <br/>
           <br/>
         </div>
@@ -86,10 +89,14 @@ export default class ResizeProperties extends Properties {
     if (!this.state.hasYInput) {
       return (
         <div>
-          Y<br/>
-          <input id="yAutoInput" type="checkbox" defaultChecked={this.props.node.resizeY == Jimp.AUTO} onChange={(event) => {this.yAutoChange(event)}}/> Auto<br/>
+          Height<br/>
+          <input id="yAutoInput" type="checkbox" defaultChecked={this.props.node.resizeY == Jimp.AUTO} onChange={(event) => {this.yAutoChange(event)}}/> Auto
+          <br/>
 
-          <input id="yInput" type="number" min="1" defaultValue={this.props.node.resizeY == Jimp.AUTO ? 256 : this.props.node.resizeY} disabled={this.props.node.resizeY == Jimp.AUTO} onChange={(event) => {this.yChange(event);}} />
+          {!this.state.yIsAuto && (
+            <input id="yInput" type="number" min="1" defaultValue={this.props.node.resizeY == Jimp.AUTO ? 256 : this.props.node.resizeY} onChange={(event) => {this.yChange(event);}} />
+          )}
+
           <br/>
           <br/>
         </div>
@@ -104,7 +111,7 @@ export default class ResizeProperties extends Properties {
         <div className="propertiesTitle">Resize</div>
         <div style={{padding:'10px'}}>
           {this.renderX()}
-          {this.renderY()}         
+          {this.renderY()}
 
           Mode<br/>
           <select id="modeInput" defaultValue={this.props.node.mode} onChange={(event) => {this.modeChange(event)}}>

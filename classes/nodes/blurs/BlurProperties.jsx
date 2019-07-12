@@ -1,9 +1,13 @@
 import Properties from '../Properties.js';
 
-export default class BlurProperties extends React.Component {
+export default class BlurProperties extends Properties {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      hasRadiusInput: props.node.inputs[1].parent ? true : false
+    }
 
     this.blurRadiusChange = this.blurRadiusChange.bind(this);
   }
@@ -16,13 +20,27 @@ export default class BlurProperties extends React.Component {
   }
 
 
+  renderRadius() {
+    if (!this.state.hasRadiusInput) {
+      return (
+        <div>
+          Radius<br/>
+          <input id="radiusSlider" style={{width:'100%'}} type="range" min="1" max="100" defaultValue={this.props.node.radius} onChange={(event) => {this.blurRadiusChange(event);}} />
+        </div>
+      )
+    }
+  }
+
+
   render() {
     return (
       <div>
         <div className="propertiesTitle">Blur</div>
         <div style={{padding:'10px'}}>
-          Radius<br/>
-          <input id="radiusSlider" style={{width:'100%'}} type="range" min="1" max="100" defaultValue={this.props.node.radius} onChange={(event) => {this.blurRadiusChange(event);}} />
+          {this.renderRadius()}
+
+          <br/><br/>
+          Value is in pixels.
         </div>
       </div>
     )
