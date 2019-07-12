@@ -59,7 +59,7 @@ export default class Output extends Connection {
 
     if (!(inputConnection instanceof Input)) return;
     if (inputConnection.node == this.node) return;
-    //if (functions.isNodeInParents(this.node, inputConnection.node)) return;
+    if (functions.isNodeInParents(this.node, inputConnection.node)) return;
 
     if (this.type != inputConnection.type) return;
 
