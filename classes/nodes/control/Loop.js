@@ -18,91 +18,102 @@ export default class Loop extends NodeImage {
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output'),
-      new OutputNumber(this, 1, 'Loop Num'),
+      new OutputNumber(this, 1, 'Increment'),
       new LoopOutputImageLoopInput(this, 2, 'Loop Start')
     ];
 
     this.numLoops = 1;
-    this.loopIndex = null;
+    this.isRunning = false;
   }
 
 
   run(inputThatTriggered) {
 
-    if (this.inputs[0].image && !isNaN(this.numLoops) && this.outputs[2].connections.length && this.inputs[2].parent) {
-      this.bg.classList.add('running');
-      this.runTimer = Date.now();
+    if (inputThatTriggered == this.inputs[0] || inputThatTriggered == this.inputs[1]) {
 
-      let numLoops = this.numLoops;
+      if (!this.isRunning) {
 
-      if (this.inputs[1].number != null) {
-        numLoops = this.inputs[1].number;
-      }
+        // start running
+        if (this.inputs[0].image && !isNaN(this.numLoops) && this.outputs[2].connections.length && this.inputs[2].parent) {
 
-      numLoops = Math.max(1, numLoops);
+          this.isRunning = true;
+          this.bg.classList.add('running');
+          this.runTimer = Date.now();
 
-      if (this.loopIndex == null) {
-        // start loop
-        this.loopIndex = 0;
-
-        this.outputs[1].connections.forEach(conn => {
-          conn.number = this.loopIndex;
-          conn.runNode();
-        })
-
-        this.outputs[2].connections.forEach(conn => {
-          if (this.inputs[0].image) {
-            Jimp.read(this.inputs[0].image).then(image => {
-              conn.image = image;
-              conn.runNode();
-            })
+          if (this.isInsideALoop) {
+            this.runLoop();
           } else {
-            conn.image = null;
-            conn.runNode();
+            // add delay so that running color shows up
+            setTimeout(() => {
+              this.runLoop(inputThatTriggered);
+            }, 0);
           }
-        })
-
-      } else {
-        if (this.loopIndex >= numLoops-1) {
-          // end loop
-          this.loopIndex = null;
-          if (this.inputs[2].image) {
-            this.image = this.inputs[2].image;
-          } else {
-            this.image = null;
-          }
-          super.run(inputThatTriggered);
 
         } else {
-          // continue loop
-          this.loopIndex++;
+          this.runTimer = Date.now();
+          this.image = null;
+          super.run(inputThatTriggered);
+        }
 
-          this.outputs[1].connections.forEach(conn => {
-            conn.number = this.loopIndex;
-            conn.runNode();
-          })
+      }
+    } else {
+      // do nothing if running
+      if (!this.isRunning) {
+        // force run
+        this.run(this.inputs[0]);
+      }
+    }
+  }
 
-          if (this.inputs[2].image) {
-            Jimp.read(this.inputs[2].image).then(image => {
-              this.outputs[2].connections.forEach(conn => {
-                conn.image = image;
-                conn.runNode();
-              })
-            })
-          } else {
-            this.outputs[2].connections.forEach(conn => {
-              conn.image = null;
-              conn.runNode();
-            })
-          }
+
+  runLoop(inputThatTriggered) {
+    let numLoops = this.numLoops;
+    if (this.inputs[1].number != null) {
+      numLoops = this.inputs[1].number;
+    }
+    numLoops = Math.max(1, numLoops);
+
+    for (let n = 0; n < numLoops; n++) {
+
+      // run loop num output
+      this.outputs[1].connections.forEach(input => {
+        input.number = n;
+        input.runNode();
+      })
+
+      let image;
+      if (n == 0) {
+        image = this.inputs[0].image.clone();
+      } else {
+        if (this.inputs[2].image) {
+          image = this.inputs[2].image.clone();
+        } else {
+          image = null;
         }
       }
 
-    } else {
-      this.runTimer = Date.now();
-      this.image = null;
-      super.run(inputThatTriggered);
+      // run loop start output
+      this.outputs[2].connections.forEach(input => {
+        if (image) {
+          input.image = image;
+          input.runNode();
+        } else {
+          input.image = null;
+          input.runNode();
+        }
+      })
     }
+
+    // loop finished
+    // get loop end image and set image
+    if (this.inputs[2].image) {
+      this.image = this.inputs[2].image.clone();
+    } else {
+      this.image = null;
+    }
+    super.run(inputThatTriggered);
+
+    this.isRunning = false;
   }
 
 

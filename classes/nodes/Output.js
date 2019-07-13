@@ -75,6 +75,10 @@ export default class Output extends Connection {
     this.createConnectionSplines();
     inputConnection.connectionMade();
     this.connectionMade();
+
+    this.node.isInsideALoop = functions.isInsideALoop(this.node);
+    inputConnection.node.isInsideALoop = functions.isInsideALoop(inputConnection.node);
+
     this.node.passToChildren();
   }
 
@@ -89,6 +93,9 @@ export default class Output extends Connection {
     this.connectionRemoved();
     this.removeConnectionSplines();
     this.createConnectionSplines();
+
+    this.node.isInsideALoop = functions.isInsideALoop(this.node);
+    inputConnection.node.isInsideALoop = functions.isInsideALoop(inputConnection.node);
 
     if (run) {
       inputConnection.node.run(null);

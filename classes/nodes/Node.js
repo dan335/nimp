@@ -11,6 +11,7 @@ export default class Node {
     this.y = y - settings.nodeHeight / 2;
     this.name = name;
     this.propertiesComponent = propertiesComponent;
+    this.isInsideALoop = false;
     this.createSvgElm();
     this.graph.selectNode(this);
     this.run = this.run.bind(this);

@@ -63,20 +63,32 @@ export default class Blend extends NodeImage {
       opacityDest = Math.max(0, opacityDest);
       opacityDest = Math.min(1, opacityDest);
 
-      Jimp.read(this.inputs[0].image).then(image => {
+      if (this.isInsideALoop) {
+        let image = this.inputs[0].image.clone();
         image.composite(this.inputs[1].image, blendX, blendY, {
           mode: this.mode,
           opacitySource: opacitySource,
           opacityDest: opacityDest
-        }, (error, image) => {
-          if (error) {
-            console.log(error);
-          } else {
-            this.image = image;
-            super.run(inputThatTriggered);
-          }
+        });
+        this.image = image;
+        super.run(inputThatTriggered);
+      } else {
+        Jimp.read(this.inputs[0].image).then(image => {
+          image.composite(this.inputs[1].image, blendX, blendY, {
+            mode: this.mode,
+            opacitySource: opacitySource,
+            opacityDest: opacityDest
+          }, (error, image) => {
+            if (error) {
+              console.log(error);
+            } else {
+              this.image = image;
+              super.run(inputThatTriggered);
+            }
+          })
         })
-      })
+      }
+
     } else {
       this.runTimer = Date.now();
       this.image = null;
