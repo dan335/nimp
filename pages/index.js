@@ -228,6 +228,8 @@ export default class Index extends React.Component {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="https://github.com/dan335/nimp"><img src="/static/githubLogo.png" /></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="https://trello.com/b/s5yHz4z5/nimp"><img src="/static/trelloIcon.png" /></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="mailto:dan@nimp.app"><img src="/static/emailIcon.png" /></a>
               </div>
             </div>
