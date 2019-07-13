@@ -198,7 +198,7 @@ export default class Index extends React.Component {
 
 
   createNewNode(className, classObject, x, y) {
-    this.graph.createNode(className, classObject, x, y);
+    this.graph.createNode(className, classObject, x, y, {});
   }
 
 

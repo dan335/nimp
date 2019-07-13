@@ -21,7 +21,7 @@ export default class ImageUpload extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.base64 = null;
+    json.settings.base64 = null;
 
     return json;
   }

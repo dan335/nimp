@@ -101,12 +101,12 @@ export default class Blit extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.blitX = this.blitX;
-    json.blitY = this.blitY;
-    json.srcX = this.srcX;
-    json.srcY = this.srcY;
-    json.srcWidth = this.srcWidth;
-    json.srcHeight = this.srcHeight;
+    json.settings.blitX = this.blitX;
+    json.settings.blitY = this.blitY;
+    json.settings.srcX = this.srcX;
+    json.settings.srcY = this.srcY;
+    json.settings.srcWidth = this.srcWidth;
+    json.settings.srcHeight = this.srcHeight;
 
     return json;
   }

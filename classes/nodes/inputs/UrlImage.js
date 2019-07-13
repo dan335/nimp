@@ -27,7 +27,7 @@ export default class UniformColor extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.url = this.url;
+    json.settings.url = this.url;
 
     return json;
   }

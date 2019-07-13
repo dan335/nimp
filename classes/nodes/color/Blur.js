@@ -63,7 +63,7 @@ export default class Blur extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.radius = this.radius;
+    json.settings.radius = this.radius;
 
     return json;
   }

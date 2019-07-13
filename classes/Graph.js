@@ -12,8 +12,8 @@ export default class Graph {
   }
 
 
-  createNode(className, classObject, x, y) {
-    this.nodes.push(new classObject(className, this, x, y));
+  createNode(className, classObject, x, y, settings) {
+    this.nodes.push(new classObject(className, this, x, y, settings));
   }
 
 

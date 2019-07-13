@@ -21,7 +21,7 @@ export default class AbsoluteValue extends NodeNumber {
   toJson() {
     let json = super.toJson();
 
-    json.a = this.a;
+    json.settings.a = this.a;
 
     return json;
   }

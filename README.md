@@ -4,6 +4,7 @@ https://nimp.app
 
 ### Run
 ```
+set MONGO_URL environment variable
 git clone https://github.com/dan335/nimp
 cd nimp
 npm install

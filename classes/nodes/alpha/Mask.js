@@ -69,8 +69,8 @@ export default class Mask extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.maskX = this.maskX;
-    json.maskY = this.maskY;
+    json.settings.maskX = this.maskX;
+    json.settings.maskY = this.maskY;
 
     return json;
   }

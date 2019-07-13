@@ -39,10 +39,10 @@ export default class Simplex extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.width = this.width;
-    json.height = this.height;
-    json.seed = this.seed;
-    json.scale = this.scale;
+    json.settings.width = this.width;
+    json.settings.height = this.height;
+    json.settings.seed = this.seed;
+    json.settings.scale = this.scale;
 
     return json;
   }

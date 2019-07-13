@@ -32,10 +32,10 @@ export default class Crop extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.cropX = this.cropX;
-    json.cropY = this.cropY;
-    json.width = this.width;
-    json.height = this.height;
+    json.settings.cropX = this.cropX;
+    json.settings.cropY = this.cropY;
+    json.settings.width = this.width;
+    json.settings.height = this.height;
 
     return json;
   }

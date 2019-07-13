@@ -30,8 +30,8 @@ export default class Loop extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.numLoops = this.numLoops;
-    json.isRunning = this.isRunning;
+    json.settings.numLoops = this.numLoops;
+    json.settings.isRunning = this.isRunning;
 
     return json;
   }

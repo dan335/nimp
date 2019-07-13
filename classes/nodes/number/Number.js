@@ -18,7 +18,7 @@ export default class Number extends NodeNumber {
   toJson() {
     let json = super.toJson();
 
-    json.number = this.number;
+    json.settings.number = this.number;
 
     return json;
   }
