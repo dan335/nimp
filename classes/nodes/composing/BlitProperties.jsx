@@ -137,13 +137,14 @@ export default class BlitProperties extends Properties {
       <div>
         <div className="propertiesTitle">Blit</div>
         <div style={{padding:'10px'}}>
-          Position of image.<br/>
+          Copy an image or part of an image on top of another image.
+          <br/><br/>
           {this.renderX()}
           {this.renderY()}
-
+          <br/>
           {this.renderSrcX()}
           {this.renderSrcY()}
-
+          <br/>
           {this.renderSrcWidth()}
           {this.renderSrcHeight()}
         </div>
