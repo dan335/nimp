@@ -1,6 +1,6 @@
 import Properties from '../Properties.js';
 
-export default class RoundProperties extends Properties {
+export default class CeilProperties extends Properties {
 
   constructor(props) {
     super(props);
@@ -15,7 +15,7 @@ export default class RoundProperties extends Properties {
     if (this.state.hasA) {
       return (
         <div>
-          round({this.props.node.a}) = {Math.round(this.props.node.a)}
+          ceil({this.props.node.a}) = {Math.ceil(this.props.node.a)}
         </div>
       )
     }
@@ -25,7 +25,7 @@ export default class RoundProperties extends Properties {
   render() {
     return (
       <div>
-        <div className="propertiesTitle">Round a Number</div>
+        <div className="propertiesTitle">Ceil a Number</div>
         <div style={{padding:'10px'}}>
           {this.renderResult()}
         </div>
