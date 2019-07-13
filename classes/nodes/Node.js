@@ -1,15 +1,18 @@
 import settings from '../../lib/settings.js';
 import functions from '../../lib/functions.js';
+var ObjectId = require('bson-objectid');
 
 
 export default class Node {
-  constructor(graph, x, y, name, propertiesComponent) {
+  constructor(className, graph, x, y, title, propertiesComponent) {
+    this.className = className;
+    this.id = new ObjectId().toHexString();
     this.graph = graph;
     this.inputs = [];
     this.outputs = [];
     this.x = x - settings.nodeWidth / 2;
     this.y = y - settings.nodeHeight / 2;
-    this.name = name;
+    this.title = title;
     this.propertiesComponent = propertiesComponent;
     this.isInsideALoop = false;
     this.createSvgElm();
@@ -87,7 +90,7 @@ export default class Node {
     text.setAttributeNS(null, 'x', settings.nodeWidth / 2);
     text.setAttributeNS(null, 'y', settings.nodeHeight / 2 + 5);
     text.setAttributeNS(null, 'fill', '#fff');
-    text.textContent = this.name;
+    text.textContent = this.title;
     text.setAttribute('style', 'pointer-events:none;');
     text.setAttributeNS(null, 'text-anchor', 'middle');
     this.g.appendChild(text);
@@ -139,6 +142,28 @@ export default class Node {
   deselect() {
     this.bg.classList.remove('selected');
     this.graph.component.setState({properties:null});
+  }
+
+
+  toJson() {
+    let json = {
+      className: this.className,
+      id: this.id,
+      x: this.x,
+      y: this.y,
+      inputs: [],
+      outputs: []
+    };
+
+    this.inputs.forEach(input => {
+      json.inputs.push(input.toJson());
+    })
+
+    this.outputs.forEach(output => {
+      json.outputs.push(output.toJson());
+    })
+
+    return json;
   }
 
 }

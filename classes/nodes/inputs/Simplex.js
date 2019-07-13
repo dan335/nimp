@@ -12,8 +12,8 @@ import SimplexNoise from 'simplex-noise';
 
 
 export default class Simplex extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Simplex Noise', SimplexProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Simplex Noise', SimplexProperties);
 
     this.inputs = [
       new SimplexInputNumberWidth(this, 0, 'Width'),
@@ -33,6 +33,18 @@ export default class Simplex extends NodeImage {
     this.scale = 0.05;
 
     this.run(null);
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.width = this.width;
+    json.height = this.height;
+    json.seed = this.seed;
+    json.scale = this.scale;
+
+    return json;
   }
 
 

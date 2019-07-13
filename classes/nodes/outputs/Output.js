@@ -6,8 +6,8 @@ import Jimp from 'jimp';
 
 
 export default class Output extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Output', OutputProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Output', OutputProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input')
@@ -18,6 +18,17 @@ export default class Output extends NodeImage {
     this.base64 = null;
     this.component = null;
     this.filename = 'NimpDownload';
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.type = this.type;
+    json.base64 = this.null;
+    json.filename = this.filename;
+
+    return json;
   }
 
 

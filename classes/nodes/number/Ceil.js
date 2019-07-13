@@ -4,8 +4,8 @@ import CeilInputNumberA from './CeilInputNumberA.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Ceil extends NodeNumber {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Ceil', CeilProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Ceil', CeilProperties);
 
     this.inputs = [
       new CeilInputNumberA(this, 0, 'a'),
@@ -15,6 +15,15 @@ export default class Ceil extends NodeNumber {
     ];
 
     this.a = null;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.a = this.a;
+
+    return json;
   }
 
 

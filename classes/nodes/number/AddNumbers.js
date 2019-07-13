@@ -5,8 +5,8 @@ import AddNumbersInputNumberB from './AddNumbersInputNumberB.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class AddNumbers extends NodeNumber {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Add', AddNumbersProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Add', AddNumbersProperties);
 
     this.inputs = [
       new AddNumbersInputNumberA(this, 0, 'a'),
@@ -18,6 +18,16 @@ export default class AddNumbers extends NodeNumber {
 
     this.a = null;
     this.b = null;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.a = this.a;
+    json.b = this.b;
+
+    return json;
   }
 
 

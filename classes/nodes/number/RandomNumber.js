@@ -4,8 +4,8 @@ import OutputNumber from '../OutputNumber.js';
 import InputNumber from '../InputNumber.js';
 
 export default class RandomNumber extends NodeNumber {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Random Number', RandomNumberProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Random Number', RandomNumberProperties);
 
     this.inputs = [
       new InputNumber(this, 0, 'Regenerate')
@@ -15,6 +15,15 @@ export default class RandomNumber extends NodeNumber {
     ];
 
     this.number = Math.random();
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.number = this.number;
+
+    return json;
   }
 
 

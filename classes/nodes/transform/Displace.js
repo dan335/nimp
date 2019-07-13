@@ -5,8 +5,8 @@ import InputImage from '../InputImage.js';
 import DisplaceInputNumberOffset from './DisplaceInputNumberOffset.js';
 
 export default class Displace extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Displace', DisplaceProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Displace', DisplaceProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
@@ -18,6 +18,15 @@ export default class Displace extends NodeImage {
     ];
 
     this.offset = 20;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.offset = this.offset;
+
+    return json;
   }
 
 

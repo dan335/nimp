@@ -6,8 +6,8 @@ import BlurInputNumberRadius from './BlurInputNumberRadius.js';
 
 
 export default class Blur extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Blur', BlurProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Blur', BlurProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
@@ -57,5 +57,14 @@ export default class Blur extends NodeImage {
       this.image = null;
       super.run(inputThatTriggered);
     }
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.radius = this.radius;
+
+    return json;
   }
 }

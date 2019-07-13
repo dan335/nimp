@@ -8,8 +8,8 @@ import CropInputNumberWidth from './CropInputNumberWidth.js';
 import CropInputNumberHeight from './CropInputNumberHeight.js';
 
 export default class Crop extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Crop', CropProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Crop', CropProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
@@ -27,6 +27,19 @@ export default class Crop extends NodeImage {
     this.width = 256;
     this.height = 256;
   }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.cropX = this.cropX;
+    json.cropY = this.cropY;
+    json.width = this.width;
+    json.height = this.height;
+
+    return json;
+  }
+
 
   run(inputThatTriggered) {
     if (this.inputs[0].image) {

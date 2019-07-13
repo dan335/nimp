@@ -9,8 +9,8 @@ import Jimp from 'jimp';
 
 
 export default class Circle extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Circle', CircleProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Circle', CircleProperties);
 
     this.inputs = [
       new CircleInputNumberWidth(this, 0, 'Width'),
@@ -32,6 +32,21 @@ export default class Circle extends NodeImage {
     this.padding = 5;
 
     this.run(null);
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.width = this.width;
+    json.height = this.height;
+    json.red = this.red;
+    json.blue = this.blue;
+    json.green = this.green;
+    json.alpha = this.alpha;
+    json.padding = this.padding;
+
+    return json;
   }
 
 

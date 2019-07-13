@@ -6,8 +6,8 @@ import ElseInputNumberA from './ElseInputNumberA.js';
 
 
 export default class Else extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'If Else', ElseProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'If Else', ElseProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input A'),
@@ -19,6 +19,15 @@ export default class Else extends NodeImage {
     ];
 
     this.a = 1;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.a = this.a;
+
+    return json;
   }
 
 

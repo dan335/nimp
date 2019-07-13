@@ -2,8 +2,8 @@ import Node from './Node.js';
 
 
 export default class NodeNumber extends Node {
-  constructor(graph, x, y, name, propertiesComponent) {
-    super(graph, x, y, name, propertiesComponent);
+  constructor(className, graph, x, y, name, propertiesComponent) {
+    super(className, graph, x, y, name, propertiesComponent);
 
     this.number = 1;
   }

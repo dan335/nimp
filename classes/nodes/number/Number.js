@@ -3,8 +3,8 @@ import NumberProperties from './NumberProperties.jsx';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Number extends NodeNumber {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Number', NumberProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Number', NumberProperties);
 
     this.inputs = [];
     this.outputs = [
@@ -12,6 +12,15 @@ export default class Number extends NodeNumber {
     ];
 
     this.number = 1;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.number = this.number;
+
+    return json;
   }
 
 

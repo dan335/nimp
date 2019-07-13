@@ -8,8 +8,8 @@ import LoopInputImageLoopOutput from './LoopInputImageLoopOutput.js';
 import LoopOutputImageLoopInput from './LoopOutputImageLoopInput.js'
 
 export default class Loop extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Loop', LoopProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Loop', LoopProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
@@ -24,6 +24,16 @@ export default class Loop extends NodeImage {
 
     this.numLoops = 1;
     this.isRunning = false;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.numLoops = this.numLoops;
+    json.isRunning = this.isRunning;
+
+    return json;
   }
 
 
@@ -91,7 +101,7 @@ export default class Loop extends NodeImage {
         input.number = n;
         input.runNode();
       })
-      
+
       // run loop start output
       this.outputs[2].connections.forEach(input => {
         if (image) {

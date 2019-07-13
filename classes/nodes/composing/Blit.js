@@ -10,8 +10,8 @@ import BlitInputNumberSrcWidth from './BlitInputNumberSrcWidth.js';
 import BlitInputNumberSrcHeight from './BlitInputNumberSrcHeight.js';
 
 export default class Blit extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Blit', BlitProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Blit', BlitProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Dest'),
@@ -95,5 +95,19 @@ export default class Blit extends NodeImage {
       this.image = null;
       super.run(inputThatTriggered);
     }
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.blitX = this.blitX;
+    json.blitY = this.blitY;
+    json.srcX = this.srcX;
+    json.srcY = this.srcY;
+    json.srcWidth = this.srcWidth;
+    json.srcHeight = this.srcHeight;
+
+    return json;
   }
 }

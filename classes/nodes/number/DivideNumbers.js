@@ -5,8 +5,8 @@ import DivideNumbersInputNumberB from './DivideNumbersInputNumberB.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class DivideNumbers extends NodeNumber {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Divide', DivideNumbersProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Divide', DivideNumbersProperties);
 
     this.inputs = [
       new DivideNumbersInputNumberA(this, 0, 'a'),
@@ -18,6 +18,16 @@ export default class DivideNumbers extends NodeNumber {
 
     this.a = null;
     this.b = null;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.a = this.a;
+    json.b = this.b;
+
+    return json;
   }
 
 

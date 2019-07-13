@@ -145,8 +145,8 @@ export default class Index extends React.Component {
 
   renderCategoryButton(category) {
     return (
-      <div key={category.name} className={'nodeButton ' + (category.name == this.state.category ? 'active' : '')} onClick={() => {this.setState({category:category.name})}}>
-        {category.name}
+      <div key={category.title} className={'nodeButton ' + (category.title == this.state.category ? 'active' : '')} onClick={() => {this.setState({category:category.title})}}>
+        {category.title}
       </div>
     )
   }
@@ -154,7 +154,7 @@ export default class Index extends React.Component {
 
   renderNodeButtons() {
     const category = settings.nodes.find(c => {
-      return c.name == this.state.category;
+      return c.title == this.state.category;
     })
 
     if (category) {
@@ -166,9 +166,9 @@ export default class Index extends React.Component {
 
   renderNodeButton(node) {
     return (
-      <div key={node.name} className="nodeButtonContainer">
+      <div key={node.title} className="nodeButtonContainer">
         <div className="nodeButton" onMouseEnter={(event) => {event.target.nextSibling.classList.add('show')}} onMouseLeave={() => {event.target.nextSibling.classList.remove('show')}} onMouseDown={() => {this.startDraggingNewNode(node)}}>
-          {node.name}
+          {node.title}
         </div>
         <div className="nodeButtonDrag">drag >></div>
       </div>

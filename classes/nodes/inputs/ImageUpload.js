@@ -4,8 +4,8 @@ import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class ImageUpload extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'ImageUpload', ImageUploadProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'ImageUpload', ImageUploadProperties);
 
     this.inputs = [];
     this.outputs = [
@@ -15,6 +15,15 @@ export default class ImageUpload extends NodeImage {
     ];
 
     this.base64 = null;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.base64 = null;
+
+    return json;
   }
 
 

@@ -1,5 +1,9 @@
+var ObjectId = require('bson-objectid');
+
+
 export default class Graph {
   constructor(svg, component) {
+    this.id = new ObjectId().toHexString();
     this.svg = svg;
     this.component = component;
     this.nodes = [];
@@ -8,8 +12,8 @@ export default class Graph {
   }
 
 
-  createNode(classObject, x, y) {
-    this.nodes.push(new classObject(this, x, y));
+  createNode(classObject, x, y, className) {
+    this.nodes.push(new classObject(className, this, x, y));
   }
 
 
@@ -28,5 +32,19 @@ export default class Graph {
     }
     this.viewedNode = node;
     node.view();
+  }
+
+
+  toJson() {
+    let json = {
+      id: this.id,
+      nodes: []
+    };
+
+    this.nodes.forEach(node => {
+      json.nodes.push(node.toJson());
+    })
+
+    return json;
   }
 }

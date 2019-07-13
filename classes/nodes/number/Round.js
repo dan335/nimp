@@ -4,8 +4,8 @@ import RoundInputNumberA from './RoundInputNumberA.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Round extends NodeNumber {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Round', RoundProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Round', RoundProperties);
 
     this.inputs = [
       new RoundInputNumberA(this, 0, 'a'),
@@ -15,6 +15,15 @@ export default class Round extends NodeNumber {
     ];
 
     this.a = null;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.a = this.a;
+
+    return json;
   }
 
 

@@ -44,7 +44,7 @@ export default class Output extends Connection {
     text.setAttributeNS(null, 'x', settings.nodeWidth + 25);
     text.setAttributeNS(null, 'y', settings.nodeHeight * 0.65 + settings.connectionSpaceBetween * this.index);
     text.setAttributeNS(null, 'fill', 'hsl(209, 10%, 60%)');
-    text.textContent = this.type+':'+this.name;
+    text.textContent = this.type+':'+this.title;
     text.setAttribute('style', 'pointer-events:none;');
     text.setAttributeNS(null, 'text-anchor', 'start');
     text.setAttributeNS(null, 'font-size', 12);
@@ -133,4 +133,17 @@ export default class Output extends Connection {
 
   connectionMade() {}
   connectionRemoved() {}
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.connections = [];
+
+    this.connections.forEach(input => {
+      json.connections.push(input.id);
+    })
+
+    return json;
+  }
 }

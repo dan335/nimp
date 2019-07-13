@@ -4,8 +4,8 @@ import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
 
 export default class Opaque extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Opaque', OpaqueProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Opaque', OpaqueProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input')

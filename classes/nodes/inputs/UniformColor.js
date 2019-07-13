@@ -6,8 +6,8 @@ import Jimp from 'jimp';
 
 
 export default class UniformColor extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Uniform Color', UniformColorProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Uniform Color', UniformColorProperties);
 
     this.inputs = [];
     this.outputs = [
@@ -24,6 +24,20 @@ export default class UniformColor extends NodeImage {
     this.alpha = 255;
 
     this.run(null);
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.width = this.width;
+    json.height = this.height;
+    json.red = this.red;
+    json.blue = this.blue;
+    json.green = this.green;
+    json.alpha = this.alpha;
+
+    return json;
   }
 
 

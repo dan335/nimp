@@ -6,8 +6,8 @@ import IfInputNumberA from './IfInputNumberA.js';
 
 
 export default class If extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'If', IfProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'If', IfProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
@@ -18,6 +18,15 @@ export default class If extends NodeImage {
     ];
 
     this.a = 1;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.a = this.a;
+
+    return json;
   }
 
 
