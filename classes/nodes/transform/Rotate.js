@@ -6,8 +6,8 @@ import RotateInputNumberDegrees from './RotateInputNumberDegrees.js';
 
 
 export default class Rotate extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Rotate', RotateProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Rotate', RotateProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
@@ -20,6 +20,17 @@ export default class Rotate extends NodeImage {
     this.degrees = 90;
     this.resize = true;
     this.mode = Jimp.RESIZE_BICUBIC;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.degrees = this.degrees;
+    json.resize = this.resize;
+    json.mode = this.mode;
+
+    return json;
   }
 
 

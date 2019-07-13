@@ -4,8 +4,8 @@ import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
 
 export default class Invert extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Invert', InvertProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Invert', InvertProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input')

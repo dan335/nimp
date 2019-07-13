@@ -5,8 +5,8 @@ import ExponentNumbersInputNumberB from './ExponentNumbersInputNumberB.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class ExponentNumbers extends NodeNumber {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Exponent', ExponentNumbersProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Exponent', ExponentNumbersProperties);
 
     this.inputs = [
       new ExponentNumbersInputNumberA(this, 0, 'a'),
@@ -18,6 +18,16 @@ export default class ExponentNumbers extends NodeNumber {
 
     this.a = null;
     this.b = null;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.a = this.a;
+    json.b = this.b;
+
+    return json;
   }
 
 

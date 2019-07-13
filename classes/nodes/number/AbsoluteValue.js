@@ -4,8 +4,8 @@ import AbsoluteValueInputNumberA from './AbsoluteValueInputNumberA.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class AbsoluteValue extends NodeNumber {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Absolute Value', AbsoluteValueProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Absolute Value', AbsoluteValueProperties);
 
     this.inputs = [
       new AbsoluteValueInputNumberA(this, 0, 'a'),
@@ -15,6 +15,15 @@ export default class AbsoluteValue extends NodeNumber {
     ];
 
     this.a = null;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.a = this.a;
+
+    return json;
   }
 
 

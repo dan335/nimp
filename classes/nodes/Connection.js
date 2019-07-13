@@ -1,8 +1,12 @@
+var ObjectId = require('bson-objectid');
+
+
 export default class Connection {
-  constructor(node, index, name, type) {
+  constructor(node, index, title, type) {
+    this.id = new ObjectId().toHexString();
     this.node = node;
     this.index = index;
-    this.name = name;
+    this.title = title;
     this.type = type;
     this.createSvgElm();
   }
@@ -30,5 +34,14 @@ export default class Connection {
       y: this.node.y + middleY
     }
     return pos;
+  }
+
+
+  toJson() {
+    let json = {
+      id: this.id
+    };
+
+    return json;
   }
 }

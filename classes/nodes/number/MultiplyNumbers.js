@@ -5,8 +5,8 @@ import MultiplyNumbersInputNumberB from './MultiplyNumbersInputNumberB.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class MultiplyNumbers extends NodeNumber {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Multiply', MultiplyNumbersProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Multiply', MultiplyNumbersProperties);
 
     this.inputs = [
       new MultiplyNumbersInputNumberA(this, 0, 'a'),
@@ -18,6 +18,16 @@ export default class MultiplyNumbers extends NodeNumber {
 
     this.a = null;
     this.b = null;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.a = this.a;
+    json.b = this.b;
+
+    return json;
   }
 
 

@@ -6,8 +6,8 @@ import MaskInputNumberX from './MaskInputNumberX.js';
 import MaskInputNumberY from './MaskInputNumberY.js';
 
 export default class Mask extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Mask', MaskProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Mask', MaskProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
@@ -63,5 +63,15 @@ export default class Mask extends NodeImage {
       this.image = null;
       super.run(inputThatTriggered);
     }
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.maskX = this.maskX;
+    json.maskY = this.maskY;
+
+    return json;
   }
 }

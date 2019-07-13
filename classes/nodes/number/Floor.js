@@ -4,8 +4,8 @@ import FloorInputNumberA from './FloorInputNumberA.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Floor extends NodeNumber {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Floor', FloorProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Floor', FloorProperties);
 
     this.inputs = [
       new FloorInputNumberA(this, 0, 'a'),
@@ -15,6 +15,15 @@ export default class Floor extends NodeNumber {
     ];
 
     this.a = null;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.a = this.a;
+
+    return json;
   }
 
 

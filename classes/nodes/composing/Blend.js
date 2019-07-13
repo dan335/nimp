@@ -8,8 +8,8 @@ import BlendInputNumberTopOpacity from './BlendInputNumberTopOpacity.js';
 import BlendInputNumberBottomOpacity from './BlendInputNumberBottomOpacity.js';
 
 export default class Blend extends NodeImage {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Blend', BlendProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Blend', BlendProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Background'),
@@ -94,5 +94,18 @@ export default class Blend extends NodeImage {
       this.image = null;
       super.run(inputThatTriggered);
     }
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.blendX = this.blendX;
+    json.blendY = this.blendY;
+    json.mode = this.mode;
+    json.opacitySource = this.opacitySource;
+    json.opacityDest = this.opacityDest;
+
+    return json;
   }
 }

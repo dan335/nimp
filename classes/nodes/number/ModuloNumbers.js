@@ -5,8 +5,8 @@ import ModuloNumbersInputNumberB from './ModuloNumbersInputNumberB.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class ModuloNumbers extends NodeNumber {
-  constructor(graph, x, y) {
-    super(graph, x, y, 'Modulo', ModuloNumbersProperties);
+  constructor(className, graph, x, y) {
+    super(className, graph, x, y, 'Modulo', ModuloNumbersProperties);
 
     this.inputs = [
       new ModuloNumbersInputNumberA(this, 0, 'a'),
@@ -18,6 +18,16 @@ export default class ModuloNumbers extends NodeNumber {
 
     this.a = null;
     this.b = null;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.a = this.a;
+    json.b = this.b;
+
+    return json;
   }
 
 

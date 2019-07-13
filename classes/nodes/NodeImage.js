@@ -2,8 +2,8 @@ import Node from './Node.js';
 import OutputImage from './OutputImage.js';
 
 export default class NodeImage extends Node {
-  constructor(graph, x, y, name, propertiesComponent) {
-    super(graph, x, y, name, propertiesComponent);
+  constructor(className, graph, x, y, name, propertiesComponent) {
+    super(className, graph, x, y, name, propertiesComponent);
 
     this.image = null;
   }
