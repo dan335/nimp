@@ -190,15 +190,15 @@ export default class Index extends React.Component {
       if (this.state.mouseState.type == 'draggingNewNode') {
         const svgPos = functions.getPointOnSvg(event, this.svg);
 
-        this.createNewNode(this.state.mouseState.data.classObject, svgPos.x, svgPos.y);
+        this.createNewNode(this.state.mouseState.data.className, this.state.mouseState.data.classObject, svgPos.x, svgPos.y);
         this.setState({mouseState:null});
       }
     }
   }
 
 
-  createNewNode(classObject, x, y) {
-    this.graph.createNode(classObject, x, y);
+  createNewNode(className, classObject, x, y) {
+    this.graph.createNode(className, classObject, x, y);
   }
 
 

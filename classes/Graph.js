@@ -12,7 +12,7 @@ export default class Graph {
   }
 
 
-  createNode(classObject, x, y, className) {
+  createNode(className, classObject, x, y) {
     this.nodes.push(new classObject(className, this, x, y));
   }
 
