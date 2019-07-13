@@ -25,24 +25,33 @@ export default class Blur extends NodeImage {
     if (this.inputs[0].image) {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
-      Jimp.read(this.inputs[0].image).then(image => {
-        let radius = this.radius;
 
-        if (this.inputs[1].number != null) {
-          radius = this.inputs[1].number;
-        }
+      let radius = this.radius;
 
-        radius = Math.max(1, radius);
+      if (this.inputs[1].number != null) {
+        radius = this.inputs[1].number;
+      }
 
-        image.blur(radius, (error, image) => {
-          if (error) {
-            console.log(error);
-          } else {
-            this.image = image;
-            super.run(inputThatTriggered);
-          }
-        });
-      })
+      radius = Math.max(1, radius);
+
+      if (this.isInsideALoop) {
+        let image = this.inputs[0].image.clone();
+        image.blur(radius);
+        this.image = image;
+        super.run(inputThatTriggered);
+
+      } else {
+        Jimp.read(this.inputs[0].image).then(image => {
+          image.blur(radius, (error, image) => {
+            if (error) {
+              console.log(error);
+            } else {
+              this.image = image;
+              super.run(inputThatTriggered);
+            }
+          });
+        })
+      }
     } else {
       this.runTimer = Date.now();
       this.image = null;

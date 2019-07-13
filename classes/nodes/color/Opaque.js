@@ -20,16 +20,25 @@ export default class Opaque extends NodeImage {
     if (this.inputs[0].image) {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
-      Jimp.read(this.inputs[0].image).then(image => {
-        image.opaque((error, image) => {
-          if (error) {
-            console.log(error);
-          } else {
-            this.image = image;
-            super.run(inputThatTriggered);
-          }
-        });
-      })
+
+      if (this.isInsideALoop) {
+        const image = this.inputs[0].image.clone();
+        image.opaque();
+        this.image = image;
+        super.run(inputThatTriggered);
+      } else {
+        Jimp.read(this.inputs[0].image).then(image => {
+          image.opaque((error, image) => {
+            if (error) {
+              console.log(error);
+            } else {
+              this.image = image;
+              super.run(inputThatTriggered);
+            }
+          });
+        })
+      }
+
     } else {
       this.runTimer = Date.now();
       this.image = null;

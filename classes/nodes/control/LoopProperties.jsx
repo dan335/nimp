@@ -47,9 +47,7 @@ export default class LoopProperties extends Properties {
           <br/><br/>
           {this.renderNumLoops()}
           <br/><br/>
-          Loop num starts with 0 and increments each loop.
-          <br/><br/>
-          If your loop branches use a Delay node.
+          Increment output starts with 0 and adds 1 each loop.
         </div>
       </div>
     )
