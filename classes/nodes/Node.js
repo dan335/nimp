@@ -152,7 +152,8 @@ export default class Node {
       x: this.x,
       y: this.y,
       inputs: [],
-      outputs: []
+      outputs: [],
+      settings: {}
     };
 
     this.inputs.forEach(input => {

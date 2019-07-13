@@ -23,6 +23,16 @@ export default class BrightnessContrast extends NodeImage {
   }
 
 
+  toJson() {
+    let json = super.toJson();
+
+    json.settings.brightness = this.brightness;
+    json.settings.contrast = this.contrast;
+
+    return json;
+  }
+
+
   run(inputThatTriggered) {
     if (this.inputs[0].image) {
       this.bg.classList.add('running');

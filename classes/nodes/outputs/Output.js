@@ -24,9 +24,9 @@ export default class Output extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.type = this.type;
-    json.base64 = this.null;
-    json.filename = this.filename;
+    json.settings.type = this.type;
+    json.settings.base64 = null;
+    json.settings.filename = this.filename;
 
     return json;
   }

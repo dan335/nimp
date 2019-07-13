@@ -26,9 +26,9 @@ export default class Rotate extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.degrees = this.degrees;
-    json.resize = this.resize;
-    json.mode = this.mode;
+    json.settings.degrees = this.degrees;
+    json.settings.resize = this.resize;
+    json.settings.mode = this.mode;
 
     return json;
   }

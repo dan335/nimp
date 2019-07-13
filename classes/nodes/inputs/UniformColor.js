@@ -30,12 +30,12 @@ export default class UniformColor extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.width = this.width;
-    json.height = this.height;
-    json.red = this.red;
-    json.blue = this.blue;
-    json.green = this.green;
-    json.alpha = this.alpha;
+    json.settings.width = this.width;
+    json.settings.height = this.height;
+    json.settings.red = this.red;
+    json.settings.blue = this.blue;
+    json.settings.green = this.green;
+    json.settings.alpha = this.alpha;
 
     return json;
   }

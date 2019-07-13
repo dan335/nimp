@@ -24,8 +24,8 @@ export default class SubtractNumbers extends NodeNumber {
   toJson() {
     let json = super.toJson();
 
-    json.a = this.a;
-    json.b = this.b;
+    json.settings.a = this.a;
+    json.settings.b = this.b;
 
     return json;
   }

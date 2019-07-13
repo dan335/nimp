@@ -24,7 +24,7 @@ export default class Displace extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.offset = this.offset;
+    json.settings.offset = this.offset;
 
     return json;
   }

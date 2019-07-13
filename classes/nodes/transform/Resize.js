@@ -27,9 +27,9 @@ export default class Resize extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.resizeX = this.resizeX;
-    json.resizeY = this.resizeY;
-    json.mode = this.mode;
+    json.settings.resizeX = this.resizeX;
+    json.settings.resizeY = this.resizeY;
+    json.settings.mode = this.mode;
 
     return json;
   }

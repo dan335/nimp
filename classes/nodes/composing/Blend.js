@@ -100,11 +100,11 @@ export default class Blend extends NodeImage {
   toJson() {
     let json = super.toJson();
 
-    json.blendX = this.blendX;
-    json.blendY = this.blendY;
-    json.mode = this.mode;
-    json.opacitySource = this.opacitySource;
-    json.opacityDest = this.opacityDest;
+    json.settings.blendX = this.blendX;
+    json.settings.blendY = this.blendY;
+    json.settings.mode = this.mode;
+    json.settings.opacitySource = this.opacitySource;
+    json.settings.opacityDest = this.opacityDest;
 
     return json;
   }
