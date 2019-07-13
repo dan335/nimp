@@ -302,7 +302,7 @@ export default class Index extends React.Component {
 
           #innerMidContainer {
             display: grid;
-            grid-template-rows: 1fr 1fr;
+            grid-template-rows: 60% 40%;
           }
 
           #svgContainer {
@@ -315,7 +315,7 @@ export default class Index extends React.Component {
             right: 10px;
             bottom: 10px;
             color: hsl(209, 10%, 60%);
-            font-size: 90%;
+            font-size: 80%;
           }
 
           #svg {
