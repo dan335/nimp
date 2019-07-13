@@ -13,7 +13,7 @@ import SimplexNoise from 'simplex-noise';
 
 export default class Simplex extends NodeImage {
   constructor(graph, x, y) {
-    super(graph, x, y, 'Uniform Color', SimplexProperties);
+    super(graph, x, y, 'Simplex Noise', SimplexProperties);
 
     this.inputs = [
       new SimplexInputNumberWidth(this, 0, 'Width'),
