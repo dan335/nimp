@@ -40,16 +40,24 @@ export default class Mask extends NodeImage {
         maskY = this.inputs[3].number;
       }
 
-      Jimp.read(this.inputs[0].image).then(image => {
-        image.mask(this.inputs[1].image, maskX, maskY, (error, image) => {
-          if (error) {
-            console.log(error);
-          } else {
-            this.image = image;
-            super.run(inputThatTriggered);
-          }
+      if (this.isInsideALoop) {
+        let image = this.inputs[0].image.clone();
+        image.mask(this.inputs[1].image, maskX, maskY);
+        this.image = image;
+        super.run(inputThatTriggered);
+      } else {
+        Jimp.read(this.inputs[0].image).then(image => {
+          image.mask(this.inputs[1].image, maskX, maskY, (error, image) => {
+            if (error) {
+              console.log(error);
+            } else {
+              this.image = image;
+              super.run(inputThatTriggered);
+            }
+          })
         })
-      })
+      }
+
     } else {
       this.runTimer = Date.now();
       this.image = null;

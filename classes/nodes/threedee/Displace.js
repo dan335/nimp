@@ -32,16 +32,24 @@ export default class Displace extends NodeImage {
         offset = this.inputs[2].number;
       }
 
-      Jimp.read(this.inputs[0].image).then(image => {
-        image.displace(this.inputs[1].image, offset, (error, image) => {
-          if (error) {
-            console.log(error);
-          } else {
-            this.image = image;
-            super.run(inputThatTriggered);
-          }
+      if (this.isInsideALoop) {
+        let image = this.inputs[0].image.clone();
+        image.displace(this.inputs[1].image, offset);
+        this.image = image;
+        super.run(inputThatTriggered);
+      } else {
+        Jimp.read(this.inputs[0].image).then(image => {
+          image.displace(this.inputs[1].image, offset, (error, image) => {
+            if (error) {
+              console.log(error);
+            } else {
+              this.image = image;
+              super.run(inputThatTriggered);
+            }
+          })
         })
-      })
+      }
+
     } else {
       this.runTimer = Date.now();
       this.image = null;
