@@ -20,6 +20,7 @@ export default class MainLayout extends React.Component {
           <meta name="description" content="Node-base image manipulation program." />
           <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet" />
           <meta charSet='UTF-8'/>
+          <link rel="icon" type="image/png" href="/static/favicon.png" />
         </Head>
 
         <div>

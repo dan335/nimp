@@ -263,7 +263,7 @@ export default class Index extends React.Component {
         <style jsx global>{`
           #topContainer {
             line-height: 30px;
-            padding: 0 10px 0 0;
+            padding: 0 10px;
             background-color: hsl(209, 10%, 25%);
             display: grid;
             grid-template-columns: 1fr 1fr;
