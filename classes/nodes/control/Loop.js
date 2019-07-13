@@ -54,12 +54,12 @@ export default class Loop extends NodeImage {
           this.image = null;
           super.run(inputThatTriggered);
         }
-
       }
     } else {
+      // called from loop end input
       // do nothing if running
+      // if not running run
       if (!this.isRunning) {
-        // force run
         this.run(this.inputs[0]);
       }
     }
@@ -75,12 +75,6 @@ export default class Loop extends NodeImage {
 
     for (let n = 0; n < numLoops; n++) {
 
-      // run loop num output
-      this.outputs[1].connections.forEach(input => {
-        input.number = n;
-        input.runNode();
-      })
-
       let image;
       if (n == 0) {
         image = this.inputs[0].image.clone();
@@ -92,6 +86,12 @@ export default class Loop extends NodeImage {
         }
       }
 
+      // run loop num output
+      this.outputs[1].connections.forEach(input => {
+        input.number = n;
+        input.runNode();
+      })
+      
       // run loop start output
       this.outputs[2].connections.forEach(input => {
         if (image) {
