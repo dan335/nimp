@@ -9,7 +9,8 @@ export default class CircleProperties extends Properties {
 
     this.state = {
       hasWidth: props.node.inputs[0].parent ? true : false,
-      hasHeight: props.node.inputs[1].parent ? true : false
+      hasHeight: props.node.inputs[1].parent ? true : false,
+      hasPadding: props.node.inputs[2].parent ? true : false
     }
 
     this.widthChange = this.widthChange.bind(this);
@@ -18,6 +19,7 @@ export default class CircleProperties extends Properties {
     this.greenChange = this.greenChange.bind(this);
     this.blueChange = this.blueChange.bind(this);
     this.alphaChange = this.alphaChange.bind(this);
+    this.paddingChange = this.paddingChange.bind(this);
   }
 
   redChange() {
@@ -60,6 +62,12 @@ export default class CircleProperties extends Properties {
     this.props.node.run(null);
   }
 
+  paddingChange() {
+    const elm = document.getElementById('paddingInput');
+    this.props.node.padding = Number(elm.value);
+    this.props.node.run(null);
+  }
+
   renderWidth() {
     if (!this.state.hasWidthInput) {
       return (
@@ -79,6 +87,17 @@ export default class CircleProperties extends Properties {
         <div>
           Height &nbsp;
           <input id="heightInput" type="number" min="1" defaultValue={this.props.node.height} onChange={(event) => {this.heightChange(event);}} />
+        </div>
+      )
+    }
+  }
+
+  renderPadding() {
+    if (!this.state.hasPaddingInput) {
+      return (
+        <div>
+          Padding &nbsp;
+          <input id="paddingInput" type="number" min="1" defaultValue={this.props.node.padding} onChange={(event) => {this.paddingChange(event);}} />
         </div>
       )
     }
@@ -107,6 +126,8 @@ export default class CircleProperties extends Properties {
         Alpha<br/>
         <input id="alphaSlider" style={{width:'100%'}} type="range" min="0" max="255" defaultValue={this.props.node.alpha} onChange={(event) => {this.alphaChange(event);}} />
 
+        <br/><br/>
+        {this.renderPadding()}
         </div>
       </div>
     )
