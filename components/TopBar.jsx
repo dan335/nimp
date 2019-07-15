@@ -20,6 +20,8 @@ export default class TopBar extends React.Component {
 
           {this.props.user && (
             <span>
+              {this.props.user.username}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <a href="/logout"><button>Logout</button></a>
             </span>
           )}
@@ -40,6 +42,10 @@ export default class TopBar extends React.Component {
             background-color: hsl(209, 10%, 25%);
             display: grid;
             grid-template-columns: 1fr 1fr;
+          }
+
+          #topContainer a {
+            color: #fff;
           }
 
           #topContainer img {

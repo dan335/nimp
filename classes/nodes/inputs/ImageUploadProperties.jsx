@@ -52,6 +52,8 @@ export default class GreyscaleProperties extends Properties {
           {this.state.progress != null ?
             Math.round(this.state.progress)+'% Uploaded'
           : null}
+          <br/><br/>
+          Uploaded images are not saved with the graph.
         </div>
       </div>
     )

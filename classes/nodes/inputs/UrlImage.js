@@ -17,8 +17,8 @@ export default class UniformColor extends NodeImage {
       new OutputNumber(this, 2, 'Height')
     ];
 
-    //this.url = 'https://i.imgur.com/e2Kmd.jpg';
-    this.url = typeof settings.url !== 'undefined' ? settings.url : 'https://i.imgur.com/mdlwVuL.jpg';
+    //this.url = 'https://i.imgur.com/mdlwVuL.jpg';
+    this.url = typeof settings.url !== 'undefined' ? settings.url : 'https://i.imgur.com/3aDSTiB.jpg';
 
     this.run(null);
   }

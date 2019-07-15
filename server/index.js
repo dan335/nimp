@@ -22,9 +22,10 @@ mongoClient.connect(error => {
 
     expressApp.locals.db = mongoClient.db('nimp');
 
+    expressApp.locals.db.createIndex('users', {email:1});
+
     const store = new MongoStore({
       db: expressApp.locals.db,
-      //uri: process.env.MONGO_URL + '/' + process.env.MONGO_DB,
       collection: 'sessions'
     }, error => {
       if (error) {
@@ -51,6 +52,7 @@ mongoClient.connect(error => {
     require('./api/createaccount.js')(expressApp);
     require('./api/login.js')(expressApp);
     require('./api/logout.js')(expressApp);
+    require('./api/graph.js')(expressApp);
 
     expressApp.get('*', (req,res) => {
       return handle(req,res);
@@ -60,5 +62,12 @@ mongoClient.connect(error => {
       if (err) throw err;
       console.log(`Nimp running on port ${PORT}`);
     })
+
+    // delete graphs not viewed in the past 30 days
+    setInterval(() => {
+      const collection = expressApp.locals.db.collection('graphs');
+      const cutoff = new Date(new Date().setDate(new Date().getDate()-90));
+      collection.deleteMany({viewedAt: {$lt:cutoff}});
+    }, 1000 * 60 * 60 * 6);
   })
 })

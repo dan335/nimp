@@ -8,7 +8,38 @@ export default class Login extends React.Component {
     return {user:user};
   }
 
-  
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      errorMsg: null
+    }
+
+    this.submitButton = this.submitButton.bind(this);
+  }
+
+
+  submitButton() {
+    const emailElm = document.getElementById('emailInput');
+    const passElm = document.getElementById('passwordInput');
+
+    fetch('/api/login', {
+      method: 'post',
+      headers: { 'Accept': 'application/json, text/plain, */*', 'Content-Type': 'application/json'},
+      body: JSON.stringify({email:emailElm.value, password:passElm.value})
+    }).then(result => {
+      if (result.status == 200) {
+        window.location.href = '/';
+      } else {
+        result.text().then(text => {
+          this.setState({errorMsg:text});
+        })
+      }
+    })
+  }
+
+
   render() {
     return (
       <div>
@@ -16,16 +47,34 @@ export default class Login extends React.Component {
           <TopBar user={this.props.user} />
           <div id="cont">
             <h1>Login</h1>
-            <label>Email</label>
-            <input type="text" id="emailInput" />
 
-            <label>Password</label>
-            <input type="password" id="passwordInput" />
+            {this.props.user && (
+              <div>
+                Looks like you're already logged in.  <a href="/logoug">Click here</a> to logout.
+              </div>
+            )}
 
-            <button>Login</button>
+            {this.state.errorMsg && (
+              <div className="errorContainer">
+                {this.state.errorMsg}
+              </div>
+            )}
 
-            <br/><br/>
-            Don't have an account?  <a href="/createaccount">Go here</a> to create one.
+            {!this.props.user && (
+              <div>
+                <label>Email</label>
+                <input type="text" id="emailInput" />
+
+                <label>Password</label>
+                <input type="password" id="passwordInput" />
+
+                <button onClick={this.submitButton}>Login</button>
+
+                <br/><br/>
+                Don't have an account?  <a href="/createaccount">Go here</a> to create one.
+              </div>
+            )}
+
           </div>
         </MainLayout>
 

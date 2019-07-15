@@ -1,6 +1,9 @@
+const bcrypt = require('bcrypt');
+
+
 module.exports = function(app) {
   app.post('/api/login', (req, res, next) => {
-    if (!req.body.email || req.body.email.length) {
+    if (!req.body.email || !req.body.email.length) {
       return res.status(500).send('Email address required.');
     }
 
@@ -17,11 +20,15 @@ module.exports = function(app) {
         if (user) {
 
           bcrypt.compare(req.body.password, user.password, (error, result) => {
-            if (result == true) {
-              req.session.user = user;
-              res.status(200).end();
+            if (error) {
+              return res.status(500).send('Error comparing passwords.');
             } else {
-              return res.status(500).send('Wrong password.');
+              if (result == true) {
+                req.session.user = user;
+                return res.status(200).end();
+              } else {
+                return res.status(500).send('Wrong password.');
+              }
             }
           })
         } else {
