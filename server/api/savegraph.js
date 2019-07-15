@@ -6,7 +6,7 @@ module.exports = function(app) {
 
   app.post('/api/viewgraph', (req, res, next) => {
     const collection = req.app.locals.db.collection('graphs');
-    const graphId = new ObjectId(req.body.graph.id);
+    const graphId = new ObjectId(req.body.graphId);
     collection.updateOne({_id:graphId}, {$set:{viewedAt:new Date()}, $inc:{views:1}});
   })
 
