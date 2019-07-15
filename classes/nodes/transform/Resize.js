@@ -6,7 +6,7 @@ import ResizeInputNumberX from './ResizeInputNumberX.js';
 import ResizeInputNumberY from './ResizeInputNumberY.js';
 
 export default class Resize extends NodeImage {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Resize', ResizeProperties);
 
     this.inputs = [
@@ -18,9 +18,9 @@ export default class Resize extends NodeImage {
       new OutputImage(this, 0, 'Output')
     ];
 
-    this.resizeX = 256;
-    this.resizeY = 256;
-    this.mode = Jimp.RESIZE_BICUBIC;
+    this.resizeX = typeof settings.resizeX !== 'undefined' ? settings.resizeX : 256;
+    this.resizeY = typeof settings.resizeY !== 'undefined' ? settings.resizeY : 256;
+    this.mode = typeof settings.mode !== 'undefined' ? settings.mode : Jimp.RESIZE_BICUBIC;
   }
 
 

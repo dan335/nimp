@@ -9,7 +9,7 @@ import Jimp from 'jimp';
 
 
 export default class Circle extends NodeImage {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Circle', CircleProperties);
 
     this.inputs = [
@@ -23,13 +23,13 @@ export default class Circle extends NodeImage {
       new OutputNumber(this, 2, 'Height')
     ];
 
-    this.width = 256;
-    this.height = 256;
-    this.red = 255;
-    this.blue = 255;
-    this.green = 255;
-    this.alpha = 255;
-    this.padding = 5;
+    this.width = typeof settings.radius !== 'undefined' ? settings.radius : 256;
+    this.height = typeof settings.radius !== 'undefined' ? settings.radius : 256;
+    this.red = typeof settings.radius !== 'undefined' ? settings.radius : 255;
+    this.blue = typeof settings.radius !== 'undefined' ? settings.radius : 255;
+    this.green = typeof settings.radius !== 'undefined' ? settings.radius : 255;
+    this.alpha = typeof settings.radius !== 'undefined' ? settings.radius : 255;
+    this.padding = typeof settings.radius !== 'undefined' ? settings.radius : 5;
 
     this.run(null);
   }

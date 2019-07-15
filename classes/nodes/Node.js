@@ -16,12 +16,10 @@ export default class Node {
     this.propertiesComponent = propertiesComponent;
     this.isInsideALoop = false;
     this.createSvgElm();
-    this.graph.selectNode(this);
-    this.run = this.run.bind(this);
     this.lastClick = 0;
-    this.graph.viewNode(this);
     this.isMouseDown = false;
     this.lastMousePos = {x:0,y:0};
+    this.run = this.run.bind(this);
   }
 
 

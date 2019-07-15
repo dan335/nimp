@@ -4,7 +4,7 @@ import FloorInputNumberA from './FloorInputNumberA.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Floor extends NodeNumber {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Floor', FloorProperties);
 
     this.inputs = [
@@ -14,7 +14,7 @@ export default class Floor extends NodeNumber {
       new OutputNumber(this, 0, 'Result')
     ];
 
-    this.a = null;
+    this.a = typeof settings.a !== 'undefined' ? settings.a : null;
   }
 
 

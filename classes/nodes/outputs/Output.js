@@ -6,7 +6,7 @@ import Jimp from 'jimp';
 
 
 export default class Output extends NodeImage {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Output', OutputProperties);
 
     this.inputs = [
@@ -14,10 +14,11 @@ export default class Output extends NodeImage {
     ];
     this.outputs = [];
 
-    this.type = Jimp.MIME_JPEG;
     this.base64 = null;
     this.component = null;
-    this.filename = 'NimpDownload';
+
+    this.type = typeof settings.type !== 'undefined' ? settings.type : Jimp.MIME_JPEG;
+    this.filename = typeof settings.filename !== 'undefined' ? settings.filename : 'NimpDownload';
   }
 
 

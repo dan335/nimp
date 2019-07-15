@@ -7,7 +7,7 @@ import fetch from 'isomorphic-unfetch';
 
 
 export default class UniformColor extends NodeImage {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Image from Url', UrlImageProperties);
 
     this.inputs = [];
@@ -18,7 +18,7 @@ export default class UniformColor extends NodeImage {
     ];
 
     //this.url = 'https://i.imgur.com/e2Kmd.jpg';
-    this.url = 'https://i.imgur.com/mdlwVuL.jpg';
+    this.url = typeof settings.url !== 'undefined' ? settings.url : 'https://i.imgur.com/mdlwVuL.jpg';
 
     this.run(null);
   }

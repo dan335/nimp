@@ -3,7 +3,7 @@ import NumberProperties from './NumberProperties.jsx';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Number extends NodeNumber {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Number', NumberProperties);
 
     this.inputs = [];
@@ -11,7 +11,7 @@ export default class Number extends NodeNumber {
       new OutputNumber(this, 0, 'Output')
     ];
 
-    this.number = 1;
+    this.number = typeof settings.number !== 'undefined' ? settings.number : 1;
   }
 
 

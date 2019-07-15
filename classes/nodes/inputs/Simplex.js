@@ -12,7 +12,7 @@ import SimplexNoise from 'simplex-noise';
 
 
 export default class Simplex extends NodeImage {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Simplex Noise', SimplexProperties);
 
     this.inputs = [
@@ -27,10 +27,10 @@ export default class Simplex extends NodeImage {
       new OutputNumber(this, 2, 'Height')
     ];
 
-    this.width = 256;
-    this.height = 256;
-    this.seed = 1;
-    this.scale = 0.05;
+    this.width = typeof settings.width !== 'undefined' ? settings.width : 256;
+    this.height = typeof settings.height !== 'undefined' ? settings.height : 256;
+    this.seed = typeof settings.seed !== 'undefined' ? settings.seed : 1;
+    this.scale = typeof settings.scale !== 'undefined' ? settings.scale : 0.05;
 
     this.run(null);
   }

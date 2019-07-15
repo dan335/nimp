@@ -8,7 +8,7 @@ import BlendInputNumberTopOpacity from './BlendInputNumberTopOpacity.js';
 import BlendInputNumberBottomOpacity from './BlendInputNumberBottomOpacity.js';
 
 export default class Blend extends NodeImage {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Blend', BlendProperties);
 
     this.inputs = [
@@ -23,11 +23,11 @@ export default class Blend extends NodeImage {
       new OutputImage(this, 0, 'Output')
     ];
 
-    this.blendX = 0;
-    this.blendY = 0;
-    this.mode = Jimp.BLEND_MULTIPLY;
-    this.opacitySource = 1;
-    this.opacityDest = 1;
+    this.blendX = typeof settings.blendX !== 'undefined' ? settings.blendX : 0;
+    this.blendY = typeof settings.blendY !== 'undefined' ? settings.blendY : 0;
+    this.mode = typeof settings.mode !== 'undefined' ? settings.mode : Jimp.BLEND_MULTIPLY;
+    this.opacitySource = typeof settings.opacitySource !== 'undefined' ? settings.opacitySource : 1;
+    this.opacityDest = typeof settings.opacityDest !== 'undefined' ? settings.opacityDest : 1;
   }
 
 

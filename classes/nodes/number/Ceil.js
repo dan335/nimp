@@ -4,7 +4,7 @@ import CeilInputNumberA from './CeilInputNumberA.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Ceil extends NodeNumber {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Ceil', CeilProperties);
 
     this.inputs = [
@@ -14,7 +14,7 @@ export default class Ceil extends NodeNumber {
       new OutputNumber(this, 0, 'Result')
     ];
 
-    this.a = null;
+    this.a = typeof settings.a !== 'undefined' ? settings.a : null;
   }
 
 
