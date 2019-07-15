@@ -4,7 +4,7 @@ import AbsoluteValueInputNumberA from './AbsoluteValueInputNumberA.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class AbsoluteValue extends NodeNumber {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Absolute Value', AbsoluteValueProperties);
 
     this.inputs = [
@@ -14,7 +14,7 @@ export default class AbsoluteValue extends NodeNumber {
       new OutputNumber(this, 0, 'Result')
     ];
 
-    this.a = null;
+    this.a = typeof settings.a !== 'undefined' ? settings.a : null;
   }
 
 

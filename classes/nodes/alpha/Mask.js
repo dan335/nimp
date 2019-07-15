@@ -6,7 +6,7 @@ import MaskInputNumberX from './MaskInputNumberX.js';
 import MaskInputNumberY from './MaskInputNumberY.js';
 
 export default class Mask extends NodeImage {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Mask', MaskProperties);
 
     this.inputs = [
@@ -19,8 +19,8 @@ export default class Mask extends NodeImage {
       new OutputImage(this, 0, 'Output')
     ];
 
-    this.maskX = 0;
-    this.maskY = 0;
+    this.maskX = typeof settings.maskX !== 'undefined' ? settings.maskX : 0;
+    this.maskY = typeof settings.maskY !== 'undefined' ? settings.maskY : 0;
   }
 
 

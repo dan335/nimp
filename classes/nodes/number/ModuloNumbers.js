@@ -5,8 +5,8 @@ import ModuloNumbersInputNumberB from './ModuloNumbersInputNumberB.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class ModuloNumbers extends NodeNumber {
-  constructor(className, graph, x, y) {
-    super(className, graph, x, y, 'Modulo', ModuloNumbersProperties);
+  constructor(className, graph, x, y, settings) {
+    super(className, graph, x, y, 'Mod', ModuloNumbersProperties);
 
     this.inputs = [
       new ModuloNumbersInputNumberA(this, 0, 'a'),
@@ -16,8 +16,8 @@ export default class ModuloNumbers extends NodeNumber {
       new OutputNumber(this, 0, 'Result')
     ];
 
-    this.a = null;
-    this.b = null;
+    this.a = typeof settings.a !== 'undefined' ? settings.a : null;
+    this.b = typeof settings.b !== 'undefined' ? settings.b : null;
   }
 
 

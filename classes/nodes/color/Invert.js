@@ -4,7 +4,7 @@ import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
 
 export default class Invert extends NodeImage {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Invert', InvertProperties);
 
     this.inputs = [

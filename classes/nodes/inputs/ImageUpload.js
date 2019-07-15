@@ -4,7 +4,7 @@ import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class ImageUpload extends NodeImage {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'ImageUpload', ImageUploadProperties);
 
     this.inputs = [];
@@ -14,7 +14,7 @@ export default class ImageUpload extends NodeImage {
       new OutputNumber(this, 2, 'Height')
     ];
 
-    this.base64 = null;
+    this.base64 = typeof settings.base64 !== 'undefined' ? settings.base64 : null;
   }
 
 

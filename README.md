@@ -4,12 +4,11 @@ https://nimp.app
 
 ### Run
 ```
-set MONGO_URL environment variable
+start Mongodb
 git clone https://github.com/dan335/nimp
 cd nimp
 npm install
-npm run build
-npm run start
+npm run dev
 View in browser at http://localhost:3000
 ```
 

@@ -10,7 +10,7 @@ import BlitInputNumberSrcWidth from './BlitInputNumberSrcWidth.js';
 import BlitInputNumberSrcHeight from './BlitInputNumberSrcHeight.js';
 
 export default class Blit extends NodeImage {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Blit', BlitProperties);
 
     this.inputs = [
@@ -27,12 +27,12 @@ export default class Blit extends NodeImage {
       new OutputImage(this, 0, 'Output')
     ];
 
-    this.blitX = 0;
-    this.blitY = 0;
-    this.srcX = 0;
-    this.srcY = 0;
-    this.srcWidth = 0;
-    this.srcHeight = 0;
+    this.blitX = typeof settings.blitX !== 'undefined' ? settings.blitX : 0;
+    this.blitY = typeof settings.blitY !== 'undefined' ? settings.blitY : 0;
+    this.srcX = typeof settings.srcX !== 'undefined' ? settings.srcX : 0;
+    this.srcY = typeof settings.srcY !== 'undefined' ? settings.srcY : 0;
+    this.srcWidth = typeof settings.srcWidth !== 'undefined' ? settings.srcWidth : 0;
+    this.srcHeight = typeof settings.srcHeight !== 'undefined' ? settings.srcHeight : 0;
   }
 
 

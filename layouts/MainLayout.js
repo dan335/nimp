@@ -45,7 +45,7 @@ export default class MainLayout extends React.Component {
           }
 
           input, select {
-            border: 1px solid #000;
+            border: 0;
             padding: 5px;
             border-radius: 2px;
           }
@@ -53,6 +53,27 @@ export default class MainLayout extends React.Component {
           a {
             color: hsl(100, 80%, 60%);
             text-decoration: none;
+          }
+
+          button {
+            border: 0;
+            padding: 5px 12px;
+            margin: 0;
+            border-radius: 2px;
+            cursor: pointer;
+            background-color: hsl(209, 10%, 50%);
+            color: #fff;
+          }
+
+          button:hover {
+            background-color: hsl(209, 10%, 65%);
+          }
+
+          .errorContainer {
+            background-color: hsl(0, 50%, 50%);
+            color: #fff;
+            padding: 20px;
+            border-radius: 2px;
           }
         `}</style>
       </div>

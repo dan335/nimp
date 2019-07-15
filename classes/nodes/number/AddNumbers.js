@@ -5,7 +5,7 @@ import AddNumbersInputNumberB from './AddNumbersInputNumberB.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class AddNumbers extends NodeNumber {
-  constructor(className, graph, x, y) {
+  constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Add', AddNumbersProperties);
 
     this.inputs = [
@@ -16,8 +16,8 @@ export default class AddNumbers extends NodeNumber {
       new OutputNumber(this, 0, 'Result')
     ];
 
-    this.a = null;
-    this.b = null;
+    this.a = typeof settings.a !== 'undefined' ? settings.a : null;
+    this.b = typeof settings.b !== 'undefined' ? settings.b : null;
   }
 
 
