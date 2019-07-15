@@ -15,7 +15,7 @@ export default class GraphView extends React.Component {
     this.state = {
       mouseState: null,
       properties: null,
-      propertiesKey: null,  // force react to replace properties
+      propertiesKey: Math.random(),  // force react to replace properties
       category: 'Image'
     }
 
@@ -54,6 +54,18 @@ export default class GraphView extends React.Component {
 
     this.graph = new Graph(this.svg, this);
 
+    if (this.props.graphToLoad) {
+      this.graph.fromJson(this.props.graphToLoad.graph);
+      this.graph.title = this.props.graphToLoad.title;
+      this.graph.slug = this.props.graphToLoad.slug;
+      this.graph.url = this.props.graphToLoad.url;
+      this.graph.userId = this.props.graphToLoad.userId;
+      this.graph.isPublic = this.props.graphToLoad.isPublic;
+      this.graph.anyoneCanOverwrite = this.props.graphToLoad.anyoneCanOverwrite;
+
+      this.setState({propertiesKey:Math.random()})  // re-render properties
+    }
+
     if (window.PointerEvent) {
       this.svg.addEventListener('pointerdown', this.svgOnMouseDown.bind(this));
       this.svg.addEventListener('pointerup', this.svgOnMouseUp.bind(this));
@@ -71,6 +83,14 @@ export default class GraphView extends React.Component {
     }
 
     this.svg.addEventListener('wheel', this.svgOnWheel.bind(this));
+
+    fetch('/api/viewgraph', {
+      method: 'post',
+      headers: { 'Accept': 'application/json, text/plain, */*', 'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        graphId: this.graph.id
+      })
+    })
   }
 
 
@@ -229,7 +249,7 @@ export default class GraphView extends React.Component {
   renderGraphProperties() {
     if (!this.state.properties) {
       return (
-        <GraphProperties graph={this.graph} indexComponent={this} />
+        <GraphProperties user={this.props.user} graph={this.graph} key={this.state.propertiesKey} indexComponent={this} />
       )
     }
   }
@@ -267,7 +287,15 @@ export default class GraphView extends React.Component {
               </div>
               <div id="innerMidContainer">
                 <div id="svgContainer">
-                  <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" />
+                  <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                        <path d="M 80 0 L 0 0 0 80" fill="none" stroke="hsl(209, 10%, 30%)" strokeWidth="1"/>
+                      </pattern>
+                    </defs>
+
+                    <rect width="5000" height="5000" fill="url(#grid)" x="-2500" y="-2500" pointerEvents="none" />
+                  </svg>
                   <div id="svgHelpText">Click: Select &nbsp;&nbsp; Double Click: Select and View</div>
                 </div>
                 <div id="viewContainer">
@@ -356,7 +384,7 @@ export default class GraphView extends React.Component {
           }
 
           .nodeButton.active {
-            background-color: hsl(100, 60%, 40%);
+            background-color: hsl(209, 60%, 40%);
           }
 
           .nodeButtonDrag {

@@ -48,6 +48,7 @@ export default class MainLayout extends React.Component {
             border: 0;
             padding: 5px;
             border-radius: 2px;
+            margin-bottom: 1px;
           }
 
           a {
@@ -63,6 +64,7 @@ export default class MainLayout extends React.Component {
             cursor: pointer;
             background-color: hsl(209, 10%, 50%);
             color: #fff;
+            margin-right: 2px;
           }
 
           button:hover {

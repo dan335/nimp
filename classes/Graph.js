@@ -1,16 +1,22 @@
 var ObjectId = require('bson-objectid');
 import functions from '../lib/functions.js';
+import settings from '../lib/settings.js';
+import Jimp from 'jimp';
 
 
 export default class Graph {
   constructor(svg, component) {
     this.id = new ObjectId().toHexString();
     this.svg = svg;
-    this.component = component; // link to pages/index.jsx
+    this.component = component; // link to GraphView.jsx
     this.nodes = [];
     this.selectedNode = null;
     this.viewedNode = null;
+
     this.title = 'New Graph';
+    this.isPublic = true;
+    this.anyoneCanOverwrite = false;
+    this.userId = null;
 
     // set after graph is saved
     this.url = null;
@@ -68,11 +74,11 @@ export default class Graph {
     this.id = json.id;
     this.title = json.title;
 
-    // update name in GraphProperties.jsx
-    const elm = document.getElementById('graphTitleInput');
-    if (elm) {
-      elm.value = this.title;
-    }
+    // // update name in GraphProperties.jsx
+    // const elm = document.getElementById('graphTitleInput');
+    // if (elm) {
+    //   elm.value = this.title;
+    // }
 
     // create nodes
     json.nodes.forEach(node => {
@@ -87,7 +93,7 @@ export default class Graph {
           if (node.inputs[n]) {
             createdNode.inputs[n].id = node.inputs[n].id;
           } else {
-            console.error('Could not get input.');
+            console.error('Load error: Could not get input.');
           }
         }
 
@@ -96,7 +102,7 @@ export default class Graph {
           if (node.outputs[n]) {
             createdNode.outputs[n].id = node.outputs[n].id;
           } else {
-            console.error('Could not get output.');
+            console.error('Load error: Could not get output.');
           }
         }
 
@@ -109,7 +115,67 @@ export default class Graph {
 
     // create connections
     this.nodes.forEach(node => {
+      for (let n = 0; n < node.outputs.length; n++) {
+        const connectedInputIds = node.tempJson.outputs[n].connections;
+        connectedInputIds.forEach(id => {
 
+          // find input with id
+          let input = null;
+          this.nodes.forEach(n => {
+            n.inputs.forEach(i => {
+              if (i.id == id) {
+                input = i;
+              }
+            })
+          })
+
+          if (input) {
+            node.outputs[n].makeConnection(input);
+          } else {
+            console.error('Load error: Could not find input with id.');
+          }
+        })
+      }
+    })
+  }
+
+
+  getThumbnail() {
+    return new Promise((resolve, reject) => {
+      let image = null;
+
+      // find output node
+      this.nodes.forEach(node => {
+        if (node.className == 'Output') {
+          if (node.image) {
+            image = node.image;
+          }
+        }
+      })
+
+      if (image) {
+        image.clone().cover(settings.thumbnailWidth, settings.thumbnailHeight, (error, image) => {
+          if (error) {
+            resolve(null);
+          } else {
+            image.getBufferAsync(Jimp.MIME_JPEG).then(i => {
+              resolve('data:'+Jimp.MIME_JPEG+';base64,'+i.toString('base64'));
+            })
+          }
+        })
+      } else {
+        // create default
+        const hexNum = Jimp.rgbaToInt(128, 128, 128, 255);
+        new Jimp(settings.thumbnailWidth, settings.thumbnailHeight, hexNum, (error, image) => {
+          if (error) {
+            resolve(null);
+          } else {
+            image.getBufferAsync(Jimp.MIME_JPEG).then(i => {
+              resolve('data:'+Jimp.MIME_JPEG+';base64,'+i.toString('base64'));
+            })
+          }
+        })
+      }
     })
   }
 }
