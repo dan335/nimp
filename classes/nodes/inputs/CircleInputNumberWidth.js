@@ -9,14 +9,14 @@ export default class CircleInputNumberWidth extends InputNumber {
 
   connectionMade() {
     if (this.node.bg.classList.contains('selected')) {
-      this.node.propertiesComponentInstance.setState({hasWidth:true});
+      this.node.propertiesComponentInstance.setState({hasWidthInput:true});
     }
   }
 
 
   connectionRemoved() {
     if (this.node.bg.classList.contains('selected')) {
-      this.node.propertiesComponentInstance.setState({hasWidth:false});
+      this.node.propertiesComponentInstance.setState({hasWidthInput:false});
     }
   }
 }
