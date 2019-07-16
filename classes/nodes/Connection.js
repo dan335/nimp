@@ -22,6 +22,14 @@ export default class Connection {
         }
       })
     }
+
+    this.dot.onmouseenter = (event) => {
+      this.node.showConnectionHelpText();
+    }
+
+    this.dot.onmouseleave = (event) => {
+      this.node.hideConnectionHelpText();
+    }
   }
 
 
@@ -43,5 +51,15 @@ export default class Connection {
     };
 
     return json;
+  }
+
+
+  showHelpText() {
+    this.helpText.style.display = 'block';
+  }
+
+
+  hideHelpText() {
+    this.helpText.style.display = 'none';
   }
 }

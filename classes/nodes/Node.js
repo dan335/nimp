@@ -19,6 +19,7 @@ export default class Node {
     this.lastClick = 0;
     this.isMouseDown = false;
     this.lastMousePos = {x:0,y:0};
+    this.isHelpTextVisible = false;
     this.run = this.run.bind(this);
   }
 
@@ -79,8 +80,12 @@ export default class Node {
         })
       }
     }
+    this.bg.onmouseenter = (event) => {
+      this.showConnectionHelpText();
+    }
     this.bg.onmouseleave = (event) => {
       this.isMouseDown = false;
+      this.hideConnectionHelpText();
     }
     this.g.appendChild(this.bg);
 
@@ -165,4 +170,31 @@ export default class Node {
     return json;
   }
 
+
+  showConnectionHelpText() {
+    if (!this.isHelpTextVisible) {
+      this.inputs.forEach(input => {
+        input.showHelpText();
+      })
+      this.outputs.forEach(output => {
+        output.showHelpText();
+      })
+    }
+
+    this.isHelpTextVisible = true;
+  }
+
+
+  hideConnectionHelpText() {
+    if (this.isHelpTextVisible) {
+      this.inputs.forEach(input => {
+        input.hideHelpText();
+      })
+      this.outputs.forEach(output => {
+        output.hideHelpText();
+      })
+    }
+
+    this.isHelpTextVisible = false;
+  }
 }
