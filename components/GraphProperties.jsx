@@ -8,7 +8,6 @@ export default class GraphProperties extends React.Component {
     super(props);
 
     this.state = {
-      graphUrl: props.graph && props.graph.url ? props.graph.url : null,
       isPublic: props.graph ? props.graph.isPublic : true,
       anyoneCanOverwrite: props.graph ? props.graph.anyoneCanOverwrite : false,
       errorMsg: null
@@ -110,7 +109,7 @@ export default class GraphProperties extends React.Component {
 
 
   copyUrl(event) {
-    copy('https://nimp.app'+this.state.graphUrl);
+    copy('https://nimp.app'+this.props.graph.url);
 
     const elm = document.getElementById('copyUrlButton');
     if (elm) {
