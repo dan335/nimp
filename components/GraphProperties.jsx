@@ -135,70 +135,77 @@ export default class GraphProperties extends React.Component {
 
   renderSaveOptions() {
     let canSave = false;
+    let canCopy = false;
+    let canEdit = false;
 
-    if (this.props.user) {
-      if (this.props.graph.anyoneCanOverwrite) {
+    if (this.props.user && this.props.graph) {
+      if (this.props.graph.userId == null) {
+        // new graph
         canSave = true;
+        canEdit = true;
       } else {
+        // someone owns graph
+        canCopy = true;
         if (this.props.graph.userId == this.props.user._id) {
+          // owns graph
           canSave = true;
+          canCopy = true;
+          canEdit = true;
+        } else if (this.props.anyoneCanOverwrite) {
+          // does not own but can save
+          canSave = true;
+          canCopy = true;
+        } else {
+          // does not own and cannot save
+          canCopy = true;
         }
       }
     }
 
-    if (canSave) {
-      return (
-        <div>
-          {this.state.errorMsg && (
-            <div className="errorContainer">
-              {this.state.errorMsg}
-            </div>
-          )}
-
-          <label>Name</label>
-          <input id="graphTitleInput" onChange={event => {this.changeTitle(event)}} type="text" defaultValue={this.props.graph ? this.props.graph.title : ''} style={{width:'100%'}} /><br/>
-          {this.props.graph && this.props.user && this.props.graph.userId == this.props.user._id && (
-            <div>
-              <input type="checkbox" id="publicCheckbox" onChange={event => {this.publicChange(event)}} defaultChecked={this.state.isPublic} /> Anyone can view.<br/>
-              {this.state.isPublic && (
-                <span><input type="checkbox" id="canOverwriteCheckbox" onChange={event => {this.overwriteChange(event)}} defaultChecked={this.state.anyoneCanOverwrite} /> Anyone can overwrite.<br/></span>
-              )}
-            </div>
-          )}
-
-          <button onClick={event => {this.saveGraph()}}>Save Graph</button>
-          <button onClick={event => {this.saveGraphCopy()}}>Save Copy</button>
-          &nbsp;&nbsp;
-          <span id="saveResult"></span>
-          <style jsx>{`
-            input {
-              margin-bottom: 8px;
-            }
-          `}</style>
-        </div>
-      )
-    } else {
-      if (this.props.graph && this.props.user) {
-        return (
-          <div>
-            {this.props.graph.title}<br/>
-            <button onClick={event => {this.saveGraphCopy()}}>Save Copy</button>
+    return (
+      <div>
+        {this.state.errorMsg && (
+          <div className="errorContainer">
+            {this.state.errorMsg}
           </div>
-        )
-      } else {
-        return (
+        )}
+
+        {canEdit && (
           <div>
-            {this.props.graph && (
+            <label>Name</label>
+            <input id="graphTitleInput" onChange={event => {this.changeTitle(event)}} type="text" defaultValue={this.props.graph ? this.props.graph.title : ''} style={{width:'100%'}} /><br/>
+
+            <input type="checkbox" id="publicCheckbox" onChange={event => {this.publicChange(event)}} defaultChecked={this.state.isPublic} /> Anyone can view.<br/>
+
+            {this.state.isPublic && (
               <div>
-                {this.props.graph.title}
+                <input type="checkbox" id="canOverwriteCheckbox" onChange={event => {this.overwriteChange(event)}} defaultChecked={this.state.anyoneCanOverwrite} /> Anyone can overwrite.
               </div>
             )}
-
-            Login to save a copy of this graph.
           </div>
-        )
-      }
-    }
+        )}
+
+        {!canEdit && this.graph && (
+          <div>
+            {this.props.graph.title}
+          </div>
+        )}
+
+        {canSave && (
+          <button onClick={event => {this.saveGraph()}}>Save Graph</button>
+        )}
+
+        {canCopy && (
+          <button onClick={event => {this.saveGraphCopy()}}>Save Copy</button>
+        )}
+
+        <style jsx>{`
+          input {
+            margin-bottom: 8px;
+          }
+        `}</style>
+      </div>
+    )
   }
 
 

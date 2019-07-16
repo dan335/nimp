@@ -25,7 +25,7 @@ mongoClient.connect(error => {
     expressApp.locals.db.createIndex('users', {email:1});
 
     const store = new MongoStore({
-      db: expressApp.locals.db,
+      uri: process.env.MONGO_URL + '/nimp',
       collection: 'sessions'
     }, error => {
       if (error) {
