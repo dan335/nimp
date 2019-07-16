@@ -10,7 +10,7 @@ module.exports = function(app) {
     const collection = req.app.locals.db.collection('graphs');
     const graphId = new ObjectId(req.body.graphId);
 
-    collection.findOne({_id:graphId}, {}, (error, graph) => {
+    collection.findOne({_id:graphId}, {projection:{thumbnail:0}}, (error, graph) => {
       if (error) {
         return res.status(500).end('Error finding graph.');
       } else {
