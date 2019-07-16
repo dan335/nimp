@@ -62,4 +62,13 @@ export default class Connection {
   hideHelpText() {
     this.helpText.style.display = 'none';
   }
+
+
+  delete() {
+    this.dot.onmousedown = undefined;
+    this.dot.onmouseenter = undefined;
+    this.dot.onmouseleave = undefined;
+    this.node.g.removeChild(this.dot);
+    this.node.g.removeChild(this.helpText);
+  }
 }

@@ -295,7 +295,7 @@ export default class GraphView extends React.Component {
 
                   <rect width="5000" height="5000" fill="url(#grid)" x="-2500" y="-2500" pointerEvents="none" />
                 </svg>
-                <div id="svgHelpText">Click: Select &nbsp;&nbsp; Double Click: Select and View</div>
+                <div id="svgHelpText">Click: Select &nbsp;&nbsp; Double Click: Select and View &nbsp;&nbsp; Right Click: Delete</div>
               </div>
               <div id="viewContainer">
                 <img id="nodeViewImage" style={{maxHeight:'100%',maxWidth:'100%',display:'block'}} />

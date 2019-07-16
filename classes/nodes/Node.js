@@ -37,21 +37,34 @@ export default class Node {
     this.bg.setAttributeNS(null, 'height', settings.nodeHeight);
     this.bg.setAttributeNS(null, 'fill', settings.nodeBackgroundColor);
     this.bg.classList.add('nodeBg');
-    this.bg.onclick = () => {
-      const now = new Date().getTime();
-      if (now - this.lastClick < 400) {
-        this.graph.viewNode(this);
+
+    this.bg.oncontextmenu = (event) => {
+      if (event.button == 2) {
+        this.graph.deleteNode(this);
       }
-      this.graph.selectNode(this);
-      this.lastClick = now;
+      return false;
     }
+
+    this.bg.onclick = (event) => {
+      if (event.button == 0) {
+        const now = new Date().getTime();
+        if (now - this.lastClick < 400) {
+          this.graph.viewNode(this);
+        }
+        this.graph.selectNode(this);
+        this.lastClick = now;
+      }
+    }
+
     this.bg.onmousedown = (event) => {
       this.isMouseDown = true;
       this.lastMousePos = functions.getPointFromEvent(event);
     }
+
     this.bg.onmouseup = (event) => {
       this.isMouseDown = false;
     }
+
     this.bg.onmousemove =(event) => {
       if (this.isMouseDown) {
         const mousePos = functions.getPointFromEvent(event);
@@ -80,13 +93,16 @@ export default class Node {
         })
       }
     }
+
     this.bg.onmouseenter = (event) => {
       this.showConnectionHelpText();
     }
+
     this.bg.onmouseleave = (event) => {
       this.isMouseDown = false;
       this.hideConnectionHelpText();
     }
+
     this.g.appendChild(this.bg);
 
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -145,6 +161,48 @@ export default class Node {
   deselect() {
     this.bg.classList.remove('selected');
     this.graph.component.setState({properties:null});
+  }
+
+
+  delete() {
+    this.removeAllConnections();
+
+    this.inputs.forEach(input => {
+      input.delete();
+    })
+
+    this.outputs.forEach(output => {
+      output.delete();
+    })
+
+    this.bg.oncontextmenu = undefined;
+    this.bg.onclick = undefined;
+    this.bg.onmouseup = undefined;
+    this.bg.onmousedown = undefined;
+    this.bg.onmousemove = undefined;
+    this.bg.onmouseenter = undefined;
+    this.bg.onmouseleave = undefined;
+
+    while (this.g.firstChild) {
+      this.g.removeChild(this.g.firstChild);
+    }
+
+    this.graph.svg.removeChild(this.g);
+  }
+
+
+  removeAllConnections() {
+    this.inputs.forEach(input => {
+      if (input.parent) {
+        input.parent.removeConnection(input, false);
+      }
+    })
+
+    this.outputs.forEach(output => {
+      for (let n = 0; n < output.connections.length; n++) {
+        output.removeConnection(output.connections[n], true);
+      }
+    })
   }
 
 
