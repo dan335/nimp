@@ -1,6 +1,8 @@
 import NodeImage from '../NodeImage.js';
 import UniformColorProperties from './UniformColorProperties.jsx';
 import OutputImage from '../OutputImage.js';
+import UniformColorInputNumberWidth from './UniformColorInputNumberWidth.js';
+import UniformColorInputNumberHeight from './UniformColorInputNumberHeight.js';
 import OutputNumber from '../OutputNumber.js';
 import Jimp from 'jimp';
 
@@ -9,7 +11,10 @@ export default class UniformColor extends NodeImage {
   constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Uniform Color', UniformColorProperties);
 
-    this.inputs = [];
+    this.inputs = [
+      new UniformColorInputNumberWidth(this, 0, 'Width'),
+      new UniformColorInputNumberHeight(this, 1, 'Height'),
+    ];
     this.outputs = [
       new OutputImage(this, 0, 'Output'),
       new OutputNumber(this, 1, 'Width'),
@@ -45,16 +50,35 @@ export default class UniformColor extends NodeImage {
     this.bg.classList.add('running');
     this.runTimer = Date.now();
 
+    let width = this.width;
+    let height = this.height;
+
+    if (this.inputs[0].number != null) {
+      width = this.inputs[0].number;
+    }
+
+    if (this.inputs[1].number != null) {
+      height = this.inputs[1].number;
+    }
+
+    width = Math.max(1, width);
+    height = Math.max(1, height);
+
     const hexNum = Jimp.rgbaToInt(this.red, this.green, this.blue, this.alpha);
 
-    new Jimp(this.width, this.height, hexNum, (error, image) => {
-      if (error) {
-        console.log(error);
-      } else {
-        this.image = image;
-        super.run(inputThatTriggered);
-      }
-    })
+    if (this.isInsideALoop) {
+      this.image = new Jimp(width, height, hexNum);
+      super.run(inputThatTriggered);
+    } else {
+      new Jimp(width, height, hexNum, (error, image) => {
+        if (error) {
+          console.log(error);
+        } else {
+          this.image = image;
+          super.run(inputThatTriggered);
+        }
+      })
+    }
   }
 
 

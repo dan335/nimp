@@ -4,6 +4,15 @@ import Jimp from 'jimp';
 
 export default class UniformColorProperties extends Properties {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasWidthInput: props.node.inputs[0].parent ? true : false,
+      hasHeightInput: props.node.inputs[1].parent ? true : false,
+    }
+  }
+
   redChange() {
     const elm = document.getElementById('redSlider');
     this.props.node.red = Number(elm.value);
@@ -44,19 +53,38 @@ export default class UniformColorProperties extends Properties {
     this.props.node.run(null);
   }
 
+  renderWidth() {
+    if (!this.state.hasWidthInput) {
+      return (
+        <div>
+          Width &nbsp;
+          <input id="widthInput" type="number" min="1" defaultValue={this.props.node.width} onChange={(event) => {this.widthChange(event);}} />
+          <br/>
+        </div>
+      )
+    }
+  }
+
+
+  renderHeight() {
+    if (!this.state.hasHeightInput) {
+      return (
+        <div>
+          Height &nbsp;
+          <input id="heightInput" type="number" min="1" defaultValue={this.props.node.height} onChange={(event) => {this.heightChange(event);}} />
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
       <div>
         <div className="propertiesTitle">Uniform Color</div>
         <div style={{padding:'10px'}}>
 
-        Width<br/>
-        <input id="widthInput" type="number" min="1" defaultValue={this.props.node.width} onChange={(event) => {this.widthChange(event);}} />
-        <br/><br/>
-
-        Height<br/>
-        <input id="heightInput" type="number" min="1" defaultValue={this.props.node.height} onChange={(event) => {this.heightChange(event);}} />
-        <br/>
+        {this.renderWidth()}
+        {this.renderHeight()}
 
         <br/><br/>
 

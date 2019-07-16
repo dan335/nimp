@@ -23,13 +23,13 @@ export default class Circle extends NodeImage {
       new OutputNumber(this, 2, 'Height')
     ];
 
-    this.width = typeof settings.radius !== 'undefined' ? settings.radius : 256;
-    this.height = typeof settings.radius !== 'undefined' ? settings.radius : 256;
-    this.red = typeof settings.radius !== 'undefined' ? settings.radius : 255;
-    this.blue = typeof settings.radius !== 'undefined' ? settings.radius : 255;
-    this.green = typeof settings.radius !== 'undefined' ? settings.radius : 255;
-    this.alpha = typeof settings.radius !== 'undefined' ? settings.radius : 255;
-    this.padding = typeof settings.radius !== 'undefined' ? settings.radius : 5;
+    this.width = typeof settings.width !== 'undefined' ? settings.width : 256;
+    this.height = typeof settings.height !== 'undefined' ? settings.height : 256;
+    this.red = typeof settings.red !== 'undefined' ? settings.red : 255;
+    this.blue = typeof settings.blue !== 'undefined' ? settings.blue : 255;
+    this.green = typeof settings.green !== 'undefined' ? settings.green : 255;
+    this.alpha = typeof settings.alpha !== 'undefined' ? settings.alpha : 255;
+    this.padding = typeof settings.padding !== 'undefined' ? settings.padding : 5;
 
     this.run(null);
   }

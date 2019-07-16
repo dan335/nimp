@@ -9,14 +9,14 @@ export default class CircleInputNumberPadding extends InputNumber {
 
   connectionMade() {
     if (this.node.bg.classList.contains('selected')) {
-      this.node.propertiesComponentInstance.setState({hasPadding:true});
+      this.node.propertiesComponentInstance.setState({hasPaddingInput:true});
     }
   }
 
 
   connectionRemoved() {
     if (this.node.bg.classList.contains('selected')) {
-      this.node.propertiesComponentInstance.setState({hasPadding:false});
+      this.node.propertiesComponentInstance.setState({hasPaddingInput:false});
     }
   }
 }

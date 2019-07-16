@@ -1,7 +1,7 @@
 import InputNumber from '../InputNumber.js';
 
 
-export default class CircleInputNumberHeight extends InputNumber {
+export default class UniformColorInputNumberHeight extends InputNumber {
   constructor(node, index, name) {
     super(node, index, name);
   }

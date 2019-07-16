@@ -8,9 +8,9 @@ export default class CircleProperties extends Properties {
     super(props);
 
     this.state = {
-      hasWidth: props.node.inputs[0].parent ? true : false,
-      hasHeight: props.node.inputs[1].parent ? true : false,
-      hasPadding: props.node.inputs[2].parent ? true : false
+      hasWidthInput: props.node.inputs[0].parent ? true : false,
+      hasHeightInput: props.node.inputs[1].parent ? true : false,
+      hasPaddingInput: props.node.inputs[2].parent ? true : false
     }
 
     this.widthChange = this.widthChange.bind(this);
