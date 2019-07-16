@@ -43,10 +43,15 @@ export default class Else extends NodeImage {
       this.runTimer = Date.now();
 
       if (this.isInsideALoop) {
+        let image = null;
         if (a) {
-          let image = this.inputs[0].image.clone();
+          if (this.inputs[0].image) {
+            image = this.inputs[0].image.clone();
+          }
         } else {
-          let image = this.inputs[1].image.clone();
+          if (this.inputs[1].image) {
+            image = this.inputs[1].image.clone();
+          }
         }
 
         this.image = image;

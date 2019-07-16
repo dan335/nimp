@@ -1,11 +1,15 @@
 import Node from './Node.js';
 import OutputImage from './OutputImage.js';
+var debounce = require('lodash.debounce');
+
 
 export default class NodeImage extends Node {
   constructor(className, graph, x, y, name, propertiesComponent) {
     super(className, graph, x, y, name, propertiesComponent);
 
     this.image = null;
+
+    this.debouncedRenderPreview = debounce(this.renderPreview, 500);
   }
 
 
@@ -65,13 +69,18 @@ export default class NodeImage extends Node {
     }
 
     if (this.image) {
-      this.image.getBufferAsync(Jimp.MIME_PNG).then(i => {
-        this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64'));
-      })
+      this.debouncedRenderPreview();
     } else {
       this.preview.setAttributeNS(null, 'href', '');
     }
 
     this.passToChildren();
+  }
+
+
+  renderPreview() {
+    this.image.getBufferAsync(Jimp.MIME_PNG).then(i => {
+      this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64'));
+    })
   }
 }
