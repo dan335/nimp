@@ -29,7 +29,7 @@ module.exports = function(app) {
             graph.anyoneCanOverwrite = req.body.anyoneCanOverwrite;
             graph._id = new ObjectId();
             graph.graph.id = graph._id.toHexString();
-            graph.url = '/'+graph._id.toHexString()+'/'+slug;
+            graph.url = '/g/'+graph._id.toHexString()+'/'+slug;
             graph.createdAt = new Date();
             graph.updatedAt = new Date();
             graph.viewedAt = new Date();
@@ -84,7 +84,7 @@ module.exports = function(app) {
                 set.isPublic = req.body.isPublic;
                 set.anyoneCanOverwrite = req.body.anyoneCanOverwrite;
                 set.title = req.body.graph.title.trim();
-                set.url = '/'+req.body.graph.id+'/'+slug;
+                set.url = '/g/'+req.body.graph.id+'/'+slug;
                 set.slug = slug;
               }
 
@@ -110,7 +110,7 @@ module.exports = function(app) {
               updatedAt: new Date(),
               graph: req.body.graph,
               title: req.body.graph.title.trim(),
-              url: '/'+req.body.graph.id+'/'+slug,
+              url: '/g/'+req.body.graph.id+'/'+slug,
               slug: slug,
               isPublic: req.body.isPublic,
               anyoneCanOverwrite: req.body.anyoneCanOverwrite,
