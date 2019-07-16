@@ -136,18 +136,14 @@ export default class GraphProperties extends React.Component {
   renderSaveOptions() {
     let canSave = false;
 
-    if (this.props.graph) {
-      if (this.props.user) {
-        if (this.props.graph.anyoneCanOverwrite) {
+    if (this.props.user) {
+      if (this.props.graph.anyoneCanOverwrite) {
+        canSave = true;
+      } else {
+        if (this.props.graph.userId == this.props.user._id) {
           canSave = true;
-        } else {
-          if (this.props.graph.userId == this.props.user._id) {
-            canSave = true;
-          }
         }
       }
-    } else {
-      canSave = true;
     }
 
     if (canSave) {
@@ -182,7 +178,7 @@ export default class GraphProperties extends React.Component {
         </div>
       )
     } else {
-      if (this.props.user) {
+      if (this.props.graph && this.props.user) {
         return (
           <div>
             {this.props.graph.title}<br/>
@@ -192,7 +188,12 @@ export default class GraphProperties extends React.Component {
       } else {
         return (
           <div>
-            {this.props.graph.title}<br/>
+            {this.props.graph && (
+              <div>
+                {this.props.graph.title}
+              </div>
+            )}
+
             Login to save a copy of this graph.
           </div>
         )
