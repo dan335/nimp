@@ -1,4 +1,5 @@
 import GraphView from '../components/GraphView.jsx';
+import MainLayout from '../layouts/MainLayout.js';
 
 
 export default class Index extends React.Component {
@@ -9,7 +10,9 @@ export default class Index extends React.Component {
 
   render() {
     return (
-      <GraphView user={this.props.user} load={this.props.graph} />
+      <MainLayout>
+        <GraphView user={this.props.user} load={this.props.graph} />
+      </MainLayout>
     )
   }
 }
