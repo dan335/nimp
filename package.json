@@ -29,7 +29,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-ga": "^2.6.0",
-    "simplex-noise": "^2.4.0"
+    "simplex-noise": "^2.4.0",
+    "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

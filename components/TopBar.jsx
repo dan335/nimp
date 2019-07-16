@@ -17,6 +17,8 @@ export default class TopBar extends React.Component {
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <a href="https://discord.gg/vgwW6WX"><img src="/static/discordIcon.png" /></a>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://twitter.com/dan335"><img src="/static/twitterIcon.png" /></a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <a href="mailto:dan@nimp.app"><img src="/static/emailIcon.png" /></a>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
