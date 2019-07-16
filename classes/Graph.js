@@ -37,6 +37,15 @@ export default class Graph {
   }
 
 
+  deleteNode(node) {
+    this.nodes = this.nodes.filter(n => {
+      return n != node;
+    })
+
+    node.delete();
+  }
+
+
   selectNode(node) {
     if (this.selectedNode) {
       this.selectedNode.deselect();
