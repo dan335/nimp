@@ -49,7 +49,6 @@ export default class G extends React.Component {
           <Head>
             <title key="title">{this.props.graph.title} - Nimp</title>
             <meta key="og:title" property="og:title" content={this.props.graph.title+' - Nimp'} />
-            <meta key="og:image" property="og:image" content={this.props.graph.thumbnail} />
           </Head>
         )}
         <GraphView user={this.props.user} graphToLoad={this.props.graph} />
