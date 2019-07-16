@@ -3,8 +3,10 @@ import UniformColorProperties from './UniformColorProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import UniformColorInputNumberWidth from './UniformColorInputNumberWidth.js';
 import UniformColorInputNumberHeight from './UniformColorInputNumberHeight.js';
+import InputColor from '../InputColor.js';
 import OutputNumber from '../OutputNumber.js';
 import Jimp from 'jimp';
+const tinycolor = require("tinycolor2");
 
 
 export default class UniformColor extends NodeImage {
@@ -14,6 +16,7 @@ export default class UniformColor extends NodeImage {
     this.inputs = [
       new UniformColorInputNumberWidth(this, 0, 'Width'),
       new UniformColorInputNumberHeight(this, 1, 'Height'),
+      new InputColor(this, 2, 'Input'),
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output'),
@@ -23,10 +26,7 @@ export default class UniformColor extends NodeImage {
 
     this.width = typeof settings.width !== 'undefined' ? settings.width : 256;
     this.height = typeof settings.height !== 'undefined' ? settings.height : 256;
-    this.red = typeof settings.red !== 'undefined' ? settings.red : 255;
-    this.blue = typeof settings.blue !== 'undefined' ? settings.blue : 255;
-    this.green = typeof settings.green !== 'undefined' ? settings.green : 255;
-    this.alpha = typeof settings.alpha !== 'undefined' ? settings.alpha : 255;
+    this.hexColor = typeof settings.hexColor !== 'undefined' ? settings.hexColor : '#ffffffff';
 
     this.run(null);
   }
@@ -37,10 +37,7 @@ export default class UniformColor extends NodeImage {
 
     json.settings.width = this.width;
     json.settings.height = this.height;
-    json.settings.red = this.red;
-    json.settings.blue = this.blue;
-    json.settings.green = this.green;
-    json.settings.alpha = this.alpha;
+    json.settings.hexColor = this.hexColor;
 
     return json;
   }
@@ -52,6 +49,7 @@ export default class UniformColor extends NodeImage {
 
     let width = this.width;
     let height = this.height;
+    let hexColor = this.hexColor
 
     if (this.inputs[0].number != null) {
       width = this.inputs[0].number;
@@ -61,16 +59,29 @@ export default class UniformColor extends NodeImage {
       height = this.inputs[1].number;
     }
 
+    if (this.inputs[2].color != null) {
+      hexColor = this.inputs[2].color;
+    }
+
     width = Math.max(1, width);
     height = Math.max(1, height);
 
-    const hexNum = Jimp.rgbaToInt(this.red, this.green, this.blue, this.alpha);
+    const tc = tinycolor(hexColor);
+    let color = null;
+    if (tc.isValid()) {
+      color = tc.toHex8String();
+    } else {
+      color = '#ffffffff';
+    }
+
+    //console.log(bogus)
+    //const hexNum = Jimp.rgbaToInt(this.red, this.green, this.blue, this.alpha);
 
     if (this.isInsideALoop) {
-      this.image = new Jimp(width, height, hexNum);
+      this.image = new Jimp(width, height, color);
       super.run(inputThatTriggered);
     } else {
-      new Jimp(width, height, hexNum, (error, image) => {
+      new Jimp(width, height, color, (error, image) => {
         if (error) {
           console.log(error);
         } else {
