@@ -1,4 +1,6 @@
 import GraphView from '../../components/GraphView.jsx';
+import Head from 'next/head';
+import MainLayout from '../../layouts/MainLayout.js';
 
 
 export default class G extends React.Component {
@@ -42,7 +44,16 @@ export default class G extends React.Component {
 
   render() {
     return (
-      <GraphView user={this.props.user} graphToLoad={this.props.graph} />
+      <MainLayout>
+        {this.props.graph && (
+          <Head>
+            <title key="title">{this.props.graph.title} - Nimp</title>
+            <meta key="og:title" property="og:title" content={this.props.graph.title+' - Nimp'} />
+            <meta key="og:image" property="og:image" content={this.props.graph.thumbnail} />
+          </Head>
+        )}
+        <GraphView user={this.props.user} graphToLoad={this.props.graph} />
+      </MainLayout>
     )
   }
 }

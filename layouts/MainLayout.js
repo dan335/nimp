@@ -16,12 +16,12 @@ export default class MainLayout extends React.Component {
     return (
       <div>
         <Head>
-          <title>Nimp</title>
+          <title key="title">Nimp</title>
           <meta name="description" content="Node-base image manipulation program. Procedurally create and edit images in this free open source node based image editor." />
           <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet" />
           <meta charSet='UTF-8'/>
           <link rel="icon" type="image/png" href="/static/favicon.png" />
-          <meta property="og:title" content="Nimp" />
+          <meta key="og:title" property="og:title" content="Nimp" />
           <meta property="og:description" content="Node-base image manipulation program. Procedurally create and edit images in this free open source node based image editor." />
         </Head>
 

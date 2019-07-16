@@ -1,9 +1,9 @@
-import MainLayout from '../layouts/MainLayout.js';
 import Graph from '../classes/Graph.js';
 import settings from '../lib/settings.js';
 import functions from '../lib/functions.js';
 import GraphProperties from '../components/GraphProperties.jsx';
 import TopBar from '../components/TopBar.jsx';
+import Head from 'next/head';
 
 // dragging svg
 // https://css-tricks.com/creating-a-panning-effect-for-svg/
@@ -270,46 +270,44 @@ export default class GraphView extends React.Component {
   render() {
     return (
       <div>
-        <MainLayout>
-          <div id="mainContainer">
-            <TopBar user={this.props.user} />
+        <div id="mainContainer">
+          <TopBar user={this.props.user} />
 
-            <div id="midContainer">
-              <div id="midLeftContainer">
-                <div id="midLeftCategories">
-                  <div className="nodeButtonHeader">Categories</div>
-                  {this.renderCategoryButtons()}
-                </div>
-                <div id="midLeftNodes">
-                  <div className="nodeButtonHeader">{this.state.category} Nodes</div>
-                  {this.renderNodeButtons()}
-                </div>
+          <div id="midContainer">
+            <div id="midLeftContainer">
+              <div id="midLeftCategories">
+                <div className="nodeButtonHeader">Categories</div>
+                {this.renderCategoryButtons()}
               </div>
-              <div id="innerMidContainer">
-                <div id="svgContainer">
-                  <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-                        <path d="M 80 0 L 0 0 0 80" fill="none" stroke="hsl(209, 10%, 30%)" strokeWidth="1"/>
-                      </pattern>
-                    </defs>
-
-                    <rect width="5000" height="5000" fill="url(#grid)" x="-2500" y="-2500" pointerEvents="none" />
-                  </svg>
-                  <div id="svgHelpText">Click: Select &nbsp;&nbsp; Double Click: Select and View</div>
-                </div>
-                <div id="viewContainer">
-                  <img id="nodeViewImage" style={{maxHeight:'100%',maxWidth:'100%',display:'block'}} />
-                </div>
-              </div>
-
-              <div id="midRightContainer">
-                {this.renderGraphProperties()}
-                {this.renderProperties()}
+              <div id="midLeftNodes">
+                <div className="nodeButtonHeader">{this.state.category} Nodes</div>
+                {this.renderNodeButtons()}
               </div>
             </div>
+            <div id="innerMidContainer">
+              <div id="svgContainer">
+                <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="hsl(209, 10%, 30%)" strokeWidth="1"/>
+                    </pattern>
+                  </defs>
+
+                  <rect width="5000" height="5000" fill="url(#grid)" x="-2500" y="-2500" pointerEvents="none" />
+                </svg>
+                <div id="svgHelpText">Click: Select &nbsp;&nbsp; Double Click: Select and View</div>
+              </div>
+              <div id="viewContainer">
+                <img id="nodeViewImage" style={{maxHeight:'100%',maxWidth:'100%',display:'block'}} />
+              </div>
+            </div>
+
+            <div id="midRightContainer">
+              {this.renderGraphProperties()}
+              {this.renderProperties()}
+            </div>
           </div>
-        </MainLayout>
+        </div>
 
         <style jsx global>{`
           #mainContainer {
