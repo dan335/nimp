@@ -9,7 +9,7 @@ export default class NodeImage extends Node {
 
     this.image = null;
 
-    this.debouncedRenderPreview = debounce(this.renderPreview, 500);
+    this.debouncedRenderPreview = debounce(this.renderPreview, 400);
   }
 
 

@@ -178,7 +178,7 @@ export default class GraphProperties extends React.Component {
 
             {this.state.isPublic && (
               <div>
-                <input type="checkbox" id="canOverwriteCheckbox" onChange={event => {this.overwriteChange(event)}} defaultChecked={this.state.anyoneCanOverwrite} /> Anyone can overwrite.
+                <input type="checkbox" id="canOverwriteCheckbox" onChange={event => {this.overwriteChange(event)}} defaultChecked={this.state.anyoneCanOverwrite} /> Anyone can save.
               </div>
             )}
           </div>
@@ -195,7 +195,7 @@ export default class GraphProperties extends React.Component {
         )}
 
         {canCopy && (
-          <button onClick={event => {this.saveGraphCopy()}}>Save Copy</button>
+          <button onClick={event => {this.saveGraphCopy()}}>Make Copy</button>
         )}
 
         <style jsx>{`
