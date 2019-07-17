@@ -32,8 +32,6 @@ export default class Circle extends NodeImage {
     this.height = typeof settings.height !== 'undefined' ? settings.height : 256;
     this.padding = typeof settings.padding !== 'undefined' ? settings.padding : 5;
     this.hexColor = typeof settings.hexColor !== 'undefined' ? settings.hexColor : '#ffffffff';
-
-    this.run(null);
   }
 
 

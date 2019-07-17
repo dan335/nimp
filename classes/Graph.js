@@ -33,6 +33,7 @@ export default class Graph {
   createNode(className, classObject, x, y, settings) {
     let node = new classObject(className, this, x, y, settings);
     this.nodes.push(node);
+    node.run(null);
     return node;
   }
 
