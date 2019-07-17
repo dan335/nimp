@@ -6,7 +6,7 @@ import Jimp from 'jimp';
 import fetch from 'isomorphic-unfetch';
 
 
-export default class UniformColor extends NodeImage {
+export default class UrlImage extends NodeImage {
   constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Image from Url', UrlImageProperties);
 
@@ -19,8 +19,6 @@ export default class UniformColor extends NodeImage {
 
     //this.url = 'https://i.imgur.com/mdlwVuL.jpg';
     this.url = typeof settings.url !== 'undefined' ? settings.url : 'https://i.imgur.com/3aDSTiB.jpg';
-
-    this.run(null);
   }
 
 

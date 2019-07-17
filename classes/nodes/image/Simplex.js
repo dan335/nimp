@@ -31,8 +31,6 @@ export default class Simplex extends NodeImage {
     this.height = typeof settings.height !== 'undefined' ? settings.height : 256;
     this.seed = typeof settings.seed !== 'undefined' ? settings.seed : 1;
     this.scale = typeof settings.scale !== 'undefined' ? settings.scale : 0.05;
-
-    this.run(null);
   }
 
 
