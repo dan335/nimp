@@ -42,9 +42,10 @@ export default class Crop extends NodeImage {
 
 
   run(inputThatTriggered) {
+    this.runTimer = Date.now();
+
     if (this.inputs[0].image) {
       this.bg.classList.add('running');
-      this.runTimer = Date.now();
 
       let cropX = this.cropX;
       let cropY = this.cropY;
@@ -91,7 +92,6 @@ export default class Crop extends NodeImage {
       }
 
     } else {
-      this.runTimer = Date.now();
       this.image = null;
       super.run(inputThatTriggered);
     }
