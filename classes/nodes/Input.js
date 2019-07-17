@@ -41,8 +41,8 @@ export default class Input extends Connection {
     this.helpText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     this.helpText.setAttributeNS(null, 'x', 25 * -1);
     this.helpText.setAttributeNS(null, 'y', settings.nodeHeight * 0.65  + settings.connectionSpaceBetween * this.index);
-    this.helpText.setAttributeNS(null, 'fill', 'hsl(209, 10%, 60%)');
-    this.helpText.textContent = this.type+':'+this.title;
+    this.helpText.setAttributeNS(null, 'fill', 'hsl(209, 10%, 80%)');
+    this.helpText.textContent = this.type+' : '+this.title;
     this.helpText.setAttribute('style', 'pointer-events:none;');
     this.helpText.setAttributeNS(null, 'text-anchor', 'end');
     this.helpText.setAttributeNS(null, 'font-size', 12);

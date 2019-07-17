@@ -6,6 +6,8 @@ import CircleInputNumberWidth from './CircleInputNumberWidth.js';
 import CircleInputNumberHeight from './CircleInputNumberHeight.js';
 import CircleInputNumberPadding from './CircleInputNumberPadding.js';
 import Jimp from 'jimp';
+import InputColor from '../InputColor.js';
+const tinycolor = require("tinycolor2");
 
 
 export default class Circle extends NodeImage {
@@ -15,7 +17,8 @@ export default class Circle extends NodeImage {
     this.inputs = [
       new CircleInputNumberWidth(this, 0, 'Width'),
       new CircleInputNumberHeight(this, 1, 'Height'),
-      new CircleInputNumberPadding(this, 2, 'Padding')
+      new CircleInputNumberPadding(this, 2, 'Padding'),
+      new InputColor(this, 3, 'Input'),
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output'),
@@ -25,11 +28,8 @@ export default class Circle extends NodeImage {
 
     this.width = typeof settings.width !== 'undefined' ? settings.width : 256;
     this.height = typeof settings.height !== 'undefined' ? settings.height : 256;
-    this.red = typeof settings.red !== 'undefined' ? settings.red : 255;
-    this.blue = typeof settings.blue !== 'undefined' ? settings.blue : 255;
-    this.green = typeof settings.green !== 'undefined' ? settings.green : 255;
-    this.alpha = typeof settings.alpha !== 'undefined' ? settings.alpha : 255;
     this.padding = typeof settings.padding !== 'undefined' ? settings.padding : 5;
+    this.hexColor = typeof settings.hexColor !== 'undefined' ? settings.hexColor : '#ffffffff';
 
     this.run(null);
   }
@@ -40,11 +40,8 @@ export default class Circle extends NodeImage {
 
     json.settings.width = this.width;
     json.settings.height = this.height;
-    json.settings.red = this.red;
-    json.settings.blue = this.blue;
-    json.settings.green = this.green;
-    json.settings.alpha = this.alpha;
     json.settings.padding = this.padding;
+    json.settings.hexColor = this.hexColor;
 
     return json;
   }
@@ -56,7 +53,8 @@ export default class Circle extends NodeImage {
 
     let width = this.width;
     let height = this.height;
-    let padding = this.padding
+    let padding = this.padding;
+    let hexColor = this.hexColor
 
     if (this.inputs[0].number != null) {
       width = this.inputs[0].number;
@@ -70,18 +68,28 @@ export default class Circle extends NodeImage {
       padding = this.inputs[2].number;
     }
 
+    if (this.inputs[3].color != null) {
+      hexColor = this.inputs[3].color;
+    }
+
     width = Math.max(1, width);
     height = Math.max(1, height);
     padding = Math.max(0, padding);
 
-    const hexNum = Jimp.rgbaToInt(this.red, this.green, this.blue, this.alpha);
+    const tc = tinycolor(hexColor);
+    let color = null;
+    if (tc.isValid()) {
+      color = tc.toHex8String();
+    } else {
+      color = '#ffffffff';
+    }
 
     if (this.isInsideALoop) {
-      let image = new Jimp(width, height, hexNum);
+      let image = new Jimp(width, height, color);
       this.image = this.createCircle(image, padding);
       super.run(inputThatTriggered);
     } else {
-      new Jimp(width, height, hexNum, (error, image) => {
+      new Jimp(width, height, color, (error, image) => {
         if (error) {
           console.log(error);
         } else {

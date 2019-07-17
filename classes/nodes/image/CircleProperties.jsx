@@ -10,7 +10,8 @@ export default class CircleProperties extends Properties {
     this.state = {
       hasWidthInput: props.node.inputs[0].parent ? true : false,
       hasHeightInput: props.node.inputs[1].parent ? true : false,
-      hasPaddingInput: props.node.inputs[2].parent ? true : false
+      hasPaddingInput: props.node.inputs[2].parent ? true : false,
+      hasColorInput: props.node.inputs[3].parent ? true : false,
     }
 
     this.widthChange = this.widthChange.bind(this);
@@ -128,6 +129,8 @@ export default class CircleProperties extends Properties {
 
         <br/><br/>
         {this.renderPadding()}
+        <br/>
+        {this.renderColor()}
         </div>
       </div>
     )
