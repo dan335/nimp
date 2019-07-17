@@ -80,7 +80,7 @@ export default class Output extends Connection {
     this.node.isInsideALoop = functions.isInsideALoop(this.node);
     inputConnection.node.isInsideALoop = functions.isInsideALoop(inputConnection.node);
 
-    this.node.run();
+    this.node.passToChildren();
   }
 
 

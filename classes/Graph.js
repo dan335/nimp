@@ -146,6 +146,25 @@ export default class Graph {
         })
       }
     })
+
+    // run root nodes
+    let rootNodes = [];
+    this.nodes.forEach(node => {
+      let isRoot = true;
+      node.inputs.forEach(input => {
+        if (input.parent) {
+          isRoot = false;
+        }
+      })
+
+      if (isRoot) {
+        rootNodes.push(node);
+      }
+    })
+
+    rootNodes.forEach(node => {
+      node.run();
+    })
   }
 
 
