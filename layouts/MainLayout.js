@@ -19,6 +19,7 @@ export default class MainLayout extends React.Component {
           <title key="title">Nimp</title>
           <meta name="description" content="Node-base image manipulation program. Procedurally create and edit images in this free open source node based image editor." />
           <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet" />
+          <meta property="og:image" content="/static/og.jpg" />
           <meta charSet='UTF-8'/>
           <link rel="icon" type="image/png" href="/static/favicon.png" />
           <meta key="og:title" property="og:title" content="Nimp" />
