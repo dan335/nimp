@@ -7,6 +7,7 @@ import InputColor from '../InputColor.js';
 import OutputNumber from '../OutputNumber.js';
 import Jimp from 'jimp';
 const tinycolor = require("tinycolor2");
+import OutputColor from '../OutputColor.js';
 
 
 export default class UniformColor extends NodeImage {
@@ -21,7 +22,8 @@ export default class UniformColor extends NodeImage {
     this.outputs = [
       new OutputImage(this, 0, 'Output'),
       new OutputNumber(this, 1, 'Width'),
-      new OutputNumber(this, 2, 'Height')
+      new OutputNumber(this, 2, 'Height'),
+      new OutputColor(this, 3, 'Output')
     ];
 
     this.width = typeof settings.width !== 'undefined' ? settings.width : 256;
@@ -67,21 +69,19 @@ export default class UniformColor extends NodeImage {
     height = Math.max(1, height);
 
     const tc = tinycolor(hexColor);
-    let color = null;
+    this.color = '#000';
     if (tc.isValid()) {
-      color = tc.toHex8String();
-    } else {
-      color = '#ffffffff';
+      this.color = tc.toHex8String();
     }
 
     //console.log(bogus)
     //const hexNum = Jimp.rgbaToInt(this.red, this.green, this.blue, this.alpha);
 
     if (this.isInsideALoop) {
-      this.image = new Jimp(width, height, color);
+      this.image = new Jimp(width, height, this.color);
       super.run(inputThatTriggered);
     } else {
-      new Jimp(width, height, color, (error, image) => {
+      new Jimp(width, height, this.color, (error, image) => {
         if (error) {
           console.log(error);
         } else {
@@ -101,6 +101,10 @@ export default class UniformColor extends NodeImage {
       })
       this.outputs[2].connections.forEach(conn => {
         conn.number = this.image.bitmap.height;
+        conn.runNode();
+      })
+      this.outputs[3].connections.forEach(conn => {
+        conn.color = this.color;
         conn.runNode();
       })
     }

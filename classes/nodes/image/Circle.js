@@ -2,6 +2,7 @@ import NodeImage from '../NodeImage.js';
 import CircleProperties from './CircleProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
+import OutputColor from '../OutputColor.js';
 import CircleInputNumberWidth from './CircleInputNumberWidth.js';
 import CircleInputNumberHeight from './CircleInputNumberHeight.js';
 import CircleInputNumberPadding from './CircleInputNumberPadding.js';
@@ -23,7 +24,8 @@ export default class Circle extends NodeImage {
     this.outputs = [
       new OutputImage(this, 0, 'Output'),
       new OutputNumber(this, 1, 'Width'),
-      new OutputNumber(this, 2, 'Height')
+      new OutputNumber(this, 2, 'Height'),
+      new OutputColor(this, 3, 'Output'),
     ];
 
     this.width = typeof settings.width !== 'undefined' ? settings.width : 256;
@@ -77,19 +79,17 @@ export default class Circle extends NodeImage {
     padding = Math.max(0, padding);
 
     const tc = tinycolor(hexColor);
-    let color = null;
+    this.color = '#000';
     if (tc.isValid()) {
-      color = tc.toHex8String();
-    } else {
-      color = '#ffffffff';
+      this.color = tc.toHex8String();
     }
 
     if (this.isInsideALoop) {
-      let image = new Jimp(width, height, color);
+      let image = new Jimp(width, height, this.color);
       this.image = this.createCircle(image, padding);
       super.run(inputThatTriggered);
     } else {
-      new Jimp(width, height, color, (error, image) => {
+      new Jimp(width, height, this.color, (error, image) => {
         if (error) {
           console.log(error);
         } else {
@@ -132,6 +132,10 @@ export default class Circle extends NodeImage {
       })
       this.outputs[2].connections.forEach(conn => {
         conn.number = this.image.bitmap.height;
+        conn.runNode();
+      })
+      this.outputs[3].connections.forEach(conn => {
+        conn.color = this.color;
         conn.runNode();
       })
     }

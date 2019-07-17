@@ -114,20 +114,6 @@ export default class CircleProperties extends Properties {
         {this.renderHeight()}
 
         <br/><br/>
-
-        Red<br/>
-        <input id="redSlider" style={{width:'100%'}} type="range" min="0" max="255" defaultValue={this.props.node.red} onChange={(event) => {this.redChange(event);}} />
-
-        Green<br/>
-        <input id="greenSlider" style={{width:'100%'}} type="range" min="0" max="255" defaultValue={this.props.node.green} onChange={(event) => {this.greenChange(event);}} />
-
-        Blue<br/>
-        <input id="blueSlider" style={{width:'100%'}} type="range" min="0" max="255" defaultValue={this.props.node.blue} onChange={(event) => {this.blueChange(event);}} />
-
-        Alpha<br/>
-        <input id="alphaSlider" style={{width:'100%'}} type="range" min="0" max="255" defaultValue={this.props.node.alpha} onChange={(event) => {this.alphaChange(event);}} />
-
-        <br/><br/>
         {this.renderPadding()}
         <br/>
         {this.renderColor()}
