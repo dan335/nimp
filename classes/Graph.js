@@ -192,17 +192,7 @@ export default class Graph {
           }
         })
       } else {
-        // create default
-        const hexNum = Jimp.rgbaToInt(128, 128, 128, 255);
-        new Jimp(settings.thumbnailWidth, settings.thumbnailHeight, hexNum, (error, image) => {
-          if (error) {
-            resolve(null);
-          } else {
-            image.getBufferAsync(Jimp.MIME_JPEG).then(i => {
-              resolve('data:'+Jimp.MIME_JPEG+';base64,'+i.toString('base64'));
-            })
-          }
-        })
+        resolve(null);
       }
     })
   }
