@@ -291,7 +291,7 @@ export default class GraphView extends React.Component {
   removeTempLine() {
     if (this.tempLine) {
       this.tempLine.parentNode.removeChild(this.tempLine);
-      this.tempLine = undefined;
+      this.tempLine = null;
     }
   }
 
@@ -437,6 +437,8 @@ export default class GraphView extends React.Component {
 
           #viewContainer {
             background-color: hsl(209, 10%, 8%);
+            background-image: url("/static/viewportBg.jpg");
+            border-top: 2px solid #000;
           }
 
           #innerMidContainer {
