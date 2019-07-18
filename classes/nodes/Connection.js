@@ -12,22 +12,15 @@ export default class Connection {
   }
 
 
-  createSvgElm() {
-    this.dot.onmousedown = (event) => {
-      event.stopPropagation();
-      this.node.graph.component.mouseState = {
-        type: 'draggingNewConnection',
-        data: this
-      };
+  onMouseUp(event) {
+    if (this.node.graph.component.mouseState && this.node.graph.component.mouseState.type == 'draggingNewConnection') {
+      if (this.node.graph.component.mouseState.data.input && this.node.graph.component.mouseState.data.output) {
+        this.node.graph.component.mouseState.data.output.makeConnection(this.node.graph.component.mouseState.data.input);
+      }
     }
 
-    this.dot.onmouseenter = (event) => {
-      this.node.showConnectionHelpText();
-    }
-
-    this.dot.onmouseleave = (event) => {
-      this.node.hideConnectionHelpText();
-    }
+    this.node.graph.component.mouseState = null;
+    this.node.graph.component.removeTempLine();
   }
 
 
