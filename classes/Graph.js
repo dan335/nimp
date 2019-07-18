@@ -112,7 +112,7 @@ export default class Graph {
           if (node.outputs[n]) {
             createdNode.outputs[n].id = node.outputs[n].id;
           } else {
-            console.error('Load error: Could not get output.');
+            console.error('Load error: Could not get output.  Probably an old graph.', createdNode.outputs[n], node);
           }
         }
 
@@ -126,25 +126,27 @@ export default class Graph {
     // create connections
     this.nodes.forEach(node => {
       for (let n = 0; n < node.outputs.length; n++) {
-        const connectedInputIds = node.tempJson.outputs[n].connections;
-        connectedInputIds.forEach(id => {
+        if (node.tempJson.outputs[n]) {
+          const connectedInputIds = node.tempJson.outputs[n].connections;
+          connectedInputIds.forEach(id => {
 
-          // find input with id
-          let input = null;
-          this.nodes.forEach(n => {
-            n.inputs.forEach(i => {
-              if (i.id == id) {
-                input = i;
-              }
+            // find input with id
+            let input = null;
+            this.nodes.forEach(n => {
+              n.inputs.forEach(i => {
+                if (i.id == id) {
+                  input = i;
+                }
+              })
             })
-          })
 
-          if (input) {
-            node.outputs[n].makeConnection(input);
-          } else {
-            console.error('Load error: Could not find input with id.');
-          }
-        })
+            if (input) {
+              node.outputs[n].makeConnection(input);
+            } else {
+              console.error('Load error: Could not find input with id.');
+            }
+          })
+        }
       }
     })
 
