@@ -1,6 +1,6 @@
 import Properties from '../Properties.js';
 
-export default class FadeProperties extends Properties {
+export default class OpacityProperties extends Properties {
 
   constructor(props) {
     super(props);
@@ -33,9 +33,9 @@ export default class FadeProperties extends Properties {
   render() {
     return (
       <div>
-        <div className="propertiesTitle">Fade</div>
+        <div className="propertiesTitle">Opacity</div>
         <div style={{padding:'10px'}}>
-          0 has no effect.  1 makes the image transparent.<br/>
+          Multiply the alpha channel by an amount.<br/>
           <br/>
           {this.renderAmount()}
         </div>
