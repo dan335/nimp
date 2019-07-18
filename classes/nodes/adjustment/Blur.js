@@ -34,6 +34,9 @@ export default class Blur extends NodeImage {
 
       radius = Math.max(1, radius);
 
+      // blur requires radius to be rounded?
+      radius = Math.round(radius);
+
       if (this.isInsideALoop) {
         let image = this.inputs[0].image.clone();
         image.blur(radius);
