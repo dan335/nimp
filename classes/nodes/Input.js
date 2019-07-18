@@ -7,22 +7,7 @@ export default class Input extends Connection {
   constructor(node, index, name, type) {
     super(node, index, name, type);
     this.parent = null;
-
-    this.onMouseUp = this.onMouseUp.bind(this);
-  }
-
-
-  onMouseUp(event) {
-    event.stopPropagation();
-    event.preventDefault();
-
-    if (this.node.graph.component.mouseState && this.node.graph.component.mouseState.type == 'draggingNewConnection') {
-      if (this.node.graph.component.mouseState.data) {
-        this.node.graph.component.mouseState.data.makeConnection(this);
-      }
-    }
-
-    this.node.graph.component.mouseState = null;
+    this.isInput = true;
   }
 
 
@@ -34,7 +19,7 @@ export default class Input extends Connection {
     this.dot.classList.add('nodeConnection');
     this.node.g.appendChild(this.dot);
 
-    this.dot.onmouseup = (event) => {this.onMouseUp(event)}
+    //this.dot.onmouseup = (event) => {this.onMouseUp(event)}
 
     this.helpText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     this.helpText.setAttributeNS(null, 'x', 25 * -1);
@@ -47,7 +32,35 @@ export default class Input extends Connection {
     this.node.g.prepend(this.helpText);
     this.helpText.style.display = 'none';
 
-    super.createSvgElm();
+    this.dot.onmousedown = (event) => {
+      event.stopPropagation();
+      this.node.graph.component.mouseState = {
+        type: 'draggingNewConnection',
+        data: {
+          input: this,
+          output: null,
+          from: this
+        }
+      };
+    }
+
+    this.dot.onmouseenter = (event) => {
+      if (this.node.graph.component.mouseState && this.node.graph.component.mouseState.type == 'draggingNewConnection') {
+        this.node.graph.component.mouseState.data.input = this;
+      }
+
+      this.node.showConnectionHelpText();
+    }
+
+    this.dot.onmouseleave = (event) => {
+      if (this.node.graph.component.mouseState && this.node.graph.component.mouseState.type == 'draggingNewConnection') {
+        if (this != this.node.graph.component.mouseState.data.from) {
+          this.node.graph.component.mouseState.data.input = null;
+        }
+      }
+
+      this.node.hideConnectionHelpText();
+    }
   }
 
 

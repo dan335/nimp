@@ -142,6 +142,7 @@ export default class GraphView extends React.Component {
 
   svgOnMouseUp(event) {
     event.preventDefault();
+    this.removeTempLine();
 
     let isClick = false;
 
@@ -179,38 +180,40 @@ export default class GraphView extends React.Component {
         }
       }
 
-      this.mouseState = null;
-
     } else {
       if (this.mouseState) {
         if (this.mouseState.type == 'draggingNewNode') {
           const svgPos = functions.getPointOnSvg(event, this.svg);
           this.createNewNode(this.mouseState.data.className, this.mouseState.data.classObject, svgPos.x, svgPos.y);
           isClick = false;
-          this.mouseState = null;
           event.stopPropagation();
 
         } else if (this.mouseState.type == 'draggingNode') {
           isClick = false;
-          this.mouseState = null;
           event.stopPropagation();
 
         } else if (this.mouseState.type == 'draggingGraph') {
           this.svgViewBox.x = this.svgNewViewBox.x;
           this.svgViewBox.y = this.svgNewViewBox.y;
           isClick = false;
-          this.mouseState = null;
           event.stopPropagation();
 
+        } else if (this.mouseState.type == 'draggingNewConnection') {
+          if (event.target.classList.contains('nodeConnection')) {
+            this.mouseState.data.output.onMouseUp();
+          }
         }
       }
     }
+
+    this.mouseState = null;
   }
 
   svgOnMouseLeave(event) {
     this.mouseState = null;
     this.svgViewBox.x = this.svgNewViewBox.x;
     this.svgViewBox.y = this.svgNewViewBox.y;
+    this.removeTempLine();
   }
 
   svgOnMouseMove(event) {
@@ -253,7 +256,42 @@ export default class GraphView extends React.Component {
           }
         })
 
+      } else if (this.mouseState.type == 'draggingNewConnection') {
+        this.removeTempLine();
+        const svgPos = functions.getPointOnSvg(event, this.svg);
+        this.drawTempLineFromConnectionToMouse(this.mouseState.data.from, svgPos);
       }
+    }
+  }
+
+
+  drawTempLineFromConnectionToMouse(connection, mousePos) {
+    const pos = connection.getPosition();
+
+    this.tempLine = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+
+    let d = 'M'+pos.x+','+pos.y;
+
+    if (connection.isInput) {
+      d += ' C'+(pos.x-100)+','+pos.y;
+      d += ' '+(mousePos.x+100)+','+mousePos.y;
+    } else {
+      d += ' C'+(pos.x+100)+','+pos.y;
+      d += ' '+(mousePos.x-100)+','+mousePos.y;
+    }
+
+    d += ' '+mousePos.x+','+mousePos.y;
+
+    this.tempLine.setAttributeNS(null, 'd', d);
+    this.tempLine.classList.add('nodeConnectionSpline');
+    this.graph.svg.prepend(this.tempLine);
+  }
+
+
+  removeTempLine() {
+    if (this.tempLine) {
+      this.tempLine.parentNode.removeChild(this.tempLine);
+      this.tempLine = undefined;
     }
   }
 
