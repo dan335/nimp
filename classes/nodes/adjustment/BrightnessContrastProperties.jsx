@@ -1,6 +1,6 @@
 import Properties from '../Properties.js';
 
-export default class BlurProperties extends Properties {
+export default class BrightnessContrastProperties extends Properties {
 
   constructor(props) {
     super(props);
