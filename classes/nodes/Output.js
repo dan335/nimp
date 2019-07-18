@@ -21,8 +21,6 @@ export default class Output extends Connection {
     this.dot.classList.add('nodeConnection');
     this.node.g.appendChild(this.dot);
 
-    //this.dot.onmouseup = (event) => {this.onMouseUp(event)}
-
     this.helpText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     this.helpText.setAttributeNS(null, 'x', settings.nodeWidth + 25);
     this.helpText.setAttributeNS(null, 'y', settings.nodeHeight * 0.65 + settings.connectionSpaceBetween * this.index);
@@ -39,16 +37,18 @@ export default class Output extends Connection {
       this.node.graph.component.mouseState = {
         type: 'draggingNewConnection',
         data: {
-          input: null,
-          output: this,
-          from: this
+          from: this,
+          to: null,
+          isFromOutput: true
         }
       };
     }
 
     this.dot.onmouseenter = (event) => {
       if (this.node.graph.component.mouseState && this.node.graph.component.mouseState.type == 'draggingNewConnection') {
-        this.node.graph.component.mouseState.data.output = this;
+        if (!this.node.graph.component.mouseState.data.isFromOutput) {
+          this.node.graph.component.mouseState.data.to = this;
+        }
       }
 
       this.node.showConnectionHelpText();
@@ -57,7 +57,9 @@ export default class Output extends Connection {
     this.dot.onmouseleave = (event) => {
       if (this.node.graph.component.mouseState && this.node.graph.component.mouseState.type == 'draggingNewConnection') {
         if (this != this.node.graph.component.mouseState.data.from) {
-          this.node.graph.component.mouseState.data.output = null;
+          if (!this.node.graph.component.mouseState.data.isFromOutput) {
+            this.node.graph.component.mouseState.data.to = null;
+          }
         }
       }
 
