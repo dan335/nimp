@@ -14,8 +14,12 @@ export default class Connection {
 
   onMouseUp(event) {
     if (this.node.graph.component.mouseState && this.node.graph.component.mouseState.type == 'draggingNewConnection') {
-      if (this.node.graph.component.mouseState.data.input && this.node.graph.component.mouseState.data.output) {
-        this.node.graph.component.mouseState.data.output.makeConnection(this.node.graph.component.mouseState.data.input);
+      if (this.node.graph.component.mouseState.data.from && this.node.graph.component.mouseState.data.to) {
+        if (this.node.graph.component.mouseState.data.isFromOutput) {
+          this.node.graph.component.mouseState.data.from.makeConnection(this.node.graph.component.mouseState.data.to);
+        } else {
+          this.node.graph.component.mouseState.data.to.makeConnection(this.node.graph.component.mouseState.data.from);
+        }
       }
     }
 

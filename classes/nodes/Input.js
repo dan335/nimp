@@ -37,16 +37,18 @@ export default class Input extends Connection {
       this.node.graph.component.mouseState = {
         type: 'draggingNewConnection',
         data: {
-          input: this,
-          output: null,
-          from: this
+          from: this,
+          to: null,
+          isFromOutput: false
         }
       };
     }
 
     this.dot.onmouseenter = (event) => {
       if (this.node.graph.component.mouseState && this.node.graph.component.mouseState.type == 'draggingNewConnection') {
-        this.node.graph.component.mouseState.data.input = this;
+        if (this.node.graph.component.mouseState.data.isFromOutput) {
+          this.node.graph.component.mouseState.data.to = this;
+        }
       }
 
       this.node.showConnectionHelpText();
@@ -55,7 +57,9 @@ export default class Input extends Connection {
     this.dot.onmouseleave = (event) => {
       if (this.node.graph.component.mouseState && this.node.graph.component.mouseState.type == 'draggingNewConnection') {
         if (this != this.node.graph.component.mouseState.data.from) {
-          this.node.graph.component.mouseState.data.input = null;
+          if (this.node.graph.component.mouseState.data.isFromOutput) {
+            this.node.graph.component.mouseState.data.to = null;
+          }
         }
       }
 

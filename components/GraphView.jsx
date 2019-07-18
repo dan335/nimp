@@ -200,7 +200,7 @@ export default class GraphView extends React.Component {
 
         } else if (this.mouseState.type == 'draggingNewConnection') {
           if (event.target.classList.contains('nodeConnection')) {
-            this.mouseState.data.output.onMouseUp();
+            this.mouseState.data.from.onMouseUp();
           }
         }
       }
