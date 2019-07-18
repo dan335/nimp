@@ -104,6 +104,7 @@ export default class CropProperties extends Properties {
           <br/>
           {this.renderWidth()}
           {this.renderHeight()}
+          {this.renderRun()}
         </div>
       </div>
     )

@@ -11,6 +11,9 @@ export default class FlipHorizontalProperties extends Properties {
     return (
       <div>
         <div className="propertiesTitle">Flip Horizontally</div>
+        <div style={{padding:'10px'}}>
+          {this.renderRun()}
+        </div>
       </div>
     )
   }

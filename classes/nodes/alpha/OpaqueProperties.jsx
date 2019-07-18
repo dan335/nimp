@@ -13,6 +13,7 @@ export default class OpaqueProperties extends Properties {
         <div className="propertiesTitle">Opaque</div>
         <div style={{padding:'10px'}}>
           Set the alpha channel of every pixel to be opaque.
+          {this.renderRun()}
         </div>
       </div>
     )

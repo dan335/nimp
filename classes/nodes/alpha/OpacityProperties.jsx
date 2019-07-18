@@ -38,6 +38,7 @@ export default class OpacityProperties extends Properties {
           Multiply the alpha channel by an amount.<br/>
           <br/>
           {this.renderAmount()}
+          {this.renderRun()}
         </div>
       </div>
     )

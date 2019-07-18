@@ -13,16 +13,17 @@ export default class GraphView extends React.Component {
     super(props);
 
     this.state = {
-      mouseState: null,
       properties: null,
       propertiesKey: Math.random(),  // force react to replace properties
       category: 'Image'
     }
 
-    this.svgIsPointerDown = false;
+    this.mouseState = null;
+
     this.svgPointerDownTime = 0;
     this.svgPointerOrigin = {x:0, y:0};
     this.svgZoom = 1;
+    this.svgLastMousePos = {x:0,y:0};
 
     this.startDraggingNewNode = this.startDraggingNewNode.bind(this);
     this.createNewNode = this.createNewNode.bind(this);
@@ -83,6 +84,7 @@ export default class GraphView extends React.Component {
     }
 
     this.svg.addEventListener('wheel', this.svgOnWheel.bind(this));
+    this.svg.addEventListener('contextmenu', this.onContextMenu.bind(this));
 
     fetch('/api/viewgraph', {
       method: 'post',
@@ -118,75 +120,141 @@ export default class GraphView extends React.Component {
   }
 
 
+  onContextMenu(event) {
+    event.preventDefault();
+    return false;
+  }
+
+
   svgOnMouseDown(event) {
-    if (event.target.tagName != 'svg') return;
+    if (event.target.tagName == 'svg') {
+      this.mouseState = {
+        type: 'draggingGraph',
+        data: this
+      };
+    }
 
     const pointerPosition = functions.getPointFromEvent(event);
     this.svgPointerOrigin.x = pointerPosition.x;
     this.svgPointerOrigin.y = pointerPosition.y;
-    this.svgIsPointerDown = true;
     this.svgPointerDownTime = new Date().getTime()
   }
 
   svgOnMouseUp(event) {
-    // stop dragging
-    this.svgIsPointerDown = false;
-    this.svgViewBox.x = this.svgNewViewBox.x;
-    this.svgViewBox.y = this.svgNewViewBox.y;
+    event.preventDefault();
 
-    //if (event.target.tagName != 'svg') return;
+    let isClick = false;
 
-    event.stopPropagation();
+    if (new Date().getTime() - this.svgPointerDownTime < 300) {
+      // check distance
+      const pointerPosition = functions.getPointFromEvent(event);
+      let a = this.svgPointerOrigin.x - pointerPosition.x;
+      let b = this.svgPointerOrigin.y - pointerPosition.y;
+      let distance = Math.sqrt(a*a+b*b);
 
-    let isClick = true;
-
-    if (this.state.mouseState) {
-      if (this.state.mouseState.type == 'draggingNewNode') {
-        const svgPos = functions.getPointOnSvg(event, this.svg);
-
-        this.createNewNode(this.state.mouseState.data.className, this.state.mouseState.data.classObject, svgPos.x, svgPos.y);
-        this.setState({mouseState:null});
-        this.isClick = false;
+      if (distance < 5) {
+        isClick = true
       }
     }
 
     if (isClick) {
-      if (new Date().getTime() - this.svgPointerDownTime < 400) {
-        const pointerPosition = functions.getPointFromEvent(event);
-        let a = this.svgPointerOrigin.x - pointerPosition.x;
-        let b = this.svgPointerOrigin.y - pointerPosition.y;
-        let distance = Math.sqrt(a*a+b*b);
-        if (distance < 5) {
-          // show graph properties
-          if (this.graph.selectedNode) {
-            this.graph.selectedNode.deselect();
+      if (event.target.classList.contains('nodeBg')) {
+        // click on node
+
+        if (event.button == 0) {
+          if (this.mouseState && this.mouseState.data) {
+            this.mouseState.data.onClick();
           }
+
+        } else if (event.button == 2) {
+          if (this.mouseState && this.mouseState.data) {
+            this.graph.deleteNode(this.mouseState.data);
+          }
+        }
+
+      } else {
+        // click on svg
+        if (this.graph.selectedNode) {
+          this.graph.selectedNode.deselect();
+        }
+      }
+
+      this.mouseState = null;
+
+    } else {
+      if (this.mouseState) {
+        if (this.mouseState.type == 'draggingNewNode') {
+          const svgPos = functions.getPointOnSvg(event, this.svg);
+          this.createNewNode(this.mouseState.data.className, this.mouseState.data.classObject, svgPos.x, svgPos.y);
+          isClick = false;
+          this.mouseState = null;
+          event.stopPropagation();
+
+        } else if (this.mouseState.type == 'draggingNode') {
+          isClick = false;
+          this.mouseState = null;
+          event.stopPropagation();
+
+        } else if (this.mouseState.type == 'draggingGraph') {
+          this.svgViewBox.x = this.svgNewViewBox.x;
+          this.svgViewBox.y = this.svgNewViewBox.y;
+          isClick = false;
+          this.mouseState = null;
+          event.stopPropagation();
+
         }
       }
     }
   }
 
   svgOnMouseLeave(event) {
-    this.svgIsPointerDown = false;
+    this.mouseState = null;
     this.svgViewBox.x = this.svgNewViewBox.x;
     this.svgViewBox.y = this.svgNewViewBox.y;
   }
 
   svgOnMouseMove(event) {
-    if (event.target.tagName != 'svg') return;
+    if (this.mouseState) {
+      if (this.mouseState.type == 'draggingGraph') {
+        event.preventDefault();
 
-    if (!this.svgIsPointerDown) return;
+        const pointerPosition = functions.getPointFromEvent(event);
 
-    event.preventDefault();
+        this.svgNewViewBox.x = this.svgViewBox.x - ((pointerPosition.x - this.svgPointerOrigin.x) * this.svgRatio * this.svgZoom);
+        this.svgNewViewBox.y = this.svgViewBox.y - ((pointerPosition.y - this.svgPointerOrigin.y) * this.svgRatio * this.svgZoom);
 
-    const pointerPosition = functions.getPointFromEvent(event);
+        const viewBoxString = `${this.svgNewViewBox.x} ${this.svgNewViewBox.y} ${this.svgViewBox.width} ${this.svgViewBox.height}`;
+        this.svg.setAttribute('viewBox', viewBoxString);
 
-    this.svgNewViewBox.x = this.svgViewBox.x - ((pointerPosition.x - this.svgPointerOrigin.x) * this.svgRatio * this.svgZoom);
+      } else if (this.mouseState.type == 'draggingNode') {
 
-    this.svgNewViewBox.y = this.svgViewBox.y - ((pointerPosition.y - this.svgPointerOrigin.y) * this.svgRatio * this.svgZoom);
+        const mousePos = functions.getPointFromEvent(event);
 
-    const viewBoxString = `${this.svgNewViewBox.x} ${this.svgNewViewBox.y} ${this.svgViewBox.width} ${this.svgViewBox.height}`;
-    this.svg.setAttribute('viewBox', viewBoxString);
+        const delta = {
+          x: (mousePos.x - this.svgLastMousePos.x) * this.svgZoom,
+          y: (mousePos.y - this.svgLastMousePos.y) * this.svgZoom
+        }
+
+        this.mouseState.data.g.setAttributeNS(null, 'transform', 'translate('+(this.mouseState.data.x+delta.x)+' '+(this.mouseState.data.y+delta.y)+')');
+        this.mouseState.data.x += delta.x;
+        this.mouseState.data.y += delta.y;
+
+        this.svgLastMousePos = mousePos;
+
+        this.mouseState.data.outputs.forEach(conn => {
+          conn.removeConnectionSplines();
+          conn.createConnectionSplines();
+        })
+
+        this.mouseState.data.inputs.forEach(conn => {
+          if (conn.parent) {
+            conn.parent.removeConnectionSplines();
+            conn.parent.createConnectionSplines();
+          }
+        })
+
+      }
+    }
   }
 
 
@@ -230,12 +298,10 @@ export default class GraphView extends React.Component {
   }
 
   startDraggingNewNode(node) {
-    this.setState({
-      mouseState: {
-        type: 'draggingNewNode',
-        data: node
-      }
-    })
+    this.mouseState = {
+      type: 'draggingNewNode',
+      data: node
+    };
   }
 
 

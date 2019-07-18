@@ -33,6 +33,7 @@ export default class ColorInputProperties extends Properties {
           </ul>
 
           See <a href="https://www.npmjs.com/package/tinycolor2">Tinycolor</a> for all options.
+          {this.renderRun()}
         </div>
       </div>
     )

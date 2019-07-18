@@ -63,6 +63,8 @@ export default class BlurProperties extends Properties {
 
           <br/><br/>
           Value from -1 to 1.
+
+          {this.renderRun()}
         </div>
       </div>
     )

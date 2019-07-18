@@ -105,6 +105,7 @@ export default class SimplexProperties extends Properties {
           {this.renderSeed()}
           <br/>
           {this.renderScale()}
+          {this.renderRun()}
         </div>
       </div>
     )

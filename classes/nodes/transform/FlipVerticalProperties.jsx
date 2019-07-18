@@ -11,6 +11,9 @@ export default class FlipVerticalProperties extends Properties {
     return (
       <div>
         <div className="propertiesTitle">Flip Vertically</div>
+        <div style={{padding:'10px'}}>
+          {this.renderRun()}
+        </div>
       </div>
     )
   }

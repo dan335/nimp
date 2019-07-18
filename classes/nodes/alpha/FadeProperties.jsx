@@ -38,6 +38,7 @@ export default class FadeProperties extends Properties {
           0 has no effect.  1 makes the image transparent.<br/>
           <br/>
           {this.renderAmount()}
+          {this.renderRun()}
         </div>
       </div>
     )

@@ -15,12 +15,10 @@ export default class Connection {
   createSvgElm() {
     this.dot.onmousedown = (event) => {
       event.stopPropagation();
-      this.node.graph.component.setState({
-        mouseState: {
-          type: 'draggingNewConnection',
-          data: this
-        }
-      })
+      this.node.graph.component.mouseState = {
+        type: 'draggingNewConnection',
+        data: this
+      };
     }
 
     this.dot.onmouseenter = (event) => {

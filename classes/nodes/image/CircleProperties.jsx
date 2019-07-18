@@ -109,14 +109,15 @@ export default class CircleProperties extends Properties {
       <div>
         <div className="propertiesTitle">Circle</div>
         <div style={{padding:'10px'}}>
+          {this.renderWidth()}
+          {this.renderHeight()}
 
-        {this.renderWidth()}
-        {this.renderHeight()}
+          <br/><br/>
+          {this.renderPadding()}
+          <br/>
+          {this.renderColor()}
 
-        <br/><br/>
-        {this.renderPadding()}
-        <br/>
-        {this.renderColor()}
+          {this.renderRun()}
         </div>
       </div>
     )

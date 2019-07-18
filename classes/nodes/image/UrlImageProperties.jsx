@@ -26,6 +26,7 @@ export default class UrlImageProperties extends Properties {
 
           <br/><br/>
           If this fails it's probably because the remote site doesn't allow cross-origin resource sharing.  Some sites like <a href="https://imgur.com/">Imgur</a> allow it.
+          {this.renderRun()}
         </div>
       </div>
     )

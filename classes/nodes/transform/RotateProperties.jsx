@@ -73,6 +73,7 @@ export default class RotateProperties extends Properties {
             <option value={Jimp.RESIZE_HERMITE}>Hermite</option>
             <option value={Jimp.RESIZE_BEZIER}>Bezier</option>
           </select>
+          {this.renderRun()}
         </div>
       )
     }

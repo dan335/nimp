@@ -48,6 +48,7 @@ export default class LoopProperties extends Properties {
           {this.renderNumLoops()}
           <br/><br/>
           Increment output starts with 0 and adds 1 each loop.
+          {this.renderRun()}
         </div>
       </div>
     )

@@ -29,6 +29,7 @@ export default class MultiplyNumbersProperties extends Properties {
         <div className="propertiesTitle">Multiply Numbers</div>
         <div style={{padding:'10px'}}>
           {this.renderResult()}
+          {this.renderRun()}
         </div>
       </div>
     )

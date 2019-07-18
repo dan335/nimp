@@ -18,15 +18,13 @@ export default class Output extends Connection {
     event.stopPropagation();
     event.preventDefault();
 
-    if (this.node.graph.component.state.mouseState && this.node.graph.component.state.mouseState.type == 'draggingNewConnection') {
-      if (this.node.graph.component.state.mouseState.data) {
-        this.makeConnection(this.node.graph.component.state.mouseState.data);
+    if (this.node.graph.component.mouseState && this.node.graph.component.mouseState.type == 'draggingNewConnection') {
+      if (this.node.graph.component.mouseState.data) {
+        this.makeConnection(this.node.graph.component.mouseState.data);
       }
     }
 
-    this.node.graph.component.setState({
-      mouseState: null
-    })
+    this.node.graph.component.mouseState = null;
   }
 
 

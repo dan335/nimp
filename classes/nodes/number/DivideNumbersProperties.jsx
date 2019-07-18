@@ -29,6 +29,7 @@ export default class DivideNumbersProperties extends Properties {
         <div className="propertiesTitle">Divide Numbers</div>
         <div style={{padding:'10px'}}>
           {this.renderResult()}
+          {this.renderRun()}
         </div>
       </div>
     )

@@ -59,7 +59,8 @@ export default class MaskProperties extends Properties {
         <div style={{padding:'10px'}}>
           Position of image.<br/>
           {this.renderX()}
-          {this.renderY()}          
+          {this.renderY()}
+          {this.renderRun()}       
         </div>
       </div>
     )

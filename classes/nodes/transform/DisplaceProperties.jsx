@@ -39,6 +39,7 @@ export default class DisplaceProperties extends Properties {
           Displace the image pixels based on the provided displacement map.<br/>
           <br/>
           {this.renderOffset()}
+          {this.renderRun()}
         </div>
       </div>
     )
