@@ -147,6 +147,7 @@ export default class BlitProperties extends Properties {
           <br/>
           {this.renderSrcWidth()}
           {this.renderSrcHeight()}
+          {this.renderRun()}
         </div>
       </div>
     )

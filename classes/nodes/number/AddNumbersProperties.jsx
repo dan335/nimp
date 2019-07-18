@@ -29,6 +29,7 @@ export default class AddNumbersProperties extends Properties {
         <div className="propertiesTitle">Add Numbers</div>
         <div style={{padding:'10px'}}>
           {this.renderResult()}
+          {this.renderRun()}
         </div>
       </div>
     )

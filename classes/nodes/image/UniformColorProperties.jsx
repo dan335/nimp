@@ -83,14 +83,14 @@ export default class UniformColorProperties extends Properties {
       <div>
         <div className="propertiesTitle">Uniform Color</div>
         <div style={{padding:'10px'}}>
+          {this.renderWidth()}
+          {this.renderHeight()}
 
-        {this.renderWidth()}
-        {this.renderHeight()}
+          <br/><br/>
 
-        <br/><br/>
+          {this.renderColor()}
 
-        {this.renderColor()}
-
+          {this.renderRun()}
         </div>
       </div>
     )

@@ -132,6 +132,7 @@ export default class BlendProperties extends Properties {
           {this.renderTopOpacity()}
           {this.renderBottomOpacity()}
 
+          {this.renderRun()}
         </div>
       </div>
     )

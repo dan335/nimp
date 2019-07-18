@@ -38,59 +38,11 @@ export default class Node {
     this.bg.setAttributeNS(null, 'fill', settings.nodeBackgroundColor);
     this.bg.classList.add('nodeBg');
 
-    this.bg.oncontextmenu = (event) => {
-      if (event.button == 2) {
-        this.graph.deleteNode(this);
-      }
-      return false;
-    }
-
-    this.bg.onclick = (event) => {
-      if (event.button == 0) {
-        const now = new Date().getTime();
-        if (now - this.lastClick < 400) {
-          this.graph.viewNode(this);
-        }
-        this.graph.selectNode(this);
-        this.lastClick = now;
-      }
-    }
-
     this.bg.onmousedown = (event) => {
-      this.isMouseDown = true;
-      this.lastMousePos = functions.getPointFromEvent(event);
-    }
-
-    this.bg.onmouseup = (event) => {
-      this.isMouseDown = false;
-    }
-
-    this.bg.onmousemove =(event) => {
-      if (this.isMouseDown) {
-        const mousePos = functions.getPointFromEvent(event);
-
-        const delta = {
-          x: (mousePos.x - this.lastMousePos.x) * this.graph.component.svgZoom,
-          y: (mousePos.y - this.lastMousePos.y) * this.graph.component.svgZoom
-        }
-
-        this.g.setAttributeNS(null, 'transform', 'translate('+(this.x+delta.x)+' '+(this.y+delta.y)+')');
-        this.x += delta.x;
-        this.y += delta.y;
-
-        this.lastMousePos = mousePos;
-
-        this.outputs.forEach(conn => {
-          conn.removeConnectionSplines();
-          conn.createConnectionSplines();
-        })
-
-        this.inputs.forEach(conn => {
-          if (conn.parent) {
-            conn.parent.removeConnectionSplines();
-            conn.parent.createConnectionSplines();
-          }
-        })
+      this.graph.component.svgLastMousePos = functions.getPointFromEvent(event);
+      this.graph.component.mouseState = {
+        type: 'draggingNode',
+        data: this
       }
     }
 
@@ -141,6 +93,16 @@ export default class Node {
     this.bmpSize.textContent = '';
     this.bmpSize.setAttribute('style', 'pointer-events:none;');
     this.g.appendChild(this.bmpSize);
+  }
+
+
+  onClick() {
+    const now = new Date().getTime();
+    if (now - this.lastClick < 400) {
+      this.graph.viewNode(this);
+    }
+    this.graph.selectNode(this);
+    this.lastClick = now;
   }
 
 

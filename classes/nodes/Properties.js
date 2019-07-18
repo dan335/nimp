@@ -15,6 +15,18 @@ export default class Properties extends React.Component {
   }
 
 
+  runNode() {
+    this.props.node.run(null);
+  }
+
+
+  renderRun() {
+    return (
+      <button onClick={event => {this.runNode()}} style={{width:'100%', marginTop:'30px'}}>Run Node</button>
+    )
+  }
+
+
   renderColor() {
     if (!this.state.hasColorInput) {
       return (

@@ -41,6 +41,7 @@ export default class ElseProperties extends Properties {
 
           <br/><br/>
           Outputs image A if test number is true.  Outputs image B if test number is false.  Number is considered false if it is 0 or -0.
+          {this.renderRun()}
         </div>
       </div>
     )

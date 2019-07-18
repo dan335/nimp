@@ -11,6 +11,9 @@ export default class InvertProperties extends Properties {
     return (
       <div>
         <div className="propertiesTitle">Invert Colors</div>
+        <div style={{padding:'10px'}}>
+          {this.renderRun()}
+        </div>
       </div>
     )
   }

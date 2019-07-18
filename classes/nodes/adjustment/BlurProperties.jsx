@@ -41,6 +41,8 @@ export default class BlurProperties extends Properties {
 
           <br/><br/>
           Value is in pixels.
+
+          {this.renderRun()}
         </div>
       </div>
     )

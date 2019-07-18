@@ -54,6 +54,7 @@ export default class GreyscaleProperties extends Properties {
           : null}
           <br/><br/>
           Uploaded images are not saved with the graph.
+          {this.renderRun()}
         </div>
       </div>
     )

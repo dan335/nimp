@@ -100,6 +100,7 @@ export default class OutputProperties extends Properties {
           {this.renderImage()}
           <br/><br/>
           If you get an error when downloading right click on image and save as.
+          {this.renderRun()}
         </div>
       </div>
     )
