@@ -168,24 +168,22 @@ export default class Graph {
     rootNodes.forEach(node => {
       node.run();
     })
+
+    // view output node
+    const outputNode = this.getOutputNode();
+    if (outputNode) {
+      this.viewNode(outputNode);
+    }
   }
 
 
   getThumbnail() {
     return new Promise((resolve, reject) => {
-      let image = null;
 
-      // find output node
-      this.nodes.forEach(node => {
-        if (node.className == 'Output') {
-          if (node.image) {
-            image = node.image;
-          }
-        }
-      })
+      const outputNode = this.getOutputNode();
 
-      if (image) {
-        image.clone().cover(settings.thumbnailWidth, settings.thumbnailHeight, (error, image) => {
+      if (outputNode && outputNode.image) {
+        outputNode.image.clone().cover(settings.thumbnailWidth, settings.thumbnailHeight, (error, image) => {
           if (error) {
             resolve(null);
           } else {
@@ -198,5 +196,15 @@ export default class Graph {
         resolve(null);
       }
     })
+  }
+
+
+  getOutputNode() {
+    for (let n = 0; n < this.nodes.length; n++) {
+      if (this.nodes[n].className == 'Output') {
+        return this.nodes[n];
+      }
+    }
+    return null;
   }
 }
