@@ -41,7 +41,7 @@ export default class TopBar extends React.Component {
 
         <style jsx>{`
           #topContainer {
-            line-height: 40px;
+            line-height: 36px;
             padding: 0 10px;
             background-color: hsl(209, 10%, 25%);
             display: grid;

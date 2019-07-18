@@ -43,6 +43,7 @@ export default class MainLayout extends React.Component {
             color: hsl(209, 50%, 95%);
             font-family: 'Roboto Condensed', sans-serif;
             user-select: none;
+            font-size: 14px;
           }
 
           input, select {

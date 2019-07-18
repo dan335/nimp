@@ -7,7 +7,7 @@ import BrightnessContrastInputNumberContrast from './BrightnessContrastInputNumb
 
 export default class BrightnessContrast extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Brightness/Contrast', BrightnessContrastProperties);
+    super(className, graph, x, y, 'Brightness / Contrast', BrightnessContrastProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

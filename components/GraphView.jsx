@@ -312,7 +312,7 @@ export default class GraphView extends React.Component {
         <style jsx global>{`
           #mainContainer {
             display: grid;
-            grid-template-rows: 40px auto;
+            grid-template-rows: 36px auto;
           }
 
           #midLeftContainer {
@@ -328,7 +328,7 @@ export default class GraphView extends React.Component {
 
           #midContainer {
             display: grid;
-            grid-template-columns: 280px auto 280px;
+            grid-template-columns: 210px auto 260px;
           }
 
           #viewContainer {
@@ -370,7 +370,7 @@ export default class GraphView extends React.Component {
           }
 
           .nodeButton {
-            padding: 5px;
+            padding: 6px 5px;
             background-color: hsl(209, 10%, 40%);
             margin-bottom: 2px;
             cursor: pointer;
