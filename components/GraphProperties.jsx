@@ -29,6 +29,8 @@ export default class GraphProperties extends React.Component {
 
 
   async saveGraph(event) {
+    this.setState({errorMsg:null});
+
     if (!this.props.graph) return;
     let json = this.props.graph.toJson();
     let thumbnail = await this.props.graph.getThumbnail();
@@ -68,6 +70,8 @@ export default class GraphProperties extends React.Component {
 
 
   async saveGraphCopy(event) {
+    this.setState({errorMsg:null});
+
     if (!this.props.graph) return;
     let json = this.props.graph.toJson();
     let thumbnail = await this.props.graph.getThumbnail();
@@ -164,8 +168,11 @@ export default class GraphProperties extends React.Component {
     return (
       <div>
         {this.state.errorMsg && (
-          <div className="errorContainer">
-            {this.state.errorMsg}
+          <div>
+            <div className="errorContainer">
+              {this.state.errorMsg}
+            </div>
+            <br/>
           </div>
         )}
 
@@ -197,6 +204,8 @@ export default class GraphProperties extends React.Component {
         {canCopy && (
           <button onClick={event => {this.saveGraphCopy()}}>Make Copy</button>
         )}
+
+        <span id="saveResult"></span>
 
         <style jsx>{`
           input {
