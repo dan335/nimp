@@ -1,5 +1,6 @@
 import Node from './Node.js';
 const tinycolor = require("tinycolor2");
+var debounce = require('lodash.debounce');
 
 
 export default class NodeColor extends Node {
@@ -7,6 +8,8 @@ export default class NodeColor extends Node {
     super(className, graph, x, y, name, propertiesComponent);
 
     this.color = tinycolor('#fff');
+
+    this.debouncedRenderPreview = debounce(this.renderPreview, 300);
   }
 
 
@@ -37,5 +40,24 @@ export default class NodeColor extends Node {
     this.timer.textContent = (Date.now() - this.runTimer) + 'ms';
     this.bg.classList.remove('running');
     this.passToChildren();
+
+    if (this.color) {
+      this.debouncedRenderPreview();
+    } else {
+      this.preview.setAttributeNS(null, 'href', '');
+    }
+  }
+
+
+  renderPreview() {
+    new Jimp(1, 1, this.color.toHex8String(), (error, image) => {
+      if (error) {
+        console.log(error);
+      } else {
+        image.getBufferAsync(Jimp.MIME_JPEG).then(i => {
+          this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_JPEG+';base64,'+i.toString('base64'));
+        });
+      }
+    })
   }
 }

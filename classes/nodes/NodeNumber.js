@@ -6,6 +6,8 @@ export default class NodeNumber extends Node {
     super(className, graph, x, y, name, propertiesComponent);
 
     this.number = 1;
+
+    this.textPreview.style.display = 'block';
   }
 
 
@@ -36,5 +38,15 @@ export default class NodeNumber extends Node {
     this.timer.textContent = (Date.now() - this.runTimer) + 'ms';
     this.bg.classList.remove('running');
     this.passToChildren();
+    this.renderPreview();
+  }
+
+
+  renderPreview() {
+    if (this.number != null) {
+      this.textPreview.textContent = this.number;
+    } else {
+      this.textPreview.textContent = '';
+    }
   }
 }
