@@ -53,7 +53,7 @@ export default class TetradColors extends NodeColor {
 
 
   renderPreview() {
-    new Jimp(3, 2, this.color.toHex8String(), (error, image) => {
+    new Jimp(2, 2, this.color.toHex8String(), (error, image) => {
       if (error) {
         console.log(error);
       } else {
