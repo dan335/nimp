@@ -75,6 +75,20 @@ export default class Node {
     this.preview.setAttribute('style', 'pointer-events:none;');
     this.g.appendChild(this.preview);
 
+    // for number nodes
+    this.textPreview = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    this.textPreview.setAttributeNS(null, 'x', settings.nodeWidth/2);
+    this.textPreview.setAttributeNS(null, 'y', settings.nodeHeight*1.6);
+    this.textPreview.setAttributeNS(null, 'width', settings.nodeWidth);
+    this.textPreview.setAttributeNS(null, 'height', settings.nodeWidth);
+    this.textPreview.setAttribute('style', 'pointer-events:none;');
+    this.textPreview.setAttributeNS(null, 'fill', '#fff');
+    this.textPreview.setAttributeNS(null, 'font-size', 14);
+    this.textPreview.setAttributeNS(null, 'text-anchor', 'middle');
+    this.textPreview.textContent = '';
+    this.textPreview.style.display = 'none';
+    this.g.appendChild(this.textPreview);
+
     this.timer = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     this.timer.setAttributeNS(null, 'x', settings.nodeWidth);
     this.timer.setAttributeNS(null, 'y', settings.nodeHeight * 0.24 * -1);
