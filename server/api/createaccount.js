@@ -23,6 +23,10 @@ module.exports = function(app) {
       return res.status(500).send('Username must be less than 28 characters.  Special characters are removed.');
     }
 
+    if (!usernameNoSpaces.length) {
+      return res.status(500).send('Username required.  Special characters are removed.');
+    }
+
     if (!req.body.password1 || !req.body.password1.length) {
       return res.status(500).send('Password required.');
     }
