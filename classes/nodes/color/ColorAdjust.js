@@ -55,8 +55,8 @@ export default class ColorAdjust extends NodeColor {
       let lightness = this.lightness;
       let brightness = this.brightness;
 
-      if (this.inputs[1].color != null) {
-        hue = this.inputs[1].color;
+      if (this.inputs[1].number != null) {
+        hue = this.inputs[1].number;
       }
 
       if (this.inputs[2].number != null) {
