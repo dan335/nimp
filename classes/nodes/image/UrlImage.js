@@ -18,7 +18,7 @@ export default class UrlImage extends NodeImage {
     ];
 
     //this.url = 'https://i.imgur.com/mdlwVuL.jpg';
-    this.url = typeof settings.url !== 'undefined' ? settings.url : 'https://i.imgur.com/3aDSTiB.jpg';
+    this.url = typeof settings.url !== 'undefined' ? settings.url : 'https://i.imgur.com/3aDSTiBl.jpg';
   }
 
 

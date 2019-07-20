@@ -69,9 +69,12 @@ export default class Loop extends NodeImage {
       // called from loop end input
       // do nothing if running
       // if not running run
-      if (!this.isRunning) {
-        this.run(this.inputs[0]);
-      }
+      //
+      // can cause infinite loop
+      //
+      // if (!this.isRunning) {
+      //   this.run(this.inputs[0]);
+      // }
     }
   }
 

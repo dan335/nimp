@@ -13,9 +13,9 @@ export default class SplitComplimentColors extends NodeColor {
       new InputColor(this, 0, 'Input'),
     ];
     this.outputs = [
-      new OutputColor(this, 0, 'SplitCompliment 1'),
-      new OutputColor(this, 1, 'SplitCompliment 2'),
-      new OutputColor(this, 2, 'SplitCompliment 3'),
+      new OutputColor(this, 0, 'Split Compliment 1'),
+      new OutputColor(this, 1, 'Split Compliment 2'),
+      new OutputColor(this, 2, 'Split Compliment 3'),
     ];
   }
 
