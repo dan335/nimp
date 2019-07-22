@@ -5,7 +5,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class SquareRoot extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'SquareRoote', SquareRootProperties);
+    super(className, graph, x, y, 'SquareRoot', SquareRootProperties);
 
     this.inputs = [
       new InputNumberA(this, 0, 'a'),
