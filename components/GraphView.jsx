@@ -346,7 +346,6 @@ export default class GraphView extends React.Component {
   createNewNode(className, classObject, x, y) {
     const node = this.graph.createNode(className, classObject, x, y, {});
     this.graph.selectNode(node);
-    this.graph.viewNode(node);
   }
 
 
@@ -543,6 +542,14 @@ export default class GraphView extends React.Component {
             fill: none;
             stroke-width: 2px;
             pointer-events: visible;
+          }
+
+          .nodeConnection.validConnection {
+            fill: hsl(100, 60%, 60%);
+          }
+
+          .nodeConnection.invalidConnection {
+            fill: hsl(0, 60%, 60%);
           }
         `}</style>
       </div>
