@@ -51,11 +51,20 @@ export default class Connection {
 
   showHelpText() {
     this.helpText.style.display = 'block';
+    if (this.node.graph.component.mouseState && this.node.graph.component.mouseState.type == 'draggingNewConnection') {
+      if (this.node.graph.component.mouseState.data.from.type == this.type && this.node.graph.component.mouseState.data.from.isInput != this.isInput) {
+        this.dot.classList.add('validConnection');
+      } else {
+        this.dot.classList.add('invalidConnection');
+      }
+    }
   }
 
 
   hideHelpText() {
     this.helpText.style.display = 'none';
+    this.dot.classList.remove('validConnection');
+    this.dot.classList.remove('invalidConnection');
   }
 
 
