@@ -52,10 +52,12 @@ export default class Connection {
   showHelpText() {
     this.helpText.style.display = 'block';
     if (this.node.graph.component.mouseState && this.node.graph.component.mouseState.type == 'draggingNewConnection') {
-      if (this.node.graph.component.mouseState.data.from.type == this.type && this.node.graph.component.mouseState.data.from.isInput != this.isInput) {
-        this.dot.classList.add('validConnection');
-      } else {
-        this.dot.classList.add('invalidConnection');
+      if (this.node.graph.component.mouseState.data.from.isInput != this.isInput) {
+        if (this.node.graph.component.mouseState.data.from.type == this.type) {
+          this.dot.classList.add('validConnection');
+        } else {
+          this.dot.classList.add('invalidConnection');
+        }
       }
     }
   }
