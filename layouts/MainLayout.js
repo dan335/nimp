@@ -73,6 +73,14 @@ export default class MainLayout extends React.Component {
             background-color: hsl(209, 10%, 65%);
           }
 
+          button.active {
+            background-color: hsl(209, 60%, 50%);
+          }
+
+          button.active:hover {
+            background-color: hsl(209, 60%, 65%);
+          }
+
           .errorContainer {
             background-color: hsl(0, 50%, 50%);
             color: #fff;
