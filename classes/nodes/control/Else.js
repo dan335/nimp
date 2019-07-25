@@ -7,7 +7,7 @@ import ElseInputNumberA from './ElseInputNumberA.js';
 
 export default class Else extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'If Else', ElseProperties);
+    super(className, graph, x, y, 'Image If Else', ElseProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input A'),
