@@ -13,7 +13,7 @@ export default class Input extends Connection {
 
   createSvgElm() {
     this.dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    this.dot.setAttributeNS(null, 'cx', 12 * -1);
+    this.dot.setAttributeNS(null, 'cx', 16 * -1);
     this.dot.setAttributeNS(null, 'cy', settings.nodeHeight / 2 + settings.connectionSpaceBetween * this.index);
     this.dot.setAttributeNS(null, 'r', settings.nodeConnectionRadius);
     this.dot.classList.add('nodeConnection');
@@ -22,7 +22,7 @@ export default class Input extends Connection {
     //this.dot.onmouseup = (event) => {this.onMouseUp(event)}
 
     this.helpText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    this.helpText.setAttributeNS(null, 'x', 25 * -1);
+    this.helpText.setAttributeNS(null, 'x', 30 * -1);
     this.helpText.setAttributeNS(null, 'y', settings.nodeHeight * 0.65  + settings.connectionSpaceBetween * this.index);
     this.helpText.setAttributeNS(null, 'fill', 'hsl(209, 10%, 80%)');
     this.helpText.textContent = this.type+' : '+this.title;

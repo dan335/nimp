@@ -15,14 +15,14 @@ export default class Output extends Connection {
 
   createSvgElm() {
     this.dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    this.dot.setAttributeNS(null, 'cx', settings.nodeWidth + 12);
+    this.dot.setAttributeNS(null, 'cx', settings.nodeWidth + 16);
     this.dot.setAttributeNS(null, 'cy', settings.nodeHeight / 2 + settings.connectionSpaceBetween * this.index);
     this.dot.setAttributeNS(null, 'r', settings.nodeConnectionRadius);
     this.dot.classList.add('nodeConnection');
     this.node.g.appendChild(this.dot);
 
     this.helpText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    this.helpText.setAttributeNS(null, 'x', settings.nodeWidth + 25);
+    this.helpText.setAttributeNS(null, 'x', settings.nodeWidth + 30);
     this.helpText.setAttributeNS(null, 'y', settings.nodeHeight * 0.65 + settings.connectionSpaceBetween * this.index);
     this.helpText.setAttributeNS(null, 'fill', 'hsl(209, 10%, 80%)');
     this.helpText.textContent = this.type+' : '+this.title;

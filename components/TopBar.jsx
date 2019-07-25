@@ -9,7 +9,7 @@ export default class TopBar extends React.Component {
           </a>
         </div>
         <div style={{textAlign:'right'}}>
-          <a href="https://www.patreon.com/dan335" className="topLink"><img src="/static/patreonIcon.png" /></a>
+          <a href="https://www.patreon.com/dan335" className="topLink"><img src="/static/patreonIcon.png" srcSet="/static/patreonIcon.png 1x, /static/patreonIcon_highres.png 2x" /></a>
           <a href="https://github.com/dan335/nimp" className="topLink"><img src="/static/githubLogo.png" /></a>
           <a href="https://trello.com/b/s5yHz4z5/nimp" className="topLink"><img src="/static/trelloIcon.png" /></a>
           <a href="https://discord.gg/vgwW6WX" className="topLink"><img src="/static/discordIcon.png" /></a>
@@ -48,6 +48,11 @@ export default class TopBar extends React.Component {
 
           #topContainer img {
             vertical-align: text-bottom;
+            height: 20px;
+          }
+
+          #topContainer img:hover {
+            filter: opacity(50%);
           }
 
           .topLink {
