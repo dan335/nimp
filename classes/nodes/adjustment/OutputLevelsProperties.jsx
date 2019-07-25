@@ -1,6 +1,6 @@
 import Properties from '../Properties.js';
 
-export default class LevelsProperties extends Properties {
+export default class OutputLevelsProperties extends Properties {
 
   constructor(props) {
     super(props);
@@ -51,7 +51,7 @@ export default class LevelsProperties extends Properties {
   render() {
     return (
       <div>
-        <div className="propertiesTitle">Input Levels</div>
+        <div className="propertiesTitle">Output Levels</div>
         <div style={{padding:'10px'}}>
           {this.renderMin()}
           <br/>

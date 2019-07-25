@@ -1,5 +1,5 @@
 import NodeImage from '../NodeImage.js';
-import LevelsProperties from './LevelsProperties.jsx';
+import OutputLevelsProperties from './OutputLevelsProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
 import InputNumberMin from '../inputs/InputNumberMin.js';
@@ -8,9 +8,9 @@ import Jimp from 'jimp';
 const tinycolor = require("tinycolor2");
 
 
-export default class Levels extends NodeImage {
+export default class OutputLevels extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Input Levels', LevelsProperties);
+    super(className, graph, x, y, 'Output Levels', OutputLevelsProperties);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
@@ -82,8 +82,8 @@ export default class Levels extends NodeImage {
 
   adjustColor(value, min, max) {
     const range = max - min;
-    const mult = 255 / range;
-    const newValue = value * mult - min * mult;
+    const mult = range / 255;
+    const newValue = value * mult + min;
     return Math.max(0, Math.min(255, Math.round(newValue)));
   }
 
