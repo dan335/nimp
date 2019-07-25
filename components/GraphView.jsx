@@ -61,6 +61,7 @@ export default class GraphView extends React.Component {
       this.graph.slug = this.props.graphToLoad.slug;
       this.graph.url = this.props.graphToLoad.url;
       this.graph.userId = this.props.graphToLoad.userId;
+      this.graph.username = this.props.graphToLoad.username;
       this.graph.isPublic = this.props.graphToLoad.isPublic;
       this.graph.anyoneCanOverwrite = this.props.graphToLoad.anyoneCanOverwrite;
 
@@ -346,7 +347,6 @@ export default class GraphView extends React.Component {
   createNewNode(className, classObject, x, y) {
     const node = this.graph.createNode(className, classObject, x, y, {});
     this.graph.selectNode(node);
-    this.graph.viewNode(node);
   }
 
 
@@ -432,7 +432,7 @@ export default class GraphView extends React.Component {
 
           #midContainer {
             display: grid;
-            grid-template-columns: 210px auto 260px;
+            grid-template-columns: 230px auto 260px;
           }
 
           #viewContainer {
@@ -465,7 +465,7 @@ export default class GraphView extends React.Component {
           }
 
           .nodeButtonHeader {
-            padding: 5px;
+            padding: 6px 8px;
             background-color: hsl(209, 10%, 5%);
             color: hsl(209, 10%, 60%);
             margin-bottom: 2px;
@@ -476,11 +476,10 @@ export default class GraphView extends React.Component {
           }
 
           .nodeButton {
-            padding: 6px 5px;
+            padding: 6px 8px;
             background-color: hsl(209, 10%, 40%);
             margin-bottom: 2px;
             cursor: pointer;
-            border-radius: 2px;
           }
 
           .nodeButton:hover {
@@ -543,6 +542,14 @@ export default class GraphView extends React.Component {
             fill: none;
             stroke-width: 2px;
             pointer-events: visible;
+          }
+
+          .nodeConnection.validConnection {
+            fill: hsl(100, 60%, 60%);
+          }
+
+          .nodeConnection.invalidConnection {
+            fill: hsl(0, 60%, 60%);
           }
         `}</style>
       </div>

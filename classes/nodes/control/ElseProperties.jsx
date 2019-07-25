@@ -35,7 +35,7 @@ export default class ElseProperties extends Properties {
   render() {
     return (
       <div>
-        <div className="propertiesTitle">If Else</div>
+        <div className="propertiesTitle">Image If Else</div>
         <div style={{padding:'10px'}}>
           {this.renderA()}
 

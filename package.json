@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env API_URL=http://localhost:3000 MONGO_URL=mongodb://localhost NODE_ENV=development nodemon server/index.js --watch server",
     "build": "next build",
-    "start": "cross-env NODE_ENV=production node server/index.js"
+    "start": "NODE_ENV=production node server/index.js"
   },
   "author": "Dan",
   "license": "MIT",
@@ -17,7 +17,6 @@
     "bson-objectid": "^1.3.0",
     "connect-mongodb-session": "^2.2.0",
     "copy-to-clipboard": "^3.2.0",
-    "cross-env": "^5.2.0",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "isomorphic-unfetch": "^3.0.0",
@@ -33,6 +32,7 @@
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "nodemon": "^1.19.1"
   }
 }

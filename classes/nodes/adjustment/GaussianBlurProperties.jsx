@@ -1,6 +1,6 @@
 import Properties from '../Properties.js';
 
-export default class BlurProperties extends Properties {
+export default class GaussianBlurProperties extends Properties {
 
   constructor(props) {
     super(props);
@@ -35,9 +35,9 @@ export default class BlurProperties extends Properties {
   render() {
     return (
       <div>
-        <div className="propertiesTitle">Blur</div>
+        <div className="propertiesTitle">Gaussian Blur</div>
         <div style={{padding:'10px'}}>
-          Fast blur.<br/>
+          Slow but high quality blur.<br/>
           <br/>
           {this.renderRadius()}
 
