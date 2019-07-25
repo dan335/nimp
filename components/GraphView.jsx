@@ -61,6 +61,7 @@ export default class GraphView extends React.Component {
       this.graph.slug = this.props.graphToLoad.slug;
       this.graph.url = this.props.graphToLoad.url;
       this.graph.userId = this.props.graphToLoad.userId;
+      this.graph.username = this.props.graphToLoad.username;
       this.graph.isPublic = this.props.graphToLoad.isPublic;
       this.graph.anyoneCanOverwrite = this.props.graphToLoad.anyoneCanOverwrite;
 

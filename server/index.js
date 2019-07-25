@@ -54,7 +54,8 @@ mongoClient.connect(error => {
     require('./api/logout.js')(expressApp);
     require('./api/graph.js')(expressApp);
     require('./api/graphs.js')(expressApp);
-
+    require('./api/deletegraph.js')(expressApp);
+    
     expressApp.get('*', (req,res) => {
       return handle(req,res);
     })
