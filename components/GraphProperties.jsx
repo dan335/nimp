@@ -1,6 +1,7 @@
 import React from 'react';
 import copy from 'copy-to-clipboard';
 var ObjectId = require('bson-objectid');
+import fetch from 'isomorphic-unfetch';
 
 
 export default class GraphProperties extends React.Component {
@@ -19,6 +20,7 @@ export default class GraphProperties extends React.Component {
     this.copyUrl = this.copyUrl.bind(this);
     this.publicChange = this.publicChange.bind(this);
     this.overwriteChange = this.overwriteChange.bind(this);
+    this.clickDelete = this.clickDelete.bind(this);
   }
 
 
@@ -140,15 +142,18 @@ export default class GraphProperties extends React.Component {
     let canSave = false;
     let canCopy = false;
     let canEdit = false;
+    let noPermissions = true;
 
     if (this.props.user && this.props.graph) {
       if (this.props.graph.userId == null) {
         // new graph
         canSave = true;
         canEdit = true;
+        noPermissions = false;
       } else {
         // someone owns graph
         canCopy = true;
+        noPermissions = false;
         if (this.props.graph.userId == this.props.user._id) {
           // owns graph
           canSave = true;
@@ -198,18 +203,32 @@ export default class GraphProperties extends React.Component {
         )}
 
         {canSave && (
-          <button onClick={event => {this.saveGraph()}}>Save Graph</button>
+          <button onClick={event => {this.saveGraph()}} className="fullWidth">Save Graph</button>
         )}
 
         {canCopy && (
-          <button onClick={event => {this.saveGraphCopy()}}>Make Copy</button>
+          <button onClick={event => {this.saveGraphCopy()}} className="fullWidth">Make Copy</button>
         )}
 
-        <span id="saveResult"></span>
+        <div id="saveResult"></div>
+
+        {noPermissions && this.props.graph && (
+          <div>
+            {this.props.graph.title}<br/>
+            by {this.props.graph.username}<br/>
+            <br/>
+            Login to save a copy of this graph.
+          </div>
+        )}
 
         <style jsx>{`
           input {
             margin-bottom: 8px;
+          }
+
+          #saveResult {
+            text-align: center;
+            padding: 10px;
           }
         `}</style>
       </div>
@@ -217,7 +236,26 @@ export default class GraphProperties extends React.Component {
   }
 
 
+  clickDelete() {
+    fetch('/api/deletegraph', {
+      method: 'post',
+      headers: { 'Accept': 'application/json, text/plain, */*', 'Content-Type': 'application/json'},
+      body: JSON.stringify({graphId:this.props.graph.id})
+    }).then(result => {
+      if (result.status == 200) {
+        window.location.href = '/';
+      }
+    })
+  }
+
+
   render() {
+    let isUser = false;
+
+    if (this.props.graph && this.props.user && this.props.user._id == this.props.graph.userId) {
+      isUser = true;
+    }
+
     return (
       <div>
         <div className="propertiesTitle">Graph</div>
@@ -229,6 +267,10 @@ export default class GraphProperties extends React.Component {
               <label>Graph URL &nbsp; <button id="copyUrlButton" onClick={this.copyUrl}>copy</button></label>
               <div id="urlCont">https://nimp.app{this.state.graphUrl}</div>
             </div>
+          )}
+
+          {isUser && (
+            <button className="fullWidth" onClick={this.clickDelete}>Delete Graph</button>
           )}
         </div>
 

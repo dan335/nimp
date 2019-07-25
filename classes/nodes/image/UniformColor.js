@@ -28,7 +28,7 @@ export default class UniformColor extends NodeImage {
 
     this.width = typeof settings.width !== 'undefined' ? settings.width : 256;
     this.height = typeof settings.height !== 'undefined' ? settings.height : 256;
-    this.hexColor = typeof settings.hexColor !== 'undefined' ? settings.hexColor : '#ffffffff';
+    this.hexColor = typeof settings.hexColor !== 'undefined' ? settings.hexColor : 'hsla(0, 0, 1, 1)';
   }
 
 
