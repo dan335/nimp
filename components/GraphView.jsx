@@ -477,13 +477,13 @@ export default class GraphView extends React.Component {
 
           .nodeButton {
             padding: 6px 8px;
-            background-color: hsl(209, 10%, 40%);
+            background-color: hsl(209, 10%, 30%);
             margin-bottom: 2px;
             cursor: pointer;
           }
 
           .nodeButton:hover {
-            background-color: hsl(209, 10%, 60%);
+            background-color: hsl(209, 10%, 50%);
           }
 
           .nodeButton.active {
