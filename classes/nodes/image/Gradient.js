@@ -66,11 +66,11 @@ export default class Gradient extends NodeImage {
     }
 
     if (this.inputs[2].color != null) {
-      colorA = this.inputs[2].color;
+      colorA = this.inputs[2].color.clone();
     }
 
     if (this.inputs[3].color != null) {
-      colorB = this.inputs[3].color;
+      colorB = this.inputs[3].color.clone();
     }
 
     width = Math.max(1, width);
