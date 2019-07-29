@@ -175,9 +175,9 @@ export default class Node {
     })
 
     this.outputs.forEach(output => {
-      for (let n = 0; n < output.connections.length; n++) {
-        output.removeConnection(output.connections[n], true);
-      }
+      output.connections.forEach(conn => {
+        output.removeConnection(conn, true);
+      })
     })
   }
 
