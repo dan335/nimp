@@ -7,6 +7,7 @@ module.exports = function(app) {
     const cursor = collection.find({isPublic:true}, {sort:{updatedAt:-1}, projection:{userId:1, username:1, views:1, thumbnail:1, title:1, url:1}});
     cursor.toArray((error, graphs) => {
       if (error) {
+        console.log(error);
         res.status(500).end();
       } else {
         res.json(graphs).end();
@@ -33,6 +34,7 @@ module.exports = function(app) {
     const cursor = collection.find(find, {sort:{updatedAt:-1}, projection:{userId:1, username:1, views:1, thumbnail:1, title:1, url:1}});
     cursor.toArray((error, graphs) => {
       if (error) {
+        console.log(error);
         res.status(500).end();
       } else {
         res.json(graphs).end();
