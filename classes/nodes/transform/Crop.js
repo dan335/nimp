@@ -6,6 +6,7 @@ import CropInputNumberX from './CropInputNumberX.js';
 import CropInputNumberY from './CropInputNumberY.js';
 import CropInputNumberWidth from './CropInputNumberWidth.js';
 import CropInputNumberHeight from './CropInputNumberHeight.js';
+import OutputNumber from '../OutputNumber.js';
 
 export default class Crop extends NodeImage {
   constructor(className, graph, x, y, settings) {
@@ -19,7 +20,11 @@ export default class Crop extends NodeImage {
       new CropInputNumberHeight(this, 4, 'Height'),
     ];
     this.outputs = [
-      new OutputImage(this, 0, 'Output')
+      new OutputImage(this, 0, 'Output'),
+      new OutputNumber(this, 1, 'X'),
+      new OutputNumber(this, 2, 'Y'),
+      new OutputNumber(this, 3, 'Width'),
+      new OutputNumber(this, 4, 'Height'),
     ];
 
     this.cropX = typeof settings.cropX !== 'undefined' ? settings.cropX : 0;
@@ -95,5 +100,30 @@ export default class Crop extends NodeImage {
       this.image = null;
       super.run(inputThatTriggered);
     }
+  }
+
+
+  passToChildren() {
+    this.outputs[1].connections.forEach(conn => {
+      conn.number = this.cropX;
+      conn.runNode();
+    })
+
+    this.outputs[2].connections.forEach(conn => {
+      conn.number = this.cropY;
+      conn.runNode();
+    })
+
+    this.outputs[3].connections.forEach(conn => {
+      conn.number = this.width;
+      conn.runNode();
+    })
+
+    this.outputs[4].connections.forEach(conn => {
+      conn.number = this.height;
+      conn.runNode();
+    })
+
+    super.passToChildren();
   }
 }
