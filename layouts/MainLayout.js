@@ -51,7 +51,7 @@ export default class MainLayout extends React.Component {
             font-size: 14px;
           }
 
-          input, select {
+          input, select, textarea {
             border: 0;
             padding: 5px;
             border-radius: 2px;
