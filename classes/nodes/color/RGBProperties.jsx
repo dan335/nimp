@@ -83,7 +83,7 @@ export default class RGBProperties extends Properties {
       return (
         <div>
           Alpha<br/>
-          <input id="alphaInput" type="number" min="0" max="255" defaultValue={this.props.node.alpha} onChange={(event) => {this.alphaChange(event);}} />
+          <input id="alphaInput" type="number" min="0" max="1" defaultValue={this.props.node.alpha} onChange={(event) => {this.alphaChange(event);}} />
           <br/>
         </div>
       )

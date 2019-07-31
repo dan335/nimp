@@ -25,7 +25,7 @@ export default class RGBInput extends NodeColor {
     this.red = typeof settings.red !== 'undefined' ? settings.red : 255;
     this.green = typeof settings.green !== 'undefined' ? settings.green : 255;
     this.blue = typeof settings.blue !== 'undefined' ? settings.blue : 255;
-    this.alpha = typeof settings.alpha !== 'undefined' ? settings.alpha : 255;
+    this.alpha = typeof settings.alpha !== 'undefined' ? settings.alpha : 1;
   }
 
 
@@ -69,7 +69,7 @@ export default class RGBInput extends NodeColor {
     red = Math.min(255, Math.max(0, red));
     green = Math.min(255, Math.max(0, green));
     blue = Math.min(255, Math.max(0, blue));
-    alpha = Math.min(255, Math.max(0, alpha));
+    alpha = Math.min(1, Math.max(0, alpha));
 
     this.color = tinycolor({ r:red, g:green, b:blue, a:alpha });
 
