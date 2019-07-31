@@ -50,12 +50,12 @@ export default class NodeColor extends Node {
 
 
   renderPreview() {
-    new Jimp(1, 1, this.color.toHex8String(), (error, image) => {
+    new Jimp(1, 1, this.color.toHex8(), (error, image) => {
       if (error) {
         console.log(error);
       } else {
-        image.getBufferAsync(Jimp.MIME_JPEG).then(i => {
-          this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_JPEG+';base64,'+i.toString('base64'));
+        image.getBufferAsync(Jimp.MIME_PNG).then(i => {
+          this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64'));
         });
       }
     })
