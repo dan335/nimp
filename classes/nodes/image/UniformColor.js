@@ -102,7 +102,7 @@ export default class UniformColor extends NodeImage {
         conn.runNode();
       })
       this.outputs[3].connections.forEach(conn => {
-        conn.color = this.color;
+        conn.color = tinycolor(this.color);
         conn.runNode();
       })
     }
