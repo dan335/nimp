@@ -38,17 +38,17 @@ export default class ElseNumber extends NodeNumber {
       a = this.inputs[2].number;
     }
 
-    if (this.inputs[0].number && this.inputs[1].number) {
+    if (this.inputs[0].number != null && this.inputs[1].number != null) {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
 
       this.number = null;
       if (a) {
-        if (this.inputs[0].number) {
+        if (this.inputs[0].number != null) {
           this.number = this.inputs[0].number;
         }
       } else {
-        if (this.inputs[1].number) {
+        if (this.inputs[1].number != null) {
           this.number = this.inputs[1].number;
         }
       }
