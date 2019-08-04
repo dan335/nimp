@@ -55,7 +55,7 @@ export default class ComplimentColor extends NodeColor {
 
   passToChildren() {
     this.outputs[0].connections.forEach(conn => {
-      conn.color = this.colors[0];
+      conn.color = this.color;
       conn.runNode();
     })
   }
