@@ -2,6 +2,7 @@ import NodeImage from '../NodeImage.js';
 import RotateProperties from './RotateProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
+import InputColor from '../InputColor.js';
 import RotateInputNumberDegrees from './RotateInputNumberDegrees.js';
 
 
@@ -11,7 +12,8 @@ export default class Rotate extends NodeImage {
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
-      new RotateInputNumberDegrees(this, 1, 'Degrees')
+      new RotateInputNumberDegrees(this, 1, 'Degrees'),
+      new InputColor(this, 2, 'Background')
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')
@@ -50,14 +52,26 @@ export default class Rotate extends NodeImage {
         resize = this.mode;
       }
 
+      let background = null;
+
+      if (this.inputs[2].color) {
+        background = parseInt(this.inputs[2].color.toHex8(), 16);
+      }
+
       if (this.isInsideALoop) {
         let image = this.inputs[0].image.clone();
+        if (background) {
+          image.background(background);
+        }
         image.rotate(degrees, resize);
         this.image = image;
         super.run(inputThatTriggered);
 
       } else {
         Jimp.read(this.inputs[0].image).then(image => {
+          if (background) {
+            image.background(background);
+          }
           image.rotate(degrees, resize, (error, image) => {
             if (error) {
               console.log(error);
