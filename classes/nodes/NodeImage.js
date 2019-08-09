@@ -53,8 +53,6 @@ export default class NodeImage extends Node {
         })
       }
     })
-
-    this.image = undefined;
   }
 
 
@@ -73,7 +71,7 @@ export default class NodeImage extends Node {
     }
 
     if (this.image) {
-      this.renderPreview();
+      this.debouncedRenderPreview();
     } else {
       this.preview.setAttributeNS(null, 'href', '');
     }
