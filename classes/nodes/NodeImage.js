@@ -44,7 +44,7 @@ export default class NodeImage extends Node {
       if (output instanceof OutputImage) {
         output.connections.forEach(conn => {
           if (this.image) {
-            conn.image = this.image.clone();
+            conn.image = this.image;
             conn.runNode();
           } else {
             conn.image = null;
