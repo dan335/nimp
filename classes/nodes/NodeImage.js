@@ -54,11 +54,7 @@ export default class NodeImage extends Node {
       }
     })
 
-    if (this.image) {
-      this.debouncedRenderPreview();
-    } else {
-      this.preview.setAttributeNS(null, 'href', '');
-    }
+    this.image = undefined;
   }
 
 
@@ -76,13 +72,19 @@ export default class NodeImage extends Node {
       this.view();
     }
 
+    if (this.image) {
+      this.renderPreview();
+    } else {
+      this.preview.setAttributeNS(null, 'href', '');
+    }
+
     this.passToChildren();
   }
 
 
   renderPreview() {
-    this.image.resize(settings.nodeWidth, Jimp.AUTO, (error, image) => {
-      this.image.getBufferAsync(Jimp.MIME_PNG).then(i => {
+    this.image.clone().resize(settings.nodeWidth, Jimp.AUTO, (error, image) => {
+      image.getBufferAsync(Jimp.MIME_PNG).then(i => {
         this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64'));
       })
     })
