@@ -1,6 +1,8 @@
 import Node from './Node.js';
 import OutputImage from './OutputImage.js';
 var debounce = require('lodash.debounce');
+import settings from '../../lib/settings.js';
+
 
 
 export default class NodeImage extends Node {
@@ -42,7 +44,7 @@ export default class NodeImage extends Node {
       if (output instanceof OutputImage) {
         output.connections.forEach(conn => {
           if (this.image) {
-            conn.image = this.image;
+            conn.image = this.image.clone();
             conn.runNode();
           } else {
             conn.image = null;
@@ -51,6 +53,12 @@ export default class NodeImage extends Node {
         })
       }
     })
+
+    if (this.image) {
+      this.debouncedRenderPreview();
+    } else {
+      this.preview.setAttributeNS(null, 'href', '');
+    }
   }
 
 
@@ -68,19 +76,15 @@ export default class NodeImage extends Node {
       this.view();
     }
 
-    if (this.image) {
-      this.debouncedRenderPreview();
-    } else {
-      this.preview.setAttributeNS(null, 'href', '');
-    }
-
     this.passToChildren();
   }
 
 
   renderPreview() {
-    this.image.getBufferAsync(Jimp.MIME_PNG).then(i => {
-      this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64'));
+    this.image.resize(settings.nodeWidth, Jimp.AUTO, (error, image) => {
+      this.image.getBufferAsync(Jimp.MIME_PNG).then(i => {
+        this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64'));
+      })
     })
   }
 }
