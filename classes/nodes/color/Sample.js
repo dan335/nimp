@@ -9,7 +9,7 @@ const tinycolor = require("tinycolor2");
 
 export default class Sample extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Sample Pixel', SampleProperties);
+    super(className, graph, x, y, 'Sample Pixel', SampleProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

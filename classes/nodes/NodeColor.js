@@ -4,12 +4,13 @@ var debounce = require('lodash.debounce');
 
 
 export default class NodeColor extends Node {
-  constructor(className, graph, x, y, name, propertiesComponent) {
-    super(className, graph, x, y, name, propertiesComponent);
+  constructor(className, graph, x, y, name, propertiesComponent, settings) {
+    super(className, graph, x, y, name, propertiesComponent, settings);
 
     this.color = tinycolor('#fff');
 
     this.debouncedRenderPreview = debounce(this.renderPreview, 300);
+    this.renderName();
   }
 
 

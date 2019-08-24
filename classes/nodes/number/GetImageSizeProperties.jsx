@@ -12,6 +12,7 @@ export default class GetImageSizeProperties extends Properties {
       <div>
         <div className="propertiesTitle">Get Image Size</div>
         <div style={{padding:'10px'}}>
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

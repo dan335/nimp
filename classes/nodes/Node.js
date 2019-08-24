@@ -4,7 +4,7 @@ var ObjectId = require('bson-objectid');
 
 
 export default class Node {
-  constructor(className, graph, x, y, title, propertiesComponent) {
+  constructor(className, graph, x, y, title, propertiesComponent, nodeSettings) {
     this.className = className;
     this.id = new ObjectId().toHexString();
     this.graph = graph;
@@ -21,6 +21,7 @@ export default class Node {
     this.lastMousePos = {x:0,y:0};
     this.isHelpTextVisible = false;
     this.run = this.run.bind(this);
+    this.name = typeof nodeSettings.name !== 'undefined' ? nodeSettings.name : '';
   }
 
 
@@ -190,7 +191,9 @@ export default class Node {
       y: this.y,
       inputs: [],
       outputs: [],
-      settings: {}
+      settings: {
+        name: this.name
+      }
     };
 
     this.inputs.forEach(input => {
@@ -237,5 +240,10 @@ export default class Node {
   }
 
   connectionRemoved() {
+  }
+
+
+  renderName() {
+    this.bmpSize.textContent = this.name;
   }
 }

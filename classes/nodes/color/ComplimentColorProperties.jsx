@@ -20,6 +20,7 @@ export default class ComplimentColorProperties extends Properties {
         <div className="propertiesTitle">Compliment Color</div>
 
         <div style={{padding:'10px'}}>
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

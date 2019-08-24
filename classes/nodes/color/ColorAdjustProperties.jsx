@@ -100,6 +100,7 @@ export default class ColorAdjustProperties extends Properties {
           {this.renderSaturation()}<br/>
           {this.renderLightness()}<br/>
           {this.renderBrightness()}<br/>
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

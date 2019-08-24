@@ -15,6 +15,13 @@ export default class Properties extends React.Component {
   }
 
 
+  nameChange() {
+    const elm = document.getElementById('nameInput');
+    this.props.node.name = elm.value;
+    this.props.node.renderName();
+  }
+
+
   runNode() {
     this.props.node.run(null);
   }
@@ -23,6 +30,17 @@ export default class Properties extends React.Component {
   renderRun() {
     return (
       <button onClick={event => {this.runNode()}} style={{width:'100%', marginTop:'30px'}}>Run Node</button>
+    )
+  }
+
+
+  renderName() {
+    return (
+      <div>
+        <br/>
+        Name<br/>
+        <input id="nameInput" defaultValue={this.props.node.name} type="text" onChange={(event) => {this.nameChange(event);}}/>
+      </div>
     )
   }
 

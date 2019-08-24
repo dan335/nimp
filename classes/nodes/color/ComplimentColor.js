@@ -7,7 +7,7 @@ import InputColor from '../InputColor.js';
 
 export default class ComplimentColor extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Compliment Color', ComplimentColorProperties);
+    super(className, graph, x, y, 'Compliment Color', ComplimentColorProperties, settings);
 
     this.inputs = [
       new InputColor(this, 0, 'Input'),

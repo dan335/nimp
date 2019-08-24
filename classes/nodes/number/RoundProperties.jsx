@@ -28,6 +28,7 @@ export default class RoundProperties extends Properties {
         <div className="propertiesTitle">Round a Number</div>
         <div style={{padding:'10px'}}>
           {this.renderResult()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

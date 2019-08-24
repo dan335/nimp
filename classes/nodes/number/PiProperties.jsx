@@ -14,6 +14,7 @@ export default class PiProperties extends Properties {
 
         <div style={{padding:'10px'}}>
           {this.props.node.number}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

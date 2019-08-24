@@ -28,6 +28,7 @@ export default class RandomNumberProperties extends Properties {
           <br/>
           <br/>
           Regenerate input is optional.
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

@@ -11,7 +11,7 @@ import InputColor from '../InputColor.js';
 
 export default class ColorAdjust extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Adjust', ColorAdjustProperties);
+    super(className, graph, x, y, 'Adjust', ColorAdjustProperties, settings);
 
     this.inputs = [
       new InputColor(this, 0, 'Input'),

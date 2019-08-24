@@ -20,6 +20,7 @@ export default class GetAlphaProperties extends Properties {
         <div className="propertiesTitle">Analogous Colors</div>
 
         <div style={{padding:'10px'}}>
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

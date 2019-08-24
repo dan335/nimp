@@ -10,7 +10,7 @@ import InputNumberAlpha from './InputNumberAlpha.js';
 
 export default class HSLInput extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'HSL Input', HSLInputProperties);
+    super(className, graph, x, y, 'HSL Input', HSLInputProperties, settings);
 
     this.inputs = [
       new InputNumberHue(this, 0, 'Hue'),

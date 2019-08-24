@@ -21,6 +21,7 @@ export default class GetBrightnessProperties extends Properties {
 
         <div style={{padding:'10px'}}>
           0 - 255
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

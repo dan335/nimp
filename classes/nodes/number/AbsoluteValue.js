@@ -5,7 +5,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class AbsoluteValue extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Absolute Value', AbsoluteValueProperties);
+    super(className, graph, x, y, 'Absolute Value', AbsoluteValueProperties, settings);
 
     this.inputs = [
       new AbsoluteValueInputNumberA(this, 0, 'a'),

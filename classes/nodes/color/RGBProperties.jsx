@@ -103,6 +103,7 @@ export default class RGBProperties extends Properties {
           {this.renderGreen()}
           {this.renderBlue()}
           {this.renderAlpha()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

@@ -6,7 +6,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class SubtractNumbers extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Subtract', SubtractNumbersProperties);
+    super(className, graph, x, y, 'Subtract', SubtractNumbersProperties, settings);
 
     this.inputs = [
       new SubtractNumbersInputNumberA(this, 0, 'a'),

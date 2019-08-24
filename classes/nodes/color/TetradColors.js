@@ -7,7 +7,7 @@ import InputColor from '../InputColor.js';
 
 export default class TetradColors extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Tetrad Colors', TetradColorsProperties);
+    super(className, graph, x, y, 'Tetrad Colors', TetradColorsProperties, settings);
 
     this.inputs = [
       new InputColor(this, 0, 'Input'),

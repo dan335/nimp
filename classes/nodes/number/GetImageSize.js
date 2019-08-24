@@ -5,7 +5,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class GetImageSize extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Get Image Size', GetImageSizeProperties);
+    super(className, graph, x, y, 'Get Image Size', GetImageSizeProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

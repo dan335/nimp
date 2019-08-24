@@ -10,7 +10,7 @@ import InputNumberAmount from '../inputs/InputNumberAmount.js';
 
 export default class MixColors extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Mix Colors', MixColorsProperties);
+    super(className, graph, x, y, 'Mix Colors', MixColorsProperties, settings);
 
     this.inputs = [
       new InputColorA(this, 0, 'Color A'),

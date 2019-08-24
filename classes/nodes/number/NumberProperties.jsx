@@ -24,6 +24,7 @@ export default class NumberProperties extends Properties {
         <div style={{padding:'10px'}}>
           Number<br/>
           <input id="numberInput" type="number" defaultValue={this.props.node.number} onChange={(event) => {this.numChange(event);}} />
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

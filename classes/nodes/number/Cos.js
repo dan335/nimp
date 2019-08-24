@@ -5,7 +5,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class Cos extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Cosine', CosProperties);
+    super(className, graph, x, y, 'Cosine', CosProperties, settings);
 
     this.inputs = [
       new InputNumberA(this, 0, 'a'),

@@ -29,6 +29,7 @@ export default class MinNumbersProperties extends Properties {
         <div className="propertiesTitle">Minimum of Two Numbers</div>
         <div style={{padding:'10px'}}>
           {this.renderResult()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

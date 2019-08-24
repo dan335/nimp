@@ -2,12 +2,13 @@ import Node from './Node.js';
 
 
 export default class NodeNumber extends Node {
-  constructor(className, graph, x, y, name, propertiesComponent) {
-    super(className, graph, x, y, name, propertiesComponent);
+  constructor(className, graph, x, y, name, propertiesComponent, settings) {
+    super(className, graph, x, y, name, propertiesComponent, settings);
 
     this.number = 1;
 
     this.textPreview.style.display = 'block';
+    this.renderName();
   }
 
 

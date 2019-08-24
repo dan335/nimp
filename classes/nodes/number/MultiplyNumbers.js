@@ -6,7 +6,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class MultiplyNumbers extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Multiply', MultiplyNumbersProperties);
+    super(className, graph, x, y, 'Multiply', MultiplyNumbersProperties, settings);
 
     this.inputs = [
       new MultiplyNumbersInputNumberA(this, 0, 'a'),

@@ -101,6 +101,7 @@ export default class HSLInputProperties extends Properties {
           {this.renderSaturation()}<br/>
           {this.renderLightness()}<br/>
           {this.renderAlpha()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>
