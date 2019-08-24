@@ -110,15 +110,6 @@ export default class Line extends NodeImage {
 
     width = Math.max(1, width);
     height = Math.max(1, height);
-    x1 = Math.max(0, x1);
-    y1 = Math.max(0, y1);
-    x2 = Math.max(0, x2);
-    y2 = Math.max(0, y2);
-
-    x1 = Math.min(width, x1);
-    y1 = Math.min(height, y1);
-    x2 = Math.min(width, x2);
-    y2 = Math.min(height, y2);
 
     lineWidth = Math.max(1, lineWidth);
 
