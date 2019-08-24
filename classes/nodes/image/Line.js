@@ -166,31 +166,7 @@ export default class Line extends NodeImage {
     ctx.stroke();
 
     const imgd = ctx.getImageData(0, 0, width, height);
-    //const pix = imgd.data;
-
     image.bitmap.data = imgd.data;
-
-    // image.scan(0, 0, image.bitmap.width, image.bitmap.height, function(x, y, idx) {
-    //   this.bitmap.data[idx] = pix[]
-    // })
-
-
-    // let centerX = image.bitmap.width / 2;
-    // let centerY = image.bitmap.height / 2;
-    // let radius = Math.min(image.bitmap.width, image.bitmap.height) / 2 - padding;
-    //
-    // image.scan(0, 0, image.bitmap.width, image.bitmap.height, function(x, y, idx) {
-    //   let a = x + 0.5 - centerX;
-    //   let b = y + 0.5 - centerY;
-    //   let distance = Math.sqrt(a*a+b*b);
-    //
-    //   if (distance < radius) {
-    //     // inside
-    //   } else {
-    //     // outside
-    //     this.bitmap.data[idx+3] = 0;
-    //   }
-    // })
 
     return image;
   }
