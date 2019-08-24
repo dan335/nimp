@@ -5,7 +5,7 @@ import InputNumber from '../InputNumber.js';
 
 export default class RandomNumber extends NodeNumber {
   constructor(className, graph, x, y) {
-    super(className, graph, x, y, 'Random Number', RandomNumberProperties);
+    super(className, graph, x, y, 'Random Number', RandomNumberProperties, settings);
 
     this.inputs = [
       new InputNumber(this, 0, 'Regenerate')

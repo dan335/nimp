@@ -29,6 +29,7 @@ export default class ExponentNumbersProperties extends Properties {
         <div className="propertiesTitle">Exponent of Numbers</div>
         <div style={{padding:'10px'}}>
           {this.renderResult()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

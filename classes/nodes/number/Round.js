@@ -5,7 +5,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class Round extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Round', RoundProperties);
+    super(className, graph, x, y, 'Round', RoundProperties, settings);
 
     this.inputs = [
       new RoundInputNumberA(this, 0, 'a'),

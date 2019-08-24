@@ -5,7 +5,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class Sin extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Sine', SinProperties);
+    super(className, graph, x, y, 'Sine', SinProperties, settings);
 
     this.inputs = [
       new InputNumberA(this, 0, 'a'),

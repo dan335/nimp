@@ -7,7 +7,7 @@ import InputColor from '../InputColor.js';
 
 export default class SplitComplimentColors extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Split Compliment Colors', SplitComplimentColorsProperties);
+    super(className, graph, x, y, 'Split Compliment Colors', SplitComplimentColorsProperties, settings);
 
     this.inputs = [
       new InputColor(this, 0, 'Input'),

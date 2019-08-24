@@ -28,6 +28,7 @@ export default class DegreesToRadiansProperties extends Properties {
         <div className="propertiesTitle">Radians to Degrees</div>
         <div style={{padding:'10px'}}>
           {this.renderResult()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

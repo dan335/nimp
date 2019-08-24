@@ -6,7 +6,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class ModuloNumbers extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Mod', ModuloNumbersProperties);
+    super(className, graph, x, y, 'Mod', ModuloNumbersProperties, settings);
 
     this.inputs = [
       new ModuloNumbersInputNumberA(this, 0, 'a'),

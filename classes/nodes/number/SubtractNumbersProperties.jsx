@@ -29,6 +29,7 @@ export default class SubtractNumbersProperties extends Properties {
         <div className="propertiesTitle">Subtract Numbers</div>
         <div style={{padding:'10px'}}>
           {this.renderResult()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

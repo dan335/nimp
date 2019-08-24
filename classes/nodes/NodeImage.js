@@ -6,8 +6,8 @@ import settings from '../../lib/settings.js';
 
 
 export default class NodeImage extends Node {
-  constructor(className, graph, x, y, name, propertiesComponent) {
-    super(className, graph, x, y, name, propertiesComponent);
+  constructor(className, graph, x, y, name, propertiesComponent, settings) {
+    super(className, graph, x, y, name, propertiesComponent, settings);
 
     this.image = null;
 

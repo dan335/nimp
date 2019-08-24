@@ -4,7 +4,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class Number extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Number', NumberProperties);
+    super(className, graph, x, y, 'Number', NumberProperties, settings);
 
     this.inputs = [];
     this.outputs = [

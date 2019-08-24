@@ -7,7 +7,7 @@ import InputColor from '../InputColor.js';
 
 export default class GetLuminance extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Get Luminance', GetLuminanceProperties);
+    super(className, graph, x, y, 'Get Luminance', GetLuminanceProperties, settings);
 
     this.inputs = [
       new InputColor(this, 0, 'Input')

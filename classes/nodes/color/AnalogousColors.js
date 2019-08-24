@@ -7,7 +7,7 @@ import InputColor from '../InputColor.js';
 
 export default class AnalogousColors extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Analogous Colors', AnalogousColorsProperties);
+    super(className, graph, x, y, 'Analogous Colors', AnalogousColorsProperties, settings);
 
     this.inputs = [
       new InputColor(this, 0, 'Input'),

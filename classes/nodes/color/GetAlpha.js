@@ -7,7 +7,7 @@ import InputColor from '../InputColor.js';
 
 export default class GetAlpha extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Get Alpha', GetAlphaProperties);
+    super(className, graph, x, y, 'Get Alpha', GetAlphaProperties, settings);
 
     this.inputs = [
       new InputColor(this, 0, 'Input')

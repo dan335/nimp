@@ -63,6 +63,7 @@ export default class SampleProperties extends Properties {
           <br/>
           {this.renderX()}
           {this.renderY()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

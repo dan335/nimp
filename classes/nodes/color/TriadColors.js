@@ -7,7 +7,7 @@ import InputColor from '../InputColor.js';
 
 export default class TriadColors extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Triad Colors', TriadColorsProperties);
+    super(className, graph, x, y, 'Triad Colors', TriadColorsProperties, settings);
 
     this.inputs = [
       new InputColor(this, 0, 'Input'),

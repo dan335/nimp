@@ -28,6 +28,7 @@ export default class CosProperties extends Properties {
         <div className="propertiesTitle">Cosine of a Number</div>
         <div style={{padding:'10px'}}>
           {this.renderResult()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

@@ -5,7 +5,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class Floor extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Floor', FloorProperties);
+    super(className, graph, x, y, 'Floor', FloorProperties, settings);
 
     this.inputs = [
       new FloorInputNumberA(this, 0, 'a'),

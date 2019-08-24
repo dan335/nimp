@@ -4,7 +4,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class Slider extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Slider', SliderProperties);
+    super(className, graph, x, y, 'Slider', SliderProperties, settings);
 
     this.inputs = [];
     this.outputs = [

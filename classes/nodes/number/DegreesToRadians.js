@@ -5,7 +5,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class DegreesToRadians extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Degrees to Radians', DegreesToRadiansProperties);
+    super(className, graph, x, y, 'Degrees to Radians', DegreesToRadiansProperties, settings);
 
     this.inputs = [
       new InputNumberA(this, 0, 'a'),

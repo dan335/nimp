@@ -6,7 +6,7 @@ const tinycolor = require("tinycolor2");
 
 export default class ColorInput extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Color Input', ColorInputProperties);
+    super(className, graph, x, y, 'Color Input', ColorInputProperties, settings);
 
     this.inputs = [];
     this.outputs = [

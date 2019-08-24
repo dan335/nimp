@@ -10,7 +10,7 @@ import InputNumberAlpha from './InputNumberAlpha.js';
 
 export default class RGBInput extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'RGB Input', RGBProperties);
+    super(className, graph, x, y, 'RGB Input', RGBProperties, settings);
 
     this.inputs = [
       new InputNumberRed(this, 0, 'Red'),

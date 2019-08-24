@@ -28,6 +28,7 @@ export default class CeilProperties extends Properties {
         <div className="propertiesTitle">Ceil a Number</div>
         <div style={{padding:'10px'}}>
           {this.renderResult()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

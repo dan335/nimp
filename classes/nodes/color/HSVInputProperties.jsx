@@ -101,6 +101,7 @@ export default class HSVInputProperties extends Properties {
           {this.renderSaturation()}<br/>
           {this.renderValue()}<br/>
           {this.renderAlpha()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

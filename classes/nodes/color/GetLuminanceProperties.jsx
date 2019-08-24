@@ -21,6 +21,7 @@ export default class GetLuminanceProperties extends Properties {
 
         <div style={{padding:'10px'}}>
           0 - 1
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

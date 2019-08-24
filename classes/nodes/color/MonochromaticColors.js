@@ -7,7 +7,7 @@ import InputColor from '../InputColor.js';
 
 export default class MonochromaticColors extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Monochromatic Colors', MonochromaticColorsProperties);
+    super(className, graph, x, y, 'Monochromatic Colors', MonochromaticColorsProperties, settings);
 
     this.inputs = [
       new InputColor(this, 0, 'Input'),

@@ -76,6 +76,7 @@ export default class MixColorsProperties extends Properties {
           {this.renderColorB()}
           <br/>
           {this.renderAmount()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

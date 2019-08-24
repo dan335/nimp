@@ -4,7 +4,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class Pi extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Pi', PiProperties);
+    super(className, graph, x, y, 'Pi', PiProperties, settings);
 
     this.inputs = [];
     this.outputs = [

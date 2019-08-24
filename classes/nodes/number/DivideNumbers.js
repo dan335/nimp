@@ -6,7 +6,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class DivideNumbers extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Divide', DivideNumbersProperties);
+    super(className, graph, x, y, 'Divide', DivideNumbersProperties, settings);
 
     this.inputs = [
       new DivideNumbersInputNumberA(this, 0, 'a'),

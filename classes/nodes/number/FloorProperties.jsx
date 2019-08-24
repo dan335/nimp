@@ -28,6 +28,7 @@ export default class FloorProperties extends Properties {
         <div className="propertiesTitle">Floor a Number</div>
         <div style={{padding:'10px'}}>
           {this.renderResult()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

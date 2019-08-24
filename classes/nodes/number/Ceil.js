@@ -5,7 +5,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class Ceil extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Ceil', CeilProperties);
+    super(className, graph, x, y, 'Ceil', CeilProperties, settings);
 
     this.inputs = [
       new CeilInputNumberA(this, 0, 'a'),

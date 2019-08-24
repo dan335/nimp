@@ -91,7 +91,7 @@ export default class SliderProperties extends Properties {
           {this.renderMin()}
           {this.renderMax()}
           {this.renderStep()}
-
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>

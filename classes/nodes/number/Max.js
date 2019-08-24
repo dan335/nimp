@@ -6,7 +6,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class Max extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Max', MaxProperties);
+    super(className, graph, x, y, 'Max', MaxProperties, settings);
 
     this.inputs = [
       new InputNumberA(this, 0, 'a'),

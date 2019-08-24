@@ -29,6 +29,7 @@ export default class MaxNumbersProperties extends Properties {
         <div className="propertiesTitle">Maximum of Two Numbers</div>
         <div style={{padding:'10px'}}>
           {this.renderResult()}
+          {this.renderName()}
           {this.renderRun()}
         </div>
       </div>
