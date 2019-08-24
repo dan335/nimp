@@ -103,9 +103,19 @@ export default class GraphView extends React.Component {
 
 
   resize() {
-    const elm = document.getElementById('mainContainer');
+    let elm = document.getElementById('mainContainer');
     if (elm) {
       elm.style.height = window.innerHeight + 'px';
+    }
+
+    elm = document.getElementById('midLeftNodes');
+    if (elm) {
+      elm.style.maxHeight = (window.innerHeight - 36) + 'px';
+    }
+
+    elm = document.getElementById('midLeftCategories');
+    if (elm) {
+      elm.style.maxHeight = (window.innerHeight - 36) + 'px';
     }
   }
 
@@ -550,6 +560,16 @@ export default class GraphView extends React.Component {
 
           .nodeConnection.invalidConnection {
             fill: hsl(0, 60%, 60%);
+          }
+
+          #midLeftNodes {
+            overflow-y: auto;
+            overflow-x: hidden;
+          }
+
+          #midLeftCategories {
+            overflow-y: auto;
+            overflow-x: hidden;
           }
         `}</style>
       </div>
