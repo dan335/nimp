@@ -58,7 +58,7 @@ export default class Sample extends NodeColor {
 
       const pixel = this.inputs[0].image.getPixelIndex(xValue, yValue);
 
-      this.color = tinycolor('rgb '+this.inputs[0].image.bitmap.data[pixel]+' '+this.inputs[0].image.bitmap.data[pixel+1]+' '+this.inputs[0].image.bitmap.data[pixel+2]+' '+this.inputs[0].image.bitmap.data[pixel+3])
+      this.color = tinycolor('rgba '+this.inputs[0].image.bitmap.data[pixel]+' '+this.inputs[0].image.bitmap.data[pixel+1]+' '+this.inputs[0].image.bitmap.data[pixel+2]+' '+(this.inputs[0].image.bitmap.data[pixel+3]/255))
 
       super.run(inputThatTriggered);
 
