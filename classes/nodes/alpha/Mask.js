@@ -7,7 +7,7 @@ import MaskInputNumberY from './MaskInputNumberY.js';
 
 export default class Mask extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Mask', MaskProperties);
+    super(className, graph, x, y, 'Mask', MaskProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

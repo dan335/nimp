@@ -7,7 +7,7 @@ import BlurInputNumberRadius from './BlurInputNumberRadius.js';
 
 export default class GaussianBlur extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Gaussian Blur', GaussianBlurProperties);
+    super(className, graph, x, y, 'Gaussian Blur', GaussianBlurProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

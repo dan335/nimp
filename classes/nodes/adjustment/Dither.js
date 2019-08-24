@@ -5,7 +5,7 @@ import InputImage from '../InputImage.js';
 
 export default class Dither extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Dither', DitherProperties);
+    super(className, graph, x, y, 'Dither', DitherProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input')

@@ -10,7 +10,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class Crop extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Crop', CropProperties);
+    super(className, graph, x, y, 'Crop', CropProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

@@ -5,7 +5,7 @@ import OutputNumber from '../OutputNumber.js';
 
 export default class ImageUpload extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'ImageUpload', ImageUploadProperties);
+    super(className, graph, x, y, 'ImageUpload', ImageUploadProperties, settings);
 
     this.inputs = [];
     this.outputs = [

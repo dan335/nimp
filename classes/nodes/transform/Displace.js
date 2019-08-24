@@ -6,7 +6,7 @@ import DisplaceInputNumberOffset from './DisplaceInputNumberOffset.js';
 
 export default class Displace extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Displace', DisplaceProperties);
+    super(className, graph, x, y, 'Displace', DisplaceProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

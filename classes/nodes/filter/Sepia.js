@@ -5,7 +5,7 @@ import InputImage from '../InputImage.js';
 
 export default class Sepia extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Sepia', SepiaProperties);
+    super(className, graph, x, y, 'Sepia', SepiaProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input')

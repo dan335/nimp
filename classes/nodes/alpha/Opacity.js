@@ -7,7 +7,7 @@ import InputNumberAmount from '../inputs/InputNumberAmount.js';
 
 export default class Opacity extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Opacity', OpacityProperties);
+    super(className, graph, x, y, 'Opacity', OpacityProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

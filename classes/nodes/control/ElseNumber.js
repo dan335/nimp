@@ -7,7 +7,7 @@ import ElseInputNumberA from './ElseInputNumberA.js';
 
 export default class ElseNumber extends NodeNumber {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Number If Else', ElseNumberProperties);
+    super(className, graph, x, y, 'Number If Else', ElseNumberProperties, settings);
 
     this.inputs = [
       new InputNumber(this, 0, 'Input A'),

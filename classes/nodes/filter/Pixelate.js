@@ -10,7 +10,7 @@ import InputNumberHeight from '../inputs/InputNumberHeight.js';
 
 export default class Pixelate extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Pixelate', PixelateProperties);
+    super(className, graph, x, y, 'Pixelate', PixelateProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Dest'),
