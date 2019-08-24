@@ -231,4 +231,11 @@ export default class Node {
 
     this.isHelpTextVisible = false;
   }
+
+
+  connectionMade() {
+  }
+
+  connectionRemoved() {
+  }
 }
