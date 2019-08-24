@@ -7,7 +7,7 @@ import ResizeInputNumberY from './ResizeInputNumberY.js';
 
 export default class Resize extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Resize', ResizeProperties);
+    super(className, graph, x, y, 'Resize', ResizeProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

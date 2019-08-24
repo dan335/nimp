@@ -17,7 +17,7 @@ const tinycolor = require("tinycolor2");
 
 export default class Line extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Line', LineProperties);
+    super(className, graph, x, y, 'Line', LineProperties, settings);
 
     this.inputs = [
       new InputNumberWidth(this, 0, 'Width'),

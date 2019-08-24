@@ -6,7 +6,7 @@ import InputImage from '../InputImage.js';
 
 export default class ChannelMerge extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Channel Merge', ChannelMergeProperties);
+    super(className, graph, x, y, 'Channel Merge', ChannelMergeProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Red'),

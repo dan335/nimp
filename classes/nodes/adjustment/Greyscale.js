@@ -5,7 +5,7 @@ import InputImage from '../InputImage.js';
 
 export default class Greyscale extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Greyscale', GreyscaleProperties);
+    super(className, graph, x, y, 'Greyscale', GreyscaleProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input')

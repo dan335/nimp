@@ -9,7 +9,7 @@ import InputNumberHeight from '../inputs/InputNumberHeight.js';
 
 export default class Text extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Text', TextProperties);
+    super(className, graph, x, y, 'Text', TextProperties, settings);
 
     this.inputs = [
       new InputNumberWidth(this, 0, 'Width'),

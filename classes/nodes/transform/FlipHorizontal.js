@@ -5,7 +5,7 @@ import InputImage from '../InputImage.js';
 
 export default class FlipHorizontal extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Flip Horizontally', FlipHorizontalProperties);
+    super(className, graph, x, y, 'Flip Horizontally', FlipHorizontalProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input')

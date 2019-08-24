@@ -11,7 +11,7 @@ import BlitInputNumberSrcHeight from './BlitInputNumberSrcHeight.js';
 
 export default class Blit extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Blit', BlitProperties);
+    super(className, graph, x, y, 'Blit', BlitProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Dest'),

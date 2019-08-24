@@ -7,7 +7,7 @@ import IfInputNumberA from './IfInputNumberA.js';
 
 export default class If extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'If', IfProperties);
+    super(className, graph, x, y, 'If', IfProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

@@ -9,7 +9,7 @@ import LoopOutputImageLoopInput from './LoopOutputImageLoopInput.js'
 
 export default class Loop extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Loop', LoopProperties);
+    super(className, graph, x, y, 'Loop', LoopProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

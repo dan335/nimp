@@ -7,7 +7,7 @@ import InputNumberAmount from '../inputs/InputNumberAmount.js';
 
 export default class Posterize extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Posterize', PosterizeProperties);
+    super(className, graph, x, y, 'Posterize', PosterizeProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

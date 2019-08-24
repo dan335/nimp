@@ -7,7 +7,7 @@ import BlurInputNumberRadius from './BlurInputNumberRadius.js';
 
 export default class Blur extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Blur', BlurProperties);
+    super(className, graph, x, y, 'Blur', BlurProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

@@ -5,7 +5,7 @@ import InputImage from '../InputImage.js';
 
 export default class Normalize extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Normalize', NormalizeProperties);
+    super(className, graph, x, y, 'Normalize', NormalizeProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input')

@@ -8,7 +8,7 @@ import fetch from 'isomorphic-unfetch';
 
 export default class PasteImage extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Image from Clipboard', PasteImageProperties);
+    super(className, graph, x, y, 'Image from Clipboard', PasteImageProperties, settings);
 
     this.inputs = [];
     this.outputs = [

@@ -8,7 +8,7 @@ import fetch from 'isomorphic-unfetch';
 
 export default class UrlImage extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Image from Url', UrlImageProperties);
+    super(className, graph, x, y, 'Image from Url', UrlImageProperties, settings);
 
     this.inputs = [];
     this.outputs = [

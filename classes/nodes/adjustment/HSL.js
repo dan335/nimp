@@ -8,7 +8,7 @@ import HSLInputNumberLightness from './HSLInputNumberLightness.js';
 
 export default class HSL extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'HSL', HSLProperties);
+    super(className, graph, x, y, 'HSL', HSLProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

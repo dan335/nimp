@@ -13,7 +13,7 @@ const tinycolor = require("tinycolor2");
 
 export default class Circle extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Circle', CircleProperties);
+    super(className, graph, x, y, 'Circle', CircleProperties, settings);
 
     this.inputs = [
       new CircleInputNumberWidth(this, 0, 'Width'),

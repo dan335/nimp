@@ -6,7 +6,7 @@ import InputImage from '../InputImage.js';
 
 export default class ChannelSplit extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Channel Split', ChannelSplitProperties);
+    super(className, graph, x, y, 'Channel Split', ChannelSplitProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input')

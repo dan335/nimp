@@ -8,7 +8,7 @@ import RotateInputNumberDegrees from './RotateInputNumberDegrees.js';
 
 export default class Rotate extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Rotate', RotateProperties);
+    super(className, graph, x, y, 'Rotate', RotateProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

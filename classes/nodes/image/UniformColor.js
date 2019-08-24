@@ -12,7 +12,7 @@ import OutputColor from '../OutputColor.js';
 
 export default class UniformColor extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Uniform Color', UniformColorProperties);
+    super(className, graph, x, y, 'Uniform Color', UniformColorProperties, settings);
 
     this.inputs = [
       new UniformColorInputNumberWidth(this, 0, 'Width'),

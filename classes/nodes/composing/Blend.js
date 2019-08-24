@@ -9,7 +9,7 @@ import BlendInputNumberBottomOpacity from './BlendInputNumberBottomOpacity.js';
 
 export default class Blend extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Blend', BlendProperties);
+    super(className, graph, x, y, 'Blend', BlendProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Background'),

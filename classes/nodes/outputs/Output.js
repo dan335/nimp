@@ -7,7 +7,7 @@ import Jimp from 'jimp';
 
 export default class Output extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Output', OutputProperties);
+    super(className, graph, x, y, 'Output', OutputProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input')

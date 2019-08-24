@@ -7,7 +7,7 @@ import InputNumberAmount from '../inputs/InputNumberAmount.js';
 
 export default class Fade extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Fade', FadeProperties);
+    super(className, graph, x, y, 'Fade', FadeProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),

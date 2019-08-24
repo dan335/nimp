@@ -13,7 +13,7 @@ const tinycolor = require("tinycolor2");
 
 export default class Gradient extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Gradient', GradientProperties);
+    super(className, graph, x, y, 'Gradient', GradientProperties, settings);
 
     this.inputs = [
       new InputNumberWidth(this, 0, 'Width'),

@@ -10,7 +10,7 @@ const tinycolor = require("tinycolor2");
 
 export default class Levels extends NodeImage {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Input Levels', LevelsProperties);
+    super(className, graph, x, y, 'Input Levels', LevelsProperties, settings);
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
