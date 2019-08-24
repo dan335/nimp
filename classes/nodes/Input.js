@@ -74,6 +74,11 @@ export default class Input extends Connection {
   }
 
 
-  connectionMade() {}
-  connectionRemoved() {}
+  connectionMade() {
+    this.node.connectionMade();
+  }
+
+  connectionRemoved() {
+    this.node.connectionRemoved();
+  }
 }
