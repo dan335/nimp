@@ -15,7 +15,7 @@ export default class CosProperties extends Properties {
     if (this.state.hasA) {
       return (
         <div>
-          sin({this.props.node.a}) = {Math.cos(this.props.node.a)}
+          cos({this.props.node.a}) = {Math.cos(this.props.node.a)}
         </div>
       )
     }
