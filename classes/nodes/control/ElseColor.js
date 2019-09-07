@@ -8,7 +8,7 @@ const tinycolor = require("tinycolor2");
 
 export default class ElseColor extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'Color If Else', ElseColorProperties);
+    super(className, graph, x, y, 'Color If Else', ElseColorProperties, settings);
 
     this.inputs = [
       new InputColor(this, 0, 'Input A'),
