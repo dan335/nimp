@@ -11,13 +11,14 @@ export default class TextProperties extends Properties {
       hasWidthInput: props.node.inputs[0].parent ? true : false,
       hasHeightInput: props.node.inputs[1].parent ? true : false,
       hasWidth: props.node.hasWidth,
-      hasHeight: props.node.hasHeight
+      hasHeight: props.node.hasHeight,
+      hasStringInput: props.node.inputs[2].parent ? true : false
     }
   }
 
-  textChange() {
-    const elm = document.getElementById('textInput');
-    this.props.node.text = elm.value;
+  stringChange() {
+    const elm = document.getElementById('stringInput');
+    this.props.node.string = elm.value;
     this.props.node.run(null);
   }
 
@@ -101,6 +102,24 @@ export default class TextProperties extends Properties {
   }
 
 
+  renderString() {
+    if (!this.state.hasStringInput) {
+      return (
+        <div>
+          <label>Text</label>
+          <textarea id="stringInput" defaultValue={this.props.node.string} onChange={this.stringChange.bind(this)}></textarea>
+            <style jsx>{`
+              textarea {
+                width: 100%;
+                min-height: 100px;
+              }
+            `}</style>
+        </div>
+      )
+    }
+  }
+
+
 
 
   render() {
@@ -108,8 +127,7 @@ export default class TextProperties extends Properties {
       <div>
         <div className="propertiesTitle">Text</div>
         <div style={{padding:'10px'}}>
-          <label>Text</label>
-          <textarea id="textInput" defaultValue={this.props.node.text} onChange={this.textChange.bind(this)}></textarea>
+          {this.renderString()}
           <br/><br/>
 
           <label>Font</label><br/>
@@ -150,13 +168,6 @@ export default class TextProperties extends Properties {
           {this.renderHeight()}
           {this.renderRun()}
         </div>
-
-        <style jsx>{`
-          textarea {
-            width: 100%;
-            min-height: 100px;
-          }
-        `}</style>
       </div>
     )
   }

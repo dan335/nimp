@@ -5,6 +5,7 @@ import OutputNumber from '../OutputNumber.js';
 import Jimp from 'jimp';
 import InputNumberWidth from '../inputs/InputNumberWidth.js';
 import InputNumberHeight from '../inputs/InputNumberHeight.js';
+import InputString from '../InputString.js';
 
 
 export default class Text extends NodeImage {
@@ -14,6 +15,7 @@ export default class Text extends NodeImage {
     this.inputs = [
       new InputNumberWidth(this, 0, 'Width'),
       new InputNumberHeight(this, 1, 'Height'),
+      new InputString(this, 2, 'String', 'hasStringInput')
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output'),
@@ -27,7 +29,7 @@ export default class Text extends NodeImage {
     this.height = typeof settings.height !== 'undefined' ? settings.height : 256;
     this.alignmentX = typeof settings.alignmentX !== 'undefined' ? settings.alignmentX : Jimp.HORIZONTAL_ALIGN_LEFT;
     this.alignmentY = typeof settings.alignmentY !== 'undefined' ? settings.alignmentY : Jimp.VERTICAL_ALIGN_MIDDLE;
-    this.text = typeof settings.text !== 'undefined' ? settings.text : 'Nimp';
+    this.string = typeof settings.string !== 'undefined' ? settings.string : 'Nimp';
     this.font = typeof settings.font !== 'undefined' ? settings.font : '/static/fonts/open-sans/open-sans-32-white/open-sans-32-white.fnt';
   }
 
@@ -41,7 +43,7 @@ export default class Text extends NodeImage {
     json.settings.height = this.height;
     json.settings.alignmentX = this.alignmentX;
     json.settings.alignmentY = this.alignmentY;
-    json.settings.text = this.text;
+    json.settings.string = this.string;
     json.settings.font = this.font;
 
     return json;
@@ -56,6 +58,7 @@ export default class Text extends NodeImage {
     let hasHeight = this.hasHeight;
     let width = this.width;
     let height = this.height;
+    let string = this.string;
 
     if (this.inputs[0].number != null) {
       hasWidth = true;
@@ -67,13 +70,17 @@ export default class Text extends NodeImage {
       height = this.inputs[1].number;
     }
 
+    if (this.inputs[2].string != null) {
+      string = this.inputs[2].string;
+    }
+
     Jimp.loadFont(this.font).then(font => {
       if (!hasWidth) {
-        width = Jimp.measureText(font, this.text);
+        width = Jimp.measureText(font, string);
       }
 
       if (!hasHeight) {
-        height = Jimp.measureTextHeight(font, this.text, width);
+        height = Jimp.measureTextHeight(font, string, width);
       }
 
       new Jimp(width, height, '#00000000', (error, image) => {
@@ -82,7 +89,7 @@ export default class Text extends NodeImage {
           this.image = null;
           super.run(inputThatTriggered);
         } else {
-          image.print(font, 0, 0, {text: this.text, alignmentX: this.alignmentX, alignmentY: this.alignmentY}, width, height, (error, image, {x, y}) => {
+          image.print(font, 0, 0, {text: string, alignmentX: this.alignmentX, alignmentY: this.alignmentY}, width, height, (error, image, {x, y}) => {
               if (error) {
                 console.log(error);
                 this.image = null;
