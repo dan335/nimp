@@ -3,12 +3,10 @@ import CircleProperties from './CircleProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 import OutputColor from '../OutputColor.js';
-import CircleInputNumberWidth from './CircleInputNumberWidth.js';
-import CircleInputNumberHeight from './CircleInputNumberHeight.js';
-import CircleInputNumberPadding from './CircleInputNumberPadding.js';
 import Jimp from 'jimp';
 import InputColor from '../InputColor.js';
 const tinycolor = require("tinycolor2");
+import InputNumber from '../InputNumber.js';
 
 
 export default class Circle extends NodeImage {
@@ -16,9 +14,9 @@ export default class Circle extends NodeImage {
     super(className, graph, x, y, 'Circle', CircleProperties, settings);
 
     this.inputs = [
-      new CircleInputNumberWidth(this, 0, 'Width'),
-      new CircleInputNumberHeight(this, 1, 'Height'),
-      new CircleInputNumberPadding(this, 2, 'Padding'),
+      new InputNumber(this, 0, 'Width', 'hasWidthInput'),
+      new InputNumber(this, 1, 'Height', 'hasHeightInput'),
+      new InputNumber(this, 2, 'Padding', 'hasPaddingInput'),
       new InputColor(this, 3, 'Input'),
     ];
     this.outputs = [

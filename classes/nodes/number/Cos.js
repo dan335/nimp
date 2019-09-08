@@ -1,6 +1,6 @@
 import NodeNumber from '../NodeNumber.js';
 import CosProperties from './CosProperties.jsx';
-import InputNumberA from '../inputs/InputNumberA.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Cos extends NodeNumber {
@@ -8,7 +8,7 @@ export default class Cos extends NodeNumber {
     super(className, graph, x, y, 'Cosine', CosProperties, settings);
 
     this.inputs = [
-      new InputNumberA(this, 0, 'a'),
+      new InputNumber(this, 0, 'a', 'hasA'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

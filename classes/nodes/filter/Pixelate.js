@@ -2,11 +2,8 @@ import NodeImage from '../NodeImage.js';
 import PixelateProperties from './PixelateProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import InputNumberSize from '../inputs/InputNumberSize.js';
-import InputNumberX from '../inputs/InputNumberX.js';
-import InputNumberY from '../inputs/InputNumberY.js';
-import InputNumberWidth from '../inputs/InputNumberWidth.js';
-import InputNumberHeight from '../inputs/InputNumberHeight.js';
+import InputNumber from '../InputNumber.js';
+
 
 export default class Pixelate extends NodeImage {
   constructor(className, graph, x, y, settings) {
@@ -14,11 +11,11 @@ export default class Pixelate extends NodeImage {
 
     this.inputs = [
       new InputImage(this, 0, 'Dest'),
-      new InputNumberSize(this, 1, 'Size'),
-      new InputNumberX(this, 2, 'X'),
-      new InputNumberY(this, 3, 'Y'),
-      new InputNumberWidth(this, 4, 'Width'),
-      new InputNumberHeight(this, 5, 'Height'),
+      new InputNumber(this, 1, 'Size', 'hasSizeInput'),
+      new InputNumber(this, 2, 'X', 'hasXInput'),
+      new InputNumber(this, 3, 'Y', 'hasYInput'),
+      new InputNumber(this, 4, 'Width', 'hasWidthInput'),
+      new InputNumber(this, 5, 'Height', 'hasHeightInput'),
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')

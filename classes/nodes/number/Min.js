@@ -1,7 +1,6 @@
 import NodeNumber from '../NodeNumber.js';
 import MinProperties from './MinProperties.jsx';
-import InputNumberA from '../inputs/InputNumberA.js';
-import InputNumberB from '../inputs/InputNumberB.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Min extends NodeNumber {
@@ -9,8 +8,8 @@ export default class Min extends NodeNumber {
     super(className, graph, x, y, 'Min', MinProperties, settings);
 
     this.inputs = [
-      new InputNumberA(this, 0, 'a'),
-      new InputNumberB(this, 1, 'b'),
+      new InputNumber(this, 0, 'a', 'hasA'),
+      new InputNumber(this, 1, 'b', 'hasB'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

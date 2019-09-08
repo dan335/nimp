@@ -1,6 +1,6 @@
 import NodeNumber from '../NodeNumber.js';
 import RadiansToDegreesProperties from './RadiansToDegreesProperties.jsx';
-import InputNumberA from '../inputs/InputNumberA.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class RadiansToDegrees extends NodeNumber {
@@ -8,7 +8,7 @@ export default class RadiansToDegrees extends NodeNumber {
     super(className, graph, x, y, 'Radians to Degrees', RadiansToDegreesProperties, settings);
 
     this.inputs = [
-      new InputNumberA(this, 0, 'a'),
+      new InputNumber(this, 0, 'a', 'hasA'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

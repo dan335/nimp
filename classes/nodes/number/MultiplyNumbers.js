@@ -1,7 +1,6 @@
 import NodeNumber from '../NodeNumber.js';
 import MultiplyNumbersProperties from './MultiplyNumbersProperties.jsx';
-import MultiplyNumbersInputNumberA from './MultiplyNumbersInputNumberA.js';
-import MultiplyNumbersInputNumberB from './MultiplyNumbersInputNumberB.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class MultiplyNumbers extends NodeNumber {
@@ -9,8 +8,8 @@ export default class MultiplyNumbers extends NodeNumber {
     super(className, graph, x, y, 'Multiply', MultiplyNumbersProperties, settings);
 
     this.inputs = [
-      new MultiplyNumbersInputNumberA(this, 0, 'a'),
-      new MultiplyNumbersInputNumberB(this, 1, 'b'),
+      new InputNumber(this, 0, 'a', 'hasA'),
+      new InputNumber(this, 1, 'b', 'hasB'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

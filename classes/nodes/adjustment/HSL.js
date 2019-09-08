@@ -2,9 +2,7 @@ import NodeImage from '../NodeImage.js';
 import HSLProperties from './HSLProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import HSLInputNumberHue from './HSLInputNumberHue.js';
-import HSLInputNumberSaturation from './HSLInputNumberSaturation.js';
-import HSLInputNumberLightness from './HSLInputNumberLightness.js';
+import InputNumber from '../InputNumber.js';
 
 export default class HSL extends NodeImage {
   constructor(className, graph, x, y, settings) {
@@ -12,9 +10,9 @@ export default class HSL extends NodeImage {
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
-      new HSLInputNumberHue(this, 1, 'Hue'),
-      new HSLInputNumberSaturation(this, 2, 'Saturation'),
-      new HSLInputNumberLightness(this, 3, 'Lightness'),
+      new InputNumber(this, 1, 'Hue', 'hasHueInput'),
+      new InputNumber(this, 2, 'Saturation', 'hasLightnessInput'),
+      new InputNumber(this, 3, 'Lightness', 'hasSaturationInput'),
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')

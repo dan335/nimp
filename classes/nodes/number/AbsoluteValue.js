@@ -1,14 +1,14 @@
 import NodeNumber from '../NodeNumber.js';
 import AbsoluteValueProperties from './AbsoluteValueProperties.jsx';
-import AbsoluteValueInputNumberA from './AbsoluteValueInputNumberA.js';
 import OutputNumber from '../OutputNumber.js';
+import InputNumber from '../InputNumber.js';
 
 export default class AbsoluteValue extends NodeNumber {
   constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Absolute Value', AbsoluteValueProperties, settings);
 
     this.inputs = [
-      new AbsoluteValueInputNumberA(this, 0, 'a'),
+      new InputNumber(this, 0, 'a', 'hasA'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

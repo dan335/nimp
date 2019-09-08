@@ -1,7 +1,6 @@
 import NodeNumber from '../NodeNumber.js';
 import SubtractNumbersProperties from './SubtractNumbersProperties.jsx';
-import SubtractNumbersInputNumberA from './SubtractNumbersInputNumberA.js';
-import SubtractNumbersInputNumberB from './SubtractNumbersInputNumberB.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class SubtractNumbers extends NodeNumber {
@@ -9,8 +8,8 @@ export default class SubtractNumbers extends NodeNumber {
     super(className, graph, x, y, 'Subtract', SubtractNumbersProperties, settings);
 
     this.inputs = [
-      new SubtractNumbersInputNumberA(this, 0, 'a'),
-      new SubtractNumbersInputNumberB(this, 1, 'b'),
+      new InputNumber(this, 0, 'a', 'hasA'),
+      new InputNumber(this, 1, 'b', 'hasB'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

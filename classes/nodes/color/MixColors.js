@@ -2,9 +2,8 @@ import NodeColor from '../NodeColor.js';
 import MixColorsProperties from './MixColorsProperties.jsx';
 import OutputColor from '../OutputColor.js';
 const tinycolor = require("tinycolor2");
-import InputColorA from '../inputs/InputColorA.js';
-import InputColorB from '../inputs/InputColorB.js';
-import InputNumberAmount from '../inputs/InputNumberAmount.js';
+import InputNumber from '../InputNumber.js';
+import InputColorState from '../InputColorState.js';
 
 
 
@@ -13,9 +12,9 @@ export default class MixColors extends NodeColor {
     super(className, graph, x, y, 'Mix Colors', MixColorsProperties, settings);
 
     this.inputs = [
-      new InputColorA(this, 0, 'Color A'),
-      new InputColorB(this, 1, 'Color B'),
-      new InputNumberAmount(this, 2, 'Amount')
+      new InputColorState(this, 0, 'Color A', 'hasColorAInput'),
+      new InputColorState(this, 1, 'Color B', 'hasColorBInput'),
+      new InputNumber(this, 2, 'Amount', 'hasAmountInput')
     ];
     this.outputs = [
       new OutputColor(this, 0, 'Output'),

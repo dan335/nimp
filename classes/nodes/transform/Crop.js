@@ -2,10 +2,7 @@ import NodeImage from '../NodeImage.js';
 import CropProperties from './CropProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import CropInputNumberX from './CropInputNumberX.js';
-import CropInputNumberY from './CropInputNumberY.js';
-import CropInputNumberWidth from './CropInputNumberWidth.js';
-import CropInputNumberHeight from './CropInputNumberHeight.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Crop extends NodeImage {
@@ -14,10 +11,10 @@ export default class Crop extends NodeImage {
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
-      new CropInputNumberX(this, 1, 'X'),
-      new CropInputNumberY(this, 2, 'Y'),
-      new CropInputNumberWidth(this, 3, 'Width'),
-      new CropInputNumberHeight(this, 4, 'Height'),
+      new InputNumber(this, 1, 'X', 'hasXInput'),
+      new InputNumber(this, 2, 'Y', 'hasYInput'),
+      new InputNumber(this, 3, 'Width', 'hasWidthInput'),
+      new InputNumber(this, 4, 'Height', 'hasHeightInput'),
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output'),

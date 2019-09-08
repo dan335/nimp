@@ -1,13 +1,12 @@
 import NodeImage from '../NodeImage.js';
 import UniformColorProperties from './UniformColorProperties.jsx';
 import OutputImage from '../OutputImage.js';
-import UniformColorInputNumberWidth from './UniformColorInputNumberWidth.js';
-import UniformColorInputNumberHeight from './UniformColorInputNumberHeight.js';
 import InputColor from '../InputColor.js';
 import OutputNumber from '../OutputNumber.js';
 import Jimp from 'jimp';
 const tinycolor = require("tinycolor2");
 import OutputColor from '../OutputColor.js';
+import InputNumber from '../InputNumber.js';
 
 
 export default class UniformColor extends NodeImage {
@@ -15,8 +14,8 @@ export default class UniformColor extends NodeImage {
     super(className, graph, x, y, 'Uniform Color', UniformColorProperties, settings);
 
     this.inputs = [
-      new UniformColorInputNumberWidth(this, 0, 'Width'),
-      new UniformColorInputNumberHeight(this, 1, 'Height'),
+      new InputNumber(this, 0, 'Width', 'hasWidthInput'),
+      new InputNumber(this, 1, 'Height', 'hasHeightInput'),
       new InputColor(this, 2, 'Input'),
     ];
     this.outputs = [

@@ -2,7 +2,6 @@ import NodeNumber from '../NodeNumber.js';
 import ElseNumberProperties from './ElseNumberProperties.jsx';
 import OutputNumber from '../OutputNumber.js';
 import InputNumber from '../InputNumber.js';
-import ElseInputNumberA from './ElseInputNumberA.js';
 
 
 export default class ElseNumber extends NodeNumber {
@@ -12,7 +11,7 @@ export default class ElseNumber extends NodeNumber {
     this.inputs = [
       new InputNumber(this, 0, 'Input A'),
       new InputNumber(this, 1, 'Input B'),
-      new ElseInputNumberA(this, 2, 'Test')
+      new InputNumber(this, 2, 'Test', 'hasAInput')
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Output')

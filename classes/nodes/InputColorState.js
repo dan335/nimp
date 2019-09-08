@@ -1,12 +1,15 @@
-import Input from './Input.js';
+// need to eventually merge InputNumber with this and update all nodes to use this
 
 
-export default class InputNumber extends Input {
+import InputColor from './InputColor.js';
+
+
+export default class InputColorState extends InputColor {
   constructor(node, index, name, stateVariableName) {
-    super(node, index, name, 'Number');
-    this.number = null;
+    super(node, index, name);
     this.stateVariableName = stateVariableName;
   }
+
 
   connectionMade() {
     if (this.node.bg.classList.contains('selected')) {

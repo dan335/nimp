@@ -1,7 +1,6 @@
 import NodeNumber from '../NodeNumber.js';
 import DivideNumbersProperties from './DivideNumbersProperties.jsx';
-import DivideNumbersInputNumberA from './DivideNumbersInputNumberA.js';
-import DivideNumbersInputNumberB from './DivideNumbersInputNumberB.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class DivideNumbers extends NodeNumber {
@@ -9,8 +8,8 @@ export default class DivideNumbers extends NodeNumber {
     super(className, graph, x, y, 'Divide', DivideNumbersProperties, settings);
 
     this.inputs = [
-      new DivideNumbersInputNumberA(this, 0, 'a'),
-      new DivideNumbersInputNumberB(this, 1, 'b'),
+      new InputNumber(this, 0, 'a', 'hasA'),
+      new InputNumber(this, 1, 'b', 'hasB'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

@@ -1,6 +1,6 @@
 import NodeNumber from '../NodeNumber.js';
 import SquareRootProperties from './SquareRootProperties.jsx';
-import InputNumberA from '../inputs/InputNumberA.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class SquareRoot extends NodeNumber {
@@ -8,7 +8,7 @@ export default class SquareRoot extends NodeNumber {
     super(className, graph, x, y, 'SquareRoot', SquareRootProperties, settings);
 
     this.inputs = [
-      new InputNumberA(this, 0, 'a'),
+      new InputNumber(this, 0, 'a', 'hasA'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

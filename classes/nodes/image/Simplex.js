@@ -3,12 +3,9 @@ import SimplexProperties from './SimplexProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 import InputNumber from '../InputNumber.js';
-import SimplexInputNumberWidth from './SimplexInputNumberWidth.js';
-import SimplexInputNumberHeight from './SimplexInputNumberHeight.js';
-import SimplexInputNumberSeed from './SimplexInputNumberSeed.js';
-import SimplexInputNumberScale from './SimplexInputNumberScale.js';
 import Jimp from 'jimp';
 import SimplexNoise from 'simplex-noise';
+
 
 
 export default class Simplex extends NodeImage {
@@ -16,10 +13,10 @@ export default class Simplex extends NodeImage {
     super(className, graph, x, y, 'Simplex Noise', SimplexProperties, settings);
 
     this.inputs = [
-      new SimplexInputNumberWidth(this, 0, 'Width'),
-      new SimplexInputNumberHeight(this, 1, 'Height'),
-      new SimplexInputNumberSeed(this, 2, 'Seed'),
-      new SimplexInputNumberScale(this, 3, 'Scale')
+      new InputNumber(this, 0, 'Width', 'hasWidth'),
+      new InputNumber(this, 1, 'Height', 'hasHeight'),
+      new InputNumber(this, 2, 'Seed', 'hasSeed'),
+      new InputNumber(this, 3, 'Scale', 'hasScale')
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output'),

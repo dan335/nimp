@@ -2,7 +2,7 @@ import NodeImage from '../NodeImage.js';
 import BlurProperties from './BlurProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import BlurInputNumberRadius from './BlurInputNumberRadius.js';
+import InputNumber from '../InputNumber.js';
 
 
 export default class Blur extends NodeImage {
@@ -11,7 +11,7 @@ export default class Blur extends NodeImage {
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
-      new BlurInputNumberRadius(this, 1, 'Radius')
+      new InputNumber(this, 1, 'Radius', 'hasRadiusInput')
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')

@@ -1,7 +1,6 @@
 import NodeNumber from '../NodeNumber.js';
 import Atan2Properties from './Atan2Properties.jsx';
-import InputNumberX from '../inputs/InputNumberX.js';
-import InputNumberY from '../inputs/InputNumberY.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Atan2 extends NodeNumber {
@@ -9,8 +8,8 @@ export default class Atan2 extends NodeNumber {
     super(className, graph, x, y, 'Atan2', Atan2Properties, settings);
 
     this.inputs = [
-      new InputNumberX(this, 0, 'x'),
-      new InputNumberY(this, 1, 'y'),
+      new InputNumber(this, 0, 'x', 'hasX'),
+      new InputNumber(this, 1, 'y', 'hasY'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

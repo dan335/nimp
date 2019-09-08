@@ -1,10 +1,10 @@
 // need to eventually merge InputNumber with this and update all nodes to use this
 
 
-import InputNumber from './InputNumber.js';
+import InputImage from './InputImage.js';
 
 
-export default class InputNumberState extends InputNumber {
+export default class InputImageState extends InputImage {
   constructor(node, index, name, stateVariableName) {
     super(node, index, name);
     this.stateVariableName = stateVariableName;

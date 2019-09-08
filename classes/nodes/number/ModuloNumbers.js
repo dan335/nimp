@@ -1,7 +1,6 @@
 import NodeNumber from '../NodeNumber.js';
 import ModuloNumbersProperties from './ModuloNumbersProperties.jsx';
-import ModuloNumbersInputNumberA from './ModuloNumbersInputNumberA.js';
-import ModuloNumbersInputNumberB from './ModuloNumbersInputNumberB.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class ModuloNumbers extends NodeNumber {
@@ -9,8 +8,8 @@ export default class ModuloNumbers extends NodeNumber {
     super(className, graph, x, y, 'Mod', ModuloNumbersProperties, settings);
 
     this.inputs = [
-      new ModuloNumbersInputNumberA(this, 0, 'a'),
-      new ModuloNumbersInputNumberB(this, 1, 'b'),
+      new InputNumber(this, 0, 'a', 'hasA'),
+      new InputNumber(this, 1, 'b', 'hasB'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

@@ -3,12 +3,10 @@ import GradientProperties from './GradientProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 import OutputColor from '../OutputColor.js';
-import InputNumberWidth from '../inputs/InputNumberWidth.js';
-import InputNumberHeight from '../inputs/InputNumberHeight.js';
-import InputColorA from '../inputs/InputColorA.js';
-import InputColorB from '../inputs/InputColorB.js';
 import Jimp from 'jimp';
 const tinycolor = require("tinycolor2");
+import InputNumber from '../InputNumber.js';
+import InputColorState from '../InputColorState.js';
 
 
 export default class Gradient extends NodeImage {
@@ -16,10 +14,10 @@ export default class Gradient extends NodeImage {
     super(className, graph, x, y, 'Gradient', GradientProperties, settings);
 
     this.inputs = [
-      new InputNumberWidth(this, 0, 'Width'),
-      new InputNumberHeight(this, 1, 'Height'),
-      new InputColorA(this, 2, 'Color A'),
-      new InputColorB(this, 3, 'Color B'),
+      new InputNumber(this, 0, 'Width', 'hasWidthInput'),
+      new InputNumber(this, 1, 'Height', 'hasHeightInput'),
+      new InputColorState(this, 2, 'Color A', 'hasColorAInput'),
+      new InputColorState(this, 3, 'Color B', 'hasColorBInput'),
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output'),

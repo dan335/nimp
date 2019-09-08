@@ -2,7 +2,7 @@ import NodeImage from '../NodeImage.js';
 import IfProperties from './IfProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import IfInputNumberA from './IfInputNumberA.js';
+import InputNumber from '../InputNumber.js';
 
 
 export default class If extends NodeImage {
@@ -11,7 +11,7 @@ export default class If extends NodeImage {
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
-      new IfInputNumberA(this, 1, 'Test')
+      new InputNumber(this, 1, 'Test', 'hasAInput')
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')

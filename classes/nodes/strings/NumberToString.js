@@ -1,14 +1,14 @@
 import NodeString from '../NodeString.js';
 import NumberToStringProperties from './NumberToStringProperties.jsx';
 import OutputString from '../OutputString.js';
-import InputNumberState from '../InputNumberState.js';
+import InputNumber from '../InputNumber.js';
 
 export default class NumberToString extends NodeString {
   constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Number to String', NumberToStringProperties, settings);
 
     this.inputs = [
-      new InputNumberState(this, 0, 'Number', 'hasNumberInput')
+      new InputNumber(this, 0, 'Number', 'hasNumberInput')
     ];
     this.outputs = [
       new OutputString(this, 0, 'Output')
@@ -37,7 +37,7 @@ export default class NumberToString extends NodeString {
     this.bg.classList.add('running');
     this.runTimer = Date.now();
 
-    if (num) {
+    if (num != null) {
       this.string = num.toString();
     } else {
       this.string = null;

@@ -2,12 +2,7 @@ import NodeImage from '../NodeImage.js';
 import BlitProperties from './BlitProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import BlitInputNumberX from './BlitInputNumberX.js';
-import BlitInputNumberY from './BlitInputNumberY.js';
-import BlitInputNumberSrcX from './BlitInputNumberSrcX.js';
-import BlitInputNumberSrcY from './BlitInputNumberSrcY.js';
-import BlitInputNumberSrcWidth from './BlitInputNumberSrcWidth.js';
-import BlitInputNumberSrcHeight from './BlitInputNumberSrcHeight.js';
+import InputNumber from '../InputNumber.js';
 
 export default class Blit extends NodeImage {
   constructor(className, graph, x, y, settings) {
@@ -16,12 +11,12 @@ export default class Blit extends NodeImage {
     this.inputs = [
       new InputImage(this, 0, 'Dest'),
       new InputImage(this, 1, 'Source'),
-      new BlitInputNumberX(this, 2, 'X'),
-      new BlitInputNumberY(this, 3, 'Y'),
-      new BlitInputNumberSrcX(this, 4, 'Source X'),
-      new BlitInputNumberSrcY(this, 5, 'Source Y'),
-      new BlitInputNumberSrcWidth(this, 6, 'Source Width'),
-      new BlitInputNumberSrcHeight(this, 7, 'Source Height'),
+      new InputNumber(this, 2, 'X', 'hasXInput'),
+      new InputNumber(this, 3, 'Y', 'hasYInput'),
+      new InputNumber(this, 4, 'Source X', 'hasSrcXInput'),
+      new InputNumber(this, 5, 'Source Y', 'hasSrcYInput'),
+      new InputNumber(this, 6, 'Source Width', 'hasSrcWidthInput'),
+      new InputNumber(this, 7, 'Source Height', 'hasSrcHeightInput'),
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')
