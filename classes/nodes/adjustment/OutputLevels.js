@@ -2,10 +2,9 @@ import NodeImage from '../NodeImage.js';
 import OutputLevelsProperties from './OutputLevelsProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import InputNumberMin from '../inputs/InputNumberMin.js';
-import InputNumberMax from '../inputs/InputNumberMax.js';
 import Jimp from 'jimp';
 const tinycolor = require("tinycolor2");
+import InputNumber from '../InputNumber.js';
 
 
 export default class OutputLevels extends NodeImage {
@@ -14,8 +13,8 @@ export default class OutputLevels extends NodeImage {
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
-      new InputNumberMin(this, 1, 'Min'),
-      new InputNumberMax(this, 2, 'Min'),
+      new InputNumber(this, 1, 'Min', 'hasMinInput'),
+      new InputNumber(this, 2, 'Min', 'hasMaxInput'),
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')

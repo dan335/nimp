@@ -3,9 +3,8 @@ import TextProperties from './TextProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 import Jimp from 'jimp';
-import InputNumberWidth from '../inputs/InputNumberWidth.js';
-import InputNumberHeight from '../inputs/InputNumberHeight.js';
 import InputString from '../InputString.js';
+import InputNumber from '../InputNumber.js';
 
 
 export default class Text extends NodeImage {
@@ -13,8 +12,8 @@ export default class Text extends NodeImage {
     super(className, graph, x, y, 'Text', TextProperties, settings);
 
     this.inputs = [
-      new InputNumberWidth(this, 0, 'Width'),
-      new InputNumberHeight(this, 1, 'Height'),
+      new InputNumber(this, 0, 'Width', 'hasWidthInput'),
+      new InputNumber(this, 1, 'Height', 'hasHeightInput'),
       new InputString(this, 2, 'String', 'hasStringInput')
     ];
     this.outputs = [

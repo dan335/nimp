@@ -1,7 +1,6 @@
 import NodeNumber from '../NodeNumber.js';
 import ExponentNumbersProperties from './ExponentNumbersProperties.jsx';
-import ExponentNumbersInputNumberA from './ExponentNumbersInputNumberA.js';
-import ExponentNumbersInputNumberB from './ExponentNumbersInputNumberB.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class ExponentNumbers extends NodeNumber {
@@ -9,8 +8,8 @@ export default class ExponentNumbers extends NodeNumber {
     super(className, graph, x, y, 'Exponent', ExponentNumbersProperties, settings);
 
     this.inputs = [
-      new ExponentNumbersInputNumberA(this, 0, 'a'),
-      new ExponentNumbersInputNumberB(this, 1, 'b'),
+      new InputNumber(this, 0, 'a', 'hasA'),
+      new InputNumber(this, 1, 'b', 'hasB'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

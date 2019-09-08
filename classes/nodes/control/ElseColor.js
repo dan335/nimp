@@ -2,8 +2,8 @@ import NodeColor from '../NodeColor.js';
 import ElseColorProperties from './ElseColorProperties.jsx';
 import OutputColor from '../OutputColor.js';
 import InputColor from '../InputColor.js';
-import ElseInputNumberA from './ElseInputNumberA.js';
 const tinycolor = require("tinycolor2");
+import InputNumber from '../InputNumber.js';
 
 
 export default class ElseColor extends NodeColor {
@@ -13,7 +13,7 @@ export default class ElseColor extends NodeColor {
     this.inputs = [
       new InputColor(this, 0, 'Input A'),
       new InputColor(this, 1, 'Input B'),
-      new ElseInputNumberA(this, 2, 'Test')
+      new InputNumber(this, 2, 'Test', 'hasAInput')
     ];
     this.outputs = [
       new OutputColor(this, 0, 'Output')

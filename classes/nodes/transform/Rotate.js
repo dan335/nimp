@@ -3,7 +3,7 @@ import RotateProperties from './RotateProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
 import InputColor from '../InputColor.js';
-import RotateInputNumberDegrees from './RotateInputNumberDegrees.js';
+import InputNumber from '../InputNumber.js';
 
 
 export default class Rotate extends NodeImage {
@@ -12,7 +12,7 @@ export default class Rotate extends NodeImage {
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
-      new RotateInputNumberDegrees(this, 1, 'Degrees'),
+      new InputNumber(this, 1, 'Degrees', 'hasDegreesInput'),
       new InputColor(this, 2, 'Background')
     ];
     this.outputs = [

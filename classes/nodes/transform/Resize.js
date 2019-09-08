@@ -2,8 +2,7 @@ import NodeImage from '../NodeImage.js';
 import ResizeProperties from './ResizeProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import ResizeInputNumberX from './ResizeInputNumberX.js';
-import ResizeInputNumberY from './ResizeInputNumberY.js';
+import InputNumber from '../InputNumber.js';
 
 export default class Resize extends NodeImage {
   constructor(className, graph, x, y, settings) {
@@ -11,8 +10,8 @@ export default class Resize extends NodeImage {
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
-      new ResizeInputNumberX(this, 1, 'Width'),
-      new ResizeInputNumberY(this, 2, 'Height')
+      new InputNumber(this, 1, 'Width', 'hasXInput'),
+      new InputNumber(this, 2, 'Height', 'hasYInput')
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')

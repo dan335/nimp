@@ -2,8 +2,7 @@ import NodeImage from '../NodeImage.js';
 import BrightnessContrastProperties from './BrightnessContrastProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import BrightnessContrastInputNumberBrightness from './BrightnessContrastInputNumberBrightness.js';
-import BrightnessContrastInputNumberContrast from './BrightnessContrastInputNumberContrast.js';
+import InputNumber from '../InputNumber.js';
 
 export default class BrightnessContrast extends NodeImage {
   constructor(className, graph, x, y, settings) {
@@ -11,8 +10,8 @@ export default class BrightnessContrast extends NodeImage {
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
-      new BrightnessContrastInputNumberBrightness(this, 1, 'Brightness'),
-      new BrightnessContrastInputNumberContrast(this, 2, 'Contrast')
+      new InputNumber(this, 1, 'Brightness', 'hasBrightnessInput'),
+      new InputNumber(this, 2, 'Contrast', 'hasContrastInput')
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')

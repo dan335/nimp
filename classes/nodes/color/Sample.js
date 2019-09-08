@@ -2,9 +2,8 @@ import NodeColor from '../NodeColor.js';
 import SampleProperties from './SampleProperties.jsx';
 import OutputColor from '../OutputColor.js';
 import InputImage from '../InputImage.js';
-import InputNumberX from '../inputs/InputNumberX.js';
-import InputNumberY from '../inputs/InputNumberY.js';
 const tinycolor = require("tinycolor2");
+import InputNumber from '../InputNumber.js';
 
 
 export default class Sample extends NodeColor {
@@ -13,8 +12,8 @@ export default class Sample extends NodeColor {
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
-      new InputNumberX(this, 1, 'X'),
-      new InputNumberY(this, 2, 'Y'),
+      new InputNumber(this, 1, 'X', 'hasXInput'),
+      new InputNumber(this, 2, 'Y', 'hasYInput'),
     ];
     this.outputs = [
       new OutputColor(this, 0, 'Output')

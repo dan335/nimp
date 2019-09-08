@@ -1,16 +1,15 @@
 import NodeNumber from '../NodeNumber.js';
 import AddNumbersProperties from './AddNumbersProperties.jsx';
-import AddNumbersInputNumberA from './AddNumbersInputNumberA.js';
-import AddNumbersInputNumberB from './AddNumbersInputNumberB.js';
 import OutputNumber from '../OutputNumber.js';
+import InputNumber from '../InputNumber.js';
 
 export default class AddNumbers extends NodeNumber {
   constructor(className, graph, x, y, settings) {
     super(className, graph, x, y, 'Add', AddNumbersProperties, settings);
 
     this.inputs = [
-      new AddNumbersInputNumberA(this, 0, 'a'),
-      new AddNumbersInputNumberB(this, 1, 'b'),
+      new InputNumber(this, 0, 'a', 'hasA'),
+      new InputNumber(this, 1, 'b', 'hasB'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

@@ -2,10 +2,7 @@ import NodeImage from '../NodeImage.js';
 import BlendProperties from './BlendProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import BlendInputNumberX from './BlendInputNumberX.js';
-import BlendInputNumberY from './BlendInputNumberY.js';
-import BlendInputNumberTopOpacity from './BlendInputNumberTopOpacity.js';
-import BlendInputNumberBottomOpacity from './BlendInputNumberBottomOpacity.js';
+import InputNumber from '../InputNumber.js';
 
 export default class Blend extends NodeImage {
   constructor(className, graph, x, y, settings) {
@@ -14,10 +11,10 @@ export default class Blend extends NodeImage {
     this.inputs = [
       new InputImage(this, 0, 'Background'),
       new InputImage(this, 1, 'Foreground'),
-      new BlendInputNumberX(this, 2, 'X'),
-      new BlendInputNumberY(this, 3, 'Y'),
-      new BlendInputNumberTopOpacity(this, 4, 'Foreground Opacity'),
-      new BlendInputNumberBottomOpacity(this, 5, 'Background Opacity'),
+      new InputNumber(this, 2, 'X', 'hasXInput'),
+      new InputNumber(this, 3, 'Y', 'hasYInput'),
+      new InputNumber(this, 4, 'Foreground Opacity', 'hasTopOpacityInput'),
+      new InputNumber(this, 5, 'Background Opacity', 'hasBottomOpacityInput'),
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')

@@ -2,7 +2,7 @@ import NodeImage from '../NodeImage.js';
 import ElseProperties from './ElseProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import ElseInputNumberA from './ElseInputNumberA.js';
+import InputNumber from '../InputNumber.js';
 
 
 export default class Else extends NodeImage {
@@ -12,7 +12,7 @@ export default class Else extends NodeImage {
     this.inputs = [
       new InputImage(this, 0, 'Input A'),
       new InputImage(this, 1, 'Input B'),
-      new ElseInputNumberA(this, 2, 'Test')
+      new InputNumber(this, 2, 'Test', 'hasAInput')
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')

@@ -2,10 +2,7 @@ import NodeColor from '../NodeColor.js';
 import HSLInputProperties from './HSLInputProperties.jsx';
 import OutputColor from '../OutputColor.js';
 const tinycolor = require("tinycolor2");
-import InputNumberHue from './InputNumberHue.js';
-import InputNumberSaturation from './InputNumberSaturation.js';
-import InputNumberLightness from './InputNumberLightness.js';
-import InputNumberAlpha from './InputNumberAlpha.js';
+import InputNumber from '../InputNumber.js';
 
 
 export default class HSLInput extends NodeColor {
@@ -13,10 +10,10 @@ export default class HSLInput extends NodeColor {
     super(className, graph, x, y, 'HSL Input', HSLInputProperties, settings);
 
     this.inputs = [
-      new InputNumberHue(this, 0, 'Hue'),
-      new InputNumberSaturation(this, 1, 'Saturation'),
-      new InputNumberLightness(this, 2, 'Lightness'),
-      new InputNumberAlpha(this, 3, 'Alpha'),
+      new InputNumber(this, 0, 'Hue', 'hasHueInput'),
+      new InputNumber(this, 1, 'Saturation', 'hasSaturationInput'),
+      new InputNumber(this, 2, 'Lightness', 'hasLightnessInput'),
+      new InputNumber(this, 3, 'Alpha', 'hasAlphaInput'),
     ];
     this.outputs = [
       new OutputColor(this, 0, 'Output')

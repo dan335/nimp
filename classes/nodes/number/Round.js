@@ -1,6 +1,6 @@
 import NodeNumber from '../NodeNumber.js';
 import RoundProperties from './RoundProperties.jsx';
-import RoundInputNumberA from './RoundInputNumberA.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Round extends NodeNumber {
@@ -8,7 +8,7 @@ export default class Round extends NodeNumber {
     super(className, graph, x, y, 'Round', RoundProperties, settings);
 
     this.inputs = [
-      new RoundInputNumberA(this, 0, 'a'),
+      new InputNumber(this, 0, 'a', 'hasA'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

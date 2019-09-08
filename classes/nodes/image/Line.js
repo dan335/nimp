@@ -3,16 +3,10 @@ import LineProperties from './LineProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 import OutputColor from '../OutputColor.js';
-import InputNumberWidth from '../inputs/InputNumberWidth.js';
-import InputNumberHeight from '../inputs/InputNumberHeight.js';
-import InputNumberX1 from '../inputs/InputNumberHeight.js';
-import InputNumberY1 from '../inputs/InputNumberHeight.js';
-import InputNumberX2 from '../inputs/InputNumberHeight.js';
-import InputNumberY2 from '../inputs/InputNumberHeight.js';
 import InputColor from '../InputColor.js';
-import InputNumberLineWidth from '../inputs/InputNumberLineWidth.js';
 import Jimp from 'jimp';
 const tinycolor = require("tinycolor2");
+import InputNumber from '../InputNumber.js';
 
 
 export default class Line extends NodeImage {
@@ -20,14 +14,14 @@ export default class Line extends NodeImage {
     super(className, graph, x, y, 'Line', LineProperties, settings);
 
     this.inputs = [
-      new InputNumberWidth(this, 0, 'Width'),
-      new InputNumberHeight(this, 1, 'Height'),
-      new InputNumberX1(this, 2, 'x1'),
-      new InputNumberY1(this, 3, 'y1'),
-      new InputNumberX2(this, 4, 'x2'),
-      new InputNumberY2(this, 5, 'y2'),
-      new InputColor(this, 6, 'Color'),
-      new InputNumberLineWidth(this, 7, 'Line Width')
+      new InputNumber(this, 0, 'Width', 'hasWidthInput'),
+      new InputNumber(this, 1, 'Height', 'hasHeightInput'),
+      new InputNumber(this, 2, 'x1', 'hasX1Input'),
+      new InputNumber(this, 3, 'y1', 'hasY1Input'),
+      new InputNumber(this, 4, 'x2', 'hasX2Input'),
+      new InputNumber(this, 5, 'y2', 'hasY2Input'),
+      new InputColor(this, 6, 'Color', 'hasColorInput'),
+      new InputNumber(this, 7, 'Line Width', 'hasLineWidthInput')
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output'),

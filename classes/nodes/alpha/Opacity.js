@@ -2,7 +2,7 @@ import NodeImage from '../NodeImage.js';
 import OpacityProperties from './OpacityProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import InputNumberAmount from '../inputs/InputNumberAmount.js';
+import InputNumber from '../InputNumber.js';
 
 
 export default class Opacity extends NodeImage {
@@ -11,7 +11,7 @@ export default class Opacity extends NodeImage {
 
     this.inputs = [
       new InputImage(this, 0, 'Input'),
-      new InputNumberAmount(this, 1, 'Amount')
+      new InputNumber(this, 1, 'Amount', 'hasAmountInput')
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')

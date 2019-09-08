@@ -1,6 +1,6 @@
 import NodeNumber from '../NodeNumber.js';
 import FloorProperties from './FloorProperties.jsx';
-import FloorInputNumberA from './FloorInputNumberA.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Floor extends NodeNumber {
@@ -8,7 +8,7 @@ export default class Floor extends NodeNumber {
     super(className, graph, x, y, 'Floor', FloorProperties, settings);
 
     this.inputs = [
-      new FloorInputNumberA(this, 0, 'a'),
+      new InputNumber(this, 0, 'a', 'hasA'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

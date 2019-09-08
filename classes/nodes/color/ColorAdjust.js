@@ -2,11 +2,8 @@ import NodeColor from '../NodeColor.js';
 import ColorAdjustProperties from './ColorAdjustProperties.jsx';
 import OutputColor from '../OutputColor.js';
 const tinycolor = require("tinycolor2");
-import InputNumberHue from './InputNumberHue.js';
-import InputNumberSaturation from './InputNumberSaturation.js';
-import InputNumberLightness from './InputNumberLightness.js';
-import InputNumberBrightness from './InputNumberBrightness.js';
 import InputColor from '../InputColor.js';
+import InputNumber from '../InputNumber.js';
 
 
 export default class ColorAdjust extends NodeColor {
@@ -15,10 +12,10 @@ export default class ColorAdjust extends NodeColor {
 
     this.inputs = [
       new InputColor(this, 0, 'Input'),
-      new InputNumberHue(this, 1, 'Hue'),
-      new InputNumberSaturation(this, 2, 'Saturation'),
-      new InputNumberLightness(this, 3, 'Lightness'),
-      new InputNumberBrightness(this, 4, 'Brightness'),
+      new InputNumber(this, 1, 'Hue', 'hasHueInput'),
+      new InputNumber(this, 2, 'Saturation', 'hasSaturationInput'),
+      new InputNumber(this, 3, 'Lightness', 'hasLightnessInput'),
+      new InputNumber(this, 4, 'Brightness', 'hasBrightnessInput'),
     ];
     this.outputs = [
       new OutputColor(this, 0, 'Output')

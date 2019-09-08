@@ -2,10 +2,7 @@ import NodeColor from '../NodeColor.js';
 import RGBProperties from './RGBProperties.jsx';
 import OutputColor from '../OutputColor.js';
 const tinycolor = require("tinycolor2");
-import InputNumberRed from './InputNumberRed.js';
-import InputNumberGreen from './InputNumberGreen.js';
-import InputNumberBlue from './InputNumberBlue.js';
-import InputNumberAlpha from './InputNumberAlpha.js';
+import InputNumber from '../InputNumber.js';
 
 
 export default class RGBInput extends NodeColor {
@@ -13,10 +10,10 @@ export default class RGBInput extends NodeColor {
     super(className, graph, x, y, 'RGB Input', RGBProperties, settings);
 
     this.inputs = [
-      new InputNumberRed(this, 0, 'Red'),
-      new InputNumberGreen(this, 1, 'Green'),
-      new InputNumberBlue(this, 2, 'Blue'),
-      new InputNumberAlpha(this, 3, 'Alpha'),
+      new InputNumber(this, 0, 'Red', 'hasRedInput'),
+      new InputNumber(this, 1, 'Green', 'hasGreenInput'),
+      new InputNumber(this, 2, 'Blue', 'hasBlueInput'),
+      new InputNumber(this, 3, 'Alpha', 'hasAlphaInput'),
     ];
     this.outputs = [
       new OutputColor(this, 0, 'Output')

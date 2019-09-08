@@ -1,6 +1,6 @@
 import NodeNumber from '../NodeNumber.js';
 import CeilProperties from './CeilProperties.jsx';
-import CeilInputNumberA from './CeilInputNumberA.js';
+import InputNumber from '../InputNumber.js';
 import OutputNumber from '../OutputNumber.js';
 
 export default class Ceil extends NodeNumber {
@@ -8,7 +8,7 @@ export default class Ceil extends NodeNumber {
     super(className, graph, x, y, 'Ceil', CeilProperties, settings);
 
     this.inputs = [
-      new CeilInputNumberA(this, 0, 'a'),
+      new InputNumber(this, 0, 'a', 'hasA'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Result')

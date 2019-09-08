@@ -2,8 +2,7 @@ import NodeImage from '../NodeImage.js';
 import MaskProperties from './MaskProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import MaskInputNumberX from './MaskInputNumberX.js';
-import MaskInputNumberY from './MaskInputNumberY.js';
+import InputNumber from '../InputNumber.js';
 
 export default class Mask extends NodeImage {
   constructor(className, graph, x, y, settings) {
@@ -12,8 +11,8 @@ export default class Mask extends NodeImage {
     this.inputs = [
       new InputImage(this, 0, 'Input'),
       new InputImage(this, 1, 'Mask'),
-      new MaskInputNumberX(this, 2, 'X'),
-      new MaskInputNumberY(this, 3, 'Y'),
+      new InputNumber(this, 2, 'X', 'hasXInput'),
+      new InputNumber(this, 3, 'Y', 'hasYInput'),
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')
