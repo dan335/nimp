@@ -1,6 +1,6 @@
 import Properties from '../Properties.js';
 
-export default class ElseNumberProperties extends Properties {
+export default class ElseStringProperties extends Properties {
 
   constructor(props) {
     super(props);
@@ -35,12 +35,12 @@ export default class ElseNumberProperties extends Properties {
   render() {
     return (
       <div>
-        <div className="propertiesTitle">Number If Else</div>
+        <div className="propertiesTitle">String If Else</div>
         <div style={{padding:'10px'}}>
           {this.renderA()}
 
           <br/><br/>
-          Outputs number A if test number is true.  Outputs number B if test number is false.  Number is considered false if it is 0 or -0.
+          Outputs string A if test number is true.  Outputs string B if test number is false.  Number is considered false if it is 0 or -0.
           {this.renderRun()}
         </div>
       </div>

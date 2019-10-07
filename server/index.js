@@ -3,7 +3,7 @@ const next = require('next');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const MongoClient = require('mongodb').MongoClient;
-const mongoClient = new MongoClient(process.env.MONGO_URL, { useNewUrlParser: true });
+const mongoClient = new MongoClient(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 const dev = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
@@ -55,7 +55,7 @@ mongoClient.connect(error => {
     require('./api/graph.js')(expressApp);
     require('./api/graphs.js')(expressApp);
     require('./api/deletegraph.js')(expressApp);
-    
+
     expressApp.get('*', (req,res) => {
       return handle(req,res);
     })
