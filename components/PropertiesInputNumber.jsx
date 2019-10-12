@@ -8,7 +8,7 @@ export default class PropertiesInputNumber extends React.Component {
     super(props);
 
     this.state = {
-      hasInput: props.input.parent ? true : false
+      hasInput: props.input && props.input.parent ? true : false
     }
 
     this.debouncedChange = debounce(this.change, 300);
@@ -16,7 +16,7 @@ export default class PropertiesInputNumber extends React.Component {
 
 
   change(event) {
-    const elm = document.getElementById('input');
+    const elm = document.getElementById('input'+this.props.varName);
     if (elm) {
       this.props.node[this.props.varName] = Number(elm.value);
       this.props.node.run(null);
@@ -37,7 +37,7 @@ export default class PropertiesInputNumber extends React.Component {
               {this.props.step == null ? '' : ' step='+this.props.step}
             </div>
           </div>
-          <input style={{width:'100%'}} id="input" type="number" min={this.props.min == null ? null : this.props.min} max={this.props.max == null ? null : this.props.max} step={this.props.step == null ? null : this.props.step} defaultValue={this.props.node[this.props.varName]} onChange={(event) => {this.debouncedChange();}} />
+          <input style={{width:'100%'}} id={'input'+this.props.varName} type="number" min={this.props.min == null ? null : this.props.min} max={this.props.max == null ? null : this.props.max} step={this.props.step == null ? null : this.props.step} defaultValue={this.props.node[this.props.varName]} onChange={(event) => {this.debouncedChange();}} />
           {this.props.help && (
             <div style={{fontSize:'90%', marginTop:'5px', color:'hsl(209, 0%, 80%)'}}>
               {this.props.help}

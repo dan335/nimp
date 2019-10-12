@@ -1,4 +1,5 @@
 import Properties from '../Properties.js';
+import PropertiesInputNumber from '../../../components/PropertiesInputNumber.jsx';
 
 export default class MixColorsProperties extends Properties {
 
@@ -7,8 +8,7 @@ export default class MixColorsProperties extends Properties {
 
     this.state = {
       hasColorAInput: props.node.inputs[0].parent ? true : false,
-      hasColorBInput: props.node.inputs[1].parent ? true : false,
-      hasAmountInput: props.node.inputs[2].parent ? true : false
+      hasColorBInput: props.node.inputs[1].parent ? true : false
     }
   }
 
@@ -22,12 +22,6 @@ export default class MixColorsProperties extends Properties {
   colorBChange() {
     const elm = document.getElementById('colorBInput');
     this.props.node.colorB = elm.value;
-    this.props.node.run(null);
-  }
-
-  amountChange() {
-    const elm = document.getElementById('amountInput');
-    this.props.node.amount = elm.value;
     this.props.node.run(null);
   }
 
@@ -54,17 +48,6 @@ export default class MixColorsProperties extends Properties {
     }
   }
 
-  renderAmount() {
-    if (!this.state.hasAmountInput) {
-      return (
-        <div>
-          Amount &nbsp; 0 - 1<br/>
-          <input id="amountInput" type="range" defaultValue={this.props.node.amount} min="0" max="1" step="0.01" onChange={(event) => {this.amountChange(event);}} />
-        </div>
-      )
-    }
-  }
-
 
   render() {
     return (
@@ -75,7 +58,7 @@ export default class MixColorsProperties extends Properties {
           {this.renderColorA()}
           {this.renderColorB()}
           <br/>
-          {this.renderAmount()}
+          <PropertiesInputNumber node={this.props.node} name="Amount" varName={'amount'} input={this.props.node.inputs[2]} min={0} max={1} step={0.01} />
           {this.renderName()}
           {this.renderRun()}
         </div>
