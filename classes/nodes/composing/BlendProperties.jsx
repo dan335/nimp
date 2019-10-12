@@ -1,35 +1,13 @@
 import Properties from '../Properties.js';
+import PropertiesInputNumber from '../../../components/PropertiesInputNumber.jsx';
+
 
 export default class BlendProperties extends Properties {
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      hasXInput: props.node.inputs[2].parent ? true : false,
-      hasYInput: props.node.inputs[3].parent ? true : false,
-      hasTopOpacityInput: props.node.inputs[4].parent ? true : false,
-      hasBottomOpacityInput: props.node.inputs[5].parent ? true : false
-    }
-
-    this.xChange = this.xChange.bind(this);
-    this.yChange = this.yChange.bind(this);
     this.modeChange = this.modeChange.bind(this);
-    this.sourceOpacityChange = this.sourceOpacityChange.bind(this);
-    this.destinationOpacitychange = this.destinationOpacitychange.bind(this);
-  }
-
-
-  xChange(event) {
-    const elm = document.getElementById('xInput');
-    this.props.node.blendX = Number(elm.value);
-    this.props.node.run(null);
-  }
-
-  yChange(event) {
-    const elm = document.getElementById('yInput');
-    this.props.node.blendY = Number(elm.value);
-    this.props.node.run(null);
   }
 
   modeChange(event) {
@@ -38,68 +16,6 @@ export default class BlendProperties extends Properties {
     this.props.node.run(null);
   }
 
-  sourceOpacityChange(event) {
-    const elm = document.getElementById('sourceOpacityInput');
-    this.props.node.opacitySource = Number(elm.value);
-    this.props.node.run(null);
-  }
-
-  destinationOpacitychange(event) {
-    const elm = document.getElementById('destinationOpacityInput');
-    this.props.node.opacityDest = Number(elm.value);
-    this.props.node.run(null);
-  }
-
-
-  renderX() {
-    if (!this.state.hasXInput) {
-      return (
-        <div>
-          X &nbsp;
-          <input id="xInput" type="number" defaultValue={this.props.node.blendX} onChange={(event) => {this.xChange(event);}} />
-          <br/>
-        </div>
-      )
-    }
-  }
-
-
-  renderY() {
-    if (!this.state.hasYInput) {
-      return (
-        <div>
-          Y &nbsp;
-          <input id="yInput" type="number" defaultValue={this.props.node.blendY} onChange={(event) => {this.yChange(event);}} />
-          <br/>
-        </div>
-      )
-    }
-  }
-
-
-  renderTopOpacity() {
-    if (!this.state.hasTopOpacityInput) {
-      return (
-        <div>
-          Top Image Opacity<br/>
-          <input id="sourceOpacityInput"  defaultValue={this.props.node.opacitySource} step="0.05" style={{width:'100%'}} type="range" min="0" max="1" onChange={(event) => {this.sourceOpacityChange(event);}} />
-          <br/><br/>
-        </div>
-      )
-    }
-  }
-
-
-  renderBottomOpacity() {
-    if (!this.state.hasBottomOpacityInput) {
-      return (
-        <div>
-          Bottom Image Opacity<br/>
-          <input id="destinationOpacityInput"  defaultValue={this.props.node.opacityDest} step="0.05" style={{width:'100%'}} type="range" min="0" max="1" onChange={(event) => {this.destinationOpacitychange(event);}} />
-        </div>
-      )
-    }
-  }
 
   render() {
     return (
@@ -108,8 +24,8 @@ export default class BlendProperties extends Properties {
         <div style={{padding:'10px'}}>
           <div>Position of image.</div>
 
-          {this.renderX()}
-          {this.renderY()}
+          <PropertiesInputNumber node={this.props.node} name="X" varName={'blendX'} input={this.props.node.inputs[2]} />
+          <PropertiesInputNumber node={this.props.node} name="Y" varName={'blendY'} input={this.props.node.inputs[3]} />
 
           <br/>
 
@@ -129,8 +45,8 @@ export default class BlendProperties extends Properties {
           <br/>
           <br/>
 
-          {this.renderTopOpacity()}
-          {this.renderBottomOpacity()}
+          <PropertiesInputNumber node={this.props.node} name="Top Opacity" varName={'opacitySource'} input={this.props.node.inputs[4]} min={0} max={1} step={0.01} />
+          <PropertiesInputNumber node={this.props.node} name="Bottom Opacity" varName={'opacityDest'} input={this.props.node.inputs[5]} min={0} max={1} step={0.01} />
 
           {this.renderRun()}
         </div>

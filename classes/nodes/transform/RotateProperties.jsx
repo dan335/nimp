@@ -1,4 +1,6 @@
 import Properties from '../Properties.js';
+import PropertiesInputNumber from '../../../components/PropertiesInputNumber.jsx';
+
 
 export default class RotateProperties extends Properties {
 
@@ -85,7 +87,7 @@ export default class RotateProperties extends Properties {
       <div>
         <div className="propertiesTitle">Rotate Image</div>
         <div style={{padding:'10px'}}>
-          {this.renderDegrees()}
+          <PropertiesInputNumber node={this.props.node} name="Degrees" varName={'degrees'} input={this.props.node.inputs[1]} />
           <br/><br/>
           {this.renderResize()}
           <br/>

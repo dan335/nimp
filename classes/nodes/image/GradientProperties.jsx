@@ -1,5 +1,5 @@
 import Properties from '../Properties.js';
-import Jimp from 'jimp';
+import PropertiesInputNumber from '../../../components/PropertiesInputNumber.jsx';
 
 
 export default class GradientProperties extends Properties {
@@ -8,23 +8,9 @@ export default class GradientProperties extends Properties {
     super(props);
 
     this.state = {
-      hasWidthInput: props.node.inputs[0].parent ? true : false,
-      hasHeightInput: props.node.inputs[1].parent ? true : false,
       hasColorAInput: props.node.inputs[2].parent ? true : false,
       hasColorBInput: props.node.inputs[3].parent ? true : false,
     }
-  }
-
-  widthChange() {
-    const elm = document.getElementById('widthInput');
-    this.props.node.width = Number(elm.value);
-    this.props.node.run(null);
-  }
-
-  heightChange() {
-    const elm = document.getElementById('heightInput');
-    this.props.node.height = Number(elm.value);
-    this.props.node.run(null);
   }
 
   colorAChange() {
@@ -40,30 +26,6 @@ export default class GradientProperties extends Properties {
   }
 
 
-
-  renderWidth() {
-    if (!this.state.hasWidthInput) {
-      return (
-        <div>
-          Width &nbsp;
-          <input id="widthInput" type="number" min="1" defaultValue={this.props.node.width} onChange={(event) => {this.widthChange(event);}} />
-          <br/>
-        </div>
-      )
-    }
-  }
-
-
-  renderHeight() {
-    if (!this.state.hasHeightInput) {
-      return (
-        <div>
-          Height &nbsp;
-          <input id="heightInput" type="number" min="1" defaultValue={this.props.node.height} onChange={(event) => {this.heightChange(event);}} />
-        </div>
-      )
-    }
-  }
 
   renderColorA() {
     if (!this.state.hasColorAInput) {
@@ -92,8 +54,8 @@ export default class GradientProperties extends Properties {
       <div>
         <div className="propertiesTitle">Gradient</div>
         <div style={{padding:'10px'}}>
-          {this.renderWidth()}
-          {this.renderHeight()}
+          <PropertiesInputNumber node={this.props.node} name="Width" varName={'width'} input={this.props.node.inputs[0]} min={0} step={1} />
+          <PropertiesInputNumber node={this.props.node} name="Height" varName={'height'} input={this.props.node.inputs[1]} min={0} step={1} />
 
           <br/><br/>
           {this.renderColorA()}

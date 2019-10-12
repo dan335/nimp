@@ -1,20 +1,8 @@
 import Properties from '../Properties.js';
+import PropertiesInputNumber from '../../../components/PropertiesInputNumber.jsx';
+
 
 export default class NumberProperties extends Properties {
-
-  constructor(props) {
-    super(props);
-
-    this.numChange = this.numChange.bind(this);
-  }
-
-
-  numChange(event) {
-    const elm = document.getElementById('numberInput');
-    this.props.node.number = Number(elm.value);
-    this.props.node.run(null);
-  }
-
 
   render() {
     return (
@@ -22,8 +10,7 @@ export default class NumberProperties extends Properties {
         <div className="propertiesTitle">Number Input</div>
 
         <div style={{padding:'10px'}}>
-          Number<br/>
-          <input id="numberInput" type="number" defaultValue={this.props.node.number} onChange={(event) => {this.numChange(event);}} />
+          <PropertiesInputNumber node={this.props.node} name="Number" varName={'number'} input={null} />
           {this.renderName()}
           {this.renderRun()}
         </div>
