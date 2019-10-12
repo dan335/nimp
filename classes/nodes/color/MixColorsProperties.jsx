@@ -1,5 +1,5 @@
 import Properties from '../Properties.js';
-import PropertiesInputNumber from '../../../components/PropertiesInputNumber.jsx';
+import PropertiesInputSlider from '../../../components/PropertiesInputSlider.jsx';
 
 export default class MixColorsProperties extends Properties {
 
@@ -58,7 +58,7 @@ export default class MixColorsProperties extends Properties {
           {this.renderColorA()}
           {this.renderColorB()}
           <br/>
-          <PropertiesInputNumber node={this.props.node} name="Amount" varName={'amount'} input={this.props.node.inputs[2]} min={0} max={1} step={0.01} />
+          <PropertiesInputSlider node={this.props.node} name="Amount" varName={'amount'} input={this.props.node.inputs[2]} min={0} max={1} step={0.01} />
           {this.renderName()}
           {this.renderRun()}
         </div>

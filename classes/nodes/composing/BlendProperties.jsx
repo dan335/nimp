@@ -1,5 +1,6 @@
 import Properties from '../Properties.js';
 import PropertiesInputNumber from '../../../components/PropertiesInputNumber.jsx';
+import PropertiesInputSlider from '../../../components/PropertiesInputSlider.jsx';
 
 
 export default class BlendProperties extends Properties {
@@ -45,8 +46,8 @@ export default class BlendProperties extends Properties {
           <br/>
           <br/>
 
-          <PropertiesInputNumber node={this.props.node} name="Top Opacity" varName={'opacitySource'} input={this.props.node.inputs[4]} min={0} max={1} step={0.01} />
-          <PropertiesInputNumber node={this.props.node} name="Bottom Opacity" varName={'opacityDest'} input={this.props.node.inputs[5]} min={0} max={1} step={0.01} />
+          <PropertiesInputSlider node={this.props.node} name="Top Opacity" varName={'opacitySource'} input={this.props.node.inputs[4]} min={0} max={1} step={0.01} />
+          <PropertiesInputSlider node={this.props.node} name="Bottom Opacity" varName={'opacityDest'} input={this.props.node.inputs[5]} min={0} max={1} step={0.01} />
 
           {this.renderRun()}
         </div>
