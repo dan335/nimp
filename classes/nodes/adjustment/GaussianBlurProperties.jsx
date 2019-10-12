@@ -1,36 +1,8 @@
 import Properties from '../Properties.js';
+import PropertiesInputNumber from '../../../components/PropertiesInputNumber.jsx';
+
 
 export default class GaussianBlurProperties extends Properties {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      hasRadiusInput: props.node.inputs[1].parent ? true : false
-    }
-
-    this.blurRadiusChange = this.blurRadiusChange.bind(this);
-  }
-
-
-  blurRadiusChange(event) {
-    const elm = document.getElementById('radiusSlider');
-    this.props.node.radius = Number(elm.value);
-    this.props.node.run(null);
-  }
-
-
-  renderRadius() {
-    if (!this.state.hasRadiusInput) {
-      return (
-        <div>
-          Radius<br/>
-          <input id="radiusSlider" style={{width:'100%'}} type="range" min="1" max="100" defaultValue={this.props.node.radius} onChange={(event) => {this.blurRadiusChange(event);}} />
-        </div>
-      )
-    }
-  }
-
 
   render() {
     return (
@@ -39,10 +11,7 @@ export default class GaussianBlurProperties extends Properties {
         <div style={{padding:'10px'}}>
           Slow but high quality blur.<br/>
           <br/>
-          {this.renderRadius()}
-
-          <br/><br/>
-          Value is in pixels.
+          <PropertiesInputNumber node={this.props.node} name="Radius" varName={'radius'} input={this.props.node.inputs[1]} min={0} help="Value is in pixels." />
 
           {this.renderRun()}
         </div>
