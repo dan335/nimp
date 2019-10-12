@@ -2,6 +2,8 @@
 
 https://nimp.app
 
+Node-Based Image Manipulation Program
+
 ![](https://nimp.app/static/screenshots/screenshot03.JPG)
 
 ### Run
