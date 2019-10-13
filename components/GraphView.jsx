@@ -117,6 +117,11 @@ export default class GraphView extends React.Component {
     if (elm) {
       elm.style.maxHeight = (window.innerHeight - 36) + 'px';
     }
+
+    elm = document.getElementById('midRightContainer');
+    if (elm) {
+      elm.style.maxHeight = (window.innerHeight - 36) + 'px';
+    }
   }
 
 
@@ -438,6 +443,8 @@ export default class GraphView extends React.Component {
 
           #midRightContainer {
             border-left: 2px solid #000;
+            overflow-y: auto;
+            overflow-x: hidden;
           }
 
           #midContainer {
