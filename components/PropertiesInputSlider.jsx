@@ -12,7 +12,7 @@ export default class PropertiesInputNumber extends React.Component {
       value: this.props.node[this.props.varName]
     }
 
-    this.debouncedChange = debounce(this.change, 300);
+    this.debouncedChange = debounce(this.change, 200);
   }
 
 
