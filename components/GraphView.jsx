@@ -360,7 +360,7 @@ export default class GraphView extends React.Component {
 
 
   createNewNode(className, classObject, x, y) {
-    const node = this.graph.createNode(className, classObject, x, y, {});
+    const node = this.graph.createNode(className, classObject, x, y, {}, true);
     this.graph.selectNode(node);
   }
 

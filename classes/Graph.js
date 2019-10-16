@@ -30,10 +30,12 @@ export default class Graph {
   }
 
 
-  createNode(className, classObject, x, y, settings) {
+  createNode(className, classObject, x, y, settings, run) {
     let node = new classObject(className, this, x, y, settings);
     this.nodes.push(node);
-    node.run(null);
+    if (run) {
+      node.run(null);
+    }
     return node;
   }
 
@@ -94,7 +96,7 @@ export default class Graph {
     json.nodes.forEach(node => {
       const classObject = functions.getClassFromName(node.className);
       if (classObject) {
-        const createdNode = this.createNode(node.className, classObject, node.x, node.y, node.settings);
+        const createdNode = this.createNode(node.className, classObject, node.x, node.y, node.settings, false);
 
         createdNode.id = node.id;
 
