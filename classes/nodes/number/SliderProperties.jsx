@@ -1,4 +1,6 @@
 import Properties from '../Properties.js';
+import PropertiesInputNumber from '../../../components/PropertiesInputNumber.jsx';
+
 
 export default class SliderProperties extends Properties {
 
@@ -8,6 +10,8 @@ export default class SliderProperties extends Properties {
     this.state = {
       reRenderSlider: Math.random()
     }
+
+    this.sliderMove = this.sliderMove.bind(this);
   }
 
 
@@ -18,63 +22,15 @@ export default class SliderProperties extends Properties {
   }
 
 
-  minChange() {
-    const elm = document.getElementById('minInput');
-    this.props.node.min = Number(elm.value);
+  sliderMove() {
     this.setState({reRenderSlider:Math.random()});
   }
-
-  maxChange() {
-    const elm = document.getElementById('maxInput');
-    this.props.node.max = Number(elm.value);
-    this.setState({reRenderSlider:Math.random()});
-  }
-
-  stepChange() {
-    const elm = document.getElementById('stepInput');
-    this.props.node.step = Number(elm.value);
-    this.setState({reRenderSlider:Math.random()});
-  }
-
-
-  renderMin() {
-    return (
-      <div>
-        Min &nbsp;
-        <input id="minInput" type="number" defaultValue={this.props.node.min} onChange={(event) => {this.minChange(event);}} />
-        <br/>
-      </div>
-    )
-  }
-
-
-  renderMax() {
-    return (
-      <div>
-        Max &nbsp;
-        <input id="maxInput" type="number" defaultValue={this.props.node.max} onChange={(event) => {this.maxChange(event);}} />
-        <br/>
-      </div>
-    )
-  }
-
-
-  renderStep() {
-    return (
-      <div>
-        Step &nbsp;
-        <input id="stepInput" type="number" defaultValue={this.props.node.step} onChange={(event) => {this.stepChange(event);}} />
-        <br/>
-      </div>
-    )
-  }
-
 
   renderSlider() {
     const bogus = this.state.reRenderSlider;
     return (
-      <div>
-        <input type="range" id="sliderInput" defaultValue={this.props.node.number} min={this.props.node.min} max={this.props.node.max} step={this.props.node.step} onChange={(event) => {this.sliderChange(event);}} />
+      <div style={{backgroundColor:'hsl(209, 10%, 25%)', padding:'10px', marginBottom:'3px'}}>
+        <input style={{width:'100%'}} type="range" id="sliderInput" defaultValue={this.props.node.number} min={this.props.node.min} max={this.props.node.max} step={this.props.node.step} onChange={(event) => {this.sliderChange(event);}} />
       </div>
     )
   }
@@ -88,9 +44,10 @@ export default class SliderProperties extends Properties {
         <div style={{padding:'10px'}}>
           {this.renderSlider()}
 
-          {this.renderMin()}
-          {this.renderMax()}
-          {this.renderStep()}
+          <PropertiesInputNumber node={this.props.node} name="Min" varName={'min'} input={this.props.node.inputs[0]} callback={this.sliderMove} />
+          <PropertiesInputNumber node={this.props.node} name="Max" varName={'max'} input={this.props.node.inputs[1]} callback={this.sliderMove} />
+          <PropertiesInputNumber node={this.props.node} name="Step" varName={'step'} input={this.props.node.inputs[2]} callback={this.sliderMove} />
+
           {this.renderName()}
           {this.renderRun()}
         </div>
