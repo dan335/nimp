@@ -1,5 +1,6 @@
 import Properties from '../Properties.js';
 import PropertiesInputNumber from '../../../components/PropertiesInputNumber.jsx';
+var debounce = require('lodash.debounce');
 
 
 export default class SliderProperties extends Properties {
@@ -10,6 +11,8 @@ export default class SliderProperties extends Properties {
     this.state = {
       reRenderSlider: Math.random()
     }
+
+    this.debouncedSliderChange = debounce(this.sliderChange, 150);
 
     this.sliderMove = this.sliderMove.bind(this);
   }
@@ -30,7 +33,7 @@ export default class SliderProperties extends Properties {
     const bogus = this.state.reRenderSlider;
     return (
       <div style={{backgroundColor:'hsl(209, 10%, 25%)', padding:'10px', marginBottom:'3px'}}>
-        <input style={{width:'100%'}} type="range" id="sliderInput" defaultValue={this.props.node.number} min={this.props.node.min} max={this.props.node.max} step={this.props.node.step} onChange={(event) => {this.sliderChange(event);}} />
+        <input style={{width:'100%'}} type="range" id="sliderInput" defaultValue={this.props.node.number} min={this.props.node.min} max={this.props.node.max} step={this.props.node.step} onChange={(event) => {this.debouncedSliderChange(event);}} />
       </div>
     )
   }

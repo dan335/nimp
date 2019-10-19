@@ -11,7 +11,7 @@ export default class PropertiesInputNumber extends React.Component {
       hasInput: props.input && props.input.parent ? true : false
     }
 
-    this.debouncedChange = debounce(this.change, 300);
+    this.debouncedChange = debounce(this.change, 250);
   }
 
 
