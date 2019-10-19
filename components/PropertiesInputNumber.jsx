@@ -1,4 +1,4 @@
-// props = node, name, varName, input, min, max, step, help
+// props = node, name, varName, input, min, max, step, help, callback
 
 var debounce = require('lodash.debounce');
 
@@ -20,6 +20,9 @@ export default class PropertiesInputNumber extends React.Component {
     if (elm) {
       this.props.node[this.props.varName] = Number(elm.value);
       this.props.node.run(null);
+      if (typeof this.props.callback === 'function') {
+        this.props.callback();
+      }
     }
   }
 

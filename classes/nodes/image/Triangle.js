@@ -1,3 +1,8 @@
+// todo
+// creating the canvas each time is probably slow
+// create canvas when node is created
+
+
 import NodeImage from '../NodeImage.js';
 import TriangleProperties from './TriangleProperties.jsx';
 import OutputImage from '../OutputImage.js';
