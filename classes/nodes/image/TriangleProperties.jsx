@@ -8,7 +8,7 @@ export default class TriangleProperties extends Properties {
     super(props);
 
     this.state = {
-      hasColorInput: props.node.inputs[6].parent ? true : false,
+      hasColorInput: props.node.inputs[8].parent ? true : false,
     }
   }
 
