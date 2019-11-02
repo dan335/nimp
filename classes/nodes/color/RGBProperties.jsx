@@ -12,7 +12,7 @@ export default class RGBProperties extends Properties {
           <PropertiesInputSlider node={this.props.node} name="Red" varName={'red'} input={this.props.node.inputs[0]} min={0} max={255} step={1} />
           <PropertiesInputSlider node={this.props.node} name="Green" varName={'green'} input={this.props.node.inputs[1]} min={0} max={255} step={1} />
           <PropertiesInputSlider node={this.props.node} name="Blue" varName={'blue'} input={this.props.node.inputs[2]} min={0} max={255} step={1} />
-          <PropertiesInputSlider node={this.props.node} name="Alpha" varName={'alpha'} input={this.props.node.inputs[3]} min={0} max={255} step={1} />
+          <PropertiesInputSlider node={this.props.node} name="Alpha" varName={'alpha'} input={this.props.node.inputs[3]} min={0} max={1} step={0.01} />
           {this.renderName()}
           {this.renderRun()}
         </div>
