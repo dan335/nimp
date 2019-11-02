@@ -20,19 +20,19 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "isomorphic-unfetch": "^3.0.0",
-    "jimp": "^0.8.4",
+    "jimp": "^0.8.5",
     "lodash.debounce": "^4.0.8",
-    "mongodb": "^3.3.2",
-    "next": "^9.1.1",
+    "mongodb": "^3.3.3",
+    "next": "^9.1.2",
     "normalize.css": "^8.0.1",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-ga": "^2.7.0",
     "simplex-noise": "^2.4.0",
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
     "cross-env": "^6.0.3",
-    "nodemon": "^1.19.3"
+    "nodemon": "^1.19.4"
   }
 }
