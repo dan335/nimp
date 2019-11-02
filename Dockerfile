@@ -1,6 +1,6 @@
 FROM node:12-alpine
 
-RUN apk add --no-cache make gcc g++ python
+RUN apk add --no-cache make gcc g++ python builds-deps build-base
 
 ENV PORT=80 TERM=xterm
 
