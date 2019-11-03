@@ -37,7 +37,7 @@ export default class Ceil extends NodeNumber {
     if (this.a != null && !isNaN(this.a)) {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
-      this.number = Math.floor(this.a);
+      this.number = Math.ceil(this.a);
       super.run(inputThatTriggered);
     } else {
       this.runTimer = Date.now();
