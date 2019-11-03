@@ -366,9 +366,15 @@ export default class GraphView extends React.Component {
 
 
   renderGraphProperties() {
+    let isSaved = false;
+
+    if (this.props.graphToLoad) {
+      isSaved = true;
+    }
+
     if (!this.state.properties) {
       return (
-        <GraphProperties user={this.props.user} graph={this.graph} key={this.state.propertiesKey} indexComponent={this} />
+        <GraphProperties user={this.props.user} graph={this.graph} key={this.state.propertiesKey} indexComponent={this} isSaved={isSaved} />
       )
     }
   }
