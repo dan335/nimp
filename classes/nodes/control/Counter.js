@@ -11,10 +11,14 @@ export default class Counter extends NodeNumber {
     super(className, graph, x, y, 'Counter', CounterProperties, settings);
 
     this.inputs = [
-      new InputNumber(this, 0, 'Input', 'hasNumber'),
-      new InputColor(this, 1, 'Input', 'hasColor'),
-      new InputImage(this, 2, 'Input', 'hasImage'),
-      new InputString(this, 3, 'Input', 'hasString')
+      new InputNumber(this, 0, 'Increment', 'hasNumber'),
+      new InputColor(this, 1, 'Increment', 'hasColor'),
+      new InputImage(this, 2, 'Increment', 'hasImage'),
+      new InputString(this, 3, 'Increment', 'hasString'),
+      new InputNumber(this, 4, 'Reset', 'hasNumberReset'),
+      new InputColor(this, 5, 'Reset', 'hasColorReset'),
+      new InputImage(this, 6, 'Reset', 'hasImageReset'),
+      new InputString(this, 7, 'Reset', 'hasStringReset'),
     ];
     this.outputs = [
       new OutputNumber(this, 0, 'Counter')
@@ -32,7 +36,11 @@ export default class Counter extends NodeNumber {
 
 
   run(inputThatTriggered) {
-    this.number++;
+    if (inputThatTriggered && inputThatTriggered.index >= 4) {
+      this.number = 0
+    } else {
+      this.number++;
+    }
     this.runTimer = Date.now();
     super.run(inputThatTriggered);
   }
