@@ -51,7 +51,7 @@ export default class Loop extends NodeImage {
           this.runTimer = Date.now();
 
           if (this.isInsideALoop) {
-            this.runLoop();
+            this.runLoop(inputThatTriggered);
           } else {
             // add delay so that running color shows up
             setTimeout(() => {
