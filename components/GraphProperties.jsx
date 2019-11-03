@@ -274,7 +274,7 @@ export default class GraphProperties extends React.Component {
           )}
 
           {this.props.isSaved && this.props.graph && (
-            <a href={'/json/'+this.props.graph.id+'/'+this.props.graph.slug}><button className="fullWidth">View JSON</button></a>
+            <a href={'/json/'+this.props.graph.id+'/'+this.props.graph.slug}><button className="fullWidth">View Saved Data</button></a>
           )}
         </div>
 
