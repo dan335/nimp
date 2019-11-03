@@ -20,7 +20,7 @@ export default class Counter extends NodeNumber {
       new OutputNumber(this, 0, 'Counter')
     ];
 
-    this.number = 0;
+    this.number = -1;
   }
 
 
