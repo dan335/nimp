@@ -272,6 +272,10 @@ export default class GraphProperties extends React.Component {
           {isUser && (
             <button className="fullWidth" onClick={this.clickDelete}>Delete Graph</button>
           )}
+
+          {this.props.isSaved && this.props.graph && (
+            <a href={'/json/'+this.props.graph.id+'/'+this.props.graph.slug}><button className="fullWidth">View JSON</button></a>
+          )}
         </div>
 
         <style jsx>{`
