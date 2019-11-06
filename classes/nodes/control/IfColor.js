@@ -38,24 +38,14 @@ export default class IfColor extends NodeColor {
     }
 
     if (a) {
-      if (this.inputs[0].image) {
+      if (this.inputs[0].color) {
         this.bg.classList.add('running');
         this.runTimer = Date.now();
-
-        if (this.isInsideALoop) {
-          let image = this.inputs[0].image.clone();
-          this.image = image;
-          super.run(inputThatTriggered);
-
-        } else {
-          Jimp.read(this.inputs[0].image).then(image => {
-            this.image = image;
-            super.run(inputThatTriggered);
-          })
-        }
+        this.color = this.inputs[0].color;
+        super.run(inputThatTriggered);
       } else {
         this.runTimer = Date.now();
-        this.image = null;
+        this.color = tinycolor('#000');
         super.run(inputThatTriggered);
       }
     }

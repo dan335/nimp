@@ -38,24 +38,14 @@ export default class IfString extends NodeString {
     }
 
     if (a) {
-      if (this.inputs[0].image) {
+      if (this.inputs[0].string != null) {
         this.bg.classList.add('running');
         this.runTimer = Date.now();
-
-        if (this.isInsideALoop) {
-          let image = this.inputs[0].image.clone();
-          this.image = image;
-          super.run(inputThatTriggered);
-
-        } else {
-          Jimp.read(this.inputs[0].image).then(image => {
-            this.image = image;
-            super.run(inputThatTriggered);
-          })
-        }
+        this.string = this.inputs[0].string;
+        super.run(inputThatTriggered);
       } else {
         this.runTimer = Date.now();
-        this.image = null;
+        this.string = null;
         super.run(inputThatTriggered);
       }
     }
