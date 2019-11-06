@@ -90,7 +90,6 @@ export default class Loop extends NodeImage {
 
       let image;
       if (n == 0) {
-        console.log('first')
         image = this.inputs[0].image.clone();
       } else {
         if (this.inputs[2].image) {
