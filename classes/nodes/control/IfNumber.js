@@ -37,24 +37,14 @@ export default class IfNumber extends NodeNumber {
     }
 
     if (a) {
-      if (this.inputs[0].image) {
+      if (this.inputs[0].number != null) {
         this.bg.classList.add('running');
         this.runTimer = Date.now();
-
-        if (this.isInsideALoop) {
-          let image = this.inputs[0].image.clone();
-          this.image = image;
-          super.run(inputThatTriggered);
-
-        } else {
-          Jimp.read(this.inputs[0].image).then(image => {
-            this.image = image;
-            super.run(inputThatTriggered);
-          })
-        }
+        this.number = this.inputs[0].number;
+        super.run(inputThatTriggered);
       } else {
         this.runTimer = Date.now();
-        this.image = null;
+        this.number = null;
         super.run(inputThatTriggered);
       }
     }
