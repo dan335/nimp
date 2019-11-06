@@ -1,20 +1,20 @@
-import NodeImage from '../NodeImage.js';
-import IfProperties from './IfProperties.jsx';
-import OutputImage from '../OutputImage.js';
-import InputImage from '../InputImage.js';
+import NodeColor from '../NodeColor.js';
+import IfColorProperties from './IfColorProperties.jsx';
+import OutputColor from '../OutputColor.js';
+import InputColor from '../InputColor.js';
 import InputNumber from '../InputNumber.js';
 
 
-export default class If extends NodeImage {
+export default class IfColor extends NodeColor {
   constructor(className, graph, x, y, settings) {
-    super(className, graph, x, y, 'If', IfProperties, settings);
+    super(className, graph, x, y, 'Color If', IfColorProperties, settings);
 
     this.inputs = [
-      new InputImage(this, 0, 'Input'),
+      new InputColor(this, 0, 'Input'),
       new InputNumber(this, 1, 'Test', 'hasAInput')
     ];
     this.outputs = [
-      new OutputImage(this, 0, 'Output')
+      new OutputColor(this, 0, 'Output')
     ];
 
     this.a = typeof settings.a !== 'undefined' ? settings.a : 1;
