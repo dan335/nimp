@@ -81,7 +81,6 @@ export default class Sobel extends NodeImage {
         // sobel filter
         let dx = (tr + 2 * r + br) - (tl + 2 * l + bl);
         let dy = (bl + 2 * b + br) - (tl + 2 * t + tr);
-        let dz = 1 / pStrength;
 
         // // normalize vector
         let magnitude = Math.sqrt(dx * dx + dy * dy);
