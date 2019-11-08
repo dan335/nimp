@@ -2,6 +2,7 @@ import NodeImage from '../NodeImage.js';
 import NormalMapProperties from './NormalMapProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
+import InputNumber from '../InputNumber.js';
 
 // https://stackoverflow.com/questions/2368728/can-normal-maps-be-generated-from-a-texture/2368794#2368794
 
@@ -11,25 +12,34 @@ export default class NormalMap extends NodeImage {
     super(className, graph, x, y, 'Normal Map', NormalMapProperties, settings);
 
     this.inputs = [
-      new InputImage(this, 0, 'Height Input')
+      new InputImage(this, 0, 'Height Input'),
+      new InputNumber(this, 1, 'Strength', 'hasStrength')
     ];
     this.outputs = [
       new OutputImage(this, 0, 'Output')
     ];
+
+    this.strength = typeof settings.strength !== 'undefined' ? settings.strength : 2;
   }
 
 
   run(inputThatTriggered) {
     if (this.inputs[0].image) {
+      let strength = this.strength;
+
+      if (this.inputs[1].number != null) {
+        strength = this.inputs[1].number;
+      }
+
       this.bg.classList.add('running');
       this.runTimer = Date.now();
 
       if (this.isInsideALoop) {
-        this.image = this.heightToNormal(this.inputs[0].image.clone());
+        this.image = this.heightToNormal(this.inputs[0].image.clone(), strength);
         super.run(inputThatTriggered);
       } else {
         Jimp.read(this.inputs[0].image).then(image => {
-          this.image = this.heightToNormal(image);
+          this.image = this.heightToNormal(image, strength);
           super.run(inputThatTriggered);
         })
       }
