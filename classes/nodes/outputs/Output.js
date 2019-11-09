@@ -2,6 +2,7 @@ import NodeImage from '../NodeImage.js';
 import OutputProperties from './OutputProperties.jsx';
 import InputImage from '../InputImage.js';
 import Jimp from 'jimp';
+var debounce = require('lodash.debounce');
 
 
 
@@ -19,6 +20,8 @@ export default class Output extends NodeImage {
 
     this.type = typeof settings.type !== 'undefined' ? settings.type : Jimp.MIME_JPEG;
     this.filename = typeof settings.filename !== 'undefined' ? settings.filename : 'NimpDownload';
+
+    this.debouncedRenderOutput = debounce(this.renderOutput, 80);
   }
 
 
@@ -46,6 +49,11 @@ export default class Output extends NodeImage {
 
 
   run(inputThatTriggered) {
+    this.debouncedRenderOutput(inputThatTriggered);
+  }
+
+
+  renderOutput(inputThatTriggered) {
     if (this.inputs[0].image) {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
