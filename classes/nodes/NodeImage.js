@@ -81,9 +81,11 @@ export default class NodeImage extends Node {
 
 
   renderPreview() {
-    this.image.clone().resize(settings.nodeWidth, Jimp.AUTO, (error, image) => {
-      image.getBufferAsync(Jimp.MIME_PNG).then(i => {
-        this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64'));
+    this.image.clone((error, image) => {
+      image.resize(settings.nodeWidth, Jimp.AUTO, (error, image) => {
+        image.getBufferAsync(Jimp.MIME_PNG).then(i => {
+          this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64'));
+        })
       })
     })
   }
