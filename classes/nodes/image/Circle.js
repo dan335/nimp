@@ -108,12 +108,14 @@ export default class Circle extends NodeImage {
       let b = y + 0.5 - centerY;
       let distance = Math.sqrt(a*a+b*b);
 
-      if (distance < radius) {
-        // inside
-      } else {
-        // outside
-        this.bitmap.data[idx+3] = 0;
-      }
+      this.bitmap.data[idx+3] = Math.min(1, Math.max(0, 1 - (distance - radius - 0.5))) * 255;
+
+      // if (distance < radius) {
+      //   // inside
+      // } else {
+      //   // outside
+      //   this.bitmap.data[idx+3] = 0;
+      // }
     })
 
     return image;

@@ -117,10 +117,6 @@ export default class Gradient extends NodeImage {
 
   passToChildren() {
     if (this.image) {
-      this.outputs[0].connections.forEach(conn => {
-        conn.image = this.image;
-        conn.runNode();
-      })
       this.outputs[1].connections.forEach(conn => {
         conn.number = this.image.bitmap.width;
         conn.runNode();
