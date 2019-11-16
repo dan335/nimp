@@ -19,6 +19,8 @@ export default class FaultlineProperties extends Properties {
 
           <br/><br/>
           For each iteration pick two random points to create a line.  Raise or lower pixel depending on which side of the line it is on.
+          <br/><br/>
+          <a href="https://github.com/barisusakli/faultline">https://github.com/barisusakli/faultline</a>
         </div>
       </div>
     )
