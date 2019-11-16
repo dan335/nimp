@@ -25,7 +25,7 @@ export default class Faultline extends NodeImage {
 
     this.width = typeof settings.width !== 'undefined' ? settings.width : 256;
     this.height = typeof settings.height !== 'undefined' ? settings.height : 256;
-    this.iterations = typeof settings.iterations !== 'undefined' ? settings.iterations : 500;
+    this.iterations = typeof settings.iterations !== 'undefined' ? settings.iterations : 200;
   }
 
 
