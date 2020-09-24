@@ -65,11 +65,11 @@ mongoClient.connect(error => {
       console.log(`Nimp running on port ${PORT}`);
     })
 
-    // delete graphs not viewed in the past 30 days
-    setInterval(() => {
-      const collection = expressApp.locals.db.collection('graphs');
-      const cutoff = new Date(new Date().setDate(new Date().getDate()-90));
-      collection.deleteMany({viewedAt: {$lt:cutoff}});
-    }, 1000 * 60 * 60 * 6);
+    // // delete graphs not viewed in the past 30 days
+    // setInterval(() => {
+    //   const collection = expressApp.locals.db.collection('graphs');
+    //   const cutoff = new Date(new Date().setDate(new Date().getDate()-90));
+    //   collection.deleteMany({viewedAt: {$lt:cutoff}});
+    // }, 1000 * 60 * 60 * 6);
   })
 })
