@@ -29,7 +29,8 @@
     "react-dom": "^16.11.0",
     "react-ga": "^2.7.0",
     "simplex-noise": "^2.4.0",
-    "tinycolor2": "^1.4.1"
+    "tinycolor2": "^1.4.1",
+    "worley-noise": "^2.0.1"
   },
   "devDependencies": {
     "cross-env": "^6.0.3",
