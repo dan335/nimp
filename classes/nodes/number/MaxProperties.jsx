@@ -16,7 +16,7 @@ export default class MaxNumbersProperties extends Properties {
     if (this.state.hasA && this.state.hasB) {
       return (
         <div>
-          min({this.props.node.a}, {this.props.node.b}) = {Math.max(this.props.node.a, this.props.node.b)}
+          max({this.props.node.a}, {this.props.node.b}) = {Math.max(this.props.node.a, this.props.node.b)}
         </div>
       )
     }
