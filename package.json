@@ -23,7 +23,7 @@
     "jimp": "^0.8.5",
     "lodash.debounce": "^4.0.8",
     "mongodb": "^3.3.3",
-    "next": "^9.1.2",
+    "next": "^11.1.0",
     "normalize.css": "^8.0.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
