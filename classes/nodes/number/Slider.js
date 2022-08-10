@@ -44,11 +44,11 @@ export default class Slider extends NodeNumber {
     }
 
     if (this.inputs[1].number != null) {
-      this.max = this.inputs[0].number;
+      this.max = this.inputs[1].number;
     }
 
     if (this.inputs[2].number != null) {
-      this.step = this.inputs[0].number;
+      this.step = this.inputs[2].number;
     }
 
     super.run(inputThatTriggered);
