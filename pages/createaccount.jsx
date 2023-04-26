@@ -1,6 +1,7 @@
 import MainLayout from '../layouts/MainLayout.js';
 import TopBar from '../components/TopBar.jsx';
 import fetch from 'isomorphic-unfetch';
+import React from 'react';
 
 export default class CreateAccount extends React.Component {
 

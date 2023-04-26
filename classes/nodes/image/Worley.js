@@ -3,7 +3,7 @@ import WorleyProperties from './WorleyProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 import InputNumber from '../InputNumber.js';
-import Jimp from 'jimp';
+import Jimp from "jimp";
 import WorleyNoise from 'worley-noise';
 
 

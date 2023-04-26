@@ -1,5 +1,6 @@
 import TopBar from '../components/TopBar.jsx';
 import Head from 'next/head';
+import React from 'react';
 
 
 export default class JsonView extends React.Component {

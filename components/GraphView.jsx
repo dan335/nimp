@@ -4,6 +4,7 @@ import functions from '../lib/functions.js';
 import GraphProperties from '../components/GraphProperties.jsx';
 import TopBar from '../components/TopBar.jsx';
 import Head from 'next/head';
+import React from 'react';
 
 // dragging svg
 // https://css-tricks.com/creating-a-panning-effect-for-svg/
@@ -346,7 +347,7 @@ export default class GraphView extends React.Component {
         <div className="nodeButton" onMouseEnter={(event) => {event.target.nextSibling.classList.add('show')}} onMouseLeave={() => {event.target.nextSibling.classList.remove('show')}} onMouseDown={() => {this.startDraggingNewNode(node)}}>
           {node.title}
         </div>
-        <div className="nodeButtonDrag">drag >></div>
+        <div className="nodeButtonDrag">drag</div>
       </div>
     )
   }

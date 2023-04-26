@@ -1,18 +1,30 @@
 const express = require('express');
+const path = require('path');
 const next = require('next');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const MongoClient = require('mongodb').MongoClient;
-const mongoClient = new MongoClient(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+//const mongoClient = new MongoClient(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 const dev = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
 
+const uri = 'mongodb+srv://dan:5906iP8MOA74Z1Iz@shipyard-db-2cb49607.mongo.ondigitalocean.com/nimp?tls=true&authSource=admin&replicaSet=shipyard-db'
+const options = {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  tls: true,
+  tlsCAFile: path.join(process.cwd(), 'ca-certificate.crt')
+}
+
+let mongoClient = new MongoClient(uri, options)
+let clientPromise = mongoClient.connect()
+
 mongoClient.connect(error => {
   if (error) {
-    console.log('Error connecting to mongodb at '+process.env.MONGO_URL+'.');
+    console.log('Error connecting to mongodb.');
     console.log(error);
     return;
   }
@@ -24,14 +36,18 @@ mongoClient.connect(error => {
 
     expressApp.locals.db.createIndex('users', {email:1});
 
-    const store = new MongoStore({
-      uri: process.env.MONGO_URL + '/nimp',
-      collection: 'sessions'
-    }, error => {
-      if (error) {
-        console.log('new MongoStore error', error);
-      }
-    });
+    
+
+    let store = new MongoStore({ clientPromise: clientPromise, collection: 'sessions' });
+
+    // const store = new MongoStore({
+    //   uri: 'mongodb+srv://doadmin:<replace-with-your-password>@shipyard-db-2cb49607.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=shipyard-db' + '/nimp',
+    //   collection: 'sessions'
+    // }, error => {
+    //   if (error) {
+    //     console.log('new MongoStore error', error);
+    //   }
+    // });
 
     store.on('error', function(error) {
       console.log('MongoStore Error', error);

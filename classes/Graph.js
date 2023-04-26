@@ -1,7 +1,7 @@
 var ObjectId = require('bson-objectid');
 import functions from '../lib/functions.js';
 import settings from '../lib/settings.js';
-import Jimp from 'jimp';
+import Jimp from "jimp";
 
 
 export default class Graph {

@@ -2,7 +2,7 @@ import NodeImage from '../NodeImage.js';
 import LevelsProperties from './LevelsProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import Jimp from 'jimp';
+import Jimp from "jimp";
 const tinycolor = require("tinycolor2");
 import InputNumber from '../InputNumber.js';
 

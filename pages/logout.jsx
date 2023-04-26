@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 import MainLayout from '../layouts/MainLayout.js';
-
+import React from 'react';
 
 export default class Logout extends React.Component {
 

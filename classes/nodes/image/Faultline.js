@@ -4,7 +4,7 @@ import NodeImage from '../NodeImage.js';
 import FaultlineProperties from './FaultlineProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
-import Jimp from 'jimp';
+import Jimp from "jimp";
 import InputNumber from '../InputNumber.js';
 
 

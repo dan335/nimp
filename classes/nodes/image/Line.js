@@ -4,7 +4,7 @@ import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 import OutputColor from '../OutputColor.js';
 import InputColor from '../InputColor.js';
-import Jimp from 'jimp';
+import Jimp from "jimp";
 const tinycolor = require("tinycolor2");
 import InputNumber from '../InputNumber.js';
 
