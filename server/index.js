@@ -16,7 +16,7 @@ const options = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   tls: true,
-  tlsCAFile: path.join(process.cwd(), 'ca-certificate.crt')
+  tlsCAFile: process.env.MONGO_CERT_PATH
 }
 
 let mongoClient = new MongoClient(uri, options)
