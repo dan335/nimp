@@ -1,14 +1,10 @@
 import Head from 'next/head';
 import '../node_modules/normalize.css/normalize.css';
-import ReactGA from 'react-ga';
+import Script from "next/script";
+import React from 'react';
 
 
 export default class MainLayout extends React.Component {
-
-  componentDidMount() {
-    ReactGA.initialize('UA-82312326-13');
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }
 
   render() {
     const {headerData, children} = this.props;
@@ -33,6 +29,14 @@ export default class MainLayout extends React.Component {
 
         <div>
           {children}
+          <noscript>
+            {/* eslint-disable @next/next/no-img-element */}
+            <img
+              src="https://queue.simpleanalyticscdn.com/noscript.gif"
+              alt=""
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </noscript>
         </div>
 
         <style jsx global>{`

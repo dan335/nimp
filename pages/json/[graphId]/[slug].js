@@ -1,6 +1,7 @@
 import JsonView from '../../../components/JsonView.jsx';
 import Head from 'next/head';
 import MainLayout from '../../../layouts/MainLayout.js';
+import React from 'react';
 
 
 export default class JsonSlug extends React.Component {

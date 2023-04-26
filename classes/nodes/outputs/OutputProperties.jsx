@@ -1,5 +1,5 @@
 import Properties from '../Properties.js';
-import Jimp from 'jimp';
+import Jimp from "jimp";
 
 
 export default class OutputProperties extends Properties {

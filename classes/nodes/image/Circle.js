@@ -3,7 +3,7 @@ import CircleProperties from './CircleProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 import OutputColor from '../OutputColor.js';
-import Jimp from 'jimp';
+import Jimp from "jimp";
 import InputColor from '../InputColor.js';
 const tinycolor = require("tinycolor2");
 import InputNumber from '../InputNumber.js';

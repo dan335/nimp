@@ -1,7 +1,7 @@
 import NodeImage from '../NodeImage.js';
 import OutputProperties from './OutputProperties.jsx';
 import InputImage from '../InputImage.js';
-import Jimp from 'jimp';
+import Jimp from "jimp";
 var debounce = require('lodash.debounce');
 
 

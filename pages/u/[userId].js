@@ -2,7 +2,7 @@ import MainLayout from '../../layouts/MainLayout.js';
 import TopBar from '../../components/TopBar.jsx';
 import fetch from 'isomorphic-unfetch'
 import GraphThumbs from '../../components/GraphThumbs.jsx';
-
+import React from 'react';
 
 
 export default class UserGraphs extends React.Component {

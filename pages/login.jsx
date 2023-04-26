@@ -1,5 +1,6 @@
 import MainLayout from '../layouts/MainLayout.js';
 import TopBar from '../components/TopBar.jsx';
+import React from 'react';
 
 export default class Login extends React.Component {
 

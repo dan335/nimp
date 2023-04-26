@@ -2,7 +2,7 @@ import NodeImage from '../NodeImage.js';
 import TextProperties from './TextProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
-import Jimp from 'jimp';
+import Jimp from "jimp";
 import InputString from '../InputString.js';
 import InputNumber from '../InputNumber.js';
 

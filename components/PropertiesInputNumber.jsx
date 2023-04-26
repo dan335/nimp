@@ -1,5 +1,5 @@
 // props = node, name, varName, input, min, max, step, help, callback
-
+import React from 'react';
 var debounce = require('lodash.debounce');
 
 

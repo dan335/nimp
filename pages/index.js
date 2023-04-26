@@ -1,6 +1,6 @@
 import GraphView from '../components/GraphView.jsx';
 import MainLayout from '../layouts/MainLayout.js';
-
+import React from 'react';
 
 export default class Index extends React.Component {
   static async getInitialProps({req, query}) {
