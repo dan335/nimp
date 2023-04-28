@@ -29,14 +29,8 @@ export default class MainLayout extends React.Component {
 
         <div>
           {children}
-          <noscript>
-            {/* eslint-disable @next/next/no-img-element */}
-            <img
-              src="https://queue.simpleanalyticscdn.com/noscript.gif"
-              alt=""
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </noscript>
+          <script async defer src="https://simple.ennogames.com/latest.js"></script>
+          <noscript>{/* eslint-disable @next/next/no-img-element */}<img src="https://simple.ennogames.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
         </div>
 
         <style jsx global>{`
