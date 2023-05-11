@@ -11,12 +11,12 @@ const handle = nextApp.getRequestHandler();
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
 
-const uri = 'mongodb+srv://dan:5906iP8MOA74Z1Iz@shipyard-db-2cb49607.mongo.ondigitalocean.com/nimp?tls=true&authSource=admin&replicaSet=shipyard-db'
+const uri = process.env.MONGO_URL;
 const options = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   tls: true,
-  tlsCAFile: path.join(process.cwd(), 'ca-certificate.crt')
+  tlsCAFile: path.join(process.cwd(), process.env.MONGO_CERT_PATH)
 }
 
 let mongoClient = new MongoClient(uri, options)
@@ -39,15 +39,6 @@ mongoClient.connect(error => {
     
 
     let store = new MongoStore({ clientPromise: clientPromise, collection: 'sessions' });
-
-    // const store = new MongoStore({
-    //   uri: 'mongodb+srv://doadmin:<replace-with-your-password>@shipyard-db-2cb49607.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=shipyard-db' + '/nimp',
-    //   collection: 'sessions'
-    // }, error => {
-    //   if (error) {
-    //     console.log('new MongoStore error', error);
-    //   }
-    // });
 
     store.on('error', function(error) {
       console.log('MongoStore Error', error);
