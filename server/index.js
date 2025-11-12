@@ -4,23 +4,24 @@ const next = require('next');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const MongoClient = require('mongodb').MongoClient;
-//const mongoClient = new MongoClient(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+console.log('MONGO_URL', process.env.MONGO_URL);
+const mongoClient = new MongoClient(process.env.MONGO_URL);
 const dev = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
 
-const uri = process.env.MONGO_URL;
-const options = {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-  tls: true,
-  tlsCAFile: process.env.MONGO_CERT_PATH
-}
+// const uri = process.env.MONGO_URL;
+// const options = {
+//   useUnifiedTopology: true,
+//   useNewUrlParser: true,
+//   tls: true,
+//   tlsCAFile: process.env.MONGO_CERT_PATH
+// }
 
-let mongoClient = new MongoClient(uri, options)
-let clientPromise = mongoClient.connect()
+//let mongoClient = new MongoClient(uri, options)
+//let clientPromise = mongoClient.connect()
 
 mongoClient.connect(error => {
   if (error) {
