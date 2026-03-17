@@ -1,0 +1,56 @@
+import NodeImage from '../NodeImage.js';
+import SpherizeProperties from './SpherizeProperties.jsx';
+import OutputImage from '../OutputImage.js';
+import InputImage from '../InputImage.js';
+import InputNumber from '../InputNumber.js';
+
+export default class Spherize extends NodeImage {
+  constructor(className, graph, x, y, settings) {
+    super(className, graph, x, y, 'Spherize', SpherizeProperties, settings);
+
+    this.inputs = [
+      new InputImage(this, 0, 'Input'),
+      new InputNumber(this, 1, 'Radius', 'hasRadiusInput')
+    ];
+    this.outputs = [
+      new OutputImage(this, 0, 'Output')
+    ];
+
+    this.radius = typeof settings.radius !== 'undefined' ? settings.radius : 2;
+  }
+
+
+  toJson() {
+    let json = super.toJson();
+
+    json.settings.radius = this.radius;
+
+    return json;
+  }
+
+
+  run(inputThatTriggered) {
+    if (this.inputs[0].image) {
+      this.bg.classList.add('running');
+      this.runTimer = Date.now();
+
+      let radius = this.radius;
+
+      if (this.inputs[1].number != null) {
+        radius = this.inputs[1].number;
+      }
+
+      radius = Math.max(0.1, radius);
+
+      const image = this.inputs[0].image.clone();
+      image.fisheye({ radius });
+      this.image = image;
+      super.run(inputThatTriggered);
+
+    } else {
+      this.runTimer = Date.now();
+      this.image = null;
+      super.run(inputThatTriggered);
+    }
+  }
+}

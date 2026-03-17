@@ -20,7 +20,10 @@
       "Bash(npm show:*)",
       "WebFetch(domain:www.npmjs.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "WebFetch(domain:jimp-dev.github.io)"
+      "WebFetch(domain:jimp-dev.github.io)",
+      "WebFetch(domain:helpx.adobe.com)",
+      "WebFetch(domain:rodzill4.github.io)",
+      "WebFetch(domain:experienceleague.adobe.com)"
     ]
   }
 }

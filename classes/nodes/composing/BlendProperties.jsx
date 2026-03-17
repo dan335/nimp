@@ -43,6 +43,11 @@ export default class BlendProperties extends Properties {
             <option value={BlendMode.HARDLIGHT}>Hard Light</option>
             <option value={BlendMode.DIFFERENCE}>Difference</option>
             <option value={BlendMode.EXCLUSION}>Exclusion</option>
+            <option value="softLight">Soft Light</option>
+            <option value="colorDodge">Color Dodge</option>
+            <option value="colorBurn">Color Burn</option>
+            <option value="linearDodge">Linear Dodge (Add)</option>
+            <option value="linearBurn">Linear Burn</option>
           </select>
           <br/>
           <br/>

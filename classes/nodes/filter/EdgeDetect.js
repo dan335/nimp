@@ -1,0 +1,40 @@
+import NodeImage from '../NodeImage.js';
+import EdgeDetectProperties from './EdgeDetectProperties.jsx';
+import OutputImage from '../OutputImage.js';
+import InputImage from '../InputImage.js';
+
+
+export default class EdgeDetect extends NodeImage {
+  constructor(className, graph, x, y, settings) {
+    super(className, graph, x, y, 'Edge Detect', EdgeDetectProperties, settings);
+
+    this.inputs = [
+      new InputImage(this, 0, 'Input')
+    ];
+    this.outputs = [
+      new OutputImage(this, 0, 'Output')
+    ];
+  }
+
+
+  run(inputThatTriggered) {
+    if (this.inputs[0].image) {
+      this.bg.classList.add('running');
+      this.runTimer = Date.now();
+
+      const image = this.inputs[0].image.clone();
+      const kernel = [
+        [0, -1, 0],
+        [-1, 4, -1],
+        [0, -1, 0]
+      ];
+      image.convolution(kernel);
+      this.image = image;
+      super.run(inputThatTriggered);
+    } else {
+      this.runTimer = Date.now();
+      this.image = null;
+      super.run(inputThatTriggered);
+    }
+  }
+}

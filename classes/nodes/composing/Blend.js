@@ -29,6 +29,32 @@ export default class Blend extends NodeImage {
   }
 
 
+  // Custom blend modes not provided by Jimp
+  static CUSTOM_MODES = ['softLight', 'colorDodge', 'colorBurn', 'linearDodge', 'linearBurn'];
+
+
+  blendChannel(a, b) {
+    switch (this.mode) {
+      case 'softLight':
+        if (b < 128) {
+          return Math.round(2 * a * b / 255 + (a / 255) * (a / 255) * (255 - 2 * b));
+        } else {
+          return Math.round(2 * a * (255 - b) / 255 + Math.sqrt(a / 255) * (2 * b - 255));
+        }
+      case 'colorDodge':
+        return a === 255 ? 255 : Math.min(255, Math.round((b * 255) / (255 - a)));
+      case 'colorBurn':
+        return a === 0 ? 0 : Math.max(0, Math.round(255 - ((255 - b) * 255) / a));
+      case 'linearDodge':
+        return Math.min(255, a + b);
+      case 'linearBurn':
+        return Math.max(0, a + b - 255);
+      default:
+        return b;
+    }
+  }
+
+
   run(inputThatTriggered) {
     if (this.inputs[0].image && this.inputs[1].image) {
       this.bg.classList.add('running');
@@ -61,13 +87,57 @@ export default class Blend extends NodeImage {
       opacityDest = Math.max(0, opacityDest);
       opacityDest = Math.min(1, opacityDest);
 
-      let image = this.inputs[0].image.clone();
-      image.composite(this.inputs[1].image, blendX, blendY, {
-        mode: this.mode,
-        opacitySource: opacitySource,
-        opacityDest: opacityDest
-      });
-      this.image = image;
+      if (Blend.CUSTOM_MODES.includes(this.mode)) {
+        // Per-pixel custom blend
+        const bg = this.inputs[0].image;
+        const fg = this.inputs[1].image;
+        const w = bg.bitmap.width;
+        const h = bg.bitmap.height;
+        const image = bg.clone();
+        const bgData = bg.bitmap.data;
+        const fgData = fg.bitmap.data;
+        const outData = image.bitmap.data;
+        const fgW = fg.bitmap.width;
+        const fgH = fg.bitmap.height;
+
+        for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w; x++) {
+            const fx = x - blendX;
+            const fy = y - blendY;
+            if (fx < 0 || fx >= fgW || fy < 0 || fy >= fgH) continue;
+
+            const idx = (y * w + x) * 4;
+            const fgIdx = (fy * fgW + fx) * 4;
+
+            const b_r = bgData[idx];
+            const b_g = bgData[idx + 1];
+            const b_b = bgData[idx + 2];
+            const a_r = fgData[fgIdx];
+            const a_g = fgData[fgIdx + 1];
+            const a_b = fgData[fgIdx + 2];
+
+            let r = this.blendChannel(a_r, b_r);
+            let g = this.blendChannel(a_g, b_g);
+            let b = this.blendChannel(a_b, b_b);
+
+            outData[idx] = Math.round(b_r + (r - b_r) * opacitySource);
+            outData[idx + 1] = Math.round(b_g + (g - b_g) * opacitySource);
+            outData[idx + 2] = Math.round(b_b + (b - b_b) * opacitySource);
+          }
+        }
+
+        this.image = image;
+      } else {
+        // Jimp built-in blend mode
+        let image = this.inputs[0].image.clone();
+        image.composite(this.inputs[1].image, blendX, blendY, {
+          mode: this.mode,
+          opacitySource: opacitySource,
+          opacityDest: opacityDest
+        });
+        this.image = image;
+      }
+
       super.run(inputThatTriggered);
 
     } else {
