@@ -2,6 +2,7 @@ import NodeImage from '../NodeImage.js';
 import ChannelMergeProperties from './ChannelMergeProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
+import { Jimp } from "jimp";
 
 
 export default class ChannelMerge extends NodeImage {
@@ -30,20 +31,13 @@ export default class ChannelMerge extends NodeImage {
         super.run(inputThatTriggered);
 
       } else {
-        Jimp.read(this.inputs[0].image).then(async image => {
-          let red = await Jimp.read(this.inputs[0].image);
-          let green = await Jimp.read(this.inputs[1].image);
-          let blue = await Jimp.read(this.inputs[2].image);
-          let alpha = await Jimp.read(this.inputs[3].image);
+        let red = this.inputs[0].image.clone().greyscale();
+        let green = this.inputs[1].image.clone().greyscale();
+        let blue = this.inputs[2].image.clone().greyscale();
+        let alpha = this.inputs[3].image.clone().greyscale();
 
-          red = await red.greyscale();
-          green = await green.greyscale();
-          blue = await blue.greyscale();
-          alpha = await alpha.greyscale();
-
-          this.image = this.createImage(red, green, blue, alpha);
-          super.run(inputThatTriggered);
-        })
+        this.image = this.createImage(red, green, blue, alpha);
+        super.run(inputThatTriggered);
       }
     } else {
       this.runTimer = Date.now();
@@ -54,9 +48,9 @@ export default class ChannelMerge extends NodeImage {
 
 
   createImage(red, green, blue, alpha) {
-    let image = new Jimp(red.bitmap.width, red.bitmap.height, '#000');
+    let image = new Jimp({ width: red.bitmap.width, height: red.bitmap.height, color: 0x000000ff });
 
-    image.scan(0, 0, image.bitmap.width, image.bitmap.height, (x, y, idx) => {
+    image.scan((x, y, idx) => {
       image.bitmap.data[idx] = red.bitmap.data[idx];
       image.bitmap.data[idx+1] = green.bitmap.data[idx];
       image.bitmap.data[idx+2] = blue.bitmap.data[idx];

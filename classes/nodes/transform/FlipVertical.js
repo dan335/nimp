@@ -21,19 +21,10 @@ export default class FlipVertical extends NodeImage {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
 
-      if (this.isInsideALoop) {
-        const image = this.inputs[0].image.clone();
-        image.flip(false, true);
-        this.image = image;
-        super.run(inputThatTriggered);
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.flip(false, true, (error, image) => {
-            this.image = image;
-            super.run(inputThatTriggered);
-          });
-        })
-      }
+      const image = this.inputs[0].image.clone();
+      image.flip({ horizontal: false, vertical: true });
+      this.image = image;
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

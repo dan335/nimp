@@ -1,5 +1,4 @@
 import Properties from '../Properties.js';
-import Jimp from "jimp";
 
 
 export default class OutputProperties extends Properties {
@@ -34,16 +33,16 @@ export default class OutputProperties extends Properties {
   downloadImage() {
     let a = document.createElement('a');
     switch(this.props.node.type) {
-      case Jimp.MIME_JPEG:
+      case "image/jpeg":
         a.download = this.props.node.filename+'.jpg';
         break;
-      case Jimp.MIME_PNG:
+      case "image/png":
         a.download = this.props.node.filename+'.png';
         break;
-      case Jimp.MIME_BMP:
+      case "image/bmp":
         a.download = this.props.node.filename+'.bmp';
         break;
-      case Jimp.MIME_TIFF:
+      case "image/tiff":
         a.download = this.props.node.filename+'.tif';
         break;
     }
@@ -88,10 +87,10 @@ export default class OutputProperties extends Properties {
           <br/>
           <input id="filenameInput" defaultValue={this.props.node.filename} onChange={(event) => {this.filenameChange(event)}} type="text" />.
           <select id="typeInput" defaultValue={this.props.node.type} onChange={(event) => {this.typeChange(event);}}>
-            <option value={Jimp.MIME_JPEG}>JPG</option>
-            <option value={Jimp.MIME_PNG}>PNG</option>
-            <option value={Jimp.MIME_BMP}>BMP</option>
-            <option value={Jimp.MIME_TIFF}>TIF</option>
+            <option value="image/jpeg">JPG</option>
+            <option value="image/png">PNG</option>
+            <option value="image/bmp">BMP</option>
+            <option value="image/tiff">TIF</option>
           </select>
 
           <br/><br/>

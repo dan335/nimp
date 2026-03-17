@@ -21,15 +21,8 @@ export default class Sobel extends NodeImage {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
 
-      if (this.isInsideALoop) {
-        this.image = this.heightToNormal(this.inputs[0].image.clone());
-        super.run(inputThatTriggered);
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          this.image = this.heightToNormal(image);
-          super.run(inputThatTriggered);
-        })
-      }
+      this.image = this.heightToNormal(this.inputs[0].image.clone());
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

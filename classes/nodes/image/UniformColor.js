@@ -3,7 +3,7 @@ import UniformColorProperties from './UniformColorProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputColor from '../InputColor.js';
 import OutputNumber from '../OutputNumber.js';
-import Jimp from "jimp";
+import { Jimp } from "jimp";
 const tinycolor = require("tinycolor2");
 import OutputColor from '../OutputColor.js';
 import InputNumber from '../InputNumber.js';
@@ -74,19 +74,9 @@ export default class UniformColor extends NodeImage {
     //console.log(bogus)
     //const hexNum = Jimp.rgbaToInt(this.red, this.green, this.blue, this.alpha);
 
-    if (this.isInsideALoop) {
-      this.image = new Jimp(width, height, this.color);
-      super.run(inputThatTriggered);
-    } else {
-      new Jimp(width, height, this.color, (error, image) => {
-        if (error) {
-          console.log(error);
-        } else {
-          this.image = image;
-          super.run(inputThatTriggered);
-        }
-      })
-    }
+    const colorNum = parseInt(this.color.replace('#', ''), 16);
+    this.image = new Jimp({ width, height, color: colorNum });
+    super.run(inputThatTriggered);
   }
 
 

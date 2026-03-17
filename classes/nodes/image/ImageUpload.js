@@ -2,6 +2,7 @@ import NodeImage from '../NodeImage.js';
 import ImageUploadProperties from './ImageUploadProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
+import { Jimp } from "jimp";
 
 export default class ImageUpload extends NodeImage {
   constructor(className, graph, x, y, settings) {

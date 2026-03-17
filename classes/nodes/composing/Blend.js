@@ -1,3 +1,4 @@
+import { BlendMode } from 'jimp';
 import NodeImage from '../NodeImage.js';
 import BlendProperties from './BlendProperties.jsx';
 import OutputImage from '../OutputImage.js';
@@ -22,7 +23,7 @@ export default class Blend extends NodeImage {
 
     this.blendX = typeof settings.blendX !== 'undefined' ? settings.blendX : 0;
     this.blendY = typeof settings.blendY !== 'undefined' ? settings.blendY : 0;
-    this.mode = typeof settings.mode !== 'undefined' ? settings.mode : Jimp.BLEND_MULTIPLY;
+    this.mode = typeof settings.mode !== 'undefined' ? settings.mode : BlendMode.MULTIPLY;
     this.opacitySource = typeof settings.opacitySource !== 'undefined' ? settings.opacitySource : 1;
     this.opacityDest = typeof settings.opacityDest !== 'undefined' ? settings.opacityDest : 1;
   }
@@ -60,31 +61,14 @@ export default class Blend extends NodeImage {
       opacityDest = Math.max(0, opacityDest);
       opacityDest = Math.min(1, opacityDest);
 
-      if (this.isInsideALoop) {
-        let image = this.inputs[0].image.clone();
-        image.composite(this.inputs[1].image, blendX, blendY, {
-          mode: this.mode,
-          opacitySource: opacitySource,
-          opacityDest: opacityDest
-        });
-        this.image = image;
-        super.run(inputThatTriggered);
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.composite(this.inputs[1].image, blendX, blendY, {
-            mode: this.mode,
-            opacitySource: opacitySource,
-            opacityDest: opacityDest
-          }, (error, image) => {
-            if (error) {
-              console.log(error);
-            } else {
-              this.image = image;
-              super.run(inputThatTriggered);
-            }
-          })
-        })
-      }
+      let image = this.inputs[0].image.clone();
+      image.composite(this.inputs[1].image, blendX, blendY, {
+        mode: this.mode,
+        opacitySource: opacitySource,
+        opacityDest: opacityDest
+      });
+      this.image = image;
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

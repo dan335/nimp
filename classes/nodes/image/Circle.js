@@ -3,7 +3,7 @@ import CircleProperties from './CircleProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 import OutputColor from '../OutputColor.js';
-import Jimp from "jimp";
+import { Jimp } from "jimp";
 import InputColor from '../InputColor.js';
 const tinycolor = require("tinycolor2");
 import InputNumber from '../InputNumber.js';
@@ -80,20 +80,10 @@ export default class Circle extends NodeImage {
       this.color = tc.toHex8String();
     }
 
-    if (this.isInsideALoop) {
-      let image = new Jimp(width, height, this.color);
-      this.image = this.createCircle(image, padding);
-      super.run(inputThatTriggered);
-    } else {
-      new Jimp(width, height, this.color, (error, image) => {
-        if (error) {
-          console.log(error);
-        } else {
-          this.image = this.createCircle(image, padding);
-          super.run(inputThatTriggered);
-        }
-      })
-    }
+    const colorNum = parseInt(this.color.replace('#', ''), 16);
+    const image = new Jimp({ width, height, color: colorNum });
+    this.image = this.createCircle(image, padding);
+    super.run(inputThatTriggered);
 
   }
 
@@ -103,19 +93,12 @@ export default class Circle extends NodeImage {
     let centerY = image.bitmap.height / 2;
     let radius = Math.min(image.bitmap.width, image.bitmap.height) / 2 - padding;
 
-    image.scan(0, 0, image.bitmap.width, image.bitmap.height, function(x, y, idx) {
+    image.scan((x, y, idx) => {
       let a = x + 0.5 - centerX;
       let b = y + 0.5 - centerY;
       let distance = Math.sqrt(a*a+b*b);
 
-      this.bitmap.data[idx+3] = Math.min(1, Math.max(0, 1 - (distance - (radius - 0.5)))) * 255;
-
-      // if (distance < radius) {
-      //   // inside
-      // } else {
-      //   // outside
-      //   this.bitmap.data[idx+3] = 0;
-      // }
+      image.bitmap.data[idx+3] = Math.min(1, Math.max(0, 1 - (distance - (radius - 0.5)))) * 255;
     })
 
     return image;

@@ -4,7 +4,7 @@ import NodeImage from '../NodeImage.js';
 import FaultlineProperties from './FaultlineProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
-import Jimp from "jimp";
+import { Jimp } from "jimp";
 import InputNumber from '../InputNumber.js';
 
 
@@ -64,20 +64,9 @@ export default class Faultline extends NodeImage {
     height = Math.max(1, height);
     iterations = Math.max(1, iterations);
 
-    if (this.isInsideALoop) {
-      let image = new Jimp(width, height, '#808080');
-      this.image = this.createImage(image, iterations);
-      super.run(inputThatTriggered);
-    } else {
-      new Jimp(width, height, '#808080', (error, image) => {
-        if (error) {
-          console.log(error);
-        } else {
-          this.image = this.createImage(image, iterations);
-          super.run(inputThatTriggered);
-        }
-      })
-    }
+    const image = new Jimp({ width, height, color: 0x808080ff });
+    this.image = this.createImage(image, iterations);
+    super.run(inputThatTriggered);
 
   }
 

@@ -59,15 +59,11 @@ export default class Else extends NodeImage {
 
       } else {
         if (a) {
-          Jimp.read(this.inputs[0].image).then(image => {
-            this.image = image;
-            super.run(inputThatTriggered);
-          })
+          this.image = this.inputs[0].image.clone();
+          super.run(inputThatTriggered);
         } else {
-          Jimp.read(this.inputs[1].image).then(image => {
-            this.image = image;
-            super.run(inputThatTriggered);
-          })
+          this.image = this.inputs[1].image.clone();
+          super.run(inputThatTriggered);
         }
 
       }

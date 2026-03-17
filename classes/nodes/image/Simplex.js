@@ -3,7 +3,7 @@ import SimplexProperties from './SimplexProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 import InputNumber from '../InputNumber.js';
-import Jimp from "jimp";
+import { Jimp } from "jimp";
 import SimplexNoise from 'simplex-noise';
 
 
@@ -73,32 +73,21 @@ export default class Simplex extends NodeImage {
     scale = Math.max(0.00001, scale);
     scale = Math.min(5, scale);
 
-    if (this.isInsideALoop) {
-      let image = new Jimp(width, height);
-      this.image = this.writeSimplexToImage(image, seed, scale);
-      super.run(inputThatTriggered);
-    } else {
-      new Jimp(width, height, (error, image) => {
-        if (error) {
-          console.log(error);
-        } else {
-          this.image = this.writeSimplexToImage(image, seed, scale);
-          super.run(inputThatTriggered);
-        }
-      })
-    }
+    const image = new Jimp({ width, height });
+    this.image = this.writeSimplexToImage(image, seed, scale);
+    super.run(inputThatTriggered);
   }
 
 
   writeSimplexToImage(image, seed, scale) {
     const simplex = new SimplexNoise(seed);
 
-    image.scan(0, 0, image.bitmap.width, image.bitmap.height, function(x, y, idx) {
+    image.scan((x, y, idx) => {
       const noise = Math.round((simplex.noise2D(x*scale, y*scale) + 1) / 2 * 255);
-      this.bitmap.data[idx] = noise;
-      this.bitmap.data[idx+1] = noise;
-      this.bitmap.data[idx+2] = noise;
-      this.bitmap.data[idx+3] = 255;
+      image.bitmap.data[idx] = noise;
+      image.bitmap.data[idx+1] = noise;
+      image.bitmap.data[idx+2] = noise;
+      image.bitmap.data[idx+3] = 255;
     })
 
     return image;

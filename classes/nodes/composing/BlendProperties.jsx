@@ -1,3 +1,4 @@
+import { BlendMode } from 'jimp';
 import Properties from '../Properties.js';
 import PropertiesInputNumber from '../../../components/PropertiesInputNumber.jsx';
 import PropertiesInputSlider from '../../../components/PropertiesInputSlider.jsx';
@@ -32,16 +33,16 @@ export default class BlendProperties extends Properties {
 
           Blend mode.<br/>
           <select id="blendInput" defaultValue={this.props.node.mode} onChange={(event) => {this.modeChange(event)}}>
-            <option value={Jimp.BLEND_DESTINATION_OVER}>Background Over</option>
-            <option value={Jimp.BLEND_SOURCE_OVER}>Foreground Over</option>
-            <option value={Jimp.BLEND_MULTIPLY}>Multiply</option>
-            <option value={Jimp.BLEND_SCREEN}>Screen</option>
-            <option value={Jimp.BLEND_OVERLAY}>Overlay</option>
-            <option value={Jimp.BLEND_DARKEN}>Darken</option>
-            <option value={Jimp.BLEND_LIGHTEN}>Lighten</option>
-            <option value={Jimp.BLEND_HARDLIGHT}>Hard Light</option>
-            <option value={Jimp.BLEND_DIFFERENCE}>Difference</option>
-            <option value={Jimp.BLEND_EXCLUSION}>Exclusion</option>
+            <option value={BlendMode.DESTINATION_OVER}>Background Over</option>
+            <option value={BlendMode.SRC_OVER}>Foreground Over</option>
+            <option value={BlendMode.MULTIPLY}>Multiply</option>
+            <option value={BlendMode.SCREEN}>Screen</option>
+            <option value={BlendMode.OVERLAY}>Overlay</option>
+            <option value={BlendMode.DARKEN}>Darken</option>
+            <option value={BlendMode.LIGHTEN}>Lighten</option>
+            <option value={BlendMode.HARDLIGHT}>Hard Light</option>
+            <option value={BlendMode.DIFFERENCE}>Difference</option>
+            <option value={BlendMode.EXCLUSION}>Exclusion</option>
           </select>
           <br/>
           <br/>

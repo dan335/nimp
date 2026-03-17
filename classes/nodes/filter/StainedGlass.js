@@ -34,15 +34,8 @@ export default class StainedGlass extends NodeImage {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
 
-      if (this.isInsideALoop) {
-        this.image = this.applyFilter(this.inputs[0].image.clone(), numPoints);
-        super.run(inputThatTriggered);
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          this.image = this.applyFilter(image, numPoints);
-          super.run(inputThatTriggered);
-        })
-      }
+      this.image = this.applyFilter(this.inputs[0].image.clone(), numPoints);
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

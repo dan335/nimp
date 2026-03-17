@@ -32,24 +32,10 @@ export default class Posterize extends NodeImage {
         amount = this.inputs[1].number;
       }
 
-      if (this.isInsideALoop) {
-        let image = this.inputs[0].image.clone();
-        image.posterize(amount);
-        this.image = image;
-        super.run(inputThatTriggered);
-
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.posterize(amount, (error, image) => {
-            if (error) {
-              console.log(error);
-            } else {
-              this.image = image;
-              super.run(inputThatTriggered);
-            }
-          });
-        })
-      }
+      let image = this.inputs[0].image.clone();
+      image.posterize(amount);
+      this.image = image;
+      super.run(inputThatTriggered);
     } else {
       this.runTimer = Date.now();
       this.image = null;

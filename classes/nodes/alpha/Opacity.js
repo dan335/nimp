@@ -34,24 +34,10 @@ export default class Opacity extends NodeImage {
 
       amount = Math.min(1, Math.max(0, amount));
 
-      if (this.isInsideALoop) {
-        let image = this.inputs[0].image.clone();
-        image.opacity(amount);
-        this.image = image;
-        super.run(inputThatTriggered);
-
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.opacity(amount, (error, image) => {
-            if (error) {
-              console.log(error);
-            } else {
-              this.image = image;
-              super.run(inputThatTriggered);
-            }
-          });
-        })
-      }
+      let image = this.inputs[0].image.clone();
+      image.opacity(amount);
+      this.image = image;
+      super.run(inputThatTriggered);
     } else {
       this.runTimer = Date.now();
       this.image = null;

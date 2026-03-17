@@ -37,24 +37,10 @@ export default class GaussianBlur extends NodeImage {
       // blur requires radius to be rounded?
       radius = Math.round(radius);
 
-      if (this.isInsideALoop) {
-        let image = this.inputs[0].image.clone();
-        image.gaussian(radius);
-        this.image = image;
-        super.run(inputThatTriggered);
-
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.gaussian(radius, (error, image) => {
-            if (error) {
-              console.log(error);
-            } else {
-              this.image = image;
-              super.run(inputThatTriggered);
-            }
-          });
-        })
-      }
+      const image = this.inputs[0].image.clone();
+      image.gaussian(radius);
+      this.image = image;
+      super.run(inputThatTriggered);
     } else {
       this.runTimer = Date.now();
       this.image = null;

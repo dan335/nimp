@@ -67,23 +67,10 @@ export default class Blit extends NodeImage {
         srcHeight = this.inputs[7].number;
       }
 
-      if (this.isInsideALoop) {
-        let image = this.inputs[0].image.clone();
-        image.blit(this.inputs[1].image, blitX, blitY, srcX, srcY, srcWidth, srcHeight);
-        this.image = image;
-        super.run(inputThatTriggered);
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.blit(this.inputs[1].image, blitX, blitY, srcX, srcY, srcWidth, srcHeight, (error, image) => {
-            if (error) {
-              console.log(error);
-            } else {
-              this.image = image;
-              super.run(inputThatTriggered);
-            }
-          })
-        })
-      }
+      let image = this.inputs[0].image.clone();
+      image.blit({ src: this.inputs[1].image, x: blitX, y: blitY, srcX: srcX, srcY: srcY, srcW: srcWidth, srcH: srcHeight });
+      this.image = image;
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

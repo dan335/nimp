@@ -1,6 +1,7 @@
 import Node from './Node.js';
 const tinycolor = require("tinycolor2");
 var debounce = require('lodash.debounce');
+import { Jimp } from "jimp";
 
 
 export default class NodeColor extends Node {
@@ -51,14 +52,9 @@ export default class NodeColor extends Node {
 
 
   renderPreview() {
-    new Jimp(1, 1, this.color.toHex8(), (error, image) => {
-      if (error) {
-        console.log(error);
-      } else {
-        image.getBufferAsync(Jimp.MIME_PNG).then(i => {
-          this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64'));
-        });
-      }
-    })
+    const image = new Jimp({ width: 1, height: 1, color: parseInt(this.color.toHex8(), 16) });
+    image.getBuffer("image/png").then(i => {
+      this.preview.setAttributeNS(null, 'href', 'data:image/png;base64,'+i.toString('base64'));
+    });
   }
 }

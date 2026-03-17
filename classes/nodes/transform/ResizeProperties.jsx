@@ -1,3 +1,4 @@
+import { ResizeStrategy } from 'jimp';
 import Properties from '../Properties.js';
 
 export default class ResizeProperties extends Properties {
@@ -8,8 +9,8 @@ export default class ResizeProperties extends Properties {
     this.state = {
       hasXInput: props.node.inputs[1].parent ? true : false,
       hasYInput: props.node.inputs[2].parent ? true : false,
-      xIsAuto: props.node.resizeX == Jimp.AUTO,
-      yIsAuto: props.node.resizeY == Jimp.AUTO
+      xIsAuto: props.node.resizeX == null,
+      yIsAuto: props.node.resizeY == null
     }
 
     this.xChange = this.xChange.bind(this);
@@ -29,7 +30,7 @@ export default class ResizeProperties extends Properties {
   xAutoChange(event) {
     const elm = document.getElementById('xAutoInput');
     if (elm.checked) {
-      this.props.node.resizeX = Jimp.AUTO;
+      this.props.node.resizeX = null;
       this.setState({xIsAuto: true});
     } else {
       this.setState({xIsAuto: false});
@@ -48,7 +49,7 @@ export default class ResizeProperties extends Properties {
   yAutoChange(event) {
     const elm = document.getElementById('yAutoInput');
     if (elm.checked) {
-      this.props.node.resizeY = Jimp.AUTO;
+      this.props.node.resizeY = null;
       this.setState({yIsAuto: true});
     } else {
       this.props.node.resizeY = 256;
@@ -70,11 +71,11 @@ export default class ResizeProperties extends Properties {
       return (
         <div>
           Width<br/>
-          <input id="xAutoInput" type="checkbox" defaultChecked={this.props.node.resizeX == Jimp.AUTO} onChange={(event) => {this.xAutoChange(event)}}/> Auto
+          <input id="xAutoInput" type="checkbox" defaultChecked={this.props.node.resizeX == null} onChange={(event) => {this.xAutoChange(event)}}/> Auto
           <br/>
 
           {!this.state.xIsAuto && (
-            <input id="xInput" type="number" min="1" defaultValue={this.props.node.resizeX == Jimp.AUTO ? 256 : this.props.node.resizeX} onChange={(event) => {this.xChange(event);}} />
+            <input id="xInput" type="number" min="1" defaultValue={this.props.node.resizeX == null ? 256 : this.props.node.resizeX} onChange={(event) => {this.xChange(event);}} />
           )}
 
           <br/>
@@ -90,11 +91,11 @@ export default class ResizeProperties extends Properties {
       return (
         <div>
           Height<br/>
-          <input id="yAutoInput" type="checkbox" defaultChecked={this.props.node.resizeY == Jimp.AUTO} onChange={(event) => {this.yAutoChange(event)}}/> Auto
+          <input id="yAutoInput" type="checkbox" defaultChecked={this.props.node.resizeY == null} onChange={(event) => {this.yAutoChange(event)}}/> Auto
           <br/>
 
           {!this.state.yIsAuto && (
-            <input id="yInput" type="number" min="1" defaultValue={this.props.node.resizeY == Jimp.AUTO ? 256 : this.props.node.resizeY} onChange={(event) => {this.yChange(event);}} />
+            <input id="yInput" type="number" min="1" defaultValue={this.props.node.resizeY == null ? 256 : this.props.node.resizeY} onChange={(event) => {this.yChange(event);}} />
           )}
 
           <br/>
@@ -115,11 +116,11 @@ export default class ResizeProperties extends Properties {
 
           Mode<br/>
           <select id="modeInput" defaultValue={this.props.node.mode} onChange={(event) => {this.modeChange(event)}}>
-            <option value={Jimp.RESIZE_NEAREST_NEIGHBOR}>Nearest Neighbor</option>
-            <option value={Jimp.RESIZE_BILINEAR}>Bilinear</option>
-            <option value={Jimp.RESIZE_BICUBIC}>Bicubic</option>
-            <option value={Jimp.RESIZE_HERMITE}>Hermite</option>
-            <option value={Jimp.RESIZE_BEZIER}>Bezier</option>
+            <option value={ResizeStrategy.NEAREST_NEIGHBOR}>Nearest Neighbor</option>
+            <option value={ResizeStrategy.BILINEAR}>Bilinear</option>
+            <option value={ResizeStrategy.BICUBIC}>Bicubic</option>
+            <option value={ResizeStrategy.HERMITE}>Hermite</option>
+            <option value={ResizeStrategy.BEZIER}>Bezier</option>
           </select>
           {this.renderRun()}
         </div>

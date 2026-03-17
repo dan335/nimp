@@ -1,3 +1,4 @@
+import { ResizeStrategy } from 'jimp';
 import NodeImage from '../NodeImage.js';
 import ResizeProperties from './ResizeProperties.jsx';
 import OutputImage from '../OutputImage.js';
@@ -19,7 +20,7 @@ export default class Resize extends NodeImage {
 
     this.resizeX = typeof settings.resizeX !== 'undefined' ? settings.resizeX : 256;
     this.resizeY = typeof settings.resizeY !== 'undefined' ? settings.resizeY : 256;
-    this.mode = typeof settings.mode !== 'undefined' ? settings.mode : Jimp.RESIZE_BICUBIC;
+    this.mode = typeof settings.mode !== 'undefined' ? settings.mode : ResizeStrategy.BICUBIC;
   }
 
 
@@ -50,19 +51,13 @@ export default class Resize extends NodeImage {
         resizeY = this.inputs[2].number;
       }
 
-      if (this.isInsideALoop) {
-        let image = this.inputs[0].image.clone();
-        image.resize(resizeX, resizeY, this.mode);
-        this.image = image;
-        super.run(inputThatTriggered);
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.resize(resizeX, resizeY, this.mode, (error, image) => {
-            this.image = image;
-            super.run(inputThatTriggered);
-          });
-        })
-      }
+      let image = this.inputs[0].image.clone();
+      const resizeOpts = { mode: this.mode };
+      if (resizeX != null) resizeOpts.w = resizeX;
+      if (resizeY != null) resizeOpts.h = resizeY;
+      image.resize(resizeOpts);
+      this.image = image;
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

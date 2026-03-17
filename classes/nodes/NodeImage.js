@@ -2,6 +2,7 @@ import Node from './Node.js';
 import OutputImage from './OutputImage.js';
 var debounce = require('lodash.debounce');
 import settings from '../../lib/settings.js';
+import { Jimp } from "jimp";
 
 
 
@@ -20,8 +21,8 @@ export default class NodeImage extends Node {
     const elm = document.getElementById('nodeViewImage');
     if (elm) {
       if (this.image) {
-        this.image.getBufferAsync(Jimp.MIME_PNG).then(i => {
-          elm.src = 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64');
+        this.image.getBuffer("image/png").then(i => {
+          elm.src = 'data:image/png;base64,'+i.toString('base64');
         })
       } else {
         elm.src = '';
@@ -81,12 +82,9 @@ export default class NodeImage extends Node {
 
 
   renderPreview() {
-    this.image.clone((error, image) => {
-      image.resize(settings.nodeWidth, Jimp.AUTO, (error, image) => {
-        image.getBufferAsync(Jimp.MIME_PNG).then(i => {
-          this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_PNG+';base64,'+i.toString('base64'));
-        })
-      })
+    const image = this.image.clone().resize({ w: settings.nodeWidth });
+    image.getBuffer("image/png").then(i => {
+      this.preview.setAttributeNS(null, 'href', 'data:image/png;base64,'+i.toString('base64'));
     })
   }
 }

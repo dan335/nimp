@@ -21,19 +21,10 @@ export default class Greyscale extends NodeImage {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
 
-      if (this.isInsideALoop) {
-        const image = this.inputs[0].image.clone();
-        image.greyscale();
-        this.image = image;
-        super.run(inputThatTriggered);
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.greyscale((error, image) => {
-            this.image = image;
-            super.run(inputThatTriggered);
-          });
-        })
-      }
+      const image = this.inputs[0].image.clone();
+      image.greyscale();
+      this.image = image;
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

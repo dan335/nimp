@@ -36,15 +36,8 @@ export default class AmbientOcclusion extends NodeImage {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
 
-      if (this.isInsideALoop) {
-        this.image = this.applyFilter(this.inputs[0].image.clone(), radius);
-        super.run(inputThatTriggered);
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          this.image = this.applyFilter(image, radius);
-          super.run(inputThatTriggered);
-        })
-      }
+      this.image = this.applyFilter(this.inputs[0].image.clone(), radius);
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

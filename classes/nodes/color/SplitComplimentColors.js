@@ -3,6 +3,7 @@ import SplitComplimentColorsProperties from './SplitComplimentColorsProperties.j
 import OutputColor from '../OutputColor.js';
 const tinycolor = require("tinycolor2");
 import InputColor from '../InputColor.js';
+import { Jimp } from "jimp";
 
 
 export default class SplitComplimentColors extends NodeColor {
@@ -74,8 +75,8 @@ export default class SplitComplimentColors extends NodeColor {
         image.bitmap.data[10] = c2.b;
         image.bitmap.data[11] = 255;
 
-        image.getBufferAsync(Jimp.MIME_JPEG).then(i => {
-          this.preview.setAttributeNS(null, 'href', 'data:'+Jimp.MIME_JPEG+';base64,'+i.toString('base64'));
+        image.getBuffer("image/jpeg").then(i => {
+          this.preview.setAttributeNS(null, 'href', 'data:image/jpeg;base64,'+i.toString('base64'));
         });
       }
     })

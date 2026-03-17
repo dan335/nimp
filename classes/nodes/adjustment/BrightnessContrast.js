@@ -54,31 +54,11 @@ export default class BrightnessContrast extends NodeImage {
       contrast = Math.max(-1, contrast);
       contrast = Math.min(1, contrast);
 
-      if (this.isInsideALoop) {
-        let image = this.inputs[0].image.clone();
-        image.brightness(brightness);
-        image.contrast(contrast);
-        this.image = image;
-        super.run(inputThatTriggered);
-
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.brightness(brightness, (error, image) => {
-            if (error) {
-              console.log(error);
-            } else {
-              image.contrast(contrast, (error, image) => {
-                if (error) {
-                  console.log(error);
-                } else {
-                  this.image = image;
-                  super.run(inputThatTriggered);
-                }
-              });
-            }
-          });
-        })
-      }
+      const image = this.inputs[0].image.clone();
+      image.brightness(brightness);
+      image.contrast(contrast);
+      this.image = image;
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

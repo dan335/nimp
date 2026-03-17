@@ -2,7 +2,7 @@ import NodeImage from '../NodeImage.js';
 import OutputLevelsProperties from './OutputLevelsProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
-import Jimp from "jimp";
+import { Jimp } from "jimp";
 const tinycolor = require("tinycolor2");
 import InputNumber from '../InputNumber.js';
 
@@ -47,17 +47,9 @@ export default class OutputLevels extends NodeImage {
       min = Math.min(min, max);
       max = Math.max(min, max);
 
-      if (this.isInsideALoop) {
-        let image = this.inputs[0].image.clone();
-        this.image = this.levels(image, min, max);
-        super.run(inputThatTriggered);
-
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          this.image = this.levels(image, min, max);
-          super.run(inputThatTriggered);
-        })
-      }
+      const image = this.inputs[0].image.clone();
+      this.image = this.levels(image, min, max);
+      super.run(inputThatTriggered);
     } else {
       this.runTimer = Date.now();
       this.image = null;

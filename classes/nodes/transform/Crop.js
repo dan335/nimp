@@ -75,23 +75,10 @@ export default class Crop extends NodeImage {
       width = Math.max(0, width);
       height = Math.max(0, height);
 
-      if (this.isInsideALoop) {
-        let image = this.inputs[0].image.clone();
-        image.crop(cropX, cropY, width, height);
-        this.image = image;
-        super.run(inputThatTriggered);
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.crop(cropX, cropY, width, height, (error, image) => {
-            if (error) {
-              console.log(error);
-            } else {
-              this.image = image;
-              super.run(inputThatTriggered);
-            }
-          })
-        })
-      }
+      let image = this.inputs[0].image.clone();
+      image.crop({ x: cropX, y: cropY, w: width, h: height });
+      this.image = image;
+      super.run(inputThatTriggered);
 
     } else {
       this.image = null;

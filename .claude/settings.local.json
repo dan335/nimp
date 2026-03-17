@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(pwsh.exe -NoProfile -Command 'echo $PROFILE')",
+      "Bash(npm install:*)",
+      "Bash(npx jest:*)",
+      "Bash(npx next:*)",
+      "Bash(mongod:*)",
+      "Bash(node:*)",
+      "Bash(npm ls:*)",
+      "Bash(grep:*)",
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//d/web/nimp/**)",
+      "Bash(done)",
+      "Bash(xargs -I {} basename {})",
+      "Bash(npm show:*)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:jimp-dev.github.io)"
+    ]
+  }
+}

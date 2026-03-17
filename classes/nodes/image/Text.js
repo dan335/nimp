@@ -2,7 +2,7 @@ import NodeImage from '../NodeImage.js';
 import TextProperties from './TextProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
-import Jimp from "jimp";
+import { Jimp, HorizontalAlign, VerticalAlign } from "jimp";
 import InputString from '../InputString.js';
 import InputNumber from '../InputNumber.js';
 
@@ -26,8 +26,8 @@ export default class Text extends NodeImage {
     this.hasHeight = typeof settings.hasHeight !== 'undefined' ? settings.hasHeight : false;
     this.width = typeof settings.width !== 'undefined' ? settings.width : 256;
     this.height = typeof settings.height !== 'undefined' ? settings.height : 256;
-    this.alignmentX = typeof settings.alignmentX !== 'undefined' ? settings.alignmentX : Jimp.HORIZONTAL_ALIGN_LEFT;
-    this.alignmentY = typeof settings.alignmentY !== 'undefined' ? settings.alignmentY : Jimp.VERTICAL_ALIGN_MIDDLE;
+    this.alignmentX = typeof settings.alignmentX !== 'undefined' ? settings.alignmentX : HorizontalAlign.LEFT;
+    this.alignmentY = typeof settings.alignmentY !== 'undefined' ? settings.alignmentY : VerticalAlign.MIDDLE;
     this.string = typeof settings.string !== 'undefined' ? settings.string : 'Nimp';
     this.font = typeof settings.font !== 'undefined' ? settings.font : '/static/fonts/open-sans/open-sans-32-white/open-sans-32-white.fnt';
   }
@@ -82,25 +82,10 @@ export default class Text extends NodeImage {
         height = Jimp.measureTextHeight(font, string, width);
       }
 
-      new Jimp(width, height, '#00000000', (error, image) => {
-        if (error) {
-          console.log(error);
-          this.image = null;
-          super.run(inputThatTriggered);
-        } else {
-          image.print(font, 0, 0, {text: string, alignmentX: this.alignmentX, alignmentY: this.alignmentY}, width, height, (error, image, {x, y}) => {
-              if (error) {
-                console.log(error);
-                this.image = null;
-                super.run(inputThatTriggered);
-              } else {
-                this.image = image;
-                super.run(inputThatTriggered);
-              }
-            }
-          )
-        }
-      })
+      const image = new Jimp({ width, height, color: 0x00000000 });
+      image.print({ font, x: 0, y: 0, text: string, maxWidth: width, maxHeight: height });
+      this.image = image;
+      super.run(inputThatTriggered);
     }).catch(error => {
       console.log(error);
       this.image = null;

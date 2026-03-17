@@ -60,23 +60,10 @@ export default class Pixelate extends NodeImage {
         height = this.inputs[5].number;
       }
 
-      if (this.isInsideALoop) {
-        let image = this.inputs[0].image.clone();
-        image.pixelate(size, valueX, valueY, width, height);
-        this.image = image;
-        super.run(inputThatTriggered);
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.pixelate(size, valueX, valueY, width, height, (error, image) => {
-            if (error) {
-              console.log(error);
-            } else {
-              this.image = image;
-              super.run(inputThatTriggered);
-            }
-          })
-        })
-      }
+      let image = this.inputs[0].image.clone();
+      image.pixelate(size, valueX, valueY, width, height);
+      this.image = image;
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

@@ -2,6 +2,7 @@ import NodeImage from '../NodeImage.js';
 import ChannelSplitProperties from './ChannelSplitProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import InputImage from '../InputImage.js';
+import { Jimp } from "jimp";
 
 
 export default class ChannelSplit extends NodeImage {
@@ -38,16 +39,15 @@ export default class ChannelSplit extends NodeImage {
         super.run(inputThatTriggered);
 
       } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          const images = this.createImages(image);
-          this.redImage = images.red;
-          this.greenImage = images.green;
-          this.blueImage = images.blue;
-          this.alphaImage = images.alpha;
+        const image = this.inputs[0].image.clone();
+        const images = this.createImages(image);
+        this.redImage = images.red;
+        this.greenImage = images.green;
+        this.blueImage = images.blue;
+        this.alphaImage = images.alpha;
 
-          this.image = image;
-          super.run(inputThatTriggered);
-        })
+        this.image = image;
+        super.run(inputThatTriggered);
       }
     } else {
       this.runTimer = Date.now();
@@ -58,11 +58,11 @@ export default class ChannelSplit extends NodeImage {
 
 
   createImages(image) {
-    let redImage = new Jimp(image.bitmap.width, image.bitmap.height, '#000');
-    let greenImage = new Jimp(image.bitmap.width, image.bitmap.height, '#000');
-    let blueImage = new Jimp(image.bitmap.width, image.bitmap.height, '#000');
-    let alphaImage = new Jimp(image.bitmap.width, image.bitmap.height, '#000');
-    image.scan(0, 0, image.bitmap.width, image.bitmap.height, (x, y, idx) => {
+    let redImage = new Jimp({ width: image.bitmap.width, height: image.bitmap.height, color: 0x000000ff });
+    let greenImage = new Jimp({ width: image.bitmap.width, height: image.bitmap.height, color: 0x000000ff });
+    let blueImage = new Jimp({ width: image.bitmap.width, height: image.bitmap.height, color: 0x000000ff });
+    let alphaImage = new Jimp({ width: image.bitmap.width, height: image.bitmap.height, color: 0x000000ff });
+    image.scan((x, y, idx) => {
       redImage.bitmap.data[idx] = image.bitmap.data[idx];
       redImage.bitmap.data[idx+1] = image.bitmap.data[idx];
       redImage.bitmap.data[idx+2] = image.bitmap.data[idx];

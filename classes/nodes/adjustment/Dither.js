@@ -21,19 +21,10 @@ export default class Dither extends NodeImage {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
 
-      if (this.isInsideALoop) {
-        const image = this.inputs[0].image.clone();
-        image.dither565();
-        this.image = image;
-        super.run(inputThatTriggered);
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.dither565((error, image) => {
-            this.image = image;
-            super.run(inputThatTriggered);
-          });
-        })
-      }
+      const image = this.inputs[0].image.clone();
+      image.dither();
+      this.image = image;
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

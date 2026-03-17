@@ -1,7 +1,7 @@
 var ObjectId = require('bson-objectid');
 import functions from '../lib/functions.js';
 import settings from '../lib/settings.js';
-import Jimp from "jimp";
+import { Jimp } from "jimp";
 
 
 export default class Graph {
@@ -185,14 +185,9 @@ export default class Graph {
       const outputNode = this.getOutputNode();
 
       if (outputNode && outputNode.image) {
-        outputNode.image.clone().cover(settings.thumbnailWidth, settings.thumbnailHeight, (error, image) => {
-          if (error) {
-            resolve(null);
-          } else {
-            image.getBufferAsync(Jimp.MIME_JPEG).then(i => {
-              resolve('data:'+Jimp.MIME_JPEG+';base64,'+i.toString('base64'));
-            })
-          }
+        const image = outputNode.image.clone().cover({ w: settings.thumbnailWidth, h: settings.thumbnailHeight });
+        image.getBuffer("image/jpeg").then(i => {
+          resolve('data:image/jpeg;base64,'+i.toString('base64'));
         })
       } else {
         resolve(null);

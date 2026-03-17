@@ -48,10 +48,8 @@ export default class IfImage extends NodeImage {
           super.run(inputThatTriggered);
 
         } else {
-          Jimp.read(this.inputs[0].image).then(image => {
-            this.image = image;
-            super.run(inputThatTriggered);
-          })
+          this.image = this.inputs[0].image.clone();
+          super.run(inputThatTriggered);
         }
       } else {
         this.runTimer = Date.now();

@@ -21,19 +21,10 @@ export default class FlipHorizontal extends NodeImage {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
 
-      if (this.isInsideALoop) {
-        const image = this.inputs[0].image.clone();
-        image.flip(true, false);
-        this.image = image;
-        super.run(inputThatTriggered);
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.flip(true, false, (error, image) => {
-            this.image = image;
-            super.run(inputThatTriggered);
-          });
-        })
-      }
+      const image = this.inputs[0].image.clone();
+      image.flip({ horizontal: true, vertical: false });
+      this.image = image;
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

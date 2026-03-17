@@ -3,7 +3,7 @@ import WorleyProperties from './WorleyProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 import InputNumber from '../InputNumber.js';
-import Jimp from "jimp";
+import { Jimp } from "jimp";
 import WorleyNoise from 'worley-noise';
 
 
@@ -72,20 +72,9 @@ export default class Worley extends NodeImage {
     height = Math.max(1, height);
     numPoints = Math.max(1, numPoints);
 
-    if (this.isInsideALoop) {
-      let image = new Jimp(width, height);
-      this.image = this.writeToImage(image, seed, numPoints);
-      super.run(inputThatTriggered);
-    } else {
-      new Jimp(width, height, (error, image) => {
-        if (error) {
-          console.log(error);
-        } else {
-          this.image = this.writeToImage(image, seed, numPoints);
-          super.run(inputThatTriggered);
-        }
-      })
-    }
+    const image = new Jimp({ width, height });
+    this.image = this.writeToImage(image, seed, numPoints);
+    super.run(inputThatTriggered);
   }
 
 
@@ -97,12 +86,12 @@ export default class Worley extends NodeImage {
 
     var img = noise.renderImage(image.bitmap.width, {normalize: true});
 
-    image.scan(0, 0, image.bitmap.width, image.bitmap.height, function(x, y, idx) {
+    image.scan((x, y, idx) => {
       const noise = Math.round(img[y * image.bitmap.width + x] * 255);
-      this.bitmap.data[idx] = noise;
-      this.bitmap.data[idx+1] = noise;
-      this.bitmap.data[idx+2] = noise;
-      this.bitmap.data[idx+3] = 255;
+      image.bitmap.data[idx] = noise;
+      image.bitmap.data[idx+1] = noise;
+      image.bitmap.data[idx+2] = noise;
+      image.bitmap.data[idx+3] = 255;
     })
 
     return image;

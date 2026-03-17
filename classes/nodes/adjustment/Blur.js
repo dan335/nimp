@@ -37,24 +37,10 @@ export default class Blur extends NodeImage {
       // blur requires radius to be rounded?
       radius = Math.round(radius);
 
-      if (this.isInsideALoop) {
-        let image = this.inputs[0].image.clone();
-        image.blur(radius);
-        this.image = image;
-        super.run(inputThatTriggered);
-
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          image.blur(radius, (error, image) => {
-            if (error) {
-              console.log(error);
-            } else {
-              this.image = image;
-              super.run(inputThatTriggered);
-            }
-          });
-        })
-      }
+      const image = this.inputs[0].image.clone();
+      image.blur(radius);
+      this.image = image;
+      super.run(inputThatTriggered);
     } else {
       this.runTimer = Date.now();
       this.image = null;

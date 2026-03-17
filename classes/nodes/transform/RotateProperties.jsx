@@ -1,3 +1,4 @@
+import { ResizeStrategy } from 'jimp';
 import Properties from '../Properties.js';
 import PropertiesInputNumber from '../../../components/PropertiesInputNumber.jsx';
 
@@ -69,11 +70,11 @@ export default class RotateProperties extends Properties {
         <div>
           Mode to use when resizing.<br/>
           <select id="modeInput" defaultValue={this.props.node.mode} onChange={(event) => {this.modeChange(event)}}>
-            <option value={Jimp.RESIZE_NEAREST_NEIGHBOR}>Nearest Neighbor</option>
-            <option value={Jimp.RESIZE_BILINEAR}>Bilinear</option>
-            <option value={Jimp.RESIZE_BICUBIC}>Bicubic</option>
-            <option value={Jimp.RESIZE_HERMITE}>Hermite</option>
-            <option value={Jimp.RESIZE_BEZIER}>Bezier</option>
+            <option value={ResizeStrategy.NEAREST_NEIGHBOR}>Nearest Neighbor</option>
+            <option value={ResizeStrategy.BILINEAR}>Bilinear</option>
+            <option value={ResizeStrategy.BICUBIC}>Bicubic</option>
+            <option value={ResizeStrategy.HERMITE}>Hermite</option>
+            <option value={ResizeStrategy.BEZIER}>Bezier</option>
           </select>
           {this.renderRun()}
         </div>

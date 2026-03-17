@@ -34,15 +34,8 @@ export default class NormalMap extends NodeImage {
       this.bg.classList.add('running');
       this.runTimer = Date.now();
 
-      if (this.isInsideALoop) {
-        this.image = this.heightToNormal(this.inputs[0].image.clone(), strength);
-        super.run(inputThatTriggered);
-      } else {
-        Jimp.read(this.inputs[0].image).then(image => {
-          this.image = this.heightToNormal(image, strength);
-          super.run(inputThatTriggered);
-        })
-      }
+      this.image = this.heightToNormal(this.inputs[0].image.clone(), strength);
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

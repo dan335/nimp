@@ -96,23 +96,10 @@ export default class HSL extends NodeImage {
         )
       }
 
-      if (this.isInsideALoop) {
-        let image = this.inputs[0].image.clone();
-
-        image.color(adj);
-
-        this.image = image;
-        super.run(inputThatTriggered);
-
-      } else {
-        Jimp.read(this.inputs[0].image).then(async image => {
-
-          await image.color(adj);
-
-          this.image = image;
-          super.run(inputThatTriggered);
-        })
-      }
+      const image = this.inputs[0].image.clone();
+      image.color(adj);
+      this.image = image;
+      super.run(inputThatTriggered);
 
     } else {
       this.runTimer = Date.now();

@@ -3,7 +3,7 @@ import GradientProperties from './GradientProperties.jsx';
 import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 import OutputColor from '../OutputColor.js';
-import Jimp from "jimp";
+import { Jimp } from "jimp";
 const tinycolor = require("tinycolor2");
 import InputNumber from '../InputNumber.js';
 import InputColorState from '../InputColorState.js';
@@ -82,33 +82,22 @@ export default class Gradient extends NodeImage {
       colorB = tinycolor('#fff');
     }
 
-    if (this.isInsideALoop) {
-      let image = new Jimp(width, height, '#000');
-      this.image = this.createGradient(image, colorA, colorB);
-      super.run(inputThatTriggered);
-    } else {
-      new Jimp(width, height, '#000', (error, image) => {
-        if (error) {
-          console.log(error);
-        } else {
-          this.image = this.createGradient(image, colorA, colorB);
-          super.run(inputThatTriggered);
-        }
-      })
-    }
+    const image = new Jimp({ width, height, color: 0x000000ff });
+    this.image = this.createGradient(image, colorA, colorB);
+    super.run(inputThatTriggered);
 
   }
 
 
   createGradient(image, colorA, colorB) {
-    image.scan(0, 0, image.bitmap.width, image.bitmap.height, function(x, y, idx) {
+    image.scan((x, y, idx) => {
       const color = tinycolor.mix(colorA, colorB, y / image.bitmap.height * 100);
       const rgb = color.toRgb();
 
-      this.bitmap.data[idx] = rgb.r;
-      this.bitmap.data[idx+1] = rgb.g;
-      this.bitmap.data[idx+2] = rgb.b;
-      this.bitmap.data[idx+3] = rgb.a * 255;
+      image.bitmap.data[idx] = rgb.r;
+      image.bitmap.data[idx+1] = rgb.g;
+      image.bitmap.data[idx+2] = rgb.b;
+      image.bitmap.data[idx+3] = rgb.a * 255;
     })
 
     return image;

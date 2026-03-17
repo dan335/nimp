@@ -9,7 +9,7 @@ import OutputImage from '../OutputImage.js';
 import OutputNumber from '../OutputNumber.js';
 import OutputColor from '../OutputColor.js';
 import InputColor from '../InputColor.js';
-import Jimp from "jimp";
+import { Jimp } from "jimp";
 const tinycolor = require("tinycolor2");
 import InputNumber from '../InputNumber.js';
 
@@ -124,20 +124,9 @@ export default class Triangle extends NodeImage {
       this.color = tc.toHex8String();
     }
 
-    if (this.isInsideALoop) {
-      let image = new Jimp(width, height, 0x00000000);
-      this.image = this.createTriangle(image, width, height, x1, y1, x2, y2, x3, y3, this.color);
-      super.run(inputThatTriggered);
-    } else {
-      new Jimp(width, height, 0x00000000, (error, image) => {
-        if (error) {
-          console.log(error);
-        } else {
-          this.image = this.createTriangle(image, width, height, x1, y1, x2, y2, x3, y3, this.color);
-          super.run(inputThatTriggered);
-        }
-      })
-    }
+    const image = new Jimp({ width, height, color: 0x00000000 });
+    this.image = this.createTriangle(image, width, height, x1, y1, x2, y2, x3, y3, this.color);
+    super.run(inputThatTriggered);
 
   }
 

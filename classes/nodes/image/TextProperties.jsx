@@ -1,5 +1,5 @@
 import Properties from '../Properties.js';
-import Jimp from "jimp";
+import { HorizontalAlign, VerticalAlign } from "jimp";
 
 
 export default class TextProperties extends Properties {
@@ -150,17 +150,17 @@ export default class TextProperties extends Properties {
 
           <label>Horizontal Alignment</label><br/>
           <select id="alignmentXInput" defaultValue={this.props.node.alignmentX} onChange={this.alignmentXChange.bind(this)}>
-            <option value={Jimp.HORIZONTAL_ALIGN_LEFT}>Left</option>
-            <option value={Jimp.HORIZONTAL_ALIGN_CENTER}>Center</option>
-            <option value={Jimp.HORIZONTAL_ALIGN_RIGHT}>Right</option>
+            <option value={HorizontalAlign.LEFT}>Left</option>
+            <option value={HorizontalAlign.CENTER}>Center</option>
+            <option value={HorizontalAlign.RIGHT}>Right</option>
           </select>
           <br/><br/>
 
           <label>Vertical Alignment</label><br/>
           <select id="alignmentYInput" defaultValue={this.props.node.alignmentY} onChange={this.alignmentYChange.bind(this)}>
-            <option value={Jimp.VERTICAL_ALIGN_TOP}>Top</option>
-            <option value={Jimp.VERTICAL_ALIGN_MIDDLE}>Middle</option>
-            <option value={Jimp.VERTICAL_ALIGN_BOTTOM}>Bottom</option>
+            <option value={VerticalAlign.TOP}>Top</option>
+            <option value={VerticalAlign.MIDDLE}>Middle</option>
+            <option value={VerticalAlign.BOTTOM}>Bottom</option>
           </select>
           <br/><br/>
 
