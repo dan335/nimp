@@ -23,7 +23,8 @@
       "WebFetch(domain:jimp-dev.github.io)",
       "WebFetch(domain:helpx.adobe.com)",
       "WebFetch(domain:rodzill4.github.io)",
-      "WebFetch(domain:experienceleague.adobe.com)"
+      "WebFetch(domain:experienceleague.adobe.com)",
+      "Bash(npx webpack:*)"
     ]
   }
 }
