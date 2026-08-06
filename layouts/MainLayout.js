@@ -32,11 +32,6 @@ export default class MainLayout extends React.Component {
           <meta name="application-name" content="Nimp" />
           <meta name="theme-color" content="#222222" />
           <meta name="google" content="notranslate" />
-          <script
-            data-site="SZGFFMC"
-            src="https://stats.danp.us/script.js"
-            defer
-          ></script>
         </Head>
 
         <div>
